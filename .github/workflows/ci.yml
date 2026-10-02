@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build
+        run: node scripts/build.mjs
+      - name: SEO, links, structured data, CSP
+        run: node scripts/check.mjs
+      - name: Validate HTML
+        run: npx --yes html-validate@9 "dist/**/*.html"
+      - name: Validate sitemap XML
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq libxml2-utils
+          xmllint --noout dist/sitemap.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist
+          retention-days: 7

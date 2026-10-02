@@ -1,0 +1,146 @@
+{
+  "audit-log-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "audit-log": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "backend-health-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "backend-health": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "dashboard-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "dashboard": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "powerdns-servers-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "powerdns-servers": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "roles-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "roles": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "zone-detail-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-edit-diff-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-edit-diff": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "zone-edit-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-edit": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  },
+  "zones-list-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zones-list": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      640
+    ]
+  }
+}
