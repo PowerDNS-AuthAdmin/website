@@ -8,7 +8,10 @@ set -eu
 
 cd "$(dirname "$0")/.."
 
+# Values given on the command line win over .env.deploy.
+cli_indexnow="${INDEXNOW-}"
 [ -f .env.deploy ] && . ./.env.deploy
+[ -n "$cli_indexnow" ] && INDEXNOW="$cli_indexnow"
 : "${DEPLOY_HOST:?set DEPLOY_HOST in .env.deploy}"
 : "${DEPLOY_PATH:?set DEPLOY_PATH in .env.deploy}"
 DEPLOY_OWNER="${DEPLOY_OWNER:-}"

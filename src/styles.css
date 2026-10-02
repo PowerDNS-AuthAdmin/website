@@ -10,7 +10,7 @@
   src: url("/assets/fonts/inter-latin.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional; /* preloaded; never swaps late, so headings never reflow */
 }
 @font-face {
   font-family: "JetBrains Mono";
