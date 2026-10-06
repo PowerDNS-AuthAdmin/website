@@ -702,6 +702,7 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width: 760px) {
   :root { --header-h: 60px; }
   .hide-sm { display: none; }
+  .header-inner { gap: 12px; }  /* brand + demo button + toggles fit down to the 420px breakpoint */
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .stats-inner > div:nth-child(3) { border-left: 0; }
   .stats-inner > div:nth-child(n + 3) { border-top: 1px solid var(--border-soft); }
