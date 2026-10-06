@@ -64,6 +64,12 @@ server {
 
     error_page 404 /404.html;
 
+    # /index.html and /features/index.html duplicate their directory URL. $request_uri is the
+    # original request, so the index directive's internal redirect never loops.
+    if ($request_uri ~ "^([^?]*/)index\.html(\?.*)?$") {
+        return 301 $1$2;
+    }
+
     location / {
         try_files $uri $uri/ =404;
         expires -1;                   # HTML: always revalidate (ETag makes it cheap)
