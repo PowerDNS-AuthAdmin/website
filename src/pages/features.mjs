@@ -45,8 +45,8 @@ ${featureGroups
     <h2>See it with your own eyes</h2>
     <p>Click around a seeded install, or have your own running in a couple of minutes.</p>
     <div class="cta-buttons">
-      <a class="btn btn-primary btn-lg" href="${site.demo}" rel="noopener">${icon("play", 18)}<span>Open the live demo</span></a>
-      <a class="btn btn-ghost btn-lg" href="/#quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
+      <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Open the live demo</span></a>
+      <a class="btn btn-ghost btn-lg" href="/#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
     </div>
   </div>
 </section>

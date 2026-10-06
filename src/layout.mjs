@@ -153,17 +153,17 @@ function header(page) {
     <nav class="nav" aria-label="Primary">${navLinks}</nav>
     <div class="header-actions">
       <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme">${icon("sun", 18, "i-sun")}${icon("moon", 18, "i-moon")}</button>
-      <a class="btn btn-ghost btn-sm hide-sm" href="${site.repo}" rel="noopener">${githubMark(16)}<span>GitHub</span></a>
-      <a class="btn btn-primary btn-sm hide-xs" href="${site.demo}" rel="noopener">Live demo</a>
+      <a class="btn btn-ghost btn-sm hide-sm" href="${site.repo}" data-cta="GitHub" rel="noopener">${githubMark(16)}<span>GitHub</span></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="${site.demo}" data-cta="Live demo" rel="noopener">Live demo</a>
       <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">${icon("menu", 20, "i-menu")}${icon("close", 20, "i-close")}</button>
     </div>
   </div>
   <div class="mobile-nav" id="mobileNav" hidden>
     <nav class="container" aria-label="Mobile">
       ${site.nav.map((n) => `<a href="${n.href}"${n.href === page.path ? ' aria-current="page"' : ""}>${n.label}${icon("chevronRight", 18)}</a>`).join("")}
-      <div class="mobile-cta">
-        <a class="btn btn-primary btn-lg" href="${site.demo}" rel="noopener">Try the live demo</a>
-        <a class="btn btn-ghost btn-lg" href="${site.repo}" rel="noopener">${githubMark(18)}<span>View on GitHub</span></a>
+      <div class="mobile-cta" data-cta-location="nav">
+        <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">Try the live demo</a>
+        <a class="btn btn-ghost btn-lg" href="${site.repo}" data-cta="GitHub" rel="noopener">${githubMark(18)}<span>View on GitHub</span></a>
       </div>
     </nav>
   </div>
@@ -211,7 +211,7 @@ function footer() {
     <div class="footer-brand">
       <a class="brand" href="/" aria-label="${site.name} home">${logo(30)}</a>
       <p>${site.tagline}. Open source under the MIT licence, built in the open by its community.</p>
-      <a class="release-chip" href="${site.latestRelease}" rel="noopener"><span class="pulse" aria-hidden="true"></span>v${site.version}<span class="muted">· ${releasedLabel}</span></a>
+      <a class="release-chip" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v${site.version}<span class="muted">· ${releasedLabel}</span></a>
     </div>
     <div class="footer-cols">
       ${col("Product", [["/features/", "Features"], ["/powerdns-admin-alternative/", "Compare"], ["/faq/", "FAQ"], [site.demo, "Live demo"], [site.releases, "Releases"], [site.changelog, "Changelog"]])}
@@ -222,6 +222,7 @@ function footer() {
   <div class="container footer-bottom">
     <span>© ${site.released.slice(0, 4)} ${site.name} contributors. MIT licensed.</span>
     <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
   </div>
 </footer>`;
 }
@@ -237,7 +238,7 @@ const lightbox = `<dialog class="lightbox" id="lightbox" aria-label="Screenshot 
 </dialog>`;
 
 /* ---------- Document ---------- */
-export function render(page, { cssHref, jsHref }) {
+export function render(page, { cssHref, jsHref, analyticsHref }) {
   const url = `${site.url}${page.path}`;
   const title = page.title;
   const ogImage = `${site.url}/assets/og/${page.ogImage || page.slug}.jpg`;
@@ -276,11 +277,12 @@ export function render(page, { cssHref, jsHref }) {
 
   const csp = [
     "default-src 'self'",
-    `script-src 'self' '${sha256(boot)}'`,
+    // Google Analytics 4 (gtag.js), loaded by analytics.js; no inline script needed.
+    `script-src 'self' '${sha256(boot)}' https://*.googletagmanager.com`,
     "style-src 'self'",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au",
     "font-src 'self'",
-    "connect-src 'self'",
+    "connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au",
     "manifest-src 'self'",
     "base-uri 'self'",
     "form-action 'none'",
@@ -330,7 +332,8 @@ export function render(page, { cssHref, jsHref }) {
 <meta name="twitter:image" content="${ogImage}">
 <script type="application/ld+json">${jsonld}</script>
 <script src="${jsHref}" defer></script>
-</head>
+${site.ga4 && analyticsHref ? `<script src="${analyticsHref}" data-ga4="${site.ga4}" defer></script>
+` : ""}</head>
 <body class="page-${page.slug}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${header(page)}

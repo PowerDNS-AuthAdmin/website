@@ -11,7 +11,7 @@ const body = `
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="/">${icon("arrowRight", 18)}<span>Back to the zone apex</span></a>
       <a class="btn btn-ghost btn-lg" href="/features/">Features</a>
-      <a class="btn btn-ghost btn-lg" href="${site.docs.index}" rel="noopener">Docs</a>
+      <a class="btn btn-ghost btn-lg" href="${site.docs.index}" data-cta="Docs" rel="noopener">Docs</a>
     </div>
   </div>
 </section>

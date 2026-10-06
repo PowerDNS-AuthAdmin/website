@@ -31,6 +31,8 @@ export const site = {
   contributing: `${repo}/blob/main/CONTRIBUTING.md`,
   package: `${repo}/pkgs/container/powerdns-authadmin`,
   websiteRepo: "https://github.com/PowerDNS-AuthAdmin/website",
+  // GA4 measurement ID, loaded by src/analytics.js (shared NGN event script). Empty disables analytics.
+  ga4: "G-Y8C640LSFR",
   // IndexNow (Bing, Yandex, Seznam...). Public by design: served at /<key>.txt.
   indexNowKey: "652aab60d92521253f92abc06012277a",
   docs: {

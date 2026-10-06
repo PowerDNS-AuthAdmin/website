@@ -31,14 +31,18 @@ const css = readFileSync(join(root, "src", "styles.css"), "utf8")
   .replace(/;}/g, "}")
   .trim();
 const js = readFileSync(join(root, "src", "main.js"), "utf8");
+// Shared NGN GA4 event script (keep identical to the other sites; see its header comment).
+const analytics = readFileSync(join(root, "src", "analytics.js"), "utf8");
 const cssHref = `/assets/css/site.${hash(css)}.css`;
+const analyticsHref = `/assets/js/analytics.${hash(analytics)}.js`;
 const jsHref = `/assets/js/site.${hash(js)}.js`;
 write(cssHref, css);
 write(jsHref, js);
+write(analyticsHref, analytics);
 
 /* Pages */
 for (const page of pages) {
-  const html = render(page, { cssHref, jsHref });
+  const html = render(page, { cssHref, jsHref, analyticsHref });
   write(page.file || join(page.path, "index.html"), html);
 }
 

@@ -117,7 +117,7 @@ const terminal = `<div class="terminal">
     <div class="terminal-tabs" role="tablist" aria-label="Files">
       ${files.map((f, i) => `<button class="terminal-tab" type="button" role="tab" id="ft-${f.id}" aria-controls="fp-${f.id}" aria-selected="${i === 0}"${i ? ' tabindex="-1"' : ""}>${f.label}</button>`).join("")}
     </div>
-    <button class="copy-btn" type="button" data-copy aria-label="Copy file contents">${icon("copy", 15, "i-copy")}${icon("check", 15, "i-done")}<span class="copy-label">Copy</span></button>
+    <button class="copy-btn" type="button" data-copy data-cta="Copy quickstart" aria-label="Copy file contents">${icon("copy", 15, "i-copy")}${icon("check", 15, "i-done")}<span class="copy-label">Copy</span></button>
   </div>
   ${files
     .map(
@@ -149,12 +149,12 @@ const body = `
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <a class="pill" href="${site.latestRelease}" rel="noopener"><span class="pill-tag">v${site.version}</span><span>Latest release: see what's new</span>${icon("arrowRight", 15)}</a>
+    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>Latest release: see what's new</span>${icon("arrowRight", 15)}</a>
     <h1 class="hero-title">The PowerDNS admin UI<br> <span class="accent">built for teams.</span></h1>
     <p class="hero-sub">PowerDNS-AuthAdmin is a modern, self-hosted web interface for PowerDNS Authoritative. Scoped RBAC, SSO with OIDC, SAML and LDAP, passkeys, diff-before-apply zone editing and an append-only audit log. One Docker image. No telemetry.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary btn-lg" href="${site.demo}" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
-      <a class="btn btn-ghost btn-lg" href="#quickstart">${icon("terminal", 18)}<span>Self-host in 2 minutes</span></a>
+      <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
+      <a class="btn btn-ghost btn-lg" href="#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Self-host in 2 minutes</span></a>
     </div>
     <ul class="hero-meta">
       <li>${icon("check", 15)}MIT licensed</li>
@@ -176,7 +176,7 @@ const body = `
     <div><strong>~60</strong><span>scoped permissions</span></div>
     <div><strong>3</strong><span>SSO protocols: OIDC, SAML, LDAP</span></div>
     <div><strong>5</strong><span>PowerDNS releases tested in CI</span></div>
-    <div><strong>0</strong><span>telemetry, trackers or CDNs</span></div>
+    <div><strong>0</strong><span>telemetry, trackers or CDNs in the app</span></div>
   </div>
 </section>
 
@@ -229,8 +229,8 @@ const body = `
           <li><strong>Optional:</strong> add a <code>provisioning.yaml</code> to register backends, roles, teams and SSO on first boot.</li>
         </ol>
         <div class="quickstart-links">
-          <a class="btn btn-ghost" href="${site.docs.install}" rel="noopener">${icon("book", 16)}<span>Installation guide</span></a>
-          <a class="btn btn-ghost" href="${site.docs.config}" rel="noopener">${icon("template", 16)}<span>All config options</span></a>
+          <a class="btn btn-ghost" href="${site.docs.install}" data-cta="Installation guide" rel="noopener">${icon("book", 16)}<span>Installation guide</span></a>
+          <a class="btn btn-ghost" href="${site.docs.config}" data-cta="Config reference" rel="noopener">${icon("template", 16)}<span>All config options</span></a>
         </div>
         <p class="note">Running more than one replica? Use Postgres plus Redis behind a load balancer. Just evaluating? The <a href="${site.demo}" rel="noopener">live demo</a> is one click away.</p>
       </div>
@@ -278,15 +278,15 @@ const body = `
         <h2 id="community-title">Built in the open. Run it your way.</h2>
         <p>PowerDNS-AuthAdmin is MIT licensed and developed in public. Star the repo, start a discussion, report a bug or send a pull request. Contributions of every size are welcome.</p>
         <div class="cta-buttons">
-          <a class="btn btn-primary btn-lg" href="${site.repo}" rel="noopener">${githubMark(18)}<span>Star on GitHub</span></a>
-          <a class="btn btn-ghost btn-lg" href="${site.contributing}" rel="noopener">Contributing guide</a>
+          <a class="btn btn-primary btn-lg" href="${site.repo}" data-cta="Star on GitHub" rel="noopener">${githubMark(18)}<span>Star on GitHub</span></a>
+          <a class="btn btn-ghost btn-lg" href="${site.contributing}" data-cta="Contributing guide" rel="noopener">Contributing guide</a>
         </div>
       </div>
       <div class="mini-cards">
-        <a class="mini-card" href="${site.discussions}" rel="noopener">${icon("chat", 20)}<span><strong>Discussions</strong>Ideas, questions and show-and-tell.</span></a>
-        <a class="mini-card" href="${site.issues}" rel="noopener">${icon("bug", 20)}<span><strong>Issues</strong>Report a bug or request a feature.</span></a>
-        <a class="mini-card" href="${site.docs.index}" rel="noopener">${icon("book", 20)}<span><strong>Documentation</strong>Install, configure and operate.</span></a>
-        <a class="mini-card" href="${site.security}" rel="noopener">${icon("shield", 20)}<span><strong>Security</strong>Private vulnerability reporting.</span></a>
+        <a class="mini-card" href="${site.discussions}" data-cta="Discussions" rel="noopener">${icon("chat", 20)}<span><strong>Discussions</strong>Ideas, questions and show-and-tell.</span></a>
+        <a class="mini-card" href="${site.issues}" data-cta="Issues" rel="noopener">${icon("bug", 20)}<span><strong>Issues</strong>Report a bug or request a feature.</span></a>
+        <a class="mini-card" href="${site.docs.index}" data-cta="Docs" rel="noopener">${icon("book", 20)}<span><strong>Documentation</strong>Install, configure and operate.</span></a>
+        <a class="mini-card" href="${site.security}" data-cta="Security policy" rel="noopener">${icon("shield", 20)}<span><strong>Security</strong>Private vulnerability reporting.</span></a>
       </div>
     </div>
   </div>

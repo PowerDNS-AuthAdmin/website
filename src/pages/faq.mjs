@@ -28,8 +28,8 @@ const body = `
     <h2>Still curious?</h2>
     <p>The documentation covers installation, configuration, RBAC, SSO and hardening in depth.</p>
     <div class="cta-buttons">
-      <a class="btn btn-primary btn-lg" href="${site.docs.index}" rel="noopener">${icon("book", 18)}<span>Read the docs</span></a>
-      <a class="btn btn-ghost btn-lg" href="${site.discussions}" rel="noopener">${icon("chat", 18)}<span>Ask the community</span></a>
+      <a class="btn btn-primary btn-lg" href="${site.docs.index}" data-cta="Docs" rel="noopener">${icon("book", 18)}<span>Read the docs</span></a>
+      <a class="btn btn-ghost btn-lg" href="${site.discussions}" data-cta="Discussions" rel="noopener">${icon("chat", 18)}<span>Ask the community</span></a>
     </div>
   </div>
 </section>

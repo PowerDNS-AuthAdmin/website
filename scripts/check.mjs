@@ -69,6 +69,10 @@ for (const file of htmlFiles) {
     const h = "sha256-" + createHash("sha256").update(body).digest("base64");
     ok(csp.includes(`'${h}'`), where("inline script hash not in CSP"));
   }
+  // Analytics: exactly one GA4 loader (the shared analytics.js), and the CSP lets gtag.js run.
+  ok((html.match(/data-ga4="G-[A-Z0-9]+"/g) || []).length === (site.ga4 ? 1 : 0), where("expected exactly one GA4 loader"));
+  ok(!/gtag\(['"]config/.test(html), where("inline gtag config (use analytics.js)"));
+  if (site.ga4) ok(csp.includes("https://*.googletagmanager.com") && csp.includes("https://analytics.google.com"), where("CSP does not allow GA4"));
   ok(!/\sstyle="/.test(html), where("inline style attribute (blocked by CSP)"));
   ok(!/<style[\s>]/.test(html), where("inline <style> (blocked by CSP)"));
 

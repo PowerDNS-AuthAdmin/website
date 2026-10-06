@@ -31,8 +31,8 @@ const body = `
     <h1>A modern alternative to PowerDNS-Admin</h1>
     <p class="page-lead">PowerDNS-Admin is the long-standing community web UI for PowerDNS. PowerDNS-AuthAdmin is a separate project, written from scratch in TypeScript, for teams that run several backends, sign in through an identity provider and need to show who changed what.</p>
     <div class="hero-cta left">
-      <a class="btn btn-primary btn-lg" href="${site.demo}" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
-      <a class="btn btn-ghost btn-lg" href="/features/">See all features</a>
+      <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
+      <a class="btn btn-ghost btn-lg" href="/features/" data-cta="Features">See all features</a>
     </div>
   </div>
 </section>
@@ -89,8 +89,8 @@ const body = `
     <h2>Up and running in minutes</h2>
     <p>One image, one compose file, your existing PowerDNS.</p>
     <div class="cta-buttons">
-      <a class="btn btn-primary btn-lg" href="/#quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
-      <a class="btn btn-ghost btn-lg" href="${site.repo}" rel="noopener">View on GitHub</a>
+      <a class="btn btn-primary btn-lg" href="/#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
+      <a class="btn btn-ghost btn-lg" href="${site.repo}" data-cta="GitHub" rel="noopener">View on GitHub</a>
     </div>
   </div>
 </section>
