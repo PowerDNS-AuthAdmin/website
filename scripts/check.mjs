@@ -94,7 +94,9 @@ for (const file of htmlFiles) {
 const sitemap = readFileSync(join(dist, "sitemap.xml"), "utf8");
 for (const [, loc] of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) ok(loc.startsWith(site.url) && resolve(loc.slice(site.url.length) || "/"), `sitemap: unresolved ${loc}`);
 for (const [, loc] of sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)) ok(resolve(loc.slice(site.url.length)), `sitemap: missing image ${loc}`);
-ok(readFileSync(join(dist, "robots.txt"), "utf8").includes(`Sitemap: ${site.url}/sitemap.xml`), "robots.txt: no sitemap");
+const robots = readFileSync(join(dist, "robots.txt"), "utf8");
+ok(robots.includes(`Sitemap: ${site.url}/sitemap.xml`), "robots.txt: no sitemap");
+ok(!/Disallow: \/(\s|$)/.test(robots), "robots.txt: a group disallows everything");
 ok(existsSync(join(dist, "llms.txt")), "llms.txt missing");
 ok(existsSync(join(dist, ".well-known", "security.txt")), "security.txt missing");
 JSON.parse(readFileSync(join(dist, "site.webmanifest"), "utf8"));

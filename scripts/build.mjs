@@ -62,10 +62,22 @@ ${imgs.map((i) => `    <image:image><image:loc>${i}</image:loc></image:image>`).
 `;
 write("sitemap.xml", sitemap);
 
-/* robots.txt: everything is public; AI crawlers welcome (AEO). */
+/* robots.txt: everything is public; AI crawlers welcome (AEO). They are named
+   explicitly so the intent is unambiguous; a named group replaces `*` for that bot,
+   so every group carries the same rules. */
+const aiBots = [
+  "GPTBot", "OAI-SearchBot", "ChatGPT-User",
+  "ClaudeBot", "Claude-User", "Claude-SearchBot",
+  "PerplexityBot", "Perplexity-User",
+  "Google-Extended", "Applebot", "Applebot-Extended",
+];
 write(
   "robots.txt",
   `User-agent: *
+Allow: /
+Disallow: /404.html
+
+${aiBots.map((b) => `User-agent: ${b}`).join("\n")}
 Allow: /
 Disallow: /404.html
 
