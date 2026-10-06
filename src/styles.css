@@ -770,3 +770,8 @@ body.lightbox-open { overflow: hidden; }
   .js .showcase-panel[data-inactive], .js .terminal-pane[data-inactive], .js .faq-a { display: block !important; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
 }
+
+/* "Website by NGN" footer credit (assets/ngn-credit.html) */
+a.ngn-credit { display: inline-flex; align-items: center; gap: 0.45em; color: inherit; text-decoration: none; opacity: 0.8; transition: opacity 0.15s; }
+a.ngn-credit:hover, a.ngn-credit:focus-visible { opacity: 1; }
+.ngn-credit svg { display: block; width: auto; height: 1.05em; transform: translateY(0.12em); }
