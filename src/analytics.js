@@ -1,12 +1,12 @@
-/* GA4 events, named the same on every site NGN runs so reports compare
+/* GA4 events, named the same on every managed site so reports compare
  * across them. Page views, scrolls, outbound links, downloads and site search
  * come from GA4's enhanced measurement; this adds the actions that matter:
  *
  *   phone_call     a tel: link tapped                          (key event)
  *   email_click    a mailto: link tapped                       (key event)
  *   generate_lead  a form sent successfully: the site calls     (key event)
- *                  window.ngnLead('form name') on success, or the page is
- *                  a thank-you page (data-ngn-lead on <body>)
+ *                  window.trackLead('form name') on success, or the page is
+ *                  a thank-you page (data-track-lead on <body>)
  *   booking_click  a link to an online booking system
  *   cta_click      any other button-styled link or [data-cta] element
  *
@@ -62,9 +62,9 @@
     }, true);
 
     /* Sites call this from their form handler once the server says it went. */
-    window.ngnLead = function (formName, method) {
+    window.trackLead = function (formName, method) {
         send('generate_lead', { form_name: formName || 'contact', lead_method: method || 'contact_form', page_path: location.pathname });
     };
-    var lead = document.body && document.body.getAttribute('data-ngn-lead');
-    if (lead) { window.ngnLead(lead); }
+    var lead = document.body && document.body.getAttribute('data-track-lead');
+    if (lead) { window.trackLead(lead); }
 }());

@@ -223,6 +223,7 @@ function footer() {
     <span>© ${site.released.slice(0, 4)} ${site.name} contributors. MIT licensed.</span>
     <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
     <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span>Website by <a href="https://ngn.au/services/website-development/" rel="noopener">NGN</a>.</span>
   </div>
 </footer>`;
 }
