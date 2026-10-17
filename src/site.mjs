@@ -13,8 +13,8 @@ export const site = {
   tagline: "Modern, self-hosted DNS administration for PowerDNS Authoritative",
   description:
     "Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.",
-  version: "1.9.0",
-  released: "2026-10-09",
+  version: "1.9.1",
+  released: "2026-10-17",
   license: "MIT",
   pdnsVersions: "4.6 to 5.0",
   image: "ghcr.io/powerdns-authadmin/powerdns-authadmin",
