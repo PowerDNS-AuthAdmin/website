@@ -134,11 +134,14 @@ export function faqQuestions(faqs) {
 
 /* ---------- Partials ---------- */
 // The project's own wordmark (media/brand), one variant per theme. 2086×351 source.
+// Lazy so the hidden theme's variant is never fetched and the visible one does not
+// compete with the stylesheet and font before first paint (it is small and above
+// the fold, so the browser requests it right after layout).
 const LOGO_W = [240, 360, 480, 720];
 function logo(h) {
   const w = Math.round((h * 2086) / 351);
   return ["dark", "light"]
-    .map((t) => `<img class="logo logo-${t}" src="/assets/img/brand/logo-${t}-360.png" srcset="${LOGO_W.map((x) => `/assets/img/brand/logo-${t}-${x}.webp ${x}w`).join(", ")}" sizes="${w}px" width="${w}" height="${h}" alt="${site.name}">`)
+    .map((t) => `<img class="logo logo-${t}" src="/assets/img/brand/logo-${t}-360.png" srcset="${LOGO_W.map((x) => `/assets/img/brand/logo-${t}-${x}.webp ${x}w`).join(", ")}" sizes="${w}px" width="${w}" height="${h}" alt="${site.name}" loading="lazy" decoding="async">`)
     .join("");
 }
 
@@ -248,11 +251,16 @@ export function render(page, { cssHref, jsHref, analyticsHref }) {
 
   // Theme before first paint (no flash), js class for JS-only layout, and an
   // early preload of the LCP screenshot for the theme that will actually show.
+  // The preload is limited to viewports where the screenshot is above the fold
+  // (page.lcp.media): on a phone the hero text is the LCP element and the
+  // screenshot sits below it, so fetching it early only competes with the
+  // stylesheet and the font for bandwidth and delays that text.
   let lcp = "";
   if (page.lcp) {
     const d = shotSet("dark", page.lcp.name);
     const l = shotSet("light", page.lcp.name);
-    lcp = `var s=t==="light"?${JSON.stringify(l.srcset)}:${JSON.stringify(d.srcset)},k=document.createElement("link");k.rel="preload";k.as="image";k.imageSrcset=s;k.imageSizes=${JSON.stringify(page.lcp.sizes)};k.fetchPriority="high";document.head.appendChild(k);`;
+    const media = page.lcp.media || "(min-width: 761px)";
+    lcp = `if(matchMedia(${JSON.stringify(media)}).matches){var s=t==="light"?${JSON.stringify(l.srcset)}:${JSON.stringify(d.srcset)},k=document.createElement("link");k.rel="preload";k.as="image";k.imageSrcset=s;k.imageSizes=${JSON.stringify(page.lcp.sizes)};k.fetchPriority="high";document.head.appendChild(k)}`;
   }
   const boot = `(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;${lcp}})();`;
 

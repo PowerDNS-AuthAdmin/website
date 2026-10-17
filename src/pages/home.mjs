@@ -421,7 +421,8 @@ export default {
   priority: "1.0",
   changefreq: "weekly",
   lightbox: true,
-  lcp: { name: "dashboard", sizes: HERO_SIZES },
+  // Preloaded only where the screenshot is above the fold; on phones the hero text is the LCP.
+  lcp: { name: "dashboard", sizes: HERO_SIZES, media: "(min-width: 761px)" },
   images: ["dashboard", "zones-list", "zone-edit-diff", "powerdns-servers", "audit-log", "roles"],
   og: {
     eyebrow: "Open-source PowerDNS admin UI",
