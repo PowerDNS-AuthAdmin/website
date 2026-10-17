@@ -30,14 +30,15 @@ export function shotSet(theme, name) {
 
 // Both theme variants are emitted; CSS shows the one matching <html data-theme>.
 // Lazy images that are display:none are never fetched, so only one variant downloads.
-// The hero screenshot carries no fetchpriority: where it is above the fold the boot
-// script preloads it at high priority, and on phones (where it sits just below the
-// fold and the hero text is the LCP) a plain lazy image stays low priority.
-export function shot(name, alt, { sizes = "(min-width: 1180px) 1100px, 94vw", cls = "", priority = false } = {}) {
+// The hero screenshot is fetchpriority="low": where it is above the fold the boot
+// script has already preloaded it at high priority and the img reuses that response;
+// on phones it sits just below the fold, the hero text is the LCP element, and Chrome
+// would otherwise fetch it at high priority next to the stylesheet and Inter.
+export function shot(name, alt, { sizes = "(min-width: 1180px) 1100px, 94vw", cls = "", fetchpriority = "" } = {}) {
   return ["dark", "light"]
     .map((theme) => {
       const s = shotSet(theme, name);
-      return `<img class="shot shot-${theme}${cls ? " " + cls : ""}" src="${s.src}" srcset="${s.srcset}" sizes="${sizes}" width="${s.width}" height="${s.height}" alt="${esc(alt)}" loading="lazy" decoding="async"${priority ? ' fetchpriority="high"' : ""} data-full="${s.full}">`;
+      return `<img class="shot shot-${theme}${cls ? " " + cls : ""}" src="${s.src}" srcset="${s.srcset}" sizes="${sizes}" width="${s.width}" height="${s.height}" alt="${esc(alt)}" loading="lazy" decoding="async"${fetchpriority ? ` fetchpriority="${fetchpriority}"` : ""} data-full="${s.full}">`;
     })
     .join("");
 }
