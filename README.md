@@ -39,11 +39,12 @@ src/
   main.js             theme, menu, tabs, copy button, lightbox (progressive enhancement)
   analytics.js        shared NGN GA4 event script (copied verbatim; do not edit or rename events)
   static/             copied verbatim into dist/ (fonts, icons, generated images)
-media/                source images: app screenshots and the project's wordmarks
+media/                source images and fonts: app screenshots, the project's wordmarks, full woff2 files
 scripts/
   build.mjs           renders pages, sitemap.xml, robots.txt, llms.txt, manifest, security.txt
   check.mjs           static QA gate used by CI and the deploy script
   build-media.mjs     screenshots → WebP, wordmarks, favicons, 1200×630 social cards
+  build-fonts.py      media/fonts → subset woff2 (glyphs and weight axis the site uses)
   deploy.sh           build, check, rsync, smoke test, IndexNow
   indexnow.mjs        notify Bing / Yandex / Seznam of changed URLs
 deploy/
@@ -68,6 +69,11 @@ node scripts/build-media.mjs shots og    # or no argument for everything
 ```
 
 Generated files under `src/static/assets/` are committed, so a normal build never needs those tools.
+
+**Fonts.** The originals live in `media/fonts/`; `src/static/assets/fonts/` holds subsets (Latin-1 plus the
+punctuation the copy uses, weight axis trimmed to what `styles.css` asks for). Regenerate with
+`python3 scripts/build-fonts.py` (needs `pip install fonttools brotli`) and keep the weight ranges in the
+`@font-face` rules in step with the script.
 
 **New page.** Add a module under `src/pages/`, register it in `src/pages/index.mjs`, add an `og`
 block and run `node scripts/build-media.mjs og`. It joins the sitemap, `llms.txt` and the checks
