@@ -50,8 +50,8 @@ function chromeShot(html, file, width, height, transparent = false) {
 }
 
 /* ---------- Screenshots: lossless WebP at native size, lossy at smaller sizes ---------- */
-// Desktop 1440x900 → 1440, 960, 640. Mobile 830x1848 → 830, 415.
-const SHOT_WIDTHS = { desktop: [1440, 960, 640], mobile: [830, 415] };
+// Desktop 1440x900 → 1440, 960, 720, 640 (720 covers a 94vw hero on a 1.75× or 2× phone). Mobile 830x1848 → 830, 415.
+const SHOT_WIDTHS = { desktop: [1440, 960, 720, 640], mobile: [830, 415] };
 
 function shots() {
   const dest = join(out, "assets", "img", "shots");
@@ -148,8 +148,8 @@ async function og() {
   const wordmark = pathToFileURL(join(media, "brand", "logo-wordmark-dark.png")).href;
   for (const p of pages.filter((p) => p.og)) {
     const html = `<!doctype html><html><head><meta charset="utf-8"><style>
-      @font-face{font-family:Inter;src:url(${font("inter-latin.woff2")}) format("woff2");font-weight:100 900}
-      @font-face{font-family:JBM;src:url(${font("jetbrains-mono-latin.woff2")}) format("woff2");font-weight:100 800}
+      @font-face{font-family:Inter;src:url(${font("inter-latin.woff2")}) format("woff2");font-weight:400 800}
+      @font-face{font-family:JBM;src:url(${font("jetbrains-mono-latin.woff2")}) format("woff2");font-weight:400 700}
       *{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px;overflow:hidden}
       body{font-family:Inter,sans-serif;color:#e8ecf3;background:#0a0c11;position:relative}
       .glow{position:absolute;inset:0;background:
