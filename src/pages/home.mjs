@@ -255,7 +255,7 @@ const body = `
     <div class="hero-shot">
       <div class="browser">
         <div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="browser-url">${icon("lock", 12)}demo.powerdns-authadmin.org</span></div>
-        <button class="zoom" type="button" aria-label="Enlarge: dashboard">${shot("dashboard", "PowerDNS-AuthAdmin dashboard with backend stats, active sessions and PowerDNS query charts", { sizes: HERO_SIZES, priority: true })}<span class="zoom-hint">${icon("zoom", 16)}</span></button>
+        <button class="zoom" type="button" aria-label="Enlarge: dashboard">${shot("dashboard", "PowerDNS-AuthAdmin dashboard with backend stats, active sessions and PowerDNS query charts", { sizes: HERO_SIZES })}<span class="zoom-hint">${icon("zoom", 16)}</span></button>
       </div>
     </div>
   </div>

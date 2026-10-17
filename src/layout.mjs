@@ -30,6 +30,9 @@ export function shotSet(theme, name) {
 
 // Both theme variants are emitted; CSS shows the one matching <html data-theme>.
 // Lazy images that are display:none are never fetched, so only one variant downloads.
+// The hero screenshot carries no fetchpriority: where it is above the fold the boot
+// script preloads it at high priority, and on phones (where it sits just below the
+// fold and the hero text is the LCP) a plain lazy image stays low priority.
 export function shot(name, alt, { sizes = "(min-width: 1180px) 1100px, 94vw", cls = "", priority = false } = {}) {
   return ["dark", "light"]
     .map((theme) => {
@@ -134,14 +137,14 @@ export function faqQuestions(faqs) {
 
 /* ---------- Partials ---------- */
 // The project's own wordmark (media/brand), one variant per theme. 2086×351 source.
-// Lazy so the hidden theme's variant is never fetched and the visible one does not
-// compete with the stylesheet and font before first paint (it is small and above
-// the fold, so the browser requests it right after layout).
+// Lazy so the hidden theme's variant is never fetched, and low priority so the 7 KB
+// wordmark never competes with the stylesheet, the font or the hero text: it is
+// requested right after layout and arrives a moment after the first paint.
 const LOGO_W = [240, 360, 480, 720];
 function logo(h) {
   const w = Math.round((h * 2086) / 351);
   return ["dark", "light"]
-    .map((t) => `<img class="logo logo-${t}" src="/assets/img/brand/logo-${t}-360.png" srcset="${LOGO_W.map((x) => `/assets/img/brand/logo-${t}-${x}.webp ${x}w`).join(", ")}" sizes="${w}px" width="${w}" height="${h}" alt="${site.name}" loading="lazy" decoding="async">`)
+    .map((t) => `<img class="logo logo-${t}" src="/assets/img/brand/logo-${t}-360.png" srcset="${LOGO_W.map((x) => `/assets/img/brand/logo-${t}-${x}.webp ${x}w`).join(", ")}" sizes="${w}px" width="${w}" height="${h}" alt="${site.name}" loading="lazy" decoding="async" fetchpriority="low">`)
     .join("");
 }
 
