@@ -1,4 +1,4 @@
-// Tiny build-time highlighter for the YAML and shell snippets on the site.
+// Tiny build-time highlighter for the YAML, JSON, TOML and shell snippets on the site.
 import { esc } from "./layout.mjs";
 
 export function hl(code, lang) {
@@ -15,11 +15,18 @@ export function hl(code, lang) {
         rest = rest.slice(0, hash);
       }
       rest = rest.replace(/\$\{?[A-Z_]+\}?|\$\([^)]*\)/g, (m) => `<span class="t-v">${m}</span>`);
-      if (lang === "yaml") {
+      if (lang === "json") {
+        rest = rest.replace(/^(\s*)(&quot;[^&]*&quot;)(\s*:)/, '$1<span class="t-k">$2</span>$3');
+        rest = rest.replace(/(:\s*)(&quot;[^&]*?&quot;|true|false|\d+)/g, '$1<span class="t-s">$2</span>');
+      } else if (lang === "toml") {
+        rest = rest.replace(/^(\s*)(\[[^\]]+\])/, '$1<span class="t-k">$2</span>');
+        rest = rest.replace(/^(\s*)([\w.-]+)(\s*=)/, '$1<span class="t-k">$2</span>$3');
+        rest = rest.replace(/(=\s*)(&quot;[^&]*?&quot;|true|false|\d+)/, '$1<span class="t-s">$2</span>');
+      } else if (lang === "yaml") {
         rest = rest.replace(/^(\s*(?:-\s+)?)([\w.-]+)(:)/, '$1<span class="t-k">$2</span>$3');
         rest = rest.replace(/(:\s+)(&quot;[^&]*&quot;|true|false|\d+)(\s*)$/, '$1<span class="t-s">$2</span>$3');
       } else {
-        rest = rest.replace(/^(\s*)(docker|openssl|echo|chmod|mkdir|cd|curl)\b/, '$1<span class="t-x">$2</span>');
+        rest = rest.replace(/^(\s*)(docker|openssl|echo|chmod|mkdir|cd|curl|claude|export)\b/, '$1<span class="t-x">$2</span>');
         rest = rest.replace(/(&quot;[^&]*?&quot;)/g, '<span class="t-s">$1</span>');
       }
       return rest + comment;

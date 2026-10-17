@@ -11,7 +11,7 @@ const body = `
   <div class="container narrow">
     <p class="eyebrow">FAQ</p>
     <h1>PowerDNS-AuthAdmin questions, answered</h1>
-    <p class="page-lead">Installation, supported PowerDNS versions, single sign-on, permissions, clusters and security. Can't find what you need? Ask in <a href="${site.discussions}" rel="noopener">GitHub Discussions</a>.</p>
+    <p class="page-lead">Installation, supported PowerDNS versions, single sign-on, permissions, clusters, AI assistants over MCP and security. Can't find what you need? Ask in <a href="${site.discussions}" rel="noopener">GitHub Discussions</a>.</p>
   </div>
 </section>
 
@@ -40,7 +40,7 @@ export default {
   path: "/faq/",
   title: "FAQ: install, SSO, RBAC and PowerDNS support | PowerDNS-AuthAdmin",
   description:
-    "Answers about PowerDNS-AuthAdmin: supported PowerDNS versions, Docker install, databases, OIDC, SAML and LDAP, passkeys, zone-scoped access, clusters and API.",
+    "Answers about PowerDNS-AuthAdmin: supported PowerDNS versions, Docker install, databases, OIDC, SAML, LDAP, passkeys, zone-scoped access, clusters, MCP and API.",
   priority: "0.8",
   changefreq: "monthly",
   pageType: ["WebPage", "FAQPage"],
@@ -48,7 +48,7 @@ export default {
   og: {
     eyebrow: "FAQ",
     title: "Questions, <em>answered</em>",
-    sub: "Install, PowerDNS versions, SSO, RBAC, clusters, API and security.",
+    sub: "Install, PowerDNS versions, SSO, RBAC, clusters, MCP, API and security.",
     shot: "zones-list",
   },
   about: { "@id": ids.app },

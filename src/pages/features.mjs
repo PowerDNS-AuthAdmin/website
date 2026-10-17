@@ -9,7 +9,7 @@ const body = `
   <div class="container">
     <p class="eyebrow">Features</p>
     <h1>Every feature of PowerDNS-AuthAdmin</h1>
-    <p class="page-lead">Access control, single sign-on, safe record editing, multi-backend operations, DNSSEC and a real audit trail, in one self-hosted web UI for PowerDNS Authoritative.</p>
+    <p class="page-lead">Access control, single sign-on, safe record editing, an MCP server for AI assistants, multi-backend operations, DNSSEC and a real audit trail, in one self-hosted web UI for PowerDNS Authoritative.</p>
     <nav class="jump" aria-label="On this page">
       ${featureGroups.map((g) => `<a href="#${g.id}">${icon(g.icon, 16)}${esc(g.short)}</a>`).join("")}
     </nav>
@@ -55,9 +55,9 @@ ${featureGroups
 export default {
   slug: "features",
   path: "/features/",
-  title: "Features: RBAC, SSO, DNSSEC, audit log | PowerDNS-AuthAdmin",
+  title: "Features: RBAC, SSO, MCP, DNSSEC, audit log | PowerDNS-AuthAdmin",
   description:
-    "Every PowerDNS-AuthAdmin feature: scoped RBAC, OIDC, SAML, LDAP and passkeys, diff-before-apply editing, clusters and secondaries, DNSSEC, TSIG and audit.",
+    "Every PowerDNS-AuthAdmin feature: scoped RBAC, OIDC, SAML, LDAP, passkeys, diff-before-apply editing, an MCP server for AI assistants, clusters and DNSSEC.",
   priority: "0.9",
   changefreq: "monthly",
   lightbox: true,
@@ -66,7 +66,7 @@ export default {
   og: {
     eyebrow: "Features",
     title: "Every feature, <em>built for teams</em> that run DNS",
-    sub: "Scoped RBAC, SSO, passkeys, diff-before-apply, clusters, DNSSEC and audit.",
+    sub: "Scoped RBAC, SSO, passkeys, diff-before-apply, an MCP server, clusters, DNSSEC and audit.",
     shot: "zone-edit-diff",
     size: 58,
   },

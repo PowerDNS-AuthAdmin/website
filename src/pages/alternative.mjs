@@ -11,6 +11,7 @@ const checks = [
   ["Safe edits", "Per-type validation, a BIND-style diff before every write and optimistic concurrency per RRset."],
   ["More than one backend", "Standalone primaries, primary + secondaries and multi-primary clusters, with sync probes and health advisories."],
   ["A trail for auditors", "Append-only log with redacted before / after snapshots, the PowerDNS request trail and CSV export."],
+  ["AI assistants", "A built-in MCP server: Claude Code, Codex, Cursor or any MCP client manages records in natural language, limited to a token's scopes and written to the audit log."],
   ["Automation", "A full admin API with scoped personal access tokens, Prometheus metrics and first-boot YAML provisioning."],
   ["Operations", "One Docker image on SQLite or Postgres, Postgres + Redis for HA, no telemetry and no CDN."],
 ];
@@ -40,7 +41,7 @@ const body = `
 <section class="section" aria-labelledby="what-title">
   <div class="container narrow prose">
     <h2 id="what-title">What PowerDNS-AuthAdmin is</h2>
-    <p>PowerDNS-AuthAdmin is a free, MIT-licensed web interface for <strong>PowerDNS Authoritative</strong>. It talks to PowerDNS through its built-in HTTP API, so your zones and records stay where they are. On top it adds what multi-person DNS operations need: scoped role-based access control, single sign-on, passkeys, a diff-before-apply editor, cluster and secondary awareness, and an append-only audit log.</p>
+    <p>PowerDNS-AuthAdmin is a free, MIT-licensed web interface for <strong>PowerDNS Authoritative</strong>. It talks to PowerDNS through its built-in HTTP API, so your zones and records stay where they are. On top it adds what multi-person DNS operations need: scoped role-based access control, single sign-on, passkeys, a diff-before-apply editor, cluster and secondary awareness, an append-only audit log, and an MCP server so an AI assistant can make changes under the same rules.</p>
     <p>It is not a fork. It is a clean-sheet build on Node.js 24, Next.js and TypeScript in strict mode, shipped as one container image (<code>${site.image}</code>) and tested in CI against PowerDNS ${site.pdnsVersions}.</p>
   </div>
 </section>
@@ -101,14 +102,14 @@ export default {
   path: "/powerdns-admin-alternative/",
   title: "PowerDNS-Admin alternative: PowerDNS-AuthAdmin",
   description:
-    "Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters and an audit log. Free and open source.",
+    "Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.",
   priority: "0.8",
   changefreq: "monthly",
   breadcrumbs: [{ name: "PowerDNS-Admin alternative", path: "/powerdns-admin-alternative/" }],
   og: {
     eyebrow: "Compare",
     title: "A modern alternative to <em>PowerDNS-Admin</em>",
-    sub: "Scoped RBAC, OIDC · SAML · LDAP, passkeys, clusters and an audit log.",
+    sub: "Scoped RBAC, OIDC · SAML · LDAP, passkeys, clusters, an audit log and an MCP server for AI assistants.",
     shot: "powerdns-servers",
     size: 60,
   },

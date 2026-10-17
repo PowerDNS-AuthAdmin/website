@@ -126,8 +126,97 @@ const terminal = `<div class="terminal">
     .join("\n  ")}
 </div>`;
 
+/* ---- Talk to your DNS: MCP client snippets (kept in step with docs/14-MCP.md) ---- */
+const mcpClaude = `
+# Claude Code: one command, then just ask
+claude mcp add --transport http powerdns https://dns.example.com/api/mcp \\
+  --header "Authorization: Bearer pda_pat_xxxxxxxx"
+
+# /mcp inside Claude Code shows the connection
+`;
+
+const mcpJson = `
+{
+  "mcpServers": {
+    "powerdns": {
+      "type": "http",
+      "url": "https://dns.example.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer \${PDNS_AUTHADMIN_TOKEN}"
+      }
+    }
+  }
+}
+`;
+
+const mcpCodex = `
+# ~/.codex/config.toml
+[mcp_servers.powerdns]
+url = "https://dns.example.com/api/mcp"
+bearer_token_env_var = "PDNS_AUTHADMIN_TOKEN"
+
+# then: export PDNS_AUTHADMIN_TOKEN=pda_pat_xxxxxxxx
+`;
+
+const mcpCursor = `
+{
+  "mcpServers": {
+    "powerdns": {
+      "url": "https://dns.example.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer pda_pat_xxxxxxxx"
+      }
+    }
+  }
+}
+`;
+
+const mcpFiles = [
+  { id: "claude", label: "Claude Code", lang: "sh", code: mcpClaude },
+  { id: "mcpjson", label: ".mcp.json", lang: "json", code: mcpJson },
+  { id: "codex", label: "Codex", lang: "toml", code: mcpCodex },
+  { id: "cursor", label: "Cursor / Windsurf", lang: "json", code: mcpCursor },
+];
+
+const mcpTerminal = `<div class="terminal">
+  <div class="terminal-bar">
+    <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div class="terminal-tabs" role="tablist" aria-label="MCP clients">
+      ${mcpFiles.map((f, i) => `<button class="terminal-tab" type="button" role="tab" id="mt-${f.id}" aria-controls="mp-${f.id}" aria-selected="${i === 0}"${i ? ' tabindex="-1"' : ""}>${f.label}</button>`).join("")}
+    </div>
+    <button class="copy-btn" type="button" data-copy data-cta="Copy MCP config" aria-label="Copy configuration">${icon("copy", 15, "i-copy")}${icon("check", 15, "i-done")}<span class="copy-label">Copy</span></button>
+  </div>
+  ${mcpFiles
+    .map(
+      (f, i) => `<div class="terminal-pane" role="tabpanel" id="mp-${f.id}" aria-labelledby="mt-${f.id}" tabindex="0"${i ? " data-inactive" : ""}><pre><code data-plain="${esc(plain(f.code))}">${hl(f.code, f.lang)}</code></pre></div>`,
+    )
+    .join("\n  ")}
+</div>`;
+
+/* A static transcript of one MCP exchange: prompt, tool calls, result. */
+const mcpTools = [
+  ["list_records", "example.com · www", "www  300  A  192.0.2.5"],
+  ["set_records", "example.com · www · A", "→ 192.0.2.10"],
+  ["add_record", "example.com · www · AAAA", "+ 2001:db8::10"],
+];
+const chat = `<figure class="chat" aria-label="Example conversation with an AI assistant connected over MCP">
+  <div class="chat-bar"><span class="chat-dot" aria-hidden="true"></span><span>powerdns</span><span class="chat-bar-meta">MCP · dns.example.com</span></div>
+  <div class="chat-body">
+    <div class="chat-msg chat-user"><span class="chat-who">You</span><p>Point <code>www</code> on example.com at 192.0.2.10 and add an AAAA for 2001:db8::10.</p></div>
+    <div class="chat-msg chat-bot"><span class="chat-who">Assistant</span>
+      <ul class="tool-calls">
+        ${mcpTools.map(([t, args, out]) => `<li>${icon("check", 14)}<span class="tool-name">${t}</span><span class="tool-args">${esc(args)}</span><span class="tool-out">${esc(out)}</span></li>`).join("\n        ")}
+      </ul>
+      <p>Done. <code>www.example.com</code> now answers <code>A 192.0.2.10</code> and <code>AAAA 2001:db8::10</code>, TTL 300. Both changes went through review and are in the audit log under your name.</p>
+    </div>
+  </div>
+</figure>`;
+
 const stack = [
   "PowerDNS Authoritative 4.6 to 5.0",
+  "Claude Code",
+  "Codex",
+  "Cursor",
   "Docker",
   "PostgreSQL",
   "SQLite",
@@ -143,15 +232,15 @@ const stack = [
   "Prometheus",
 ];
 
-const homeFaqs = [0, 2, 6, 13].map((i) => faqs[i]);
+const homeFaqs = [0, 11, 2, 6, 15].map((i) => faqs[i]);
 
 const body = `
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>Latest release: see what's new</span>${icon("arrowRight", 15)}</a>
+    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>New: talk to your DNS over MCP</span>${icon("arrowRight", 15)}</a>
     <h1 class="hero-title">The PowerDNS admin UI<br> <span class="accent">built for teams.</span></h1>
-    <p class="hero-sub">PowerDNS-AuthAdmin is a modern, self-hosted web interface for PowerDNS Authoritative. Scoped RBAC, SSO with OIDC, SAML and LDAP, passkeys, diff-before-apply zone editing and an append-only audit log. One Docker image. No telemetry.</p>
+    <p class="hero-sub">PowerDNS-AuthAdmin is a modern, self-hosted web interface for PowerDNS Authoritative. Scoped RBAC, SSO with OIDC, SAML and LDAP, passkeys, diff-before-apply zone editing and an append-only audit log. Now with a built-in MCP server, so Claude Code or any AI assistant can change records under the same rules. One Docker image. No telemetry.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
       <a class="btn btn-ghost btn-lg" href="#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Self-host in 2 minutes</span></a>
@@ -161,6 +250,7 @@ const body = `
       <li>${icon("check", 15)}SQLite or Postgres</li>
       <li>${icon("check", 15)}PowerDNS ${site.pdnsVersions}</li>
       <li>${icon("check", 15)}DNSSEC &amp; TSIG</li>
+      <li>${icon("check", 15)}MCP server</li>
     </ul>
     <div class="hero-shot">
       <div class="browser">
@@ -174,13 +264,41 @@ const body = `
 <section class="stats" aria-label="Project facts">
   <div class="container stats-inner">
     <div><strong>~60</strong><span>scoped permissions</span></div>
-    <div><strong>3</strong><span>SSO protocols: OIDC, SAML, LDAP</span></div>
+    <div><strong>9</strong><span>MCP tools for AI assistants</span></div>
     <div><strong>5</strong><span>PowerDNS releases tested in CI</span></div>
     <div><strong>0</strong><span>telemetry, trackers or CDNs in the app</span></div>
   </div>
 </section>
 
-<section class="section" id="features" aria-labelledby="features-title">
+<section class="section" id="mcp" aria-labelledby="mcp-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">New in ${site.version.split(".").slice(0, 2).join(".")} · Model Context Protocol</p>
+      <h2 id="mcp-title">Talk to your DNS</h2>
+      <p>A built-in MCP server lets Claude Code, Codex, Cursor or any MCP client manage zones and records from a prompt. The assistant never gets more power than the token you give it, and every change lands in the audit log.</p>
+    </div>
+    <div class="mcp-grid">
+      ${chat}
+      <div class="mcp-notes">
+        <ol class="steps">
+          <li><strong>Create a token</strong> under Profile → API tokens and pick its scopes. <code>zone.read</code> alone for questions, add <code>record.*</code> for edits, or a single per-zone grant for a bot that should only ever touch one zone.</li>
+          <li><strong>Connect your client</strong> to <code>/api/mcp</code> over Streamable HTTP with the token as a Bearer header. Pick your client below.</li>
+          <li><strong>Ask.</strong> Nine task-shaped tools cover backends, zones and records. Writes go through the same validators, concurrency checks and NOTIFY as the UI.</li>
+        </ol>
+        ${mcpTerminal}
+      </div>
+    </div>
+    <ul class="mcp-points">
+      <li>${icon("shield", 18)}<span><strong>Runs as the token owner.</strong> Scopes and per-zone grants are the ceiling, re-evaluated on every call. Revoke the token and it stops.</span></li>
+      <li>${icon("eyeOff", 18)}<span><strong>Read-only token, read-only server.</strong> Write tools are only advertised to tokens that can write somewhere.</span></li>
+      <li>${icon("log", 18)}<span><strong>Audited by name.</strong> Each change records the owner and the client's user agent, so you can filter the log for what the assistant did.</span></li>
+      <li>${icon("lock", 18)}<span><strong>Destructive calls flagged.</strong> Replace and delete tools are annotated so clients ask first; deleting a zone needs its name repeated.</span></li>
+    </ul>
+    <p class="section-more"><a class="link-arrow" href="${site.docs.mcp}" rel="noopener">Setup for every client in the MCP guide${icon("arrowRight", 16)}</a></p>
+  </div>
+</section>
+
+<section class="section section-alt" id="features" aria-labelledby="features-title">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Features</p>
@@ -201,7 +319,7 @@ const body = `
   </div>
 </section>
 
-<section class="section section-alt" id="screens" aria-labelledby="screens-title">
+<section class="section" id="screens" aria-labelledby="screens-title">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">A closer look</p>
@@ -212,7 +330,7 @@ const body = `
   </div>
 </section>
 
-<section class="section" id="quickstart" aria-labelledby="qs-title">
+<section class="section section-alt" id="quickstart" aria-labelledby="qs-title">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Quickstart</p>
@@ -238,7 +356,7 @@ const body = `
   </div>
 </section>
 
-<section class="section section-alt" aria-labelledby="compare-title">
+<section class="section" aria-labelledby="compare-title">
   <div class="container split">
     <div>
       <p class="eyebrow">Coming from PowerDNS-Admin?</p>
@@ -253,11 +371,12 @@ const body = `
       <li>${icon("check", 18)}Diff-before-apply with optimistic concurrency</li>
       <li>${icon("check", 18)}Cluster and secondary sync probes</li>
       <li>${icon("check", 18)}Append-only, redacted audit log</li>
+      <li>${icon("check", 18)}MCP server for Claude Code, Codex and other AI clients</li>
     </ul>
   </div>
 </section>
 
-<section class="section" aria-labelledby="faq-title">
+<section class="section section-alt" aria-labelledby="faq-title">
   <div class="container narrow">
     <div class="section-head">
       <p class="eyebrow">FAQ</p>
@@ -298,7 +417,7 @@ export default {
   path: "/",
   title: "PowerDNS-AuthAdmin: self-hosted web UI for PowerDNS Authoritative",
   description:
-    "Free, open-source web UI for PowerDNS Authoritative with scoped RBAC, OIDC, SAML and LDAP SSO, passkeys, diff-before-apply editing, DNSSEC and an audit log.",
+    "Free, open-source web UI for PowerDNS Authoritative: scoped RBAC, SSO, passkeys, diff-before-apply editing, DNSSEC, audit log and an MCP server for AI agents.",
   priority: "1.0",
   changefreq: "weekly",
   lightbox: true,
@@ -307,7 +426,7 @@ export default {
   og: {
     eyebrow: "Open-source PowerDNS admin UI",
     title: "DNS administration for PowerDNS, <em>built for teams.</em>",
-    sub: "RBAC, OIDC · SAML · LDAP, passkeys, diff-before-apply and an append-only audit log.",
+    sub: "RBAC, SSO, passkeys, diff-before-apply, an audit log, and an MCP server to talk to your DNS.",
   },
   ogAlt: "PowerDNS-AuthAdmin: DNS administration for PowerDNS, built for teams",
   about: { "@id": ids.app },

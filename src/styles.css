@@ -524,6 +524,52 @@ body.menu-open .site-header { -webkit-backdrop-filter: none; backdrop-filter: no
   background: color-mix(in srgb, var(--blue) 6%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 16%, transparent);
 }
 
+/* ---------- Talk to your DNS (MCP) ---------- */
+.mcp-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 32px; align-items: start; }
+.mcp-notes .steps { margin-bottom: 20px; }
+.chat {
+  min-width: 0; margin: 0;
+  position: sticky; top: calc(var(--header-h) + 24px);
+  border-radius: var(--radius); overflow: hidden;
+  background: var(--bg-card); border: 1px solid var(--border); box-shadow: var(--shadow-card);
+}
+.chat-bar {
+  display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+  border-bottom: 1px solid var(--border-soft); background: var(--bg-soft);
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 600; color: var(--text);
+}
+.chat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-soft); box-shadow: 0 0 0 3px color-mix(in srgb, var(--green-soft) 22%, transparent); }
+.chat-bar-meta { margin-left: auto; font-weight: 500; color: var(--text-faint); }
+.chat-body { display: grid; gap: 14px; padding: 18px 16px 20px; }
+.chat-msg { position: relative; max-width: 92%; padding: 12px 14px; border-radius: 14px; font-size: 0.93rem; line-height: 1.55; }
+.chat-msg p { margin: 0; }
+.chat-msg p + p { margin-top: 8px; }
+.chat-msg code { font-size: 0.85em; }
+.chat-who { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-faint); }
+.chat-user { justify-self: end; border-bottom-right-radius: 4px; background: color-mix(in srgb, var(--blue) 14%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 24%, transparent); }
+.chat-user .chat-who { color: var(--accent-ink); }
+.chat-bot { justify-self: start; border-bottom-left-radius: 4px; background: var(--bg-soft); border: 1px solid var(--border); color: var(--text-dim); }
+.chat-bot p strong, .chat-bot code { color: var(--text); }
+.tool-calls { display: grid; gap: 6px; margin: 0 0 12px; padding: 0; list-style: none; }
+.tool-calls li {
+  min-width: 0; display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 10px; align-items: center;
+  padding: 7px 10px; border-radius: 9px; font-family: var(--mono); font-size: 0.74rem; line-height: 1.4;
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+}
+.tool-calls .i { color: var(--green-soft); }
+.tool-name { color: var(--accent-ink); font-weight: 600; }
+.tool-args { color: var(--text-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tool-out { grid-column: 2 / -1; color: var(--text-dim); white-space: pre-wrap; }
+.mcp-points { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 36px 0 0; padding: 0; list-style: none; }
+.mcp-points li { display: flex; gap: 10px; padding: 16px 18px; border-radius: var(--radius); background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9rem; line-height: 1.55; color: var(--text-dim); }
+.mcp-points .i { flex-shrink: 0; margin-top: 2px; color: var(--accent-ink); }
+.mcp-points strong { color: var(--text); font-weight: 600; }
+kbd {
+  display: inline-block; min-width: 1.5em; padding: 0 5px; border-radius: 5px; text-align: center;
+  font-family: var(--mono); font-size: 0.8em; color: var(--text);
+  background: var(--bg-soft); border: 1px solid var(--border-strong); box-shadow: 0 1px 0 var(--border-strong);
+}
+
 /* ---------- Split + checklist ---------- */
 .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
 .checklist { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
@@ -699,6 +745,9 @@ body.lightbox-open { overflow: hidden; }
   .no-js .menu-toggle { display: none; }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .quickstart, .split, .cta { grid-template-columns: 1fr; }
+  .mcp-grid { grid-template-columns: minmax(0, 1fr); }
+  .chat { position: static; }
+  .mcp-points { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { grid-template-columns: 1fr; gap: 36px; }
 }
 @media (max-width: 760px) {
@@ -708,7 +757,11 @@ body.lightbox-open { overflow: hidden; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .stats-inner > div:nth-child(3) { border-left: 0; }
   .stats-inner > div:nth-child(n + 3) { border-top: 1px solid var(--border-soft); }
-  .cards, .feature-list, .mini-cards { grid-template-columns: 1fr; }
+  .cards, .feature-list, .mini-cards, .mcp-points { grid-template-columns: 1fr; }
+  .chat-msg { max-width: 100%; }
+  .tool-calls li { grid-template-columns: auto minmax(0, 1fr); }
+  .tool-args { grid-column: 2; white-space: normal; }
+  .tool-out { grid-column: 2; }
   .card { padding: 22px; }
   .showcase-controls { flex-direction: column; align-items: stretch; }
   .showcase-tabs { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }

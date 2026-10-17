@@ -92,12 +92,14 @@ export function softwareNode() {
     screenshot: `${site.url}/assets/img/shots/dark/dashboard-1440.webp`,
     image: `${site.url}/assets/og/home.jpg`,
     featureList: [
+      "Built-in MCP server so Claude Code, Codex, Cursor and other AI assistants manage DNS in natural language",
       "Role-based access control with ~60 permissions and global, team, zone or server scope",
       "OIDC, SAML 2.0 and LDAP / Active Directory single sign-on with group to role mapping",
       "Passkeys, security keys and TOTP multi-factor authentication",
       "Diff-before-apply RRset editor with per-type validation",
       "Multi-backend: standalone, primary + secondaries and multi-primary clusters",
-      "DNSSEC, TSIG keys, autoprimaries, zone metadata and zone templates",
+      "Zone-level DNSSEC enable, disable and rectify, cryptokeys, TSIG keys, autoprimaries, zone metadata and zone templates",
+      "Inline record editing and a keyboard-first records table",
       "Append-only audit log with redacted before / after snapshots",
       "Scoped API tokens, Prometheus metrics, health and readiness probes",
       "First-boot YAML provisioning",
@@ -215,7 +217,7 @@ function footer() {
     </div>
     <div class="footer-cols">
       ${col("Product", [["/features/", "Features"], ["/powerdns-admin-alternative/", "Compare"], ["/faq/", "FAQ"], [site.demo, "Live demo"], [site.releases, "Releases"], [site.changelog, "Changelog"]])}
-      ${col("Docs", [[site.docs.quickstart, "Quickstart"], [site.docs.install, "Installation"], [site.docs.config, "Configuration"], [site.docs.rbac, "RBAC"], [site.docs.oidc, "OIDC"], [site.docs.ldap, "LDAP"], [site.docs.saml, "SAML"], [site.docs.passkeys, "Passkeys"]])}
+      ${col("Docs", [[site.docs.quickstart, "Quickstart"], [site.docs.install, "Installation"], [site.docs.config, "Configuration"], [site.docs.rbac, "RBAC"], [site.docs.oidc, "OIDC"], [site.docs.ldap, "LDAP"], [site.docs.saml, "SAML"], [site.docs.passkeys, "Passkeys"], [site.docs.mcp, "MCP"]])}
       ${col("Community", [[site.repo, "GitHub"], [site.discussions, "Discussions"], [site.issues, "Issues"], [site.contributing, "Contributing"], [site.security, "Security policy"], [site.websiteRepo, "Website source"]])}
     </div>
   </div>
