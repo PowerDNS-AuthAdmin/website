@@ -55,9 +55,10 @@ ${featureGroups
 export default {
   slug: "features",
   path: "/features/",
-  title: "Features: RBAC, SSO, MCP, DNSSEC, audit log | PowerDNS-AuthAdmin",
+  title: "PowerDNS-AuthAdmin features: RBAC, SSO, MCP, DNSSEC and an audit log",
   description:
-    "Every PowerDNS-AuthAdmin feature: scoped RBAC, OIDC, SAML, LDAP, passkeys, diff-before-apply editing, an MCP server for AI assistants, clusters and DNSSEC.",
+    "All PowerDNS-AuthAdmin web UI features: scoped RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply editing, DNSSEC, clusters, audit log and MCP.",
+  modified: "2026-10-17",
   priority: "0.9",
   changefreq: "monthly",
   lightbox: true,
