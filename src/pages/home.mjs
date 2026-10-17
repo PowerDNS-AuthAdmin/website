@@ -415,7 +415,7 @@ const body = `
 export default {
   slug: "home",
   path: "/",
-  title: "PowerDNS-AuthAdmin: open-source admin UI for PowerDNS Authoritative",
+  title: "PowerDNS-AuthAdmin: open-source, self-hosted PowerDNS admin UI",
   description:
     "Open-source PowerDNS admin UI: self-hosted web interface for PowerDNS Authoritative with scoped RBAC, SSO, passkeys, diff-before-apply editing, DNSSEC and MCP.",
   modified: "2026-10-17",

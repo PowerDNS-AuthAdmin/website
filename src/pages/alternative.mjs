@@ -100,7 +100,7 @@ const body = `
 export default {
   slug: "powerdns-admin-alternative",
   path: "/powerdns-admin-alternative/",
-  title: "PowerDNS-Admin alternative: compare and switch to PowerDNS-AuthAdmin",
+  title: "PowerDNS-Admin alternative: how PowerDNS-AuthAdmin compares",
   modified: "2026-10-17",
   description:
     "Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.",
