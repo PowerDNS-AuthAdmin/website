@@ -11,16 +11,22 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Production (nginx, domain root) and a subpath, so base-path handling keeps working.
+        site_url: ["https://powerdns-authadmin.org", "http://127.0.0.1:8080/preview"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Build
+        env:
+          SITE_URL: ${{ matrix.site_url }}
         run: node scripts/build.mjs
-      - name: SEO, links, structured data, CSP
+      - name: SEO, links, structured data, CSP, privacy, search
         run: node scripts/check.mjs
       - name: Validate HTML
         run: npx --yes html-validate@9 "dist/**/*.html"
@@ -28,7 +34,9 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq libxml2-utils
           xmllint --noout dist/sitemap.xml
-      - uses: actions/upload-artifact@v4
+      - name: Upload the production build
+        if: matrix.site_url == 'https://powerdns-authadmin.org'
+        uses: actions/upload-artifact@v7
         with:
           name: site
           path: dist

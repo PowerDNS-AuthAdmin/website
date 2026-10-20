@@ -1,0 +1,97 @@
+name: Deploy
+
+# Publishes dist/ to the nginx host behind https://powerdns-authadmin.org on every push to
+# main (and on demand). The job builds and checks the site itself rather than waiting for
+# ci.yml, so a deploy never depends on another run's artifact.
+#
+# Repository settings it reads (Settings > Secrets and variables > Actions):
+#   secrets.DEPLOY_SSH_KEY       private key (ed25519) of a user that may write the web root
+#   secrets.DEPLOY_KNOWN_HOSTS   `ssh-keyscan <host>` output, so the host key is pinned
+#   vars.DEPLOY_HOST             user@host for rsync over SSH
+#   vars.DEPLOY_PATH             web root on the host, e.g. /var/www/powerdns-authadmin-website
+# Without DEPLOY_HOST (a fork, say) the job prints a notice and does nothing, so forks stay green.
+#
+# scripts/deploy.sh does the rsync, the smoke test and the IndexNow ping; SKIP_BUILD=1 tells it
+# the build and checks already ran here.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the deploy target
+        id: target
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+        run: |
+          if [ -z "$DEPLOY_HOST" ]; then
+            echo "::notice::Repository variable DEPLOY_HOST is not set; skipping the deployment."
+          elif [ -z "$DEPLOY_PATH" ]; then
+            echo "::error::Repository variable DEPLOY_PATH is not set."
+            exit 1
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v7
+        if: steps.target.outputs.configured
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        if: steps.target.outputs.configured
+        with:
+          node-version: 24
+
+      - name: Build
+        if: steps.target.outputs.configured
+        env:
+          SITE_URL: https://powerdns-authadmin.org
+        run: node scripts/build.mjs
+
+      - name: SEO, links, structured data, CSP, privacy, search
+        if: steps.target.outputs.configured
+        run: node scripts/check.mjs
+
+      - name: Validate HTML
+        if: steps.target.outputs.configured
+        run: npx --yes html-validate@9 "dist/**/*.html"
+
+      - name: Install the deploy key
+        if: steps.target.outputs.configured
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          [ -n "$DEPLOY_SSH_KEY" ] || { echo "::error::Secret DEPLOY_SSH_KEY is not set."; exit 1; }
+          [ -n "$DEPLOY_KNOWN_HOSTS" ] || { echo "::error::Secret DEPLOY_KNOWN_HOSTS is not set."; exit 1; }
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+
+      - name: Deploy, smoke test, IndexNow
+        if: steps.target.outputs.configured
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          INDEXNOW: "1"
+          SKIP_BUILD: "1"
+        run: sh scripts/deploy.sh
+
+      - name: Remove the deploy key
+        if: always()
+        run: rm -f ~/.ssh/id_ed25519

@@ -1,0 +1,147 @@
+name: Sync PowerDNS-AuthAdmin release
+
+# Checks PowerDNS-AuthAdmin/powerdns-authadmin for a new release every hour. When one is
+# out, it syncs the docs from that tag (which also sets the version and release date the
+# site shows), runs the same checks as CI and opens a pull request with a review checklist.
+# Merging the pull request deploys the site (deploy.yml runs on every push to main).
+#
+# Needs Settings > Actions > General > "Allow GitHub Actions to create and approve pull
+# requests". Pull requests opened with GITHUB_TOKEN do not trigger ci.yml, so this workflow
+# runs those checks itself before opening one.
+#
+# A run with no new release changes nothing: it stops once it sees the site is already on
+# the latest tag, or that the release branch (and its pull request) exists.
+#
+# NOTIFY is who hears about it: they are assigned and asked to review each sync pull
+# request, and a failed run opens an issue assigned to them (one at a time, so an hourly
+# failure does not open an issue every hour).
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Release tag to sync (default: latest release)"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: release-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      UPSTREAM: PowerDNS-AuthAdmin/powerdns-authadmin
+      NOTIFY: jseifeddine
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Find the release to sync
+        id: release
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+        run: |
+          tag="${INPUT_REF:-$(gh release view -R "$UPSTREAM" --json tagName --jq .tagName)}"
+          current="$(node -p 'require("./content/docs/_source.json").ref')"
+          branch="release/$tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          if [ "$tag" = "$current" ]; then
+            echo "Site is already on $tag."
+          elif git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            echo "Branch $branch already exists; review its pull request."
+          else
+            echo "sync=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v7
+        if: steps.release.outputs.sync
+        with:
+          node-version: 24
+
+      - name: Sync docs
+        if: steps.release.outputs.sync
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+        run: node scripts/sync-docs.mjs --ref "$TAG"
+
+      - name: Build and check at the production URL and under a subpath
+        if: steps.release.outputs.sync
+        run: |
+          for url in https://powerdns-authadmin.org http://127.0.0.1:8080/preview; do
+            SITE_URL="$url" node scripts/build.mjs 2>&1 | tee -a build.log
+            node scripts/check.mjs
+            npx --yes html-validate@9 "dist/**/*.html"
+          done
+
+      - name: Open pull request
+        if: steps.release.outputs.sync
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+          BRANCH: ${{ steps.release.outputs.branch }}
+        run: |
+          {
+            echo "Syncs the docs from [$UPSTREAM $TAG](https://github.com/$UPSTREAM/releases/tag/$TAG). The site's version, release date and release links follow from \`content/docs/_source.json\`."
+            echo
+            echo "**Before merging**"
+            echo
+            echo "- [ ] Read the [release notes](https://github.com/$UPSTREAM/releases/tag/$TAG) and the [changelog](https://github.com/$UPSTREAM/blob/$TAG/CHANGELOG.md)."
+            echo "- [ ] Update the copy in \`src/content.mjs\` (highlights, feature groups, FAQ answers) for new, changed or removed features. Every claim must be backed by the app's README, docs or changelog."
+            echo "- [ ] Update the facts in the \`llms.txt\` block of \`scripts/build.mjs\` (PowerDNS versions tested, runtime, MCP tools) if the release changed them."
+            echo "- [ ] If the UI changed, copy the new screenshots from the app repo's \`screenshots/{dark,light}/\` into \`media/screenshots/\` and run \`npm run media\` (README: Screenshots)."
+            echo
+            echo "**Docs overlay**"
+            echo
+            issues="$(grep -ohE 'issue: [0-9]+' content/docs-overlay/fixes.mjs src/docs/nav.mjs 2>/dev/null | grep -oE '[0-9]+' | sort -un || true)"
+            if [ -z "$issues" ]; then
+              echo "No overlay fixes."
+            else
+              for n in $issues; do
+                state="$(gh issue view "$n" -R "$UPSTREAM" --json state --jq .state 2>/dev/null || echo UNKNOWN)"
+                echo "- $UPSTREAM#$n: $state"
+              done
+              echo
+              echo "Remove overlay entries for closed issues once their fix is in this release."
+            fi
+            echo
+            echo "**Build warnings**"
+            echo
+            echo '```'
+            grep -E '^docs:|warn' build.log | sort -u || echo "none"
+            echo '```'
+            echo
+            echo "Build, \`check.mjs\` and html-validate passed at https://powerdns-authadmin.org and under a subpath."
+            echo
+            echo "Merging this pull request deploys the site: the **Deploy** workflow publishes \`dist/\` to powerdns-authadmin.org on every push to \`main\`."
+          } > pr-body.md
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add content/docs
+          git commit -m "docs: sync PowerDNS-AuthAdmin $TAG"
+          git push -u origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "Sync PowerDNS-AuthAdmin $TAG" --body-file pr-body.md \
+            --assignee "$NOTIFY" --reviewer "$NOTIFY"
+
+      - name: Open an issue if the sync failed
+        if: failure()
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Release sync failed"
+          open="$(gh issue list -R "$GITHUB_REPOSITORY" --state open --search "in:title \"$title\"" --json number --jq '.[0].number // empty')"
+          if [ -n "$open" ]; then
+            echo "Issue #$open is already open for a failed sync."
+          else
+            gh issue create -R "$GITHUB_REPOSITORY" --title "$title" --assignee "$NOTIFY" \
+              --body "The release sync failed in [run $GITHUB_RUN_ID]($RUN_URL). Fix the cause, re-run it from the Actions tab (or wait for the next hourly run), then close this issue."
+          fi
