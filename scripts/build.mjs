@@ -110,7 +110,7 @@ write(
 - [Features](${site.url}/features/): full feature catalog
 - [PowerDNS-Admin alternative](${site.url}/powerdns-admin-alternative/): how it compares and how to switch
 - [FAQ](${site.url}/faq/): installation, versions, SSO, RBAC, clusters, MCP and AI assistants, API, security
-- [Commercial support](${site.url}/#support): 24 hour commercial support from ${site.support.legalName} (${site.support.name}, ${site.support.url})
+- [Commercial support](${site.url}/support/): 24 hour commercial support from ${site.support.legalName} (${site.support.name}, ${site.support.url})
 
 ## Project
 

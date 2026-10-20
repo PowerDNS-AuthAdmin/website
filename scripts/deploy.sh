@@ -31,7 +31,7 @@ rsync -rlt --checksum --delete $chown_opt --chmod=D755,F644 dist/ "$DEPLOY_HOST:
 
 url=$(node -e 'import("./src/site.mjs").then(m => console.log(m.site.url))')
 echo "→ smoke test ${url}"
-for path in / /features/ /powerdns-admin-alternative/ /faq/ /sitemap.xml /robots.txt /llms.txt; do
+for path in / /features/ /powerdns-admin-alternative/ /faq/ /support/ /sitemap.xml /robots.txt /llms.txt; do
   code=$(curl -s -o /dev/null -w '%{http_code}' "${url}${path}")
   printf '  %s %s\n' "$code" "$path"
   [ "$code" = 200 ] || { echo "smoke test failed for $path" >&2; exit 1; }

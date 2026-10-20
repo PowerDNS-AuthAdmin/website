@@ -14,6 +14,7 @@ import { join, dirname, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { tmpdir } from "node:os";
 import { site } from "../src/site.mjs";
+import { ngnLogo } from "../src/icons.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const media = join(root, "media");
@@ -139,17 +140,25 @@ function icons() {
 }
 
 /* ---------- Social cards (1200x630) per page ---------- */
+// /support/: an NGN contact card in place of the screenshot.
+const supportPanel = () => {
+  const sp = site.support;
+  return `<div class="panel">${ngnLogo(150, 53)}<div class="live"><i></i>24 hour support</div>
+    <ul><li>${sp.phoneIntl}<span>international</span></li><li>${sp.phone}<span>Australia</span></li><li>${sp.url.replace(/^https:\/\/|\/$/g, "")}</li></ul></div>`;
+};
 async function og() {
   const { pages } = await import("../src/pages/index.mjs");
-  const font = (f) => pathToFileURL(join(out, "assets", "fonts", f)).href;
+  // The full fonts in media/fonts: the site's copies are subset to the glyphs its pages use.
+  // Quoted in url(): a checkout path can hold an apostrophe or brackets.
+  const font = (f) => pathToFileURL(join(media, "fonts", f)).href;
   const shot = (n) => pathToFileURL(join(out, "assets", "img", "shots", "dark", `${n}-960.webp`)).href;
   const dest = join(out, "assets", "og");
   mkdirSync(dest, { recursive: true });
   const wordmark = pathToFileURL(join(media, "brand", "logo-wordmark-dark.png")).href;
   for (const p of pages.filter((p) => p.og)) {
     const html = `<!doctype html><html><head><meta charset="utf-8"><style>
-      @font-face{font-family:Inter;src:url(${font("inter-latin.woff2")}) format("woff2");font-weight:400 800}
-      @font-face{font-family:JBM;src:url(${font("jetbrains-mono-latin.woff2")}) format("woff2");font-weight:400 700}
+      @font-face{font-family:Inter;src:url("${font("inter-latin.woff2")}") format("woff2");font-weight:400 800}
+      @font-face{font-family:JBM;src:url("${font("jetbrains-mono-latin.woff2")}") format("woff2");font-weight:400 700}
       *{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px;overflow:hidden}
       body{font-family:Inter,sans-serif;color:#e8ecf3;background:#0a0c11;position:relative}
       .glow{position:absolute;inset:0;background:
@@ -169,6 +178,14 @@ async function og() {
       .shot{position:absolute;left:720px;top:110px;width:760px;border-radius:18px;overflow:hidden;
         border:1px solid #232a38;box-shadow:0 40px 80px -20px rgba(0,0,0,.8)}
       .shot img{display:block;width:100%}
+      .panel{position:absolute;left:744px;top:150px;width:384px;padding:34px;border-radius:22px;background:#11141c;
+        border:1px solid #232a38;box-shadow:0 40px 80px -20px rgba(0,0,0,.8);color:#eceff5}
+      .panel svg{display:block;width:150px;height:auto}
+      .live{display:inline-flex;align-items:center;gap:12px;margin:26px 0 0;padding:8px 16px 8px 14px;border-radius:999px;font-size:19px;
+        color:#c7d0de;border:1px solid rgba(56,184,79,.4);background:rgba(56,184,79,.1)}
+      .live i{width:11px;height:11px;border-radius:50%;background:#38b84f;box-shadow:0 0 0 5px rgba(56,184,79,.22)}
+      .panel ul{margin:26px 0 0;padding:22px 0 0;border-top:1px solid #232a38;list-style:none;font-family:JBM;font-size:21px;line-height:1.9}
+      .panel li span{color:#6b7585;font-family:Inter;font-size:17px;margin-left:10px}
     </style></head><body><div class="glow"></div><div class="grid"></div>
       <div class="copy">
         <img class="brand" src="${wordmark}" alt="">
@@ -177,7 +194,7 @@ async function og() {
         <p>${p.og.sub}</p>
       </div>
       <div class="foot"><b>${site.domain}</b><span>MIT · self-hosted · Docker</span></div>
-      <div class="shot"><img src="${shot(p.og.shot || "dashboard")}"></div>
+      ${p.og.panel === "support" ? supportPanel() : `<div class="shot"><img src="${shot(p.og.shot || "dashboard")}"></div>`}
     </body></html>`;
     const png = join(tmp, `og-${p.slug}.png`);
     chromeShot(html, png, 1200, 630);

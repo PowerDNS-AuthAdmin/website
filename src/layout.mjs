@@ -223,7 +223,7 @@ function footer() {
       <a class="release-chip" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v${site.version}<span class="muted">· ${releasedLabel}</span></a>
     </div>
     <div class="footer-cols">
-      ${col("Product", [["/features/", "Features"], ["/powerdns-admin-alternative/", "Compare"], ["/faq/", "FAQ"], ["/#support", "Commercial support"], [site.demo, "Live demo"], [site.releases, "Releases"], [site.changelog, "Changelog"]])}
+      ${col("Product", [["/features/", "Features"], ["/powerdns-admin-alternative/", "Compare"], ["/faq/", "FAQ"], ["/support/", "Commercial support"], [site.demo, "Live demo"], [site.releases, "Releases"], [site.changelog, "Changelog"]])}
       ${col("Docs", [[site.docs.quickstart, "Quickstart"], [site.docs.install, "Installation"], [site.docs.config, "Configuration"], [site.docs.rbac, "RBAC"], [site.docs.oidc, "OIDC"], [site.docs.ldap, "LDAP"], [site.docs.saml, "SAML"], [site.docs.passkeys, "Passkeys"], [site.docs.mcp, "MCP"]])}
       ${col("Community", [[site.repo, "GitHub"], [site.discussions, "Discussions"], [site.issues, "Issues"], [site.contributing, "Contributing"], [site.security, "Security policy"], [site.websiteRepo, "Website source"]])}
     </div>
