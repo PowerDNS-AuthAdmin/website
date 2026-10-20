@@ -1,0 +1,111 @@
+# Hardening & best practices
+
+A checklist for running PowerDNS-AuthAdmin safely in production. None of it is
+exotic - it's the handful of things worth getting right before you expose the app.
+
+## Secrets
+
+- **Generate unique `APP_SECRET_KEY` and `APP_ENCRYPTION_KEY`** per deployment
+  (`openssl rand -base64 32`). Never reuse the demo values from `.env.example`.
+- **Treat `APP_ENCRYPTION_KEY` as un-rotatable.** It decrypts every stored
+  PowerDNS API key, OIDC/SAML/LDAP provider secret (client secrets, SP private
+  keys, bind passwords) and MFA secret. Rotating it strands those secrets -
+  you'd have to re-enter them all. Back it up with (but stored separately from)
+  your database backups.
+- **Inject secrets from a secret store**, not inline env, using the `_FILE`
+  suffix (`APP_SECRET_KEY_FILE=/run/secrets/...`). Works with Docker secrets and
+  Kubernetes `Secret` volumes.
+- **Mount provisioning files read-only, `chmod 600`.** They contain plaintext
+  PowerDNS API keys and OIDC/SAML/LDAP provider secrets until first boot
+  encrypts them in.
+
+## Network exposure
+
+- **Terminate TLS at a reverse proxy** and forward to port 3000. Set `APP_URL` to
+  the public `https://` URL (no trailing slash) - it drives OIDC redirects,
+  cookies, and CSP. See [Installation → reverse proxy](./02-INSTALLATION.md#behind-a-reverse-proxy).
+- **Ensure the proxy overwrites `X-Forwarded-For`/`X-Real-IP`** with the real
+  client IP (the app trusts these for audit + rate limiting; there's no
+  `TRUST_PROXY` toggle).
+- **Keep PowerDNS API endpoints private.** The API key is full control - bind the
+  PDNS webserver to a private interface and restrict `webserver-allow-from`. Leave
+  the SSRF guard at its strict production defaults unless you specifically need
+  private-network/`http://` backends (see [Backends](./04-BACKENDS.md#the-ssrf-guard)).
+- **Pin `METRICS_TOKEN`.** `/metrics` is enabled by default and always
+  bearer-gated: if you don't set `METRICS_TOKEN` (≥16 chars) the app generates a
+  random one on every boot and prints it once in the boot log, which makes your
+  scrape config break on each restart. Pin a token, or set
+  `METRICS_ENABLED=false` if you don't scrape at all.
+
+## Authentication
+
+- **Require MFA where it matters.** Mark sensitive roles `requires_mfa` so holders
+  must enrol a second factor (TOTP or a passkey / security key). For SSO users,
+  enforce MFA at the IdP. See [RBAC](./07-RBAC.md#mfa-required-roles).
+- **Keep `SIGNUP_ENABLED=false`** (the default) unless you intend public
+  self-service signup; create users via the admin UI or OIDC instead. When you do
+  turn it on: keep `SIGNUP_DEFAULT_ROLE` low-privilege (the boot guard enforces
+  this - see [Self-service signup](./03-CONFIGURATION.md#self-service-signup)),
+  restrict who can register with `SIGNUP_ALLOWED_EMAIL_DOMAINS`, configure
+  `SMTP_*` so verification links are actually delivered (signups can't log in
+  until verified), and enable Turnstile to blunt automated registration.
+- **Scope OIDC sign-in** with `allowed_email_domains` (per provider) or
+  `OIDC_ALLOWED_EMAIL_DOMAINS` (env) so only your org's emails auto-provision.
+- **Turn on Turnstile** (`TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`) for a
+  public-facing login to blunt credential-stuffing.
+- **Tune the lockout policy** (`login_lockout_threshold` / `login_lockout_seconds`
+  settings) to taste - defaults are 10 failed attempts → 15-minute account
+  lockout. (Separately, a per-IP rate limiter throttles login bursts.)
+
+## Least privilege
+
+- **Hand out the narrowest role + scope that works.** Prefer Zone Editor scoped to
+  a zone or server over a global Operator. See [RBAC scopes](./07-RBAC.md#scopes).
+- **Reserve Super Admin** for the few who run the platform. Everything is audited,
+  but fewer super-admins is still fewer ways to get burned.
+
+## Email
+
+- **Use TLS to your SMTP relay** - `SMTP_SECURE=true` (implicit TLS, 465) or
+  `SMTP_STARTTLS=required` (587). Keep `SMTP_TLS_REJECT_UNAUTHORIZED=true`; only
+  disable it for a local fakemail with a self-signed cert.
+
+## Operations
+
+- **Keep `PDNS_BACKGROUND_POLLING=false` (default) unless you actually run
+  multi-peer topology.** A standalone PowerDNS doesn't benefit from a
+  30 s / 60 s / 5 min ticker against itself; turning the poller on
+  generates background API traffic you don't need, slightly enlarges
+  the in-process cache footprint, and gives an attacker on the AuthAdmin
+  host one more long-lived authenticated path to your DNS API. Enable
+  it deliberately when you need the sync chip, drift advisories, or the
+  dashboard PDNS metrics - see
+  [Configuration → `PDNS_BACKGROUND_POLLING`](./03-CONFIGURATION.md#pdns_background_polling).
+- **Run on Postgres for anything multi-instance.** Boots are serialised by an
+  advisory lock so rolling deploys are safe; SQLite is single-writer.
+- **Gate traffic on `/readyz`**, not just `/healthz` - it returns 503 while the
+  database is unreachable, so a rolling deploy won't route to a replica that
+  can't serve. (It does not yet check migration state; migrations run in the
+  entrypoint before the server listens, so a replica that answers at all has
+  already applied them.)
+- **Back up before upgrades** and review the [Upgrading guide](./09-UPGRADING.md).
+- **Watch the audit log.** Every write is recorded with redacted before/after
+  snapshots - it's your forensic trail.
+
+## Verify the image signature
+
+Each published release is cosign-signed (keyless / Sigstore) by the release
+workflow. Verify before deploying:
+
+```sh
+cosign verify ghcr.io/powerdns-authadmin/powerdns-authadmin:1.8.4 \
+  --certificate-identity-regexp '^https://github.com/PowerDNS-AuthAdmin/' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com
+```
+
+The GitHub release also carries an SPDX SBOM and a signed `checksums.txt`
+(`checksums.txt.sigstore.json`) for the attached artifacts.
+
+---
+
+[← Docs index](./README.md)
