@@ -10,7 +10,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs && node scripts/check.mjs && npx --yes html-validate@9 \"dist/**/*.html\"",
-    "serve": "node scripts/build.mjs && python3 -m http.server 8080 --directory dist --bind 127.0.0.1",
+    "serve": "SITE_LOCAL=1 node scripts/build.mjs && python3 -m http.server 8080 --directory dist --bind 127.0.0.1",
     "media": "node scripts/build-media.mjs",
     "deploy": "sh scripts/deploy.sh"
   }

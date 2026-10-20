@@ -277,6 +277,10 @@ export const faqs = [
     a: `Yes. ${a(site.demo, "demo.powerdns-authadmin.org")} is a real, seeded install you can click around in. The sign-in details are on its login page and in the project README.`,
   },
   {
+    q: "Is commercial support available?",
+    a: `Yes. PowerDNS-AuthAdmin is free and community supported: ask questions in ${a(site.discussions, "GitHub Discussions")} and report bugs in ${a(site.issues, "Issues")}. Commercial support, 24 hours a day, is available from ${a(site.support.url, `${site.support.legalName} (${site.support.name})`)}, the Sydney IT company that built this website; see ${a("/#support", "commercial support")} for how to reach them.`,
+  },
+  {
     q: "How do I report a security issue?",
     a: `Please report vulnerabilities privately through GitHub's private vulnerability reporting, as described in the ${a(site.security, "security policy")}. Do not open a public issue.`,
   },

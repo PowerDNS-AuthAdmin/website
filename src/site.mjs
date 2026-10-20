@@ -31,6 +31,18 @@ export const site = {
   contributing: `${repo}/blob/main/CONTRIBUTING.md`,
   package: `${repo}/pkgs/container/powerdns-authadmin`,
   websiteRepo: "https://github.com/PowerDNS-AuthAdmin/website",
+  // Commercial support is offered by NGN, who built this website (the app itself is a community
+  // project). Details are from ngn.au (includes/config.php and llms.txt), checked 20 Oct 2026.
+  support: {
+    name: "NGN",
+    legalName: "Next Generation Networks",
+    url: "https://ngn.au/",
+    contact: "https://ngn.au/contact/",
+    phone: "1300 096 253",
+    phoneIntl: "+61 2 8287 3300",
+    email: "sales@ngn.au",
+    hours: "Open 24 hours, 7 days",
+  },
   // GA4 measurement ID, loaded by src/analytics.js (shared NGN event script). Empty disables analytics.
   ga4: "G-Y8C640LSFR",
   // IndexNow (Bing, Yandex, Seznam...). Public by design: served at /<key>.txt.

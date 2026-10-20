@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { site } from "./site.mjs";
-import { icon, githubMark } from "./icons.mjs";
+import { icon, githubMark, ngnLogo } from "./icons.mjs";
 
 const shotsMeta = JSON.parse(readFileSync(new URL("./shots.json", import.meta.url), "utf8"));
 
@@ -223,7 +223,7 @@ function footer() {
       <a class="release-chip" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v${site.version}<span class="muted">· ${releasedLabel}</span></a>
     </div>
     <div class="footer-cols">
-      ${col("Product", [["/features/", "Features"], ["/powerdns-admin-alternative/", "Compare"], ["/faq/", "FAQ"], [site.demo, "Live demo"], [site.releases, "Releases"], [site.changelog, "Changelog"]])}
+      ${col("Product", [["/features/", "Features"], ["/powerdns-admin-alternative/", "Compare"], ["/faq/", "FAQ"], ["/#support", "Commercial support"], [site.demo, "Live demo"], [site.releases, "Releases"], [site.changelog, "Changelog"]])}
       ${col("Docs", [[site.docs.quickstart, "Quickstart"], [site.docs.install, "Installation"], [site.docs.config, "Configuration"], [site.docs.rbac, "RBAC"], [site.docs.oidc, "OIDC"], [site.docs.ldap, "LDAP"], [site.docs.saml, "SAML"], [site.docs.passkeys, "Passkeys"], [site.docs.mcp, "MCP"]])}
       ${col("Community", [[site.repo, "GitHub"], [site.discussions, "Discussions"], [site.issues, "Issues"], [site.contributing, "Contributing"], [site.security, "Security policy"], [site.websiteRepo, "Website source"]])}
     </div>
@@ -232,7 +232,7 @@ function footer() {
     <span>© ${site.released.slice(0, 4)} ${site.name} contributors. MIT licensed.</span>
     <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
     <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
-    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span>${ngnLogo(45, 16)}</a></span>
   </div>
 </footer>`;
 }
@@ -303,7 +303,9 @@ export function render(page, { cssHref, jsHref, analyticsHref }) {
     "form-action 'none'",
     "object-src 'none'",
     "frame-src 'none'",
-    "upgrade-insecure-requests",
+    // Left out of local previews (SITE_LOCAL=1): Safari applies it to http://127.0.0.1 too,
+    // so the stylesheet, fonts and images are requested over https and fail.
+    ...(process.env.SITE_LOCAL ? [] : ["upgrade-insecure-requests"]),
   ].join("; ");
 
   return `<!DOCTYPE html>
