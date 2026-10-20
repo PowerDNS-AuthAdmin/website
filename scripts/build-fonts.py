@@ -9,7 +9,7 @@
 #    DNS snippets should show the characters that are actually there;
 #  - weight axis: Inter is used at 400 to 800 and JetBrains Mono at 400 to 700, so the
 #    variation data for the other weights is dropped (this is what halves gvar).
-# Keep the ranges in step with the @font-face rules in src/styles.css.
+# Keep the ranges in step with the @font-face rules in src/styles/00-tokens.css.
 import os
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer

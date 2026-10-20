@@ -1,12 +1,4 @@
 {
-  "audit-log-mobile": {
-    "width": 830,
-    "height": 1848,
-    "widths": [
-      830,
-      415
-    ]
-  },
   "audit-log": {
     "width": 1440,
     "height": 900,
@@ -17,7 +9,25 @@
       640
     ]
   },
-  "backend-health-mobile": {
+  "audit-log-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "autoprimaries": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "autoprimaries-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -35,7 +45,7 @@
       640
     ]
   },
-  "dashboard-mobile": {
+  "backend-health-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -53,7 +63,43 @@
       640
     ]
   },
-  "powerdns-servers-mobile": {
+  "dashboard-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "oidc-providers": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "oidc-providers-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "pdns-requests": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "pdns-requests-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -71,7 +117,25 @@
       640
     ]
   },
-  "roles-mobile": {
+  "powerdns-servers-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "profile": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "profile-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -89,7 +153,7 @@
       640
     ]
   },
-  "zone-detail-mobile": {
+  "roles-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -97,15 +161,7 @@
       415
     ]
   },
-  "zone-edit-diff-mobile": {
-    "width": 830,
-    "height": 1848,
-    "widths": [
-      830,
-      415
-    ]
-  },
-  "zone-edit-diff": {
+  "settings": {
     "width": 1440,
     "height": 900,
     "widths": [
@@ -115,7 +171,97 @@
       640
     ]
   },
-  "zone-edit-mobile": {
+  "settings-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "teams": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "teams-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "tsig-keys": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "tsig-keys-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "users": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "users-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-change-history": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "zone-change-history-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-detail": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "zone-detail-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -133,7 +279,43 @@
       640
     ]
   },
-  "zones-list-mobile": {
+  "zone-edit-diff": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "zone-edit-diff-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-edit-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-templates": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "zone-templates-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -149,6 +331,14 @@
       960,
       720,
       640
+    ]
+  },
+  "zones-list-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
     ]
   }
 }
