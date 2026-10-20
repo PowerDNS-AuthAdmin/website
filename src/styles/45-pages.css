@@ -1,0 +1,48 @@
+/* ---------- Inner page hero ---------- */
+.page-hero { padding: clamp(40px, 7vw, 80px) 0 clamp(40px, 6vw, 64px); border-bottom: 1px solid var(--border-soft); margin-top: -1px; }
+.page-hero h1 { margin: 0 0 18px; font-size: clamp(2.2rem, 5.4vw, 3.6rem); line-height: 1.05; letter-spacing: -0.04em; font-weight: 800; max-width: 20ch; }
+.page-lead { margin: 0 0 28px; max-width: 720px; color: var(--text-dim); font-size: clamp(1.04rem, 1.6vw, 1.18rem); }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 14px;
+  border-radius: 999px; background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: border-color 0.15s, color 0.15s;
+}
+.jump a .i { color: var(--accent-ink); }
+@media (hover: hover) { .jump a:hover { color: var(--text); border-color: var(--border-strong); } }
+
+/* ---------- Features ---------- */
+.group-head { display: flex; gap: 18px; align-items: flex-start; max-width: 760px; margin-bottom: 36px; }
+.group-head .card-icon { margin: 4px 0 0; }
+.group-head h2 { margin-bottom: 8px; }
+.group-head p { margin: 0; color: var(--text-dim); font-size: 1.06rem; }
+.group-shot { margin: 0 0 40px; }
+.feature-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0; }
+.feature-list > div { padding: 20px 22px; border-radius: var(--radius); background: var(--bg-card); border: 1px solid var(--border); }
+.feature-list dt { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-weight: 600; letter-spacing: -0.01em; }
+.feature-list dt .i { color: var(--green-soft); }
+.feature-list dd { margin: 0; color: var(--text-dim); font-size: 0.94rem; line-height: 1.6; }
+
+/* ---------- Compare page ---------- */
+.prose h2 { margin-top: 0; }
+.prose p { color: var(--text-dim); font-size: 1.05rem; line-height: 1.75; margin: 0 0 18px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--text); }
+
+/* ---------- 404 ---------- */
+.not-found { display: grid; place-items: center; min-height: 70vh; padding: 64px 0; text-align: center; }
+.nf-code { margin: 0 0 12px; font-family: var(--mono); font-size: clamp(4rem, 14vw, 7rem); font-weight: 700; letter-spacing: -0.06em; line-height: 1; }
+.nf-code span { color: var(--blue); }
+.not-found h1 { margin: 0 0 12px; font-size: clamp(1.6rem, 4vw, 2.2rem); letter-spacing: -0.03em; }
+.not-found .page-lead { margin: 0 auto 30px; }
+.nf-search { display: flex; justify-content: center; margin-top: 22px; }
+/* !important: the header trigger collapses to an icon under 760px (20-chrome and the
+   search stylesheet, which comes later in the cascade); this one stays a full field. */
+.search-trigger-lg { width: min(420px, 100%) !important; min-width: 0; height: 46px !important; justify-content: flex-start !important; padding: 0 10px 0 14px !important; gap: 8px !important; }
+.search-trigger-lg .search-trigger-label, .search-trigger-lg .search-kbd { display: inline-block !important; }
+
+/* ---------- Responsive pages ---------- */
+@media (max-width: 760px) {
+  .feature-list { grid-template-columns: 1fr; }
+  .group-head { flex-direction: column; gap: 14px; }
+}

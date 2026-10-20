@@ -1,8 +1,10 @@
 // Page copy that is reused across pages. Every claim here is backed by the app's
 // README, docs/ or CHANGELOG; keep it that way when editing.
-import { site } from "./site.mjs";
+import { site, href } from "./site.mjs";
 
-const a = (href, text) => `<a href="${href}"${href.startsWith("http") ? ' rel="noopener"' : ""}>${text}</a>`;
+// Internal paths (incl. site.docs.*) are root-relative and get the base path via href();
+// only off-site links carry rel="noopener".
+const a = (to, text) => `<a href="${href(to)}"${/^https?:/.test(to) ? ' rel="noopener"' : ""}>${text}</a>`;
 
 /* Feature highlights (home page cards). */
 export const highlights = [

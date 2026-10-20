@@ -1,4 +1,4 @@
-import { site } from "../site.mjs";
+import { site, href } from "../site.mjs";
 import { icon } from "../icons.mjs";
 import { shot, ids, esc } from "../layout.mjs";
 import { featureGroups } from "../content.mjs";
@@ -26,10 +26,9 @@ ${featureGroups
         <h2 id="${g.id}-title">${esc(g.title)}</h2>
         <p>${g.lead}</p>
       </div>
-    </div>
-    ${
+    </div>${
       g.shot
-        ? `<figure class="group-shot"><div class="browser"><div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="browser-url">${icon("lock", 12)}demo.powerdns-authadmin.org</span></div><button class="zoom" type="button" aria-label="Enlarge screenshot">${shot(g.shot.name, g.shot.alt, { sizes: "(min-width: 1180px) 1100px, 94vw" })}<span class="zoom-hint">${icon("zoom", 16)}</span></button></div><figcaption class="sr-only">${g.shot.alt}</figcaption></figure>`
+        ? `\n    <figure class="group-shot"><div class="browser"><div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="browser-url">${icon("lock", 12)}demo.powerdns-authadmin.org</span></div><button class="zoom" type="button" aria-label="Enlarge screenshot">${shot(g.shot.name, g.shot.alt, { sizes: "(min-width: 1180px) 1100px, 94vw" })}<span class="zoom-hint">${icon("zoom", 16)}</span></button></div><figcaption class="sr-only">${g.shot.alt}</figcaption></figure>`
         : ""
     }
     <dl class="feature-list">
@@ -46,7 +45,7 @@ ${featureGroups
     <p>Click around a seeded install, or have your own running in a couple of minutes.</p>
     <div class="cta-buttons">
       <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Open the live demo</span></a>
-      <a class="btn btn-ghost btn-lg" href="/#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
+      <a class="btn btn-ghost btn-lg" href="${href("/#quickstart")}" data-cta="Quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { site } from "../site.mjs";
+import { site, href } from "../site.mjs";
 import { icon } from "../icons.mjs";
 import { ids } from "../layout.mjs";
 import { supportBlock, supportLead, liveBadge, chatLink } from "../support.mjs";
@@ -23,7 +23,7 @@ ${supportBlock({ head: false })}
     <p>The app stays free and open source either way. Ask questions in Discussions, report bugs in Issues, or read the docs.</p>
     <div class="cta-buttons">
       <a class="btn btn-ghost btn-lg" href="${site.discussions}" data-cta="Discussions" rel="noopener">${icon("chat", 18)}<span>Discussions</span></a>
-      <a class="btn btn-ghost btn-lg" href="${site.docs.index}" data-cta="Docs" rel="noopener">${icon("book", 18)}<span>Read the docs</span></a>
+      <a class="btn btn-ghost btn-lg" href="${href(site.docs.index)}" data-cta="Docs">${icon("book", 18)}<span>Read the docs</span></a>
     </div>
   </div>
 </section>

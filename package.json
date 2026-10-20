@@ -10,8 +10,12 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs && node scripts/check.mjs && npx --yes html-validate@9 \"dist/**/*.html\"",
-    "serve": "SITE_LOCAL=1 node scripts/build.mjs && python3 -m http.server 8080 --directory dist --bind 127.0.0.1",
+    "check:base": "SITE_URL=http://127.0.0.1:8080/preview node scripts/build.mjs && node scripts/check.mjs",
+    "dev": "node scripts/dev.mjs",
+    "serve": "SITE_URL=http://127.0.0.1:8080 node scripts/build.mjs && node scripts/serve.mjs",
+    "serve:base": "SITE_URL=http://127.0.0.1:8080/preview node scripts/build.mjs && node scripts/serve.mjs",
     "media": "node scripts/build-media.mjs",
+    "sync-docs": "node scripts/sync-docs.mjs",
     "deploy": "sh scripts/deploy.sh"
   }
 }

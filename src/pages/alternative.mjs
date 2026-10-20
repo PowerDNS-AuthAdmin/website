@@ -1,4 +1,4 @@
-import { site } from "../site.mjs";
+import { site, href } from "../site.mjs";
 import { icon } from "../icons.mjs";
 import { ids } from "../layout.mjs";
 
@@ -17,10 +17,10 @@ const checks = [
 ];
 
 const steps = [
-  ["Deploy alongside", `Start PowerDNS-AuthAdmin with Docker Compose next to what you run today. It only needs network access to the PowerDNS Authoritative HTTP API. <a href="${site.docs.install}" rel="noopener">Installation guide</a>.`],
+  ["Deploy alongside", `Start PowerDNS-AuthAdmin with Docker Compose next to what you run today. It only needs network access to the PowerDNS Authoritative HTTP API. <a href="${href(site.docs.install)}">Installation guide</a>.`],
   ["Register your backends", "Add each PowerDNS server with its API URL and key, or group them into clusters and primary + secondaries. Your existing zones appear straight away because they live in PowerDNS, not in the admin UI."],
-  ["Connect sign-in", `Point it at your OIDC, SAML or LDAP provider and map groups to roles, or create local accounts. <a href="${site.docs.rbac}" rel="noopener">RBAC guide</a>.`],
-  ["Recreate access rules", `Users, roles, teams and API tokens are not imported from other tools. Define them in the UI or in a <a href="${site.docs.provisioning}" rel="noopener">provisioning.yaml</a> so the setup is reviewable and repeatable.`],
+  ["Connect sign-in", `Point it at your OIDC, SAML or LDAP provider and map groups to roles, or create local accounts. <a href="${href(site.docs.rbac)}">RBAC guide</a>.`],
+  ["Recreate access rules", `Users, roles, teams and API tokens are not imported from other tools. Define them in the UI or in a <a href="${href(site.docs.provisioning)}">provisioning.yaml</a> so the setup is reviewable and repeatable.`],
   ["Switch over", "Once your team works in PowerDNS-AuthAdmin, retire the old UI. Edits made by any other client show up live, so running both during the transition is fine."],
 ];
 
@@ -33,7 +33,7 @@ const body = `
     <p class="page-lead">PowerDNS-Admin is the long-standing community web UI for PowerDNS. PowerDNS-AuthAdmin is a separate project, written from scratch in TypeScript, for teams that run several backends, sign in through an identity provider and need to show who changed what.</p>
     <div class="hero-cta left">
       <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
-      <a class="btn btn-ghost btn-lg" href="/features/" data-cta="Features">See all features</a>
+      <a class="btn btn-ghost btn-lg" href="${href("/features/")}" data-cta="Features">See all features</a>
     </div>
   </div>
 </section>
@@ -81,7 +81,7 @@ const body = `
   <div class="container narrow prose">
     <h2 id="fit-title">Is it the right fit?</h2>
     <p>If a single shared admin login on one PowerDNS server covers your needs and your current UI does the job, you may not need to change anything. PowerDNS-AuthAdmin earns its place when more people, more backends or more scrutiny come into play: delegating zones to customers or teams, enforcing SSO and MFA, operating clusters and secondaries, or answering audit requests.</p>
-    <p>The quickest way to decide is to click around the <a href="${site.demo}" rel="noopener">live demo</a>, then read the <a href="/faq/">FAQ</a>.</p>
+    <p>The quickest way to decide is to click around the <a href="${site.demo}" rel="noopener">live demo</a>, then read the <a href="${href("/faq/")}">FAQ</a>.</p>
   </div>
 </section>
 
@@ -90,7 +90,7 @@ const body = `
     <h2>Up and running in minutes</h2>
     <p>One image, one compose file, your existing PowerDNS.</p>
     <div class="cta-buttons">
-      <a class="btn btn-primary btn-lg" href="/#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
+      <a class="btn btn-primary btn-lg" href="${href("/#quickstart")}" data-cta="Quickstart">${icon("terminal", 18)}<span>Quickstart</span></a>
       <a class="btn btn-ghost btn-lg" href="${site.repo}" data-cta="GitHub" rel="noopener">View on GitHub</a>
     </div>
   </div>

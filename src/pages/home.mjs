@@ -1,4 +1,4 @@
-import { site } from "../site.mjs";
+import { site, href } from "../site.mjs";
 import { icon, githubMark } from "../icons.mjs";
 import { supportBlock } from "../support.mjs";
 import { shot, softwareNode, sourceNode, ids, esc } from "../layout.mjs";
@@ -239,12 +239,13 @@ const body = `
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>New: talk to your DNS over MCP</span>${icon("arrowRight", 15)}</a>
+    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>New: talk to your DNS over MCP</span>${icon("arrow-right", 15)}</a>
     <h1 class="hero-title">The PowerDNS admin UI<br> <span class="accent">built for teams.</span></h1>
     <p class="hero-sub">PowerDNS-AuthAdmin is a modern, self-hosted web interface for PowerDNS Authoritative. Scoped RBAC, SSO with OIDC, SAML and LDAP, passkeys, diff-before-apply zone editing and an append-only audit log. Now with a built-in MCP server, so Claude Code or any AI assistant can change records under the same rules. One Docker image. No telemetry.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
       <a class="btn btn-ghost btn-lg" href="#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Self-host in 2 minutes</span></a>
+      <a class="btn btn-ghost btn-lg" href="${href(site.docs.index)}" data-cta="Docs">${icon("book", 18)}<span>Read the docs</span></a>
     </div>
     <ul class="hero-meta">
       <li>${icon("check", 15)}MIT licensed</li>
@@ -291,11 +292,11 @@ const body = `
     </div>
     <ul class="mcp-points">
       <li>${icon("shield", 18)}<span><strong>Runs as the token owner.</strong> Scopes and per-zone grants are the ceiling, re-evaluated on every call. Revoke the token and it stops.</span></li>
-      <li>${icon("eyeOff", 18)}<span><strong>Read-only token, read-only server.</strong> Write tools are only advertised to tokens that can write somewhere.</span></li>
+      <li>${icon("eye-off", 18)}<span><strong>Read-only token, read-only server.</strong> Write tools are only advertised to tokens that can write somewhere.</span></li>
       <li>${icon("log", 18)}<span><strong>Audited by name.</strong> Each change records the owner and the client's user agent, so you can filter the log for what the assistant did.</span></li>
       <li>${icon("lock", 18)}<span><strong>Destructive calls flagged.</strong> Replace and delete tools are annotated so clients ask first; deleting a zone needs its name repeated.</span></li>
     </ul>
-    <p class="section-more"><a class="link-arrow" href="${site.docs.mcp}" rel="noopener">Setup for every client in the MCP guide${icon("arrowRight", 16)}</a></p>
+    <p class="section-more"><a class="link-arrow" href="${href(site.docs.mcp)}">Setup for every client in the MCP guide${icon("arrow-right", 16)}</a></p>
   </div>
 </section>
 
@@ -309,7 +310,7 @@ const body = `
     <div class="cards">
       ${highlights.map((h) => `<article class="card"><div class="card-icon">${icon(h.icon, 22)}</div><h3>${esc(h.title)}</h3><p>${h.text}</p></article>`).join("\n      ")}
     </div>
-    <p class="section-more"><a class="link-arrow" href="/features/">Explore every feature${icon("arrowRight", 16)}</a></p>
+    <p class="section-more"><a class="link-arrow" href="${href("/features/")}">Explore every feature${icon("arrow-right", 16)}</a></p>
   </div>
 </section>
 
@@ -348,8 +349,8 @@ const body = `
           <li><strong>Optional:</strong> add a <code>provisioning.yaml</code> to register backends, roles, teams and SSO on first boot.</li>
         </ol>
         <div class="quickstart-links">
-          <a class="btn btn-ghost" href="${site.docs.install}" data-cta="Installation guide" rel="noopener">${icon("book", 16)}<span>Installation guide</span></a>
-          <a class="btn btn-ghost" href="${site.docs.config}" data-cta="Config reference" rel="noopener">${icon("template", 16)}<span>All config options</span></a>
+          <a class="btn btn-ghost" href="${href(site.docs.install)}" data-cta="Installation guide">${icon("book", 16)}<span>Installation guide</span></a>
+          <a class="btn btn-ghost" href="${href(site.docs.config)}" data-cta="Config reference">${icon("template", 16)}<span>All config options</span></a>
         </div>
         <p class="note">Running more than one replica? Use Postgres plus Redis behind a load balancer. Just evaluating? The <a href="${site.demo}" rel="noopener">live demo</a> is one click away.</p>
       </div>
@@ -363,7 +364,7 @@ const body = `
       <p class="eyebrow">Coming from PowerDNS-Admin?</p>
       <h2 id="compare-title">A from-scratch take on the PowerDNS web UI</h2>
       <p class="lead">PowerDNS-AuthAdmin is a separate project written in TypeScript for teams with several backends, an identity provider and an auditor to answer to. Your zones already live in PowerDNS, so pointing it at your API is all it takes to see them.</p>
-      <a class="link-arrow" href="/powerdns-admin-alternative/">How it compares and how to switch${icon("arrowRight", 16)}</a>
+      <a class="link-arrow" href="${href("/powerdns-admin-alternative/")}">How it compares and how to switch${icon("arrow-right", 16)}</a>
     </div>
     <ul class="checklist">
       <li>${icon("check", 18)}Role assignments scoped to a single zone, team or server</li>
@@ -384,9 +385,9 @@ const body = `
       <h2 id="faq-title">Common questions</h2>
     </div>
     <div class="faq">
-      ${homeFaqs.map((f) => `<details name="faq"><summary><h3>${f.q}</h3>${icon("chevronDown", 20)}</summary><div class="faq-a"><p>${f.a}</p></div></details>`).join("\n      ")}
+      ${homeFaqs.map((f) => `<details name="faq"><summary><h3>${f.q}</h3>${icon("chevron-down", 20)}</summary><div class="faq-a"><p>${f.a}</p></div></details>`).join("\n      ")}
     </div>
-    <p class="section-more"><a class="link-arrow" href="/faq/">All questions${icon("arrowRight", 16)}</a></p>
+    <p class="section-more"><a class="link-arrow" href="${href("/faq/")}">All questions${icon("arrow-right", 16)}</a></p>
   </div>
 </section>
 
@@ -407,7 +408,7 @@ ${supportBlock()}
       <div class="mini-cards">
         <a class="mini-card" href="${site.discussions}" data-cta="Discussions" rel="noopener">${icon("chat", 20)}<span><strong>Discussions</strong>Ideas, questions and show-and-tell.</span></a>
         <a class="mini-card" href="${site.issues}" data-cta="Issues" rel="noopener">${icon("bug", 20)}<span><strong>Issues</strong>Report a bug or request a feature.</span></a>
-        <a class="mini-card" href="${site.docs.index}" data-cta="Docs" rel="noopener">${icon("book", 20)}<span><strong>Documentation</strong>Install, configure and operate.</span></a>
+        <a class="mini-card" href="${href(site.docs.index)}" data-cta="Docs">${icon("book", 20)}<span><strong>Documentation</strong>Install, configure and operate.</span></a>
         <a class="mini-card" href="${site.security}" data-cta="Security policy" rel="noopener">${icon("shield", 20)}<span><strong>Security</strong>Private vulnerability reporting.</span></a>
       </div>
     </div>

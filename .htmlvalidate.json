@@ -1,9 +1,22 @@
 {
-  "extends": ["html-validate:recommended"],
+  "extends": [
+    "html-validate:recommended"
+  ],
   "rules": {
-    "void-style": ["error", { "style": "omit" }],
+    "void-style": [
+      "error",
+      {
+        "style": "omit"
+      }
+    ],
     "no-trailing-whitespace": "off",
     "long-title": "off",
-    "attribute-boolean-style": "off"
+    "attribute-boolean-style": "off",
+    "valid-id": [
+      "error",
+      {
+        "relaxed": true
+      }
+    ]
   }
 }

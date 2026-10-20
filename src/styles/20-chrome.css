@@ -1,0 +1,167 @@
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: fixed; left: 12px; top: -60px; z-index: 300;
+  background: var(--blue-fill); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 600;
+  transition: top 0.15s;
+}
+.skip-link:focus { top: 12px; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--header-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border-soft);
+  padding-top: env(safe-area-inset-top);
+}
+.header-inner { display: flex; align-items: center; gap: 24px; height: var(--header-h); }
+.brand { display: flex; align-items: center; flex-shrink: 0; border-radius: 8px; }
+.logo { width: auto; height: 32px; }
+.nav { display: flex; gap: 2px; flex: 1; }
+.nav a {
+  position: relative; padding: 8px 12px; border-radius: 9px;
+  color: var(--text-dim); font-weight: 500; font-size: 0.93rem; white-space: nowrap;
+  transition: color 0.15s, background-color 0.15s;
+}
+.nav a[aria-current="page"] { color: var(--text); }
+.nav a[aria-current="page"]::after {
+  content: ""; position: absolute; left: 12px; right: 12px; bottom: -13px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--green-soft));
+}
+@media (hover: hover) { .nav a:hover { color: var(--text); background: color-mix(in srgb, var(--text) 5%, transparent); } }
+.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
+
+/* Search trigger (markup by layout.mjs, bound by js/search.js). Looks like an input;
+   collapses to its icon at narrow widths. The search stylesheet may restyle it. */
+.search-trigger {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 40px; min-width: 210px; padding: 0 8px 0 12px; border-radius: 11px;
+  background: var(--bg-card); border: 1px solid var(--border); color: var(--text-faint);
+  font-size: 0.88rem; line-height: 1; cursor: pointer; text-align: left;
+  transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.search-trigger > svg { flex-shrink: 0; }
+.search-trigger .search-trigger-label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-trigger .search-kbd { margin-left: auto; font-size: 0.72rem; padding: 1px 6px; color: var(--text-dim); }
+.search-kbd { font-family: var(--mono); white-space: nowrap; }
+@media (hover: hover) { .search-trigger:hover { border-color: var(--border-strong); color: var(--text-dim); } }
+.no-js .search-trigger { display: none; }
+
+/* Release pill (header, optional): "v1.9.1" with a live dot. */
+.release-pill {
+  display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 11px; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.76rem; font-weight: 600; color: var(--text-dim);
+  background: var(--bg-card); border: 1px solid var(--border); transition: border-color 0.15s, color 0.15s;
+}
+@media (hover: hover) { .release-pill:hover { color: var(--text); border-color: var(--border-strong); } }
+
+/* One menu button. On docs pages it carries data-docs-menu and opens the docs sidebar
+   (js/docs.js) instead of the site menu (js/main.js); the icon swap is the same. */
+.menu-toggle { display: none; }
+.menu-toggle .i-close, .menu-toggle[aria-expanded="true"] .i-menu { display: none; }
+.menu-toggle[aria-expanded="true"] .i-close { display: block; }
+
+.mobile-nav {
+  position: fixed; inset: calc(var(--header-h) + env(safe-area-inset-top)) 0 0 0; z-index: 99;
+  background: var(--bg); overflow-y: auto; overscroll-behavior: contain;
+  padding: 12px 0 calc(24px + env(safe-area-inset-bottom));
+  animation: menu-in 0.22s var(--ease);
+}
+.mobile-nav[hidden] { display: none; }
+.mobile-nav nav { display: flex; flex-direction: column; }
+.mobile-nav nav > a {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 56px; padding: 0 4px;
+  font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--border-soft);
+}
+.mobile-nav nav > a .i { color: var(--text-faint); }
+.mobile-nav nav > a[aria-current="page"] { color: var(--accent-ink); }
+.mobile-cta { display: grid; gap: 10px; margin-top: 24px; }
+.mobile-release { margin: 18px 0 0; text-align: center; font-family: var(--mono); font-size: 0.82rem; }
+.mobile-release a { display: inline-flex; align-items: center; gap: 8px; color: var(--text-dim); text-decoration: none; }
+/* Shared with the docs drawer: both lock the page while a full-height panel is open. */
+body.menu-open { overflow: hidden; }
+/* backdrop-filter would make the header the containing block of the fixed menu. */
+body.menu-open .site-header { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg); }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Breadcrumbs ---------- */
+.crumbs { padding-top: 18px; position: relative; z-index: 1; }
+.crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 0.85rem; color: var(--text-faint); }
+.crumbs li { display: inline-flex; align-items: center; gap: 6px; }
+.crumbs a { color: var(--text-dim); }
+.crumbs a:hover { color: var(--text); }
+.crumbs [aria-current] { color: var(--text); }
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: 1px solid var(--border-soft); background: var(--bg); padding-top: clamp(48px, 7vw, 72px); padding-bottom: env(safe-area-inset-bottom); }
+.footer-inner { display: grid; grid-template-columns: 1.2fr 2fr; gap: 48px; padding-bottom: 48px; }
+.footer-brand .logo { height: 30px; margin-bottom: 18px; }
+.footer-brand p { margin: 0 0 18px; max-width: 340px; color: var(--text-dim); font-size: 0.92rem; }
+.release-chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.8rem; font-weight: 600;
+  background: var(--bg-card); border: 1px solid var(--border); transition: border-color 0.15s;
+}
+.release-chip .muted { color: var(--text-faint); font-weight: 500; }
+.release-chip:hover { border-color: var(--border-strong); }
+.footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.footer-col h2 { margin: 0 0 14px; font-size: 0.76rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-faint); }
+.footer-col ul { margin: 0; padding: 0; list-style: none; }
+.footer-col a { display: inline-block; padding: 5px 0; color: var(--text-dim); font-size: 0.92rem; transition: color 0.15s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px;
+  padding-top: 22px; padding-bottom: 28px; border-top: 1px solid var(--border-soft);
+  color: var(--text-faint); font-size: 0.82rem;
+}
+.footer-bottom a { text-decoration: underline; text-underline-offset: 2px; }
+.footer-bottom a:hover { color: var(--text); }
+
+/* "Website by NGN" footer credit. Full footer text colour, no opacity: dimming it
+   failed contrast on dim footers. */
+a.ngn-credit { display: inline-flex; align-items: center; gap: 0.45em; color: inherit; text-decoration: none; }
+.ngn-credit svg { display: block; width: auto; height: 1.05em; transform: translateY(0.12em); }
+
+/* ---------- Responsive chrome ----------
+   The nav collapses at 1080px, the same breakpoint the docs sidebar uses to become a
+   drawer, so there is only ever one menu button and it always has something to open. */
+@media (max-width: 1200px) {
+  .hide-md { display: none; }
+  .header-inner { gap: 18px; }
+  .nav a { padding: 8px 10px; }
+  .nav a[aria-current="page"]::after { left: 10px; right: 10px; }
+  .search-trigger { min-width: 160px; }
+  /* Brand + 5 nav items + search + theme + Live demo is all this band can hold; the
+     GitHub text button is also in the menu and footer. (Harmless once the markup
+     carries hide-md on it.) */
+  .header-actions > .btn-ghost { display: none; }
+}
+@media (max-width: 1080px) {
+  .nav { display: none; }
+  .menu-toggle { display: inline-grid; }
+  .no-js .menu-toggle { display: none; }
+  .search-trigger { min-width: 200px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+}
+@media (max-width: 760px) {
+  :root { --header-h: 60px; }
+  .hide-sm { display: none; }
+  .header-inner { gap: 12px; }  /* brand + demo button + toggles fit down to the 480px breakpoint */
+  .search-trigger { min-width: 0; width: 40px; padding: 0; justify-content: center; gap: 0; }
+  .search-trigger .search-trigger-label, .search-trigger .search-kbd { display: none; }
+  .footer-cols { grid-template-columns: 1fr 1fr; }
+  .footer-cols .footer-col:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .hide-xs { display: none; }
+}
+@media (max-width: 420px) {
+  .logo { height: 28px; }
+  .header-actions { gap: 6px; }
+}
+@media (max-width: 340px) {
+  .logo { height: 24px; }
+}

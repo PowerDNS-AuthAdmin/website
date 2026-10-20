@@ -1,9 +1,9 @@
-import { site } from "../site.mjs";
+import { site, href } from "../site.mjs";
 import { icon } from "../icons.mjs";
 import { ids } from "../layout.mjs";
 import { faqs } from "../content.mjs";
 
-const slug = (q) => q.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const slug = (q) => q.toLowerCase().replace(/<[^>]+>/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const body = `
 <section class="page-hero">
@@ -18,7 +18,7 @@ const body = `
 <section class="section section-tight">
   <div class="container narrow">
     <div class="faq faq-full">
-      ${faqs.map((f, i) => `<details name="faq" id="${slug(f.q)}"${i === 0 ? " open" : ""}><summary><h2>${f.q}</h2>${icon("chevronDown", 20)}</summary><div class="faq-a"><p>${f.a}</p></div></details>`).join("\n      ")}
+      ${faqs.map((f, i) => `<details name="faq" id="${slug(f.q)}"${i === 0 ? " open" : ""}><summary><h2>${f.q}</h2>${icon("chevron-down", 20)}</summary><div class="faq-a"><p>${f.a}</p></div></details>`).join("\n      ")}
     </div>
   </div>
 </section>
@@ -28,7 +28,7 @@ const body = `
     <h2>Still curious?</h2>
     <p>The documentation covers installation, configuration, RBAC, SSO and hardening in depth.</p>
     <div class="cta-buttons">
-      <a class="btn btn-primary btn-lg" href="${site.docs.index}" data-cta="Docs" rel="noopener">${icon("book", 18)}<span>Read the docs</span></a>
+      <a class="btn btn-primary btn-lg" href="${href(site.docs.index)}" data-cta="Docs">${icon("book", 18)}<span>Read the docs</span></a>
       <a class="btn btn-ghost btn-lg" href="${site.discussions}" data-cta="Discussions" rel="noopener">${icon("chat", 18)}<span>Ask the community</span></a>
     </div>
   </div>
