@@ -1,0 +1,11 @@
+[Unit]
+Description=Pull the powerdns-authadmin.org build from GitHub into the web root
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=pda-site
+Group=pda-site
+ExecStart=/home/pda-site/bin/pull-site.sh
+Nice=10

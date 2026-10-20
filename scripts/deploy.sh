@@ -1,12 +1,13 @@
 #!/bin/sh
 # Build, verify and publish dist/ to the nginx host over SSH (rsync), then smoke-test the
-# live site and ping IndexNow.
+# live site and ping IndexNow. This is the by-hand path from a workstation that may reach the
+# host; the Deploy workflow instead publishes to the `site` branch, which the host pulls.
 #
 # Locally the target lives in .env.deploy (git-ignored), never in the repo:
 #   cp .env.example .env.deploy && $EDITOR .env.deploy
 #   npm run deploy            # or: sh scripts/deploy.sh
-# In CI (.github/workflows/deploy.yml) there is no .env.deploy: the same settings arrive as
-# environment variables, and SKIP_BUILD=1 publishes the build the workflow already checked.
+# Anything set in the environment wins over .env.deploy, and SKIP_BUILD=1 publishes an
+# existing build without building or checking it again.
 #
 # Settings (the environment wins over .env.deploy):
 #   DEPLOY_HOST    user@host for ssh/rsync                                            required
@@ -44,13 +45,9 @@ else
 fi
 [ -f "$DIST/sitemap.xml" ] || { echo "$DIST/sitemap.xml is missing: build first" >&2; exit 1; }
 
-# The live origin comes from the build itself (robots.txt names the sitemap), so the smoke
-# test always checks the URLs this build was made for.
-url=$(sed -n 's|^Sitemap: \(.*\)/sitemap\.xml$|\1|p' "$DIST/robots.txt" | head -n 1)
-[ -n "$url" ] || url=$(node -e 'import("./src/site.mjs").then(m => console.log(m.site.url))')
-
 echo "→ sync to ${DEPLOY_HOST}:${DEPLOY_PATH}"
-# In CI an unknown host key or a passphrase prompt must fail instead of hanging.
+# Non-interactive runs (CI=1) must fail on an unknown host key or a passphrase prompt
+# instead of hanging.
 rsync_ssh="ssh"
 [ -n "${CI-}" ] && rsync_ssh="ssh -o BatchMode=yes"
 chown_opt=""
@@ -63,27 +60,10 @@ rsync -rlt --checksum -e "$rsync_ssh" $chown_opt --chmod=D755,F644 "$DIST/assets
 # shellcheck disable=SC2086
 rsync -rlt --checksum --delete -e "$rsync_ssh" $chown_opt --chmod=D755,F644 "$DIST/" "$DEPLOY_HOST:$DEPLOY_PATH/"
 
-echo "→ smoke test ${url}"
-failed=0
-expect() { # expect <status> <url>
-  code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$2") || code=000
-  printf '  %s %s\n' "$code" "$2"
-  [ "$code" = "$1" ] || failed=1
-}
-# Every page in the sitemap, then the files that are not pages, then a miss. A for loop
-# rather than `while read`: a pipeline would run the loop in a subshell and lose $failed.
-# shellcheck disable=SC2013
-for loc in $(grep -o '<loc>[^<]*</loc>' "$DIST/sitemap.xml" | sed 's|<loc>||; s|</loc>||'); do
-  expect 200 "$loc"
-done
-for path in /search/ /robots.txt /llms.txt /llms-full.txt /sitemap.xml; do
-  expect 200 "${url}${path}"
-done
-expect 404 "${url}/not-a-page-$(date +%s)-$$/"
-[ "$failed" = 0 ] || { echo "smoke test failed" >&2; exit 1; }
+sh scripts/smoke-test.sh
 
 if [ "$INDEXNOW" = 1 ]; then
   echo "→ IndexNow"
   node scripts/indexnow.mjs
 fi
-echo "✓ deployed ${url}"
+echo "✓ deployed"

@@ -12,8 +12,9 @@
 #   covers new pages without a config change. Text files at the root (/robots.txt,
 #   /llms.txt, /llms-full.txt, /sitemap.xml, the IndexNow key) are plain static files
 #   served by `location /` with revalidation.
-# - The deploy user (scripts/deploy.sh, .github/workflows/deploy.yml) owns the web root, so
-#   rsync needs no chown; nginx only needs read access.
+# - The pda-site user owns the web root: pull-site.timer (deploy/pull-site.*) runs as it and
+#   copies the `site` branch in; nginx only needs read access. A by-hand `npm run deploy` from a
+#   workstation rsyncs as root with DEPLOY_OWNER=pda-site:pda-site.
 
 server {
     listen      80;

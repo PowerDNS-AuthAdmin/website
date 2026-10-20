@@ -98,7 +98,7 @@ deploy/
   nginx.conf.example  reference server config (compression, caching, headers, 404)
 .github/workflows/
   ci.yml              build + checks on pull requests and pushes, at the production URL and a subpath
-  deploy.yml          push to main → build, check, publish to the nginx host over SSH
+  deploy.yml          push to main → build, check, publish dist/ to the site branch, wait, smoke test
   release-sync.yml    hourly: new app release → sync docs → pull request with a review checklist
 ```
 
@@ -112,32 +112,32 @@ compression, long-lived caching for fingerprinted assets (`/assets/css/`, `/asse
 server is maintained by hand; keep the example in step with it.
 
 **Push to main.** Every push to `main` runs `.github/workflows/deploy.yml`: it builds with
-`SITE_URL=https://powerdns-authadmin.org`, runs `check.mjs` and html-validate, then hands `dist/` to
-`scripts/deploy.sh` with `SKIP_BUILD=1`, which rsyncs it over SSH, smoke-tests every URL in the
-sitemap (plus `/search/`, `/robots.txt`, `/llms.txt`, `/llms-full.txt`, `/sitemap.xml` and a 404) and
-pings IndexNow. Run the **Deploy** workflow by hand from the Actions tab to redeploy without a push.
-Deploys are serialized (`concurrency: deploy`) and never cancelled mid-way.
+`SITE_URL=https://powerdns-authadmin.org`, runs `check.mjs` and html-validate, then commits `dist/`
+(plus `build.txt`, the source commit) to the **`site` branch**. The host never accepts connections
+from GitHub: a one-minute systemd timer on it (`deploy/pull-site.sh`, `pull-site.service`,
+`pull-site.timer`, running as the `pda-site` user that owns the web root) fetches the `site` branch
+and rsyncs it into place, fingerprinted assets first. The workflow waits until
+`https://powerdns-authadmin.org/build.txt` reports its commit (up to ten minutes), smoke-tests every
+URL in the sitemap (plus `/search/`, `/robots.txt`, `/llms.txt`, `/llms-full.txt`, `/sitemap.xml` and
+a 404) with `scripts/smoke-test.sh`, then pings IndexNow. No secrets are involved: the repository is
+public and the host only ever pulls. Run the **Deploy** workflow by hand from the Actions tab to
+redeploy without a push. Deploys are serialized (`concurrency: deploy`) and never cancelled mid-way.
 
-The workflow reads these from **Settings → Secrets and variables → Actions**:
+To set up a new host: create the `pda-site` user, give it the web root, copy the three files from
+`deploy/` to `/home/pda-site/bin/` and `/etc/systemd/system/`, then
+`systemctl enable --now pull-site.timer`. `journalctl -t pull-site` shows each deploy.
 
-| Kind     | Name                 | Value                                                                                      |
-| -------- | -------------------- | ------------------------------------------------------------------------------------------ |
-| Secret   | `DEPLOY_SSH_KEY`     | Private key of a deploy user that owns the web root (`ssh-keygen -t ed25519 -f deploy -N ''`, paste `deploy`; put `deploy.pub` in the user's `authorized_keys`) |
-| Secret   | `DEPLOY_KNOWN_HOSTS` | Output of `ssh-keyscan -t ed25519 <host>`, so the host key is pinned and never prompted for |
-| Variable | `DEPLOY_HOST`        | `user@host` for rsync over SSH                                                             |
-| Variable | `DEPLOY_PATH`        | Web root on the host, e.g. `/var/www/powerdns-authadmin-website`                           |
-
-Without `DEPLOY_HOST` (a fork, say) the job prints a notice and does nothing, so forks stay green.
-The deploy user owns the web root, so no `chown` and no root over SSH are needed.
-
-**By hand.** The same script deploys from a workstation. The target is read from a git-ignored
-file, and anything set in the environment wins over it:
+**By hand.** `scripts/deploy.sh` rsyncs a build straight to the host over SSH from a workstation
+that is allowed to reach it, then runs the same smoke test and IndexNow ping. The target is read
+from a git-ignored file, and anything set in the environment wins over it:
 
 ```sh
-cp .env.example .env.deploy   # set DEPLOY_HOST and DEPLOY_PATH
+cp .env.example .env.deploy   # set DEPLOY_HOST, DEPLOY_PATH and DEPLOY_OWNER=pda-site:pda-site
 npm run deploy                # build, check, rsync, smoke test, IndexNow
 INDEXNOW=0 npm run deploy     # same, without the IndexNow ping
 ```
+
+The next push to `main` replaces whatever was deployed by hand.
 
 Pull requests and pushes run `.github/workflows/ci.yml`: build, checks, html-validate and an XML
 check of the sitemap, both at the production URL and under a subpath.
