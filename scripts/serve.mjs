@@ -8,6 +8,7 @@
 // `npm run serve` builds first with SITE_URL set to this server (see package.json), so
 // canonical and asset URLs point at the preview rather than at the production domain.
 import { createServer } from "node:http";
+import { serveBadge } from "./badge-dev.mjs";
 import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
 import { extname, join, normalize, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,6 +43,7 @@ createServer((req, res) => {
   if (base && (path === "/" || path === "")) { res.writeHead(302, { Location: base + "/" }); return res.end(); }
   if (base && path === base) { res.writeHead(301, { Location: base + "/" }); return res.end(); }
   if (base && !path.startsWith(base + "/")) return send(res, 404, join(dist, "404.html"));
+  if (serveBadge(path.slice(base.length), res)) return;
   const rel = normalize(path.slice(base.length)).replace(/^(\.\.[/\\])+/, "");
   let file = join(dist, rel);
   if (!file.startsWith(dist)) return send(res, 404, join(dist, "404.html"));

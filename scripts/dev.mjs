@@ -7,6 +7,7 @@
 //   SITE_URL=http://127.0.0.1:8080/preview node scripts/dev.mjs   # test a subpath build
 import { spawn } from "node:child_process";
 import { createServer } from "node:http";
+import { serveBadge } from "./badge-dev.mjs";
 import { existsSync, readFileSync, statSync, watch } from "node:fs";
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -109,6 +110,7 @@ function handle(req, res) {
   }
   const notFound = join(dist, "404.html");
   if (base && !url.pathname.startsWith(`${base}/`) && url.pathname !== base) return send(res, 404, notFound);
+  if (serveBadge(url.pathname.slice(base.length), res)) return;
   let rel = decodeURIComponent(url.pathname.slice(base.length)) || "/";
   let file = normalize(join(dist, rel));
   if (!file.startsWith(dist)) return send(res, 404, notFound);

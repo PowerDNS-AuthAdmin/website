@@ -142,7 +142,7 @@ html[data-theme="dark"] .theme-toggle .i-moon, html[data-theme="light"] .theme-t
   .hero-bg, .card::before { display: none; }
 }
 @media print {
-  .site-header, .skip-link, .hero-bg, .showcase-controls, .copy-btn, .zoom-hint, .lightbox, .cta-section, .site-footer .footer-cols { display: none !important; }
+  .site-header, .skip-link, .hero-bg, .showcase-controls, .copy-btn, .zoom-hint, .lightbox, .cta-section, .site-footer .footer-cols, .site-footer .footer-badges { display: none !important; }
   body { background: #fff; color: #000; }
   .section, .hero, .page-hero { padding: 24px 0; }
   .js [data-inactive], .js .showcase-panel[data-inactive], .js .terminal-pane[data-inactive], .js .faq-a { display: block !important; }

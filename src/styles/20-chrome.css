@@ -112,6 +112,15 @@ body.menu-open .site-header { -webkit-backdrop-filter: none; backdrop-filter: no
 .footer-col ul { margin: 0; padding: 0; list-style: none; }
 .footer-col a { display: inline-block; padding: 5px 0; color: var(--text-dim); font-size: 0.92rem; transition: color 0.15s; }
 .footer-col a:hover { color: var(--text); }
+/* Status badges (the README set), proxied through /badges/. Groups wrap as units on
+   narrow screens; height is fixed so the row never jumps while images load. */
+.footer-badges {
+  display: flex; flex-wrap: wrap; gap: 10px 18px;
+  padding-top: 22px; padding-bottom: 22px; border-top: 1px solid var(--border-soft);
+}
+.footer-badges .badge-group { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.footer-badges a { display: inline-flex; border-radius: 3px; line-height: 0; }
+.footer-badges img { height: 20px; width: auto; }
 .footer-bottom {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px;
   padding-top: 22px; padding-bottom: 28px; border-top: 1px solid var(--border-soft);

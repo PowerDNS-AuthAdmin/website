@@ -6,6 +6,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { site, href, abs } from "./site.mjs";
 import { icon, githubMark, ngnLogo } from "./icons.mjs";
 import { esc } from "./code.mjs";
+import { badges, badgePath } from "./badges.mjs";
 
 export { esc };
 export { href, abs };
@@ -253,6 +254,17 @@ export const releasedLabel = new Date(site.released + "T00:00:00Z").toLocaleDate
   timeZone: "UTC",
 });
 
+// The README's status badges, served through this site's /badges/ proxy (src/badges.mjs),
+// so they stay live without a third-party request from the visitor's browser.
+function footerBadges() {
+  const groups = ["project", "image", "stack", "powerdns"].map((g) => badges.filter((b) => b.group === g)).filter((g) => g.length);
+  const img = (b) =>
+    `<a href="${b.href}" rel="noopener"><img src="${href(badgePath(b.id))}" alt="${esc(b.alt)}" width="${b.width}" height="20" loading="lazy" decoding="async"></a>`;
+  return `<div class="container footer-badges" role="group" aria-label="Project status">${groups
+    .map((g) => `<span class="badge-group">${g.map(img).join("")}</span>`)
+    .join("")}</div>`;
+}
+
 function footer() {
   const col = (title, links) =>
     `<div class="footer-col"><h2>${title}</h2><ul>${links
@@ -273,6 +285,7 @@ function footer() {
       ${col("Community", [[site.repo, "GitHub"], [site.discussions, "Discussions"], [site.issues, "Issues"], [site.contributing, "Contributing"], [site.security, "Security policy"], [site.websiteRepo, "Website source"]])}
     </div>
   </div>
+  ${footerBadges()}
   <div class="container footer-bottom">
     <span>© ${site.released.slice(0, 4)} ${site.name} contributors. MIT licensed.</span>
     <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>

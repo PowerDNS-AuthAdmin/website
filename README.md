@@ -69,6 +69,8 @@ src/
                       nav, href()/abs() and the base path
   content.mjs         copy: highlights, feature catalog, FAQs (every claim is backed by the app's docs)
   support.mjs         commercial support partials (NGN)
+  badges.mjs          the footer status badges (the app README's set): one list for the footer and
+                      deploy/nginx-badges.conf
   pages/              one module per page (home, features, powerdns-admin-alternative, faq, support,
                       404, search)
   docs/               docs pages built from content/docs/*.md (sidebar order in nav.mjs), the ADR index
@@ -242,6 +244,20 @@ docs overlay above. It joins the sitemap, `llms.txt`, the search index and the c
 
 After a domain is verified in Google Search Console and Bing Webmaster Tools, submit
 `https://powerdns-authadmin.org/sitemap.xml` in both.
+
+## Badges
+
+The footer shows the app README's status badges (CI, release, OpenSSF, GHCR, the PowerDNS
+compatibility runs and the stack). They stay live without breaking the rule above that Google
+Analytics is the only third party: each one is served from this site at `/badges/<id>.svg`, where
+nginx fetches it server-side, caches it for an hour and keeps the last good copy if an upstream is
+down. No visitor data goes upstream.
+
+`src/badges.mjs` is the single list. After changing it, run `npm run badges:nginx` to regenerate
+`deploy/nginx-badges.conf`, then copy that to `/etc/nginx/snippets/pda-badges.conf` on the host and
+reload nginx (`deploy/nginx-badge-proxy.conf` is the shared part, `snippets/pda-badge-proxy.conf`).
+`npm run check` fails if the generated file is stale or a footer badge has no nginx location.
+`npm run dev` and `npm run serve` fetch the badges themselves, so they render locally too.
 
 ## Analytics
 

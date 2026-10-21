@@ -80,6 +80,12 @@ server {
         return 301 $1$2;
     }
 
+    # Footer status badges, fetched server-side and cached so visitors never contact the
+    # badge services. deploy/nginx-badges.conf (generated) goes to snippets/pda-badges.conf,
+    # deploy/nginx-badge-proxy.conf to snippets/pda-badge-proxy.conf, and the http block needs:
+    #   proxy_cache_path /var/cache/nginx/pda-badges levels=1:2 keys_zone=pda_badges:1m max_size=20m inactive=7d use_temp_path=off;
+    include snippets/pda-badges.conf;
+
     location / {
         try_files $uri $uri/ =404;
         expires -1;                   # HTML and root text files: always revalidate (ETag makes it cheap)

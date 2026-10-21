@@ -21,6 +21,10 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, dirname, extname, resolve as resolvePath } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { site } from "../src/site.mjs";
+import { badges } from "../src/badges.mjs";
+
+const BADGE_IDS = new Set(badges.map((b) => b.id));
+const NGINX_BADGES = readFileSync(new URL("../deploy/nginx-badges.conf", import.meta.url), "utf8");
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolvePath(root, process.env.DIST || "dist"); // DIST overrides the directory to check
@@ -206,6 +210,14 @@ for (const file of htmlFiles) {
     ok(url.startsWith("/"), where(`relative URL ${url}`));
     if (!url.startsWith("/")) continue;
     if (base) ok(url === base || url.startsWith(base + "/"), where(`internal URL without base path: ${url}`));
+    // Badges are not files: nginx proxies them (deploy/nginx-badges.conf), so each must be
+    // a known badge with a matching location rather than something in dist/.
+    const badge = url.slice(base.length).match(/^\/badges\/([a-z0-9-]+)\.svg$/);
+    if (badge) {
+      ok(BADGE_IDS.has(badge[1]), where(`unknown badge ${url}`));
+      ok(NGINX_BADGES.includes(`location = /badges/${badge[1]}.svg {`), where(`badge ${url} has no location in deploy/nginx-badges.conf`));
+      continue;
+    }
     ok(resolve(url), where(`broken internal reference ${url}`));
   }
   for (const [, id] of html.matchAll(/\shref="#([^"]+)"/g)) ok(html.includes(`id="${decodeURIComponent(id)}"`) || html.includes(`id="${id}"`), where(`missing anchor #${id}`));
