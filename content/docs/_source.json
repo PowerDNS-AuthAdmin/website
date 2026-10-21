@@ -1,10 +1,10 @@
 {
   "repo": "PowerDNS-AuthAdmin/powerdns-authadmin",
-  "ref": "v1.10.0",
-  "commit": "9b3300274ae02bb85a2a8c2e9c70028c6133dbff",
-  "version": "1.10.0",
-  "releaseDate": "2026-10-20T23:02:30Z",
-  "syncedAt": "2026-10-20T23:06:36.594Z",
+  "ref": "v1.10.1",
+  "commit": "b02f938aaa1295a9559703daf3fd6991266553db",
+  "version": "1.10.1",
+  "releaseDate": "2026-10-21T02:02:46Z",
+  "syncedAt": "2026-10-21T02:04:03.434Z",
   "files": {
     "quickstart": {
       "upstream": "docs/01-QUICKSTART.md",
@@ -18,8 +18,8 @@
     },
     "configuration": {
       "upstream": "docs/03-CONFIGURATION.md",
-      "modified": "2026-10-21T01:06:46+07:00",
-      "sha256": "c75df55516455407"
+      "modified": "2026-10-21T07:40:07+07:00",
+      "sha256": "09fd56bf5985b1b6"
     },
     "backends": {
       "upstream": "docs/04-BACKENDS.md",
@@ -43,13 +43,13 @@
     },
     "hardening": {
       "upstream": "docs/08-HARDENING.md",
-      "modified": "2026-10-21T01:06:46+07:00",
-      "sha256": "ef780157a64c7e6a"
+      "modified": "2026-10-21T07:40:07+07:00",
+      "sha256": "d25df8bb23a25a0d"
     },
     "upgrading": {
       "upstream": "docs/09-UPGRADING.md",
-      "modified": "2026-10-21T05:59:16+07:00",
-      "sha256": "c8a6833ba2caea42"
+      "modified": "2026-10-21T08:02:45+07:00",
+      "sha256": "d0f18591b19b3b88"
     },
     "troubleshooting": {
       "upstream": "docs/10-TROUBLESHOOTING.md",
@@ -78,8 +78,8 @@
     },
     "features": {
       "upstream": "docs/FEATURES.md",
-      "modified": "2026-10-21T05:59:16+07:00",
-      "sha256": "30e32e6ec7339886"
+      "modified": "2026-10-21T07:40:07+07:00",
+      "sha256": "601223e6c6017265"
     },
     "adr/0001-framework-choice": {
       "upstream": "docs/adr/0001-framework-choice.md",
@@ -183,8 +183,8 @@
     },
     "adr/0022-zone-horizons": {
       "upstream": "docs/adr/0022-zone-horizons.md",
-      "modified": "2026-10-21T05:59:16+07:00",
-      "sha256": "94b746c7cc5d57c1"
+      "modified": "2026-10-21T07:39:32+07:00",
+      "sha256": "646a63d87e2e0846"
     },
     "adr/0023-zone-authority-permissions": {
       "upstream": "docs/adr/0023-zone-authority-permissions.md",
@@ -193,8 +193,8 @@
     },
     "dev-setup": {
       "upstream": "docs/dev-setup.md",
-      "modified": "2026-06-01T10:51:04+08:00",
-      "sha256": "64972304c6cceb04"
+      "modified": "2026-10-21T07:37:19+07:00",
+      "sha256": "7758f86f6db1cbcc"
     }
   }
 }
