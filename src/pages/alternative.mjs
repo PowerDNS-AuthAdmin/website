@@ -10,7 +10,9 @@ const checks = [
   ["Phishing-resistant MFA", "WebAuthn passkeys and hardware security keys, or TOTP. Roles can require MFA."],
   ["Safe edits", "Per-type validation, a BIND-style diff before every write and optimistic concurrency per RRset."],
   ["More than one backend", "Standalone primaries, primary + secondaries and multi-primary clusters, with sync probes and health advisories."],
-  ["A trail for auditors", "Append-only log with redacted before / after snapshots, the PowerDNS request trail and CSV export."],
+  ["Reverse DNS kept in step", "Opt-in automatic PTR maintenance on save, in reverse zones on any backend, and a fleet-wide Reverse DNS report that rectifies missing, mismatched and orphaned PTRs after showing the diff."],
+  ["Zones checked from outside", "Opt-in Zone Monitoring of the delegation at the parent, every nameserver, open AXFR, the DNSSEC chain and what resolvers answer, with findings in the notification bell."],
+  ["A trail for auditors", "Append-only log with redacted before / after snapshots, the PowerDNS request trail, CSV export and a fleet-wide Change log of what people changed."],
   ["AI assistants", "A built-in MCP server: Claude Code, Codex, Cursor or any MCP client manages records in natural language, limited to a token's scopes and written to the audit log."],
   ["Automation", "A full admin API with scoped personal access tokens, Prometheus metrics and first-boot YAML provisioning."],
   ["Operations", "One Docker image on SQLite or Postgres, Postgres + Redis for HA, no telemetry and no CDN."],
@@ -41,7 +43,7 @@ const body = `
 <section class="section" aria-labelledby="what-title">
   <div class="container narrow prose">
     <h2 id="what-title">What PowerDNS-AuthAdmin is</h2>
-    <p>PowerDNS-AuthAdmin is a free, MIT-licensed web interface for <strong>PowerDNS Authoritative</strong>. It talks to PowerDNS through its built-in HTTP API, so your zones and records stay where they are. On top it adds what multi-person DNS operations need: scoped role-based access control, single sign-on, passkeys, a diff-before-apply editor, cluster and secondary awareness, an append-only audit log, and an MCP server so an AI assistant can make changes under the same rules.</p>
+    <p>PowerDNS-AuthAdmin is a free, MIT-licensed web interface for <strong>PowerDNS Authoritative</strong>. It talks to PowerDNS through its built-in HTTP API, so your zones and records stay where they are. On top it adds what multi-person DNS operations need: scoped role-based access control, single sign-on, passkeys, a diff-before-apply editor, cluster and secondary awareness, automatic PTR maintenance, Zone Monitoring from the outside, an append-only audit log, and an MCP server so an AI assistant can make changes under the same rules.</p>
     <p>It is not a fork. It is a clean-sheet build on Node.js 24, Next.js and TypeScript in strict mode, shipped as one container image (<code>${site.image}</code>) and tested in CI against PowerDNS ${site.pdnsVersions}.</p>
   </div>
 </section>
@@ -80,7 +82,7 @@ const body = `
 <section class="section section-alt" aria-labelledby="fit-title">
   <div class="container narrow prose">
     <h2 id="fit-title">Is it the right fit?</h2>
-    <p>If a single shared admin login on one PowerDNS server covers your needs and your current UI does the job, you may not need to change anything. PowerDNS-AuthAdmin earns its place when more people, more backends or more scrutiny come into play: delegating zones to customers or teams, enforcing SSO and MFA, operating clusters and secondaries, or answering audit requests.</p>
+    <p>If a single shared admin login on one PowerDNS server covers your needs and your current UI does the job, you may not need to change anything. PowerDNS-AuthAdmin earns its place when more people, more backends or more scrutiny come into play: delegating zones to customers or teams, enforcing SSO and MFA, operating clusters and secondaries, keeping reverse DNS tidy, catching broken delegations, or answering audit requests.</p>
     <p>The quickest way to decide is to click around the <a href="${site.demo}" rel="noopener">live demo</a>, then read the <a href="${href("/faq/")}">FAQ</a>.</p>
   </div>
 </section>
@@ -101,7 +103,7 @@ export default {
   slug: "powerdns-admin-alternative",
   path: "/powerdns-admin-alternative/",
   title: "PowerDNS-Admin alternative: how PowerDNS-AuthAdmin compares",
-  modified: "2026-10-17",
+  modified: "2026-10-21",
   description:
     "Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.",
   priority: "0.8",

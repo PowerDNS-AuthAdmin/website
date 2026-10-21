@@ -1,10 +1,10 @@
 {
   "repo": "PowerDNS-AuthAdmin/powerdns-authadmin",
-  "ref": "v1.9.1",
-  "commit": "2a6aa855907291d407179811e13ab49a42afb0ee",
-  "version": "1.9.1",
-  "releaseDate": "2026-10-17T21:25:22Z",
-  "syncedAt": "2026-10-20T12:26:52.101Z",
+  "ref": "v1.10.0",
+  "commit": "9b3300274ae02bb85a2a8c2e9c70028c6133dbff",
+  "version": "1.10.0",
+  "releaseDate": "2026-10-20T23:02:30Z",
+  "syncedAt": "2026-10-20T23:06:36.594Z",
   "files": {
     "quickstart": {
       "upstream": "docs/01-QUICKSTART.md",
@@ -18,13 +18,13 @@
     },
     "configuration": {
       "upstream": "docs/03-CONFIGURATION.md",
-      "modified": "2026-10-09T20:46:49+07:00",
-      "sha256": "f3f2c15af042bf96"
+      "modified": "2026-10-21T01:06:46+07:00",
+      "sha256": "c75df55516455407"
     },
     "backends": {
       "upstream": "docs/04-BACKENDS.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "f123f7ef01eff7c8"
+      "modified": "2026-10-21T05:59:16+07:00",
+      "sha256": "115966fa7b261333"
     },
     "oidc": {
       "upstream": "docs/05-OIDC.md",
@@ -33,8 +33,8 @@
     },
     "provisioning": {
       "upstream": "docs/06-PROVISIONING.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "31548b3c872ab81c"
+      "modified": "2026-10-21T05:59:16+07:00",
+      "sha256": "e07c4e5384c51374"
     },
     "rbac": {
       "upstream": "docs/07-RBAC.md",
@@ -43,13 +43,13 @@
     },
     "hardening": {
       "upstream": "docs/08-HARDENING.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "86381c94d6e357c3"
+      "modified": "2026-10-21T01:06:46+07:00",
+      "sha256": "ef780157a64c7e6a"
     },
     "upgrading": {
       "upstream": "docs/09-UPGRADING.md",
-      "modified": "2026-10-17T20:52:06Z",
-      "sha256": "c093ebf79f772b66"
+      "modified": "2026-10-21T05:59:16+07:00",
+      "sha256": "c8a6833ba2caea42"
     },
     "troubleshooting": {
       "upstream": "docs/10-TROUBLESHOOTING.md",
@@ -73,13 +73,13 @@
     },
     "mcp": {
       "upstream": "docs/14-MCP.md",
-      "modified": "2026-10-09T19:55:16+07:00",
-      "sha256": "4ac0d9dde323e579"
+      "modified": "2026-10-21T05:59:16+07:00",
+      "sha256": "58c7285ea6435df7"
     },
     "features": {
       "upstream": "docs/FEATURES.md",
-      "modified": "2026-10-09T19:55:16+07:00",
-      "sha256": "7712d58a184972bb"
+      "modified": "2026-10-21T05:59:16+07:00",
+      "sha256": "30e32e6ec7339886"
     },
     "adr/0001-framework-choice": {
       "upstream": "docs/adr/0001-framework-choice.md",
@@ -133,8 +133,8 @@
     },
     "adr/0012-first-boot-provisioning": {
       "upstream": "docs/adr/0012-first-boot-provisioning.md",
-      "modified": "2026-06-01T10:51:04+08:00",
-      "sha256": "5399e6b088c9725b"
+      "modified": "2026-10-20T20:00:36+07:00",
+      "sha256": "607c3edff0a38010"
     },
     "adr/0013-pdns-db-bridge": {
       "upstream": "docs/adr/0013-pdns-db-bridge.md",
@@ -178,13 +178,13 @@
     },
     "adr/0021-saml-architecture": {
       "upstream": "docs/adr/0021-saml-architecture.md",
-      "modified": "2026-06-01T10:51:04+08:00",
-      "sha256": "e51bd2c38dc6cf4f"
+      "modified": "2026-10-20T20:00:36+07:00",
+      "sha256": "45df405e57b90158"
     },
     "adr/0022-zone-horizons": {
       "upstream": "docs/adr/0022-zone-horizons.md",
-      "modified": "2026-08-08T04:40:51+08:00",
-      "sha256": "f0241c95f6ab469c"
+      "modified": "2026-10-21T05:59:16+07:00",
+      "sha256": "94b746c7cc5d57c1"
     },
     "adr/0023-zone-authority-permissions": {
       "upstream": "docs/adr/0023-zone-authority-permissions.md",

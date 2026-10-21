@@ -15,14 +15,4 @@ export default [
     // The delimiter row has four cells under a two-column header, so the table never renders.
     apply: (md) => md.replace(/^(\| -{3,} \| -{3,} \|) -{3,} \| -{3,} \|$/m, "$1"),
   },
-  {
-    issue: 163,
-    file: "docs/FEATURES.md",
-    title: "Mobile screenshots: one centred wrapper instead of nested <p align>",
-    apply: (md) =>
-      md.replace(
-        /  &nbsp;\n  <p align="center">\n    <picture>\n    (<source[^\n]*\n)    (<img[^\n]*\n)    <\/picture>\n  <\/p>\n<\/p>/,
-        "  &nbsp;\n  <picture>\n    $1    $2  </picture>\n</p>",
-      ),
-  },
 ];

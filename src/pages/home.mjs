@@ -1,7 +1,7 @@
 import { site, href } from "../site.mjs";
 import { icon, githubMark } from "../icons.mjs";
 import { supportBlock } from "../support.mjs";
-import { shot, softwareNode, sourceNode, ids, esc } from "../layout.mjs";
+import { shot, browserShot, softwareNode, sourceNode, ids, esc } from "../layout.mjs";
 import { highlights, faqs } from "../content.mjs";
 import { hl, plain } from "../code.mjs";
 
@@ -10,12 +10,17 @@ const HERO_SIZES = "(min-width: 1100px) 1040px, 94vw";
 /* ---- Screens showcase: one tab per screen, desktop + mobile variants ---- */
 const screens = [
   { id: "dashboard", label: "Dashboard", d: "dashboard", m: "dashboard-mobile", title: "Operational dashboard", text: "Live PowerDNS stats per backend, active sessions, recent changes, and users who need a second look." },
+  { id: "reverse-dns", label: "Reverse DNS", d: "reverse-dns", m: "reverse-dns-mobile", title: "Reverse DNS report", text: "Every A/AAAA record across the fleet compared with its PTR, scoped by horizon, with per-row, selected or all-fixable rectification." },
+  { id: "monitoring", label: "Monitoring", d: "zone-monitoring", m: "zone-monitoring-mobile", title: "Zone Monitoring", text: "Delegation, nameservers, open AXFR, the DNSSEC chain and what resolvers see, checked from the outside on a schedule." },
   { id: "zones", label: "Zones", d: "zones-list", m: "zones-list-mobile", title: "Every zone, one list", text: "Zones from every backend in one searchable list with serial, DNSSEC and per-row sync state." },
   { id: "editor", label: "Editor", d: "zone-edit", m: "zone-edit-mobile", title: "Per-RRset record editor", text: "Structured editors per record type with inline validation and RFC-backed hints." },
+  { id: "add-record", label: "Add record", d: "add-record", m: "add-record-mobile", title: "Add record wizard", text: "Pick the zone with a type-ahead across every backend, check the name is free, review the diff, then watch it reach every peer." },
   { id: "diff", label: "Diff", d: "zone-edit-diff", m: "zone-edit-diff-mobile", title: "Diff before apply", text: "Every change is reviewed as a BIND-style before / after diff before it reaches PowerDNS." },
   { id: "servers", label: "Backends", d: "powerdns-servers", m: "powerdns-servers-mobile", title: "Clusters and secondaries", text: "Multi-primary clusters, primaries with secondaries and standalone servers, side by side." },
-  { id: "health", label: "Health", d: "backend-health", m: "backend-health-mobile", title: "Backend health advisories", text: "Alerts for unreachable hosts, replication drift and TSIG keys missing on secondaries." },
+  { id: "health", label: "Health", d: "backend-health", m: "backend-health-mobile", title: "Notification bell", text: "The three most pressing notifications at a glance: unreachable hosts, replication drift, missing TSIG keys and Zone Monitoring findings." },
+  { id: "notifications", label: "Notifications", d: "notifications", m: "notifications-mobile", title: "Notifications", text: "Every backend health and Zone Monitoring notification, with filters, search, detail and per-row or bulk dismissal." },
   { id: "audit", label: "Audit", d: "audit-log", m: "audit-log-mobile", title: "Append-only audit log", text: "Redacted before / after snapshots, the PowerDNS HTTP trail and CSV export." },
+  { id: "changes", label: "Change log", d: "change-log", m: "change-log-mobile", title: "Fleet-wide Change log", text: "What people changed across records, zones, DNSSEC, access and configuration, with diffs and a Category filter." },
   { id: "roles", label: "Roles", d: "roles", m: "roles-mobile", title: "Roles and permissions", text: "Five system roles plus custom roles, scoped to global, team, zone or server." },
 ];
 
@@ -233,15 +238,77 @@ const stack = [
   "Prometheus",
 ];
 
-const homeFaqs = [0, 11, 2, 6, 15].map((i) => faqs[i]);
+/* ---- New in 1.10: the two headline features, each with its screenshot ---- */
+const spotlights = [
+  {
+    id: "reverse-dns",
+    eyebrow: "Reverse DNS",
+    title: "PTR records that keep up with your A and AAAA records",
+    text: "Saving or deleting an A/AAAA record can create, update or remove its PTR in a reverse zone hosted on any backend, including RFC 2317 classless zones. The Reverse DNS report then compares every address in the fleet with its PTR and fixes what you pick.",
+    shot: { name: "reverse-dns", alt: "Reverse DNS report listing addresses with their forward records, PTR and a status per row" },
+    points: [
+      ["Six statuses", "OK, missing, mismatch, ambiguous, orphan and not hosted, ordered by count, with a sidebar badge for the addresses that need attention."],
+      ["Rectify with a reviewed diff", "One row, a selection or everything fixable. Removals and bulk fixes show the PTR diff for each reverse zone before Apply."],
+      ["Suggested fixes for orphans", "Add the missing forward record through the prefilled Add record wizard, or remove the PTR."],
+      ["Public and internal kept apart", "Public records only match public reverse zones and internal ones only internal. Addresses you don't host are looked up through your resolvers."],
+      ["Never clobbers", "Reverse zones are never created, and a PTR that points elsewhere is never replaced without an explicit takeover, and never deleted."],
+    ],
+    optin: "PTR on save is off until you enable the <code>auto_ptr</code> setting, a zone's <code>X-AUTHADMIN-AUTO-PTR</code> metadata, or tick the editor's PTR checkbox on a save. The report needs <code>REVERSE_DNS_ENABLED=true</code>.",
+    link: [site.docs.features + "#48-automatic-ptr-maintenance-auto-ptr", "How auto-PTR and the report work"],
+  },
+  {
+    id: "zone-monitoring",
+    eyebrow: "Zone Monitoring",
+    title: "See your zones the way the internet does",
+    text: "A zone PowerDNS serves correctly can still be broken for everyone else: the wrong nameservers at the registrar, a DS left behind by a key rollover, a secondary that stopped transferring. AuthAdmin checks every hosted zone from the outside on a schedule.",
+    shot: { name: "zone-monitoring", alt: "Zone Monitoring page with a verdict per zone and expandable findings" },
+    points: [
+      ["Delegation from the root", "The parent's NS set, glue and DS are read by walking down from the root servers, not through a recursive resolver."],
+      ["Nameservers and open AXFR", "Each nameserver is probed for reachability, the AA flag, its serial and NS set, and for an unsigned zone transfer."],
+      ["DNSSEC chain and SOA", "The DS at the parent against the zone's DNSKEYs, what resolvers answer, and SOA timers, MNAME and RNAME."],
+      ["Fix with a reviewed diff", "A wrong SOA MNAME gets a one-click Fix that shows the SOA before and after, saves it and re-checks the zone."],
+      ["Findings in the bell", "Errors and warnings reach the notification bell. A standalone backend can accept single-nameserver zones so they stay out of it."],
+    ],
+    optin: "Off unless <code>ZONE_MONITOR_ENABLED=true</code>: it sends DNS queries outside your network, bounded to three zones at a time with rate-limited re-checks.",
+    link: [site.docs.features + "#20-zone-monitoring", "Every check and finding code"],
+  },
+];
+
+const spotlight = spotlights
+  .map(
+    (sp, i) => `<div class="spot${i % 2 ? " spot-flip" : ""}" id="${sp.id}">
+      <div class="spot-text">
+        <p class="eyebrow">${sp.eyebrow}</p>
+        <h3>${esc(sp.title)}</h3>
+        <p class="lead">${sp.text}</p>
+        <ul class="spot-points">
+          ${sp.points.map(([t, d]) => `<li>${icon("check", 18)}<span><strong>${esc(t)}.</strong> ${d}</span></li>`).join("\n          ")}
+        </ul>
+        <p class="note">${sp.optin}</p>
+        <p class="spot-more"><a class="link-arrow" href="${href(sp.link[0])}">${sp.link[1]}${icon("arrow-right", 16)}</a></p>
+      </div>
+      <figure class="spot-shot">${browserShot(sp.shot.name, sp.shot.alt, { url: "demo.powerdns-authadmin.org", sizes: "(min-width: 1180px) 620px, 94vw" })}<figcaption class="sr-only">${sp.shot.alt}</figcaption></figure>
+    </div>`,
+  )
+  .join("\n    ");
+
+// Picked by question so adding an FAQ never shifts the selection.
+const homeFaqs = [
+  "What is PowerDNS-AuthAdmin?",
+  "Can PowerDNS-AuthAdmin keep PTR records in sync?",
+  "Does it monitor delegation, nameservers and DNSSEC?",
+  "Which PowerDNS versions does it support?",
+  "Can I manage DNS with Claude Code or another AI assistant?",
+  "Is commercial support available?",
+].map((q) => faqs.find((f) => f.q === q));
 
 const body = `
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>New: talk to your DNS over MCP</span>${icon("arrow-right", 15)}</a>
+    <a class="pill" href="${site.latestRelease}" data-cta="Latest release" rel="noopener"><span class="pill-tag">v${site.version}</span><span>New: automatic PTR maintenance and Zone Monitoring</span>${icon("arrow-right", 15)}</a>
     <h1 class="hero-title">The PowerDNS admin UI<br> <span class="accent">built for teams.</span></h1>
-    <p class="hero-sub">PowerDNS-AuthAdmin is a modern, self-hosted web interface for PowerDNS Authoritative. Scoped RBAC, SSO with OIDC, SAML and LDAP, passkeys, diff-before-apply zone editing and an append-only audit log. Now with a built-in MCP server, so Claude Code or any AI assistant can change records under the same rules. One Docker image. No telemetry.</p>
+    <p class="hero-sub">PowerDNS-AuthAdmin is a modern, self-hosted web interface for PowerDNS Authoritative. Scoped RBAC, SSO with OIDC, SAML and LDAP, passkeys, diff-before-apply zone editing and an append-only audit log. Now it keeps PTR records in step with your A and AAAA records and checks every zone from the outside, and a built-in MCP server lets Claude Code or any AI assistant work under the same rules. One Docker image. No telemetry.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="${site.demo}" data-cta="Live demo" rel="noopener">${icon("play", 18)}<span>Try the live demo</span></a>
       <a class="btn btn-ghost btn-lg" href="#quickstart" data-cta="Quickstart">${icon("terminal", 18)}<span>Self-host in 2 minutes</span></a>
@@ -252,6 +319,7 @@ const body = `
       <li>${icon("check", 15)}SQLite or Postgres</li>
       <li>${icon("check", 15)}PowerDNS ${site.pdnsVersions}</li>
       <li>${icon("check", 15)}DNSSEC &amp; TSIG</li>
+      <li>${icon("check", 15)}Reverse DNS &amp; zone monitoring</li>
       <li>${icon("check", 15)}MCP server</li>
     </ul>
     <div class="hero-shot">
@@ -266,18 +334,29 @@ const body = `
 <section class="stats" aria-label="Project facts">
   <div class="container stats-inner">
     <div><strong>~60</strong><span>scoped permissions</span></div>
-    <div><strong>9</strong><span>MCP tools for AI assistants</span></div>
+    <div><strong>20</strong><span>MCP tools for AI assistants</span></div>
     <div><strong>5</strong><span>PowerDNS releases tested in CI</span></div>
     <div><strong>0</strong><span>telemetry, trackers or CDNs in the app</span></div>
+  </div>
+</section>
+
+<section class="section section-alt" id="new" aria-labelledby="new-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">New in ${site.version.split(".").slice(0, 2).join(".")}</p>
+      <h2 id="new-title">Reverse DNS and Zone Monitoring</h2>
+      <p>Two things PowerDNS cannot tell you from the inside: whether every address has the right PTR, and whether the rest of the internet can actually reach your zones. Both are opt-in.</p>
+    </div>
+    ${spotlight}
   </div>
 </section>
 
 <section class="section" id="mcp" aria-labelledby="mcp-title">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">New in ${site.version.split(".").slice(0, 2).join(".")} · Model Context Protocol</p>
+      <p class="eyebrow">Model Context Protocol</p>
       <h2 id="mcp-title">Talk to your DNS</h2>
-      <p>A built-in MCP server lets Claude Code, Codex, Cursor or any MCP client manage zones and records from a prompt. The assistant never gets more power than the token you give it, and every change lands in the audit log.</p>
+      <p>A built-in MCP server lets Claude Code, Codex, Cursor or any MCP client manage zones and records from a prompt, and every new page has a tool too. The assistant never gets more power than the token you give it, and every change lands in the audit log.</p>
     </div>
     <div class="mcp-grid">
       ${chat}
@@ -285,7 +364,7 @@ const body = `
         <ol class="steps">
           <li><strong>Create a token</strong> under Profile → API tokens and pick its scopes. <code>zone.read</code> alone for questions, add <code>record.*</code> for edits, or a single per-zone grant for a bot that should only ever touch one zone.</li>
           <li><strong>Connect your client</strong> to <code>/api/mcp</code> over Streamable HTTP with the token as a Bearer header. Pick your client below.</li>
-          <li><strong>Ask.</strong> Nine task-shaped tools cover backends, zones and records. Writes go through the same validators, concurrency checks and NOTIFY as the UI.</li>
+          <li><strong>Ask.</strong> Task-shaped tools cover backends, zones and records, reverse DNS, Zone Monitoring, search and notifications. Writes go through the same validators, concurrency checks and NOTIFY as the UI.</li>
         </ol>
         ${mcpTerminal}
       </div>
@@ -372,6 +451,8 @@ const body = `
       <li>${icon("check", 18)}Passkeys, security keys and TOTP</li>
       <li>${icon("check", 18)}Diff-before-apply with optimistic concurrency</li>
       <li>${icon("check", 18)}Cluster and secondary sync probes</li>
+      <li>${icon("check", 18)}Automatic PTR maintenance and a fleet-wide Reverse DNS report</li>
+      <li>${icon("check", 18)}Zone Monitoring of delegation, nameservers and DNSSEC from the outside</li>
       <li>${icon("check", 18)}Append-only, redacted audit log</li>
       <li>${icon("check", 18)}MCP server for Claude Code, Codex and other AI clients</li>
     </ul>
@@ -421,18 +502,18 @@ export default {
   path: "/",
   title: "PowerDNS-AuthAdmin: open-source, self-hosted PowerDNS admin UI",
   description:
-    "Open-source PowerDNS admin UI: self-hosted web interface for PowerDNS Authoritative with scoped RBAC, SSO, passkeys, diff-before-apply editing, DNSSEC and MCP.",
-  modified: "2026-10-17",
+    "Open-source PowerDNS admin UI: self-hosted, with scoped RBAC, SSO, passkeys, diff-before-apply editing, auto-PTR and reverse DNS, zone monitoring, DNSSEC and MCP.",
+  modified: "2026-10-21",
   priority: "1.0",
   changefreq: "weekly",
   lightbox: true,
   // Preloaded only where the screenshot is above the fold; on phones the hero text is the LCP.
   lcp: { name: "dashboard", sizes: HERO_SIZES, media: "(min-width: 761px)" },
-  images: ["dashboard", "zones-list", "zone-edit-diff", "powerdns-servers", "audit-log", "roles"],
+  images: ["dashboard", "reverse-dns", "zone-monitoring", "zones-list", "zone-edit-diff", "powerdns-servers", "audit-log", "roles"],
   og: {
     eyebrow: "Open-source PowerDNS admin UI",
     title: "DNS administration for PowerDNS, <em>built for teams.</em>",
-    sub: "RBAC, SSO, passkeys, diff-before-apply, an audit log, and an MCP server to talk to your DNS.",
+    sub: "RBAC, SSO, passkeys, diff-before-apply, reverse DNS, zone monitoring, an audit log and an MCP server.",
   },
   ogAlt: "PowerDNS-AuthAdmin: DNS administration for PowerDNS, built for teams",
   about: { "@id": ids.app },

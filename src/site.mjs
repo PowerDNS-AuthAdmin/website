@@ -42,7 +42,7 @@ export const site = {
   locale: "en_US",
   tagline: "Modern, self-hosted DNS administration for PowerDNS Authoritative",
   description:
-    "Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.",
+    "Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.",
   version,
   released: synced.releaseDate.slice(0, 10),
   license: "MIT",

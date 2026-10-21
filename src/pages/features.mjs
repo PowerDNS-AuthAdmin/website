@@ -9,7 +9,7 @@ const body = `
   <div class="container">
     <p class="eyebrow">Features</p>
     <h1>Every feature of PowerDNS-AuthAdmin</h1>
-    <p class="page-lead">Access control, single sign-on, safe record editing, an MCP server for AI assistants, multi-backend operations, DNSSEC and a real audit trail, in one self-hosted web UI for PowerDNS Authoritative.</p>
+    <p class="page-lead">Automatic PTR maintenance and a fleet-wide Reverse DNS report, Zone Monitoring from the outside, access control, single sign-on, safe record editing, an MCP server for AI assistants, multi-backend operations, DNSSEC and a real audit trail, in one self-hosted web UI for PowerDNS Authoritative.</p>
     <nav class="jump" aria-label="On this page">
       ${featureGroups.map((g) => `<a href="#${g.id}">${icon(g.icon, 16)}${esc(g.short)}</a>`).join("")}
     </nav>
@@ -54,19 +54,19 @@ ${featureGroups
 export default {
   slug: "features",
   path: "/features/",
-  title: "PowerDNS-AuthAdmin features: RBAC, SSO, MCP, DNSSEC, audit log",
+  title: "PowerDNS-AuthAdmin features: reverse DNS, monitoring, RBAC, MCP",
   description:
-    "All PowerDNS-AuthAdmin web UI features: scoped RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply editing, DNSSEC, clusters, audit log and MCP.",
-  modified: "2026-10-17",
+    "All PowerDNS-AuthAdmin features: auto-PTR and reverse DNS, zone monitoring, scoped RBAC, OIDC, SAML and LDAP, passkeys, diff-before-apply, DNSSEC, audit and MCP.",
+  modified: "2026-10-21",
   priority: "0.9",
   changefreq: "monthly",
   lightbox: true,
   breadcrumbs: [{ name: "Features", path: "/features/" }],
-  images: ["roles", "zone-edit-diff", "powerdns-servers", "audit-log"],
+  images: ["reverse-dns", "zone-monitoring", "roles", "zone-edit-diff", "powerdns-servers", "audit-log"],
   og: {
     eyebrow: "Features",
     title: "Every feature, <em>built for teams</em> that run DNS",
-    sub: "Scoped RBAC, SSO, passkeys, diff-before-apply, an MCP server, clusters, DNSSEC and audit.",
+    sub: "Reverse DNS, zone monitoring, scoped RBAC, SSO, passkeys, diff-before-apply, MCP, clusters and audit.",
     shot: "zone-edit-diff",
     size: 58,
   },

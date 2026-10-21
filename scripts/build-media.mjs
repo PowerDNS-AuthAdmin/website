@@ -75,14 +75,18 @@ const wordmark = (theme) => fileUrl(media, "brand", `logo-wordmark-${theme}.png`
 // Every page the app repository captures (screenshots/README.md). The docs embed the
 // -mobile variants too, so each name is expected in both layouts.
 const EXPECTED = [
+  "add-record",
   "audit-log",
   "autoprimaries",
   "backend-health",
+  "change-log",
   "dashboard",
+  "notifications",
   "oidc-providers",
   "pdns-requests",
   "powerdns-servers",
   "profile",
+  "reverse-dns",
   "roles",
   "settings",
   "teams",
@@ -92,6 +96,7 @@ const EXPECTED = [
   "zone-detail",
   "zone-edit",
   "zone-edit-diff",
+  "zone-monitoring",
   "zone-templates",
   "zones-list",
 ];

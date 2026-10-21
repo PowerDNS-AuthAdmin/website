@@ -1,4 +1,22 @@
 {
+  "add-record": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "add-record-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
   "audit-log": {
     "width": 1440,
     "height": 900,
@@ -53,6 +71,24 @@
       415
     ]
   },
+  "change-log": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "change-log-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
   "dashboard": {
     "width": 1440,
     "height": 900,
@@ -64,6 +100,24 @@
     ]
   },
   "dashboard-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "notifications": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "notifications-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -136,6 +190,24 @@
     ]
   },
   "profile-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "reverse-dns": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "reverse-dns-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [
@@ -298,6 +370,24 @@
     ]
   },
   "zone-edit-mobile": {
+    "width": 830,
+    "height": 1848,
+    "widths": [
+      830,
+      415
+    ]
+  },
+  "zone-monitoring": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      1440,
+      960,
+      720,
+      640
+    ]
+  },
+  "zone-monitoring-mobile": {
     "width": 830,
     "height": 1848,
     "widths": [

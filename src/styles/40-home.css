@@ -162,9 +162,23 @@
 @media (hover: hover) { .support-contact a:hover { color: var(--accent-ink); } }
 @media (forced-colors: active) { .support-card, .live-badge { border: 1px solid CanvasText; } }
 
+/* ---------- New-release spotlight: text beside a screenshot, alternating sides ---------- */
+.spot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.spot + .spot { margin-top: clamp(56px, 8vw, 96px); }
+.spot-flip .spot-text { order: 2; }
+.spot-text h3 { margin: 0 0 14px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; }
+.spot-points { display: grid; gap: 12px; margin: 0 0 22px; padding: 0; list-style: none; }
+.spot-points li { display: flex; gap: 10px; font-size: 0.94rem; line-height: 1.55; color: var(--text-dim); }
+.spot-points .i { flex-shrink: 0; margin-top: 2px; color: var(--green-soft); }
+.spot-points strong { color: var(--text); font-weight: 600; }
+.spot-more { margin: 18px 0 0; }
+.spot-shot { margin: 0; min-width: 0; }
+
 /* ---------- Responsive home ---------- */
 @media (max-width: 1080px) {
   .quickstart, .split { grid-template-columns: 1fr; }
+  .spot { grid-template-columns: minmax(0, 1fr); }
+  .spot-flip .spot-text { order: 0; }
   .mcp-grid { grid-template-columns: minmax(0, 1fr); }
   .chat { position: static; }
   .mcp-points { grid-template-columns: repeat(2, 1fr); }

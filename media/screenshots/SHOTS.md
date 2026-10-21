@@ -1,7 +1,7 @@
 # Screenshots
 
 Source captures for the site, copied verbatim from the app repository's
-`screenshots/<dark|light>/<name>{-mobile}.png` (PowerDNS-AuthAdmin v1.9.1).
+`screenshots/<dark|light>/<name>{-mobile}.png` (PowerDNS-AuthAdmin v1.10.0).
 Desktop captures are 1440x900; mobile captures are 830x1848 real screenshots
 wrapped in an iPhone 16 Pro bezel. `node scripts/build-media.mjs shots` turns
 them into WebP under `src/static/assets/img/shots/` and writes `src/shots.json`.
@@ -14,12 +14,17 @@ nothing imports it.
 | Name | Alt text | Caption |
 | --- | --- | --- |
 | `dashboard` | Dashboard | Operational landing page: active sessions, zone and backend totals, recent record-change counts, an Attention required surface and live PowerDNS statistics polled from every primary and secondary. |
-| `backend-health` | Backend health popover | The bell in the top-right surfaces active backend advisories: unreachable hosts, API-key rejections, replication drift, missing TSIG keys, config drift between peers, with acknowledge and jump-to-source actions. |
+| `backend-health` | Notification bell popover | The bell in the top-right previews the three most pressing active notifications (backend advisories such as unreachable hosts, API-key rejections, replication drift, missing TSIG keys and config drift between peers, plus Zone Monitoring findings) with a count by severity and Show all to the Notifications page. |
+| `notifications` | Notifications | Every notification the bell can show, backend health and Zone Monitoring findings, with status, severity and source filters, search, an expandable detail row and per-row or bulk dismissal. Each row is visible only to users who can read what it is about. |
 | `zones-list` | Zones list | Every backend's zones merged into one searchable list with kind, serial, DNSSEC status, last-edit timestamp and a per-row sync chip; live-updates over SSE. |
-| `zone-detail` | Zone detail | Per-zone landing: kind, serial, DNSSEC status, last-edit attribution, backend, Clone-zone button and tabs for Records, SOA, Zone settings, DNSSEC, Metadata and TSIG, Sync, Statistics, Access and Change history. |
+| `reverse-dns` | Reverse DNS | Every A/AAAA record across the fleet compared with its PTR (OK, missing, mismatch, ambiguous, orphan, not hosted), scoped by horizon, with rows that report the same finding grouped and per-row, selected or all-fixable rectification through the same audited path as auto-PTR. Opt-in with `REVERSE_DNS_ENABLED=true`. |
+| `zone-monitoring` | Zone Monitoring | Every hosted zone checked from the outside on a schedule: the delegation walked from the root servers, each nameserver's answers and serial, open AXFR, the DNSSEC chain and what resolvers see. Findings carry stable codes and severities and feed the bell; expand a row for the detail. Opt-in with `ZONE_MONITOR_ENABLED=true` (the demo's `.demo` zones are not delegated, hence the errors). |
+| `add-record` | Add record wizard | Add one record to any zone you may edit: pick the horizon and the zone with a type-ahead across every backend, enter the record with a live "already exists / available" check, review the diff, then watch it reach every secondary or cluster peer. |
+| `zone-detail` | Zone detail | Per-zone landing: kind, serial, DNSSEC status, last-edit attribution, backend, Clone-zone button and tabs for Records, SOA, Zone settings, DNSSEC, Metadata and TSIG, Sync, Statistics, Access and Change log, each shown only to users holding its read permission. |
 | `zone-edit` | Edit record dialog | The per-RRset editor with structured editors for SRV, MX, CAA, NAPTR, SVCB, TLSA, SSHFP, URI, DS and TXT, inline validation and an explicit Save anyway override. |
 | `zone-edit-diff` | Review changes diff | Every record change previewed as a BIND-style before / after diff before it is written; Save stays disabled until the operator confirms. |
-| `zone-change-history` | Zone change history | The audit log filtered to a single zone, with before / after diffs, the acting user and a request-id deep-link to every related audit row. |
+| `zone-change-history` | Zone change log | The zone's Change log tab: the audit log filtered to a single zone, with before / after diffs, the acting user, a request-id deep-link to every related audit row and Show all changes to the fleet-wide Change log. |
+| `change-log` | Change log | What people changed, everywhere: records, zones, DNSSEC, users and access, and configuration, in the zone page's colour-coded layout plus a Zone column and a Category filter. Under the Logs sidebar section with the Request log and the Audit log. |
 | `powerdns-servers` | PowerDNS servers | One row per backend grouped by topology (standalone primaries, primary + secondaries groups, multi-primary cluster peers) with reachability, version, sync status and a Test button. |
 | `users` | Users | User management with a security column per mechanism (TOTP, email verification), account status and last sign-in; the detail page manages role assignments, MFA, password reset and sessions. |
 | `teams` | Teams | Team-scoped grouping for RBAC: users join as member or owner and team-scoped role assignments grant permissions only within the team's resources. |
