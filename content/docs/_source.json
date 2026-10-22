@@ -1,199 +1,199 @@
 {
   "repo": "PowerDNS-AuthAdmin/powerdns-authadmin",
-  "ref": "v1.10.1",
-  "commit": "b02f938aaa1295a9559703daf3fd6991266553db",
-  "version": "1.10.1",
-  "releaseDate": "2026-10-21T02:02:46Z",
-  "syncedAt": "2026-10-21T02:04:03.434Z",
+  "ref": "v1.11.0",
+  "commit": "616438e91a33dd72e3fcb6884a4e704b65c64328",
+  "version": "1.11.0",
+  "releaseDate": "2026-10-22T07:50:37Z",
+  "syncedAt": "2026-10-22T10:19:07.162Z",
   "files": {
     "quickstart": {
       "upstream": "docs/01-QUICKSTART.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "f7d9c6de1f58859b"
     },
     "installation": {
       "upstream": "docs/02-INSTALLATION.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "b674224a5e1d921d"
     },
     "configuration": {
       "upstream": "docs/03-CONFIGURATION.md",
-      "modified": "2026-10-21T07:40:07+07:00",
+      "modified": "2026-10-21T00:40:07Z",
       "sha256": "09fd56bf5985b1b6"
     },
     "backends": {
       "upstream": "docs/04-BACKENDS.md",
-      "modified": "2026-10-21T05:59:16+07:00",
-      "sha256": "115966fa7b261333"
+      "modified": "2026-10-22T06:11:34Z",
+      "sha256": "19394dd300ad9a45"
     },
     "oidc": {
       "upstream": "docs/05-OIDC.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "a4e99771c97c48d6"
     },
     "provisioning": {
       "upstream": "docs/06-PROVISIONING.md",
-      "modified": "2026-10-21T05:59:16+07:00",
+      "modified": "2026-10-20T22:59:16Z",
       "sha256": "e07c4e5384c51374"
     },
     "rbac": {
       "upstream": "docs/07-RBAC.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "c946d24124de2e3b"
     },
     "hardening": {
       "upstream": "docs/08-HARDENING.md",
-      "modified": "2026-10-21T07:40:07+07:00",
+      "modified": "2026-10-21T00:40:07Z",
       "sha256": "d25df8bb23a25a0d"
     },
     "upgrading": {
       "upstream": "docs/09-UPGRADING.md",
-      "modified": "2026-10-21T08:02:45+07:00",
-      "sha256": "d0f18591b19b3b88"
+      "modified": "2026-10-22T07:22:21Z",
+      "sha256": "4dfb18f7a0472f19"
     },
     "troubleshooting": {
       "upstream": "docs/10-TROUBLESHOOTING.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "6cd5f0923f66c573"
     },
     "passkeys": {
       "upstream": "docs/11-PASSKEYS.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "532cf0dbdd89980c"
     },
     "ldap": {
       "upstream": "docs/12-LDAP.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "17b6e3a5cd349d27"
     },
     "saml": {
       "upstream": "docs/13-SAML.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "6f33f04f65be3bd6"
     },
     "mcp": {
       "upstream": "docs/14-MCP.md",
-      "modified": "2026-10-21T05:59:16+07:00",
+      "modified": "2026-10-20T22:59:16Z",
       "sha256": "58c7285ea6435df7"
     },
     "features": {
       "upstream": "docs/FEATURES.md",
-      "modified": "2026-10-21T07:40:07+07:00",
-      "sha256": "601223e6c6017265"
+      "modified": "2026-10-22T06:11:34Z",
+      "sha256": "033147c762ef6680"
     },
     "adr/0001-framework-choice": {
       "upstream": "docs/adr/0001-framework-choice.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "d6df460c3f7557bb"
     },
     "adr/0002-mit-license": {
       "upstream": "docs/adr/0002-mit-license.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "686f7d95eb0121df"
     },
     "adr/0004-three-layer-architecture": {
       "upstream": "docs/adr/0004-three-layer-architecture.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "b51cec815a1f5dc2"
     },
     "adr/0005-migrations-explicit": {
       "upstream": "docs/adr/0005-migrations-explicit.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "96d706e568de34aa"
     },
     "adr/0006-csp-nonce": {
       "upstream": "docs/adr/0006-csp-nonce.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "259ff732b98d2183"
     },
     "adr/0007-db-backed-sessions": {
       "upstream": "docs/adr/0007-db-backed-sessions.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "24550b9e7f70ee6c"
     },
     "adr/0008-argon2id-passwords": {
       "upstream": "docs/adr/0008-argon2id-passwords.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "82146160d3fa7efd"
     },
     "adr/0009-custom-auth-core": {
       "upstream": "docs/adr/0009-custom-auth-core.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "4f1732a8ad10f34f"
     },
     "adr/0010-per-rrset-optimistic-concurrency": {
       "upstream": "docs/adr/0010-per-rrset-optimistic-concurrency.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "b64d59c5ca091871"
     },
     "adr/0011-migrate-on-app-boot": {
       "upstream": "docs/adr/0011-migrate-on-app-boot.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "d74f0b827b7e9c1d"
     },
     "adr/0012-first-boot-provisioning": {
       "upstream": "docs/adr/0012-first-boot-provisioning.md",
-      "modified": "2026-10-20T20:00:36+07:00",
+      "modified": "2026-10-20T13:00:36Z",
       "sha256": "607c3edff0a38010"
     },
     "adr/0013-pdns-db-bridge": {
       "upstream": "docs/adr/0013-pdns-db-bridge.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "039cffee7bc10560"
     },
     "adr/0014-backend-capability-model": {
       "upstream": "docs/adr/0014-backend-capability-model.md",
-      "modified": "2026-08-08T04:40:01+08:00",
+      "modified": "2026-08-07T20:40:01Z",
       "sha256": "cc19c5e3bef1d7a4"
     },
     "adr/0015-backend-health-advisories": {
       "upstream": "docs/adr/0015-backend-health-advisories.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "4920c672ea19b63b"
     },
     "adr/0016-redis-horizontal-scale": {
       "upstream": "docs/adr/0016-redis-horizontal-scale.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "777a0ae5e810c493"
     },
     "adr/0017-migration-squash-1.1.0": {
       "upstream": "docs/adr/0017-migration-squash-1.1.0.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "acc1d887edc1db1a"
     },
     "adr/0018-provider-abstraction": {
       "upstream": "docs/adr/0018-provider-abstraction.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "3007d94498784638"
     },
     "adr/0019-webauthn-passkeys": {
       "upstream": "docs/adr/0019-webauthn-passkeys.md",
-      "modified": "2026-06-01T10:51:04+08:00",
+      "modified": "2026-06-01T02:51:04Z",
       "sha256": "1b1750a9d24a46ed"
     },
     "adr/0020-ldap-architecture": {
       "upstream": "docs/adr/0020-ldap-architecture.md",
-      "modified": "2026-10-09T19:45:04+07:00",
+      "modified": "2026-10-09T12:45:04Z",
       "sha256": "9f5767554da7eff1"
     },
     "adr/0021-saml-architecture": {
       "upstream": "docs/adr/0021-saml-architecture.md",
-      "modified": "2026-10-20T20:00:36+07:00",
+      "modified": "2026-10-20T13:00:36Z",
       "sha256": "45df405e57b90158"
     },
     "adr/0022-zone-horizons": {
       "upstream": "docs/adr/0022-zone-horizons.md",
-      "modified": "2026-10-21T07:39:32+07:00",
+      "modified": "2026-10-21T00:39:32Z",
       "sha256": "646a63d87e2e0846"
     },
     "adr/0023-zone-authority-permissions": {
       "upstream": "docs/adr/0023-zone-authority-permissions.md",
-      "modified": "2026-08-27T08:24:45+08:00",
+      "modified": "2026-08-27T00:24:45Z",
       "sha256": "74ad5ed4a9eea1bf"
     },
     "dev-setup": {
       "upstream": "docs/dev-setup.md",
-      "modified": "2026-10-21T07:37:19+07:00",
+      "modified": "2026-10-21T00:37:19Z",
       "sha256": "7758f86f6db1cbcc"
     }
   }
