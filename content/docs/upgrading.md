@@ -39,6 +39,68 @@ half-migrated schema; fix the cause and restart.
 
 ## Version-specific notes
 
+### Upgrading to 1.12.1 (from 1.12.0)
+
+No migration, no schema change, no config change - pull the new tag and recreate the
+container. All the changes concern catalog zones:
+
+- **A catalog Producer zone no longer reads as missing on secondaries that don't consume it.**
+  Only a secondary with a Consumer zone of the same name receives the catalog, so one that
+  serves the member zones as ordinary secondaries is left out of the comparison. If the header
+  chip read DESYNCED because of a catalog zone, it settles after the next poll.
+- **PowerDNS 4.7 and 4.8** don't report catalog membership in their zone list. On those
+  backends the Members column and the catalog banner show membership as unknown, deleting a
+  Producer zone always asks for the catalog confirmation phrase, and the delete itself reads
+  each zone's catalog first. That read is one API call per zone, so on a large backend the
+  delete takes a moment.
+- **PowerDNS 4.6** has no catalog zones: the create form no longer offers a Producer zone for it,
+  and the API refuses `Producer` and `catalog` there.
+
+### Upgrading to 1.12.0 (from 1.11.0)
+
+**One migration on Postgres**, applied at boot: `0009_role_assignment_zone_scope` changes
+`role_assignments.scope_id` from `uuid` to `text` so an assignment can name a zone. It is a
+single `ALTER COLUMN`; the table is small, so it finishes in a moment. SQLite already stores
+the column as text and has no migration. No config change. Back up as usual, then pull the new
+tag and recreate the container.
+
+Before you upgrade, **review your IdP group mappings** (Admin → Authentication → OIDC, SAML and
+LDAP). Two kinds of mapping were saved but granted nothing before 1.12.0, and both take effect at
+each user's next sign-in:
+
+- **Zone-scoped mappings** (`group → role @ zone:<name>`) now grant that role's zone-level
+  permissions on that zone.
+- **Team- and server-scoped mappings** saved from the admin forms now resolve to their team or
+  server. A target that no longer exists is skipped and logged as
+  `auth.group_sync.mapping_unresolved` with `reason: "scope-not-found"`.
+
+If a mapping shouldn't grant access, remove it before upgrading. A mapping row that is only
+partly filled in now blocks the save instead of being dropped, so an old provider may need its
+empty rows cleared the next time you edit it.
+
+Catalog zones (`Producer` and `Consumer`) now show on a **System** tab of the zones list instead
+of in Forward and Reverse. Two API behaviours change for automation:
+
+- `DELETE /api/admin/pdns/zones/:zone` on a Producer zone that still has members returns
+  `409 catalog-has-members` unless the request adds `?confirmCatalog=<zone>`.
+- RRset and DNSSEC changes on a Producer zone return 409, as they already did for Consumer zones.
+  PowerDNS generates a Producer zone's contents from its members.
+
+### Upgrading to 1.11.0 (from 1.10.1)
+
+No migration, no schema change, no config change - pull the new tag and
+recreate the container. AuthAdmin now supports PowerDNS Authoritative 5.1.
+
+Nothing changes for backends older than 5.1. If you run a 5.1 backend that
+has LUA records, check one setting there. In 5.1 LUA records can't be
+created, edited or deleted unless `enable-lua-record-updates=yes` is set in
+`pdns.conf`, even with `enable-lua-records` on. That's a PowerDNS default,
+not an AuthAdmin one. On a backend without it, AuthAdmin stops offering the
+`LUA` type and refuses LUA changes with a message naming the setting. The
+setting also covers zone transfers, so a 5.1 secondary needs it too or it
+won't accept LUA records from its primary. After changing `pdns.conf`, use
+**Admin → PowerDNS servers → Refresh** so the editor picks it up.
+
 ### Upgrading to 1.10.1 (from 1.10.0)
 
 No migration, no schema change, no config change - pull the new tag and

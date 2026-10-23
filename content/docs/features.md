@@ -325,13 +325,16 @@ the audit trail behave identically whichever door the user came through.
 ### 2.4 Scoped assignments
 
 - **What.** Every assignment is `(user, role, scope)` where scope is one of
-  `global` / `team:<id>` / `zone:<fqdn>` / `server:<id>`. The CASL builder walks scopes at
-  request time so an operator with `record.update` on `zone:example.com.` can edit records
-  there but nowhere else. Collection views that accept a scoped grant (e.g. the Teams list
+  `global` / `team:<id>` / `zone:<fqdn>` / `server:<id>`. Zone access is decided by one
+  helper, `canActOnZone` (`lib/rbac/zone-permissions.ts`): global roles, per-zone grants and
+  zone-scoped roles, so an operator with `record.update` on `zone:example.com.` can edit
+  records in every zone named `example.com.` (any backend) but nowhere else; the role's
+  non-zone permissions are ignored at zone scope (ADR-0024). Team and server scopes don't open
+  zones. Collection views that accept a scoped grant (e.g. the Teams list
   for a team-scoped Team Owner) opt in with `requireUser({ can, anyInstance: true })` and
   filter every row through an instance check; everything else stays global-only.
-- **Where.** `lib/rbac/ability.ts`, `lib/rbac/policy.ts`,
-  `lib/db/schema/role-assignments.ts`, `lib/db/schema/zone-grants.ts`.
+- **Where.** `lib/rbac/ability.ts`, `lib/rbac/policy.ts`, `lib/rbac/zone-permissions.ts`,
+  `lib/rbac/nav-access.ts`, `lib/db/schema/role-assignments.ts`, `lib/db/schema/zone-grants.ts`.
 - **How.** Issue assignments from `/admin/users/<id>` (gated on `role.assign`), or let IdP
   group mapping derive them per session (see § 1.3 and § 1.13). Admin-issued assignments and
   IdP-derived permissions never overwrite each other.
@@ -472,8 +475,9 @@ the audit trail behave identically whichever door the user came through.
 - **What.** A bell in the top header surfaces active advisories computed every poll cycle:
   unreachable backends, API-key rejections (401/403), replication drift past a threshold, TSIG
   keys missing on a secondary, mirror zones without `masters`, daemon-config drift between
-  peers. Zone monitoring findings (§ 20) land in the same bell under their own `monitor.`
-  code namespace, visible to users who can read zones. Acknowledged advisories disappear
+  peers, member zones naming a catalog zone that doesn't exist, and a `default-catalog-zone`
+  that is missing or isn't a Producer zone (§ 4.1.2). Zone monitoring findings (§ 20) land in
+  the same bell under their own `monitor.` code namespace, visible to users who can read zones. Acknowledged advisories disappear
   automatically when the underlying condition resolves. Same signal feeds the per-row red/warn
   tints on [PowerDNS servers](#31-multi-backend-management) - bell and table never disagree.
 - **Where.** `lib/health/evaluator.ts`, `components/domain/health-bell.tsx`,
@@ -508,6 +512,9 @@ the audit trail behave identically whichever door the user came through.
   server-side code, so which daemons have it armed has to be visible from the backend list, not
   discoverable only by opening a zone and looking for the type in a dropdown. A daemon-level `no`
   is not a veto: per-zone `ENABLE-LUA-RECORDS` metadata still enables Lua for that one zone.
+  PowerDNS 5.1+ also reports `enable-lua-record-updates`, and the snapshot carries it too: with
+  it off (the 5.1 default) LUA records are served but can't be created, changed or deleted, so
+  the editor stops offering the type.
 - **Freshness.** Badges reflect the last probe. After editing `pdns.conf`, re-probe the backend
   (**Admin → PowerDNS servers → Refresh**) - the same gesture that refreshes every other
   capability.
@@ -559,6 +566,35 @@ the audit trail behave identically whichever door the user came through.
   <source media="(prefers-color-scheme: dark)" srcset="../screenshots/dark/zones-list.png" />
   <img src="../screenshots/light/zones-list.png" alt="Amalgamated zones list" width="720" />
 </picture>
+
+### 4.1.2 Catalog zones as system zones
+
+- **What.** Catalog zones (RFC 9432, kinds `Producer` and `Consumer`) are provisioning plumbing,
+  not content, so the zones list keeps them out of **Forward / Reverse / All** and lists them on a
+  **System** tab (shown only when the fleet has one), with a `catalog · producer|consumer` badge
+  and a **Members** column. Their page explains what they are and lists their members; a
+  Producer zone's records and DNSSEC are read-only, since PowerDNS generates them.
+- **Deleting one.** A Producer zone with members answers `409 catalog-has-members` unless the
+  caller passes `?confirmCatalog=<zone>`; the danger zone warns with the member count, asks for
+  `yes, delete catalog <zone>` and says that recreating a Producer of the same name restores the
+  membership. The audit entry records the kind and member count.
+- **Membership.** A zone's **Catalog** is set on its Zone settings tab and in the create form
+  (defaulting to the backend's `default-catalog-zone`), from the backend's Producer zones; the
+  routes refuse a name that isn't one. The zone header shows `in <catalog>`. Producer zones can be
+  created from the app, so a deleted catalog can be restored there.
+- **Elsewhere.** Search, the record wizard, Zone Monitoring and Reverse DNS skip system zones; the
+  health bell reports a missing catalog and an unresolved `default-catalog-zone` (§ 3.8).
+- **Sync.** A Producer reaches only the secondaries that consume it (a Consumer zone of the same
+  name), so sync counts it only on mirrors that hold it (`mirrorFollowsZone` in
+  `lib/pdns/zone-kinds.ts`). A secondary that serves the member zones the classic way never reads
+  as missing the catalog or turns the header chip DESYNCED.
+- **Where.** `lib/pdns/zone-kinds.ts` (`isSystemKind`, `catalogRole`), `lib/pdns/catalog.ts`,
+  `lib/pdns/catalog-members.ts`, `app/(app)/zones/[zoneId]/_components/catalog-zone-banner.tsx`.
+- **PowerDNS versions.** Catalog zones need PowerDNS 4.7+; on an older backend the create form
+  doesn't offer a Producer zone, there's no Catalog field, and the routes refuse both. PowerDNS
+  4.7 and 4.8 don't report membership in their zone list, so there the Members column and banner
+  show it as unknown, the delete phrase is always the catalog one, and the delete route reads
+  each zone's catalog before deciding whether to ask for confirmation.
 
 ### 4.2 Per-RRset editor with diff-before-apply
 
@@ -654,7 +690,10 @@ the audit trail behave identically whichever door the user came through.
   the daemon actually has Lua armed: the global `enable-lua-records` setting **or** the zone's
   `ENABLE-LUA-RECORDS` metadata. The check is re-read live from PowerDNS on every Lua write
   (RRset PATCH and zonefile import alike) and fails closed, so a stale tab or crafted request
-  can't land executable records on a server that has Lua off. The content validator checks the
+  can't land executable records on a server that has Lua off. On PowerDNS 5.1+ the same check
+  also requires `enable-lua-record-updates=yes`, which 5.1 needs for any LUA change, deletes
+  included; without it the operator gets a message naming that setting rather than PowerDNS's
+  bare 422. The content validator checks the
   presentation format (`<query-type> "<snippet>"`, adjacent quoted chunks, `\DDD` escapes,
   the 255-octet boundary) without attempting to parse Lua. Which backends have Lua armed is
   visible from the capability badges (§ 3.10); the DNSSEC tab warns about Lua records on
