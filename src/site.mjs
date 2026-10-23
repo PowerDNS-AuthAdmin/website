@@ -47,7 +47,7 @@ export const site = {
   released: synced.releaseDate.slice(0, 10),
   license: "MIT",
   licenseUrl: "https://opensource.org/license/mit",
-  pdnsVersions: "4.6 to 5.0",
+  pdnsVersions: "4.6 to 5.1",
   image: "ghcr.io/powerdns-authadmin/powerdns-authadmin",
   demo: "https://demo.powerdns-authadmin.org",
   org: "https://github.com/PowerDNS-AuthAdmin",

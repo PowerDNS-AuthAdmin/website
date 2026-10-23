@@ -122,7 +122,7 @@ export const featureGroups = [
     items: [
       ["~60 permissions", "A typed vocabulary across zones, records, SOA, DNSSEC, metadata, TSIG, autoprimaries, templates, users, teams, roles, servers, API tokens, audit, settings and auth providers."],
       ["System and custom roles", "Super Admin, Team Owner, Operator, Zone Editor and Read Only are seeded. Define your own roles in the UI or in provisioning.yaml."],
-      ["Scoped assignments", "Every grant is (user, role, scope) where scope is global, a team, a single zone or a single server. An operator can edit records in one zone and nowhere else."],
+      ["Scoped assignments", "Every grant is (user, role, scope) where scope is global, a team, a single zone or a single server, assigned in Admin → Users or by an identity provider group mapping. An operator can edit records in one zone and nowhere else."],
       ["Zone authority kept apart", "The SOA, the apex NS RRset and zone settings each answer to their own permission, so a hosting customer can manage records without seeing the knobs that break the zone."],
       ["Teams", "Group users and zones into teams and delegate administration to a Team Owner scoped to that team."],
       ["MFA by role", "Mark a role as MFA-required and anyone holding it must enrol TOTP or a passkey."],
@@ -193,6 +193,8 @@ export const featureGroups = [
       ["Amalgamated zone list", "Zones from every backend merge into one searchable, sortable list with serial, DNSSEC and sync state per row."],
       ["Cluster peer selection", "Route reads and writes by round-robin, random, lowest latency or least load."],
       ["Sync probes", "Compare each secondary's serial with the primary, or each cluster peer with the highest-serial peer, and diff record-for-record on demand."],
+      ["Catalog zones", "Catalog zones (RFC 9432) are provisioning plumbing, so they sit on their own System tab with a member count, explain themselves on their own page and are read-only where PowerDNS generates them. Deleting a catalog that still has members needs a typed confirmation, a zone's catalog is set in its settings or at creation, and a secondary that doesn't consume the catalog never counts as out of sync. Needs PowerDNS 4.7 or later. " + a(site.docs.features + "#412-catalog-zones-as-system-zones", "Feature reference")],
+      ["PowerDNS 5.1 ready", "PowerDNS 5.1 locks LUA records unless <code>enable-lua-record-updates=yes</code>. AuthAdmin reads the setting from each daemon, stops offering LUA where it is off and names the setting to change."],
       ["Read-only backends", "Mark a backend read-only and every write route refuses it, for public nameservers fed by database replication."],
       ["Health advisories", "Bell-driven alerts for unreachable hosts, replication drift, missing TSIG keys on secondaries and daemon config drift."],
       ["Notifications page", "The bell previews the three most pressing notifications with a count by severity. Show all lists every backend health and Zone Monitoring notification with filters, search, detail and per-row or bulk dismissal, each visible only to users who can read what it is about."],
@@ -279,7 +281,7 @@ export const faqs = [
   },
   {
     q: "Which PowerDNS versions does it support?",
-    a: `PowerDNS-AuthAdmin is tested in CI against PowerDNS Authoritative ${site.pdnsVersions} (4.6, 4.7, 4.8, 4.9 and 5.0). It talks to PowerDNS through the Authoritative server's built-in HTTP API, so the API and an API key must be enabled.`,
+    a: `PowerDNS-AuthAdmin is tested in CI against PowerDNS Authoritative ${site.pdnsVersions} (4.6, 4.7, 4.8, 4.9, 5.0 and 5.1). It talks to PowerDNS through the Authoritative server's built-in HTTP API, so the API and an API key must be enabled. Catalog zones need PowerDNS 4.7 or later, and on 5.1 editing LUA records needs <code>enable-lua-record-updates=yes</code>.`,
   },
   {
     q: "Does it work with PowerDNS Recursor or dnsdist?",
@@ -303,7 +305,7 @@ export const faqs = [
   },
   {
     q: "Can I give a customer or team access to only their own zones?",
-    a: `Yes. Every role assignment has a scope: global, a team, a single zone or a single server. A user can hold a record-editing role on one zone and have no access anywhere else. The SOA, apex NS records and zone settings are separate permissions, so you can let someone manage records without letting them change the zone's authority.`,
+    a: `Yes. Every role assignment has a scope: global, a team, a single zone or a single server. A user can hold a record-editing role on one zone and have no access anywhere else, assigned by an administrator or mapped from an identity provider group. The SOA, apex NS records and zone settings are separate permissions, so you can let someone manage records without letting them change the zone's authority.`,
   },
   {
     q: "Can it manage several PowerDNS servers or clusters?",

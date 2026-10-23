@@ -170,7 +170,8 @@ write(
 > ${site.name} is a free, open-source (${site.license}), self-hosted web UI for PowerDNS Authoritative. It adds scoped role-based access control, OIDC / SAML 2.0 / LDAP single sign-on with group-to-role mapping, passkeys and TOTP MFA, a diff-before-apply record editor, automatic PTR maintenance with a fleet-wide Reverse DNS report, Zone Monitoring (delegation, nameservers, open AXFR and the DNSSEC chain checked from the outside), global search, DNSSEC / TSIG / autoprimary management, multi-backend support (standalone, primary + secondaries, multi-primary clusters), an append-only audit log and a built-in Model Context Protocol (MCP) server so Claude Code, Codex, Cursor and other AI assistants can manage zones and records in natural language. It ships as one Docker image (${site.image}) on SQLite or PostgreSQL.
 
 - Latest version: ${site.version} (released ${site.released})
-- PowerDNS Authoritative versions tested in CI: 4.6, 4.7, 4.8, 4.9, 5.0
+- PowerDNS Authoritative versions tested in CI: 4.6, 4.7, 4.8, 4.9, 5.0, 5.1
+- Catalog zones (RFC 9432, PowerDNS 4.7+) are listed apart as system zones, with guarded deletion and sync that only counts secondaries consuming the catalog
 - Runtime: Node.js 24, Next.js, TypeScript
 - MCP server at /api/mcp (Streamable HTTP, personal access token as Bearer): list_backends, list_zones, find_zones, get_zone, list_records, records_at, set_records, add_record, delete_records, create_zone, delete_zone, zone_sync_status, reverse_dns_report, reverse_dns_links, reverse_dns_rectify, zone_monitoring, zone_monitoring_refresh, search, list_notifications, dismiss_notifications
 - Opt-in features (off by default): REVERSE_DNS_ENABLED=true for the Reverse DNS report, ZONE_MONITOR_ENABLED=true for Zone Monitoring; automatic PTR maintenance on save via the auto_ptr setting
