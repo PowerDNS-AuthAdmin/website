@@ -219,7 +219,7 @@ const chat = `<figure class="chat" aria-label="Example conversation with an AI a
 </figure>`;
 
 const stack = [
-  "PowerDNS Authoritative 4.6 to 5.0",
+  "PowerDNS Authoritative 4.6 to 5.1",
   "Claude Code",
   "Codex",
   "Cursor",
