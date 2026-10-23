@@ -113,6 +113,11 @@ materialises a `role_assignments` row tagged with `provider_id` = this
 provider's id. Removed groups → revoked assignments. Admin-issued
 assignments are never touched.
 
+Scopes behave as described for OIDC: a `zone:<name>` mapping grants the role's
+zone-bound permissions on that zone (on any backend) and nothing else, and
+team/server targets are resolved by slug at each sign-in - see
+[OIDC → Group → role mapping](./05-OIDC.md#group--role-mapping).
+
 ## Encrypted assertions (optional)
 
 If you want the IdP to encrypt assertions to this SP:

@@ -115,6 +115,10 @@ specified scope (global / team / zone / server). On every sign-in, matching
 roles are materialised; on the next sign-in, ones that no longer match are
 revoked. Admin-issued role assignments are never touched.
 
+A `zone:<name>` mapping grants the role's zone-bound permissions on that zone (on
+any backend) and nothing else; team/server targets are resolved by slug at each
+sign-in - see [OIDC → Group → role mapping](./05-OIDC.md#group--role-mapping).
+
 Group strings are **case-sensitive**. For AD, use the **full DN** of the group
 (that's what `memberOf` returns). For OpenLDAP via the second search, the
 strings are the DNs returned from the group search - also DN-shaped.

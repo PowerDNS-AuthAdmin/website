@@ -1,10 +1,10 @@
 {
   "repo": "PowerDNS-AuthAdmin/powerdns-authadmin",
-  "ref": "v1.10.1",
-  "commit": "b02f938aaa1295a9559703daf3fd6991266553db",
-  "version": "1.10.1",
-  "releaseDate": "2026-10-21T02:02:46Z",
-  "syncedAt": "2026-10-21T02:04:03.434Z",
+  "ref": "v1.12.1",
+  "commit": "d0a3faf959c75072815301a236f2c993385d02a9",
+  "version": "1.12.1",
+  "releaseDate": "2026-10-23T03:08:25Z",
+  "syncedAt": "2026-10-23T03:11:05.395Z",
   "files": {
     "quickstart": {
       "upstream": "docs/01-QUICKSTART.md",
@@ -23,13 +23,13 @@
     },
     "backends": {
       "upstream": "docs/04-BACKENDS.md",
-      "modified": "2026-10-21T05:59:16+07:00",
-      "sha256": "115966fa7b261333"
+      "modified": "2026-10-22T13:11:34+07:00",
+      "sha256": "19394dd300ad9a45"
     },
     "oidc": {
       "upstream": "docs/05-OIDC.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "a4e99771c97c48d6"
+      "modified": "2026-10-22T23:55:54+07:00",
+      "sha256": "d04cbbbd34040e3e"
     },
     "provisioning": {
       "upstream": "docs/06-PROVISIONING.md",
@@ -38,8 +38,8 @@
     },
     "rbac": {
       "upstream": "docs/07-RBAC.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "c946d24124de2e3b"
+      "modified": "2026-10-23T05:59:04+07:00",
+      "sha256": "f385abf05b6eef13"
     },
     "hardening": {
       "upstream": "docs/08-HARDENING.md",
@@ -48,8 +48,8 @@
     },
     "upgrading": {
       "upstream": "docs/09-UPGRADING.md",
-      "modified": "2026-10-21T08:02:45+07:00",
-      "sha256": "d0f18591b19b3b88"
+      "modified": "2026-10-23T10:07:18+07:00",
+      "sha256": "30ff404f566d5ed3"
     },
     "troubleshooting": {
       "upstream": "docs/10-TROUBLESHOOTING.md",
@@ -63,13 +63,13 @@
     },
     "ldap": {
       "upstream": "docs/12-LDAP.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "17b6e3a5cd349d27"
+      "modified": "2026-10-22T23:55:54+07:00",
+      "sha256": "179f60570cb5d794"
     },
     "saml": {
       "upstream": "docs/13-SAML.md",
-      "modified": "2026-10-09T19:45:04+07:00",
-      "sha256": "6f33f04f65be3bd6"
+      "modified": "2026-10-22T23:55:54+07:00",
+      "sha256": "cc6a202e18ec973e"
     },
     "mcp": {
       "upstream": "docs/14-MCP.md",
@@ -78,8 +78,8 @@
     },
     "features": {
       "upstream": "docs/FEATURES.md",
-      "modified": "2026-10-21T07:40:07+07:00",
-      "sha256": "601223e6c6017265"
+      "modified": "2026-10-23T09:51:04+07:00",
+      "sha256": "bb1d1f65533b4e4d"
     },
     "adr/0001-framework-choice": {
       "upstream": "docs/adr/0001-framework-choice.md",
@@ -190,6 +190,11 @@
       "upstream": "docs/adr/0023-zone-authority-permissions.md",
       "modified": "2026-08-27T08:24:45+08:00",
       "sha256": "74ad5ed4a9eea1bf"
+    },
+    "adr/0024-zone-scoped-roles-grant-zone-access": {
+      "upstream": "docs/adr/0024-zone-scoped-roles-grant-zone-access.md",
+      "modified": "2026-10-23T05:59:04+07:00",
+      "sha256": "376c4fd0def3a960"
     },
     "dev-setup": {
       "upstream": "docs/dev-setup.md",
