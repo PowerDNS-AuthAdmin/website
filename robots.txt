@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://powerdns-authadmin.org/sitemap.xml

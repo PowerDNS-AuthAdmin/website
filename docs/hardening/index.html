@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark" data-base="" data-search-index="/assets/search/index.e7ebd943fc.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+0OEGstklXt2mYXx9ele+KtHixPt1mbLLFe91lHkjfQ=' https://*.googletagmanager.com; style-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'self'; upgrade-insecure-requests">
+<title>Hardening &amp; best practices · AuthAdmin docs</title>
+<meta name="description" content="A checklist for running PowerDNS-AuthAdmin safely in production. None of it is exotic - it's the handful of things worth getting right before you expose the…">
+<link rel="canonical" href="https://powerdns-authadmin.org/docs/hardening/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;})();</script>
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.22cd64dffc.css">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="PowerDNS-AuthAdmin">
+<meta name="apple-mobile-web-app-title" content="AuthAdmin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="/humans.txt">
+<link rel="search" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PowerDNS-AuthAdmin">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://powerdns-authadmin.org/docs/hardening/">
+<meta property="og:title" content="Hardening &amp; best practices · AuthAdmin docs">
+<meta property="og:description" content="A checklist for running PowerDNS-AuthAdmin safely in production. None of it is exotic - it's the handful of things worth getting right before you expose the…">
+<meta property="og:image" content="https://powerdns-authadmin.org/assets/og/docs-hardening.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hardening &amp; best practices: PowerDNS-AuthAdmin documentation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hardening &amp; best practices · AuthAdmin docs">
+<meta name="twitter:description" content="A checklist for running PowerDNS-AuthAdmin safely in production. None of it is exotic - it's the handful of things worth getting right before you expose the…">
+<meta name="twitter:image" content="https://powerdns-authadmin.org/assets/og/docs-hardening.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://powerdns-authadmin.org/#organization","name":"PowerDNS-AuthAdmin","url":"https://powerdns-authadmin.org/","logo":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/icons/icon-512.png","width":512,"height":512},"sameAs":["https://github.com/PowerDNS-AuthAdmin","https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin"]},{"@type":"WebSite","@id":"https://powerdns-authadmin.org/#website","url":"https://powerdns-authadmin.org/","name":"PowerDNS-AuthAdmin","description":"Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.","inLanguage":"en","publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://powerdns-authadmin.org/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"BreadcrumbList","@id":"https://powerdns-authadmin.org/docs/hardening/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://powerdns-authadmin.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://powerdns-authadmin.org/docs/"},{"@type":"ListItem","position":3,"name":"Hardening & best practices","item":"https://powerdns-authadmin.org/docs/hardening/"}]},{"@type":"TechArticle","@id":"https://powerdns-authadmin.org/docs/hardening/#webpage","url":"https://powerdns-authadmin.org/docs/hardening/","name":"Hardening & best practices · AuthAdmin docs","description":"A checklist for running PowerDNS-AuthAdmin safely in production. None of it is exotic - it's the handful of things worth getting right before you expose the…","inLanguage":"en","isPartOf":{"@id":"https://powerdns-authadmin.org/#website"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/og/docs-hardening.jpg","width":1200,"height":630},"dateModified":"2026-10-21T07:40:07+07:00","headline":"Hardening & best practices","author":{"@id":"https://powerdns-authadmin.org/#organization"},"publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"image":"https://powerdns-authadmin.org/assets/og/docs-hardening.jpg","mainEntityOfPage":"https://powerdns-authadmin.org/docs/hardening/","about":{"@id":"https://powerdns-authadmin.org/#software"},"wordCount":955,"breadcrumb":{"@id":"https://powerdns-authadmin.org/docs/hardening/#breadcrumb"}}]}</script>
+<script src="/assets/js/main.279cf15a30.js" defer></script>
+<script src="/assets/js/search.3b4cc0b30a.js" defer></script>
+<script src="/assets/js/docs.20196dd4af.js" defer></script>
+<script src="/assets/js/analytics.32eae1dcec.js" data-ga4="G-Y8C640LSFR" defer></script>
+</head>
+<body class="page-docs-hardening layout-docs">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-search-ignore>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+    <nav class="nav" aria-label="Primary"><a href="/features/">Features</a><a href="/docs/" aria-current="page">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-label="Search docs and site (Ctrl K)"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="search-trigger-label">Search docs…</span><kbd class="search-kbd" data-search-kbd>Ctrl K</kbd></button>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="i i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="i i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
+      <a class="icon-btn hide-md" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener" aria-label="PowerDNS-AuthAdmin on GitHub" title="PowerDNS-AuthAdmin on GitHub"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Live demo</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="docs-sidebar" data-docs-menu><svg class="i i-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  
+</header>
+<main id="main" tabindex="-1" data-search-section="Docs › Operations">
+
+<div class="docs-shell" data-docs>
+<aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation" data-search-ignore>
+<div class="docs-sidebar-scroll">
+<nav class="docs-sitenav" aria-label="Site"><a href="/features/">Features</a><a href="/docs/" class="is-current">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+<a class="docs-nav-home" href="/docs/"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg><span>Docs home</span></a>
+<nav class="docs-nav" aria-label="Docs sections">
+<details class="docs-nav-group" data-group="getting-started" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.8-1.6l9.9-10.2a.5.5 0 0 1 .9.5L12 8.7a1 1 0 0 0 1 1.3h7a1 1 0 0 1 .8 1.6l-9.9 10.2a.5.5 0 0 1-.9-.5l1.9-6A1 1 0 0 0 11 14Z"/></svg></span><span class="docs-nav-label">Getting started</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/backends/">PowerDNS backends</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="sign-in-access" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16.5 6.5l2.5 2.5M14 9l2 2"/></svg></span><span class="docs-nav-label">Sign-in &amp; access</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/oidc/">OIDC single sign-on</a></li><li><a href="/docs/saml/">SAML 2.0 single sign-on</a></li><li><a href="/docs/ldap/">LDAP sign-in</a></li><li><a href="/docs/passkeys/">Passkeys &amp; security keys</a></li><li><a href="/docs/rbac/">Roles &amp; permissions</a></li></ul>
+</details>
+<details class="docs-nav-group has-current" data-group="operations" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><span class="docs-nav-label">Operations</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/provisioning/">First-boot provisioning</a></li><li><a href="/docs/hardening/" aria-current="page">Hardening</a></li><li><a href="/docs/upgrading/">Upgrading</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="integrations-reference" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span><span class="docs-nav-label">Integrations &amp; reference</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/mcp/">Natural-language DNS with MCP</a></li><li><a href="/docs/features/">Feature catalog</a></li><li><a href="/docs/dev-setup/">Dev setup</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="adr">
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="docs-nav-label">Architecture decisions</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li class="is-index"><a href="/docs/adr/">All decisions</a></li><li class="is-adr"><a href="/docs/adr/0001-framework-choice/"><span class="docs-nav-num">0001</span><span>Choose Next.js 15 + React Server Components as the framework</span></a></li><li class="is-adr"><a href="/docs/adr/0002-mit-license/"><span class="docs-nav-num">0002</span><span>License under MIT</span></a></li><li class="is-adr"><a href="/docs/adr/0004-three-layer-architecture/"><span class="docs-nav-num">0004</span><span>Three-layer architecture (auth → RBAC → business logic)</span></a></li><li class="is-adr"><a href="/docs/adr/0005-migrations-explicit/"><span class="docs-nav-num">0005</span><span>Migrations are never auto-applied on app boot</span></a></li><li class="is-adr"><a href="/docs/adr/0006-csp-nonce/"><span class="docs-nav-num">0006</span><span>Per-request CSP nonce</span></a></li><li class="is-adr"><a href="/docs/adr/0007-db-backed-sessions/"><span class="docs-nav-num">0007</span><span>DB-backed sessions over stateless JWTs</span></a></li><li class="is-adr"><a href="/docs/adr/0008-argon2id-passwords/"><span class="docs-nav-num">0008</span><span>Argon2id for password hashing</span></a></li><li class="is-adr"><a href="/docs/adr/0009-custom-auth-core/"><span class="docs-nav-num">0009</span><span>Roll our own auth core on openid-client + argon2, not Auth.js</span></a></li><li class="is-adr"><a href="/docs/adr/0010-per-rrset-optimistic-concurrency/"><span class="docs-nav-num">0010</span><span>Per-RRset optimistic concurrency for the editor</span></a></li><li class="is-adr"><a href="/docs/adr/0011-migrate-on-app-boot/"><span class="docs-nav-num">0011</span><span>Migrations run at app-container boot</span></a></li><li class="is-adr"><a href="/docs/adr/0012-first-boot-provisioning/"><span class="docs-nav-num">0012</span><span>First-boot provisioning + OIDC group → role materialisation</span></a></li><li class="is-adr"><a href="/docs/adr/0013-pdns-db-bridge/"><span class="docs-nav-num">0013</span><span>The PDNS client&#39;s sanctioned DB bridge (and fixing boundary enforcement)</span></a></li><li class="is-adr"><a href="/docs/adr/0014-backend-capability-model/"><span class="docs-nav-num">0014</span><span>Per-zone authority + observed daemon capabilities (retire per-server role)</span></a></li><li class="is-adr"><a href="/docs/adr/0015-backend-health-advisories/"><span class="docs-nav-num">0015</span><span>Backend health advisories (the notification bell)</span></a></li><li class="is-adr"><a href="/docs/adr/0016-redis-horizontal-scale/"><span class="docs-nav-num">0016</span><span>Optional Redis for horizontal scale (replicas &gt; 1)</span></a></li><li class="is-adr"><a href="/docs/adr/0017-migration-squash-1.1.0/"><span class="docs-nav-num">0017</span><span>Squash the 1.1.0 schema deltas into one migration per dialect</span></a></li><li class="is-adr"><a href="/docs/adr/0018-provider-abstraction/"><span class="docs-nav-num">0018</span><span>Multi-provider auth: keep OIDC where it is, layer SAML + LDAP as siblings</span></a></li><li class="is-adr"><a href="/docs/adr/0019-webauthn-passkeys/"><span class="docs-nav-num">0019</span><span>WebAuthn: both primary credential and second factor</span></a></li><li class="is-adr"><a href="/docs/adr/0020-ldap-architecture/"><span class="docs-nav-num">0020</span><span>LDAP authentication architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0021-saml-architecture/"><span class="docs-nav-num">0021</span><span>SAML 2.0 service-provider architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0022-zone-horizons/"><span class="docs-nav-num">0022</span><span>Zone horizons: app-side split-horizon classification</span></a></li><li class="is-adr"><a href="/docs/adr/0023-zone-authority-permissions/"><span class="docs-nav-num">0023</span><span>Zone authority is a separate permission from zone records</span></a></li><li class="is-adr"><a href="/docs/adr/0024-zone-scoped-roles-grant-zone-access/"><span class="docs-nav-num">0024</span><span>Zone-scoped roles grant zone access</span></a></li></ul>
+</details>
+</nav>
+<div class="docs-sidebar-foot">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" rel="noopener"><span class="pulse" aria-hidden="true"></span>PowerDNS-AuthAdmin v1.12.1</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Docs source</a>
+</div>
+</div>
+</aside>
+<article class="docs-article" aria-labelledby="doc-title">
+<nav class="docs-crumbs" aria-label="Breadcrumb" data-search-ignore><ol><li><a href="/docs/">Docs</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><a href="/docs/#operations">Operations</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><span aria-current="page">Hardening &amp; best practices</span></li></ol></nav>
+<header class="docs-header">
+
+<h1 id="doc-title">Hardening &amp; best practices</h1>
+<p class="docs-lead">Lock down a production deployment: secrets, network exposure, authentication, least privilege and image signatures.</p>
+<div class="docs-meta" data-search-ignore>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.8 9.8 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>Updated <time datetime="2026-10-21T07:40:07+07:00">21 Oct 2026</time></span>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg>4 min read</span>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/08-HARDENING.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit on GitHub</a>
+</div>
+</header>
+<details class="docs-toc-mobile" data-search-ignore><summary><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></svg><span>On this page</span><svg class="i docs-toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><nav aria-label="On this page (compact)"><ol><li><a href="#secrets" data-toc="secrets">Secrets</a></li><li><a href="#network-exposure" data-toc="network-exposure">Network exposure</a></li><li><a href="#authentication" data-toc="authentication">Authentication</a></li><li><a href="#least-privilege" data-toc="least-privilege">Least privilege</a></li><li><a href="#email" data-toc="email">Email</a></li><li><a href="#operations" data-toc="operations">Operations</a></li><li><a href="#verify-the-image-signature" data-toc="verify-the-image-signature">Verify the image signature</a></li></ol></nav></details>
+<div class="doc-content">
+<p>A checklist for running PowerDNS-AuthAdmin safely in production. None of it is
+exotic - it's the handful of things worth getting right before you expose the app.</p>
+<h2 id="secrets">Secrets<a class="heading-anchor" href="#secrets" aria-label="Link to this section: Secrets" data-search-ignore>#</a></h2>
+<ul>
+<li><p><strong>Generate unique <code>APP_SECRET_KEY</code> and <code>APP_ENCRYPTION_KEY</code></strong> per deployment
+(<code>openssl rand -base64 32</code>). Never reuse the demo values from <code>.env.example</code>.</p></li>
+<li><p><strong>Treat <code>APP_ENCRYPTION_KEY</code> as un-rotatable.</strong> It decrypts every stored
+PowerDNS API key, OIDC/SAML/LDAP provider secret (client secrets, SP private
+keys, bind passwords) and MFA secret. Rotating it strands those secrets -
+you'd have to re-enter them all. Back it up with (but stored separately from)
+your database backups.</p></li>
+<li><p><strong>Inject secrets from a secret store</strong>, not inline env, using the <code>_FILE</code>
+suffix (<code>APP_SECRET_KEY_FILE=/run/secrets/...</code>). Works with Docker secrets and
+Kubernetes <code>Secret</code> volumes.</p></li>
+<li><p><strong>Mount provisioning files read-only, <code>chmod 600</code>.</strong> They contain plaintext
+PowerDNS API keys and OIDC/SAML/LDAP provider secrets until first boot
+encrypts them in.</p></li>
+<li><p><strong>Global search never returns secrets.</strong> The header palette and the MCP <code>search</code> tool read
+narrow projections that leave out password hashes, API tokens, session ids, TSIG key
+material, OIDC/SAML/LDAP client secrets, signing keys and bind passwords, PowerDNS API keys,
+encryption keys, SMTP passwords, WebAuthn credentials, backup contents, PowerDNS request
+headers and bodies, and audit snapshots; backends show only their URL host, and providers
+and TSIG keys only their name. Every source is filtered by the caller's own permissions.</p></li>
+</ul>
+<h2 id="network-exposure">Network exposure<a class="heading-anchor" href="#network-exposure" aria-label="Link to this section: Network exposure" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Terminate TLS at a reverse proxy</strong> and forward to port 3000. Set <code>APP_URL</code> to
+the public <code>https://</code> URL (no trailing slash) - it drives OIDC redirects,
+cookies, and CSP. See <a href="/docs/installation/#behind-a-reverse-proxy">Installation → reverse proxy</a>.</li>
+<li><strong>Ensure the proxy overwrites <code>X-Forwarded-For</code>/<code>X-Real-IP</code></strong> with the real
+client IP (the app trusts these for audit + rate limiting; there's no
+<code>TRUST_PROXY</code> toggle).</li>
+<li><strong>Keep PowerDNS API endpoints private.</strong> The API key is full control - bind the
+PDNS webserver to a private interface and restrict <code>webserver-allow-from</code>. Leave
+the SSRF guard at its strict production defaults unless you specifically need
+private-network/<code>http://</code> backends (see <a href="/docs/backends/#the-ssrf-guard">Backends</a>).</li>
+<li><strong>Pin <code>METRICS_TOKEN</code>.</strong> <code>/metrics</code> is enabled by default and always
+bearer-gated: if you don't set <code>METRICS_TOKEN</code> (≥16 chars) the app generates a
+random one on every boot and never shows it (the boot log has only a
+fingerprint), so nothing can scrape. Pin a token, or set
+<code>METRICS_ENABLED=false</code> if you don't scrape at all.</li>
+</ul>
+<h2 id="authentication">Authentication<a class="heading-anchor" href="#authentication" aria-label="Link to this section: Authentication" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Require MFA where it matters.</strong> Mark sensitive roles <code>requires_mfa</code> so holders
+must enrol a second factor (TOTP or a passkey / security key). For SSO users,
+enforce MFA at the IdP. See <a href="/docs/rbac/#mfa-required-roles">RBAC</a>.</li>
+<li><strong>Keep <code>SIGNUP_ENABLED=false</code></strong> (the default) unless you intend public
+self-service signup; create users via the admin UI or OIDC instead. When you do
+turn it on: keep <code>SIGNUP_DEFAULT_ROLE</code> low-privilege (the boot guard enforces
+this - see <a href="/docs/configuration/#self-service-signup">Self-service signup</a>),
+restrict who can register with <code>SIGNUP_ALLOWED_EMAIL_DOMAINS</code>, configure
+<code>SMTP_*</code> so verification links are actually delivered (signups can't log in
+until verified), and enable Turnstile to blunt automated registration.</li>
+<li><strong>Scope OIDC sign-in</strong> with <code>allowed_email_domains</code> (per provider) or
+<code>OIDC_ALLOWED_EMAIL_DOMAINS</code> (env) so only your org's emails auto-provision.</li>
+<li><strong>Turn on Turnstile</strong> (<code>TURNSTILE_SITE_KEY</code> + <code>TURNSTILE_SECRET_KEY</code>) for a
+public-facing login to blunt credential-stuffing.</li>
+<li><strong>Tune the lockout policy</strong> (<code>login_lockout_threshold</code> / <code>login_lockout_seconds</code>
+settings) to taste - defaults are 10 failed attempts → 15-minute account
+lockout. (Separately, a per-IP rate limiter throttles login bursts.)</li>
+</ul>
+<h2 id="least-privilege">Least privilege<a class="heading-anchor" href="#least-privilege" aria-label="Link to this section: Least privilege" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Hand out the narrowest role + scope that works.</strong> Prefer Zone Editor scoped to
+a zone or server over a global Operator. See <a href="/docs/rbac/#scopes">RBAC scopes</a>.</li>
+<li><strong>Reserve Super Admin</strong> for the few who run the platform. Everything is audited,
+but fewer super-admins is still fewer ways to get burned.</li>
+</ul>
+<h2 id="email">Email<a class="heading-anchor" href="#email" aria-label="Link to this section: Email" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Use TLS to your SMTP relay</strong> - <code>SMTP_SECURE=true</code> (implicit TLS, 465) or
+<code>SMTP_STARTTLS=required</code> (587). Keep <code>SMTP_TLS_REJECT_UNAUTHORIZED=true</code>; only
+disable it for a local fakemail with a self-signed cert.</li>
+</ul>
+<h2 id="operations">Operations<a class="heading-anchor" href="#operations" aria-label="Link to this section: Operations" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Keep <code>PDNS_BACKGROUND_POLLING=false</code> (default) unless you actually run
+multi-peer topology.</strong> A standalone PowerDNS doesn't benefit from a
+30 s / 60 s / 5 min ticker against itself; turning the poller on
+generates background API traffic you don't need, slightly enlarges
+the in-process cache footprint, and gives an attacker on the AuthAdmin
+host one more long-lived authenticated path to your DNS API. Enable
+it deliberately when you need the sync chip, drift advisories, or the
+dashboard PDNS metrics - see
+<a href="/docs/configuration/#pdns_background_polling">Configuration → <code>PDNS_BACKGROUND_POLLING</code></a>.</li>
+<li><strong>Know that zone monitoring talks to the internet when you turn it on.</strong> It is off
+by default. With <code>ZONE_MONITOR_ENABLED=true</code> it is the one feature that sends packets
+on its own: DNS on 53/udp and 53/tcp from the AuthAdmin host to the root, TLD and
+parent servers, to every hosted zone's nameservers (including an unsigned AXFR probe
+against those nameservers only) and to the resolvers in
+<code>ZONE_MONITOR_PUBLIC_RESOLVERS</code> / <code>ZONE_MONITOR_INTERNAL_RESOLVERS</code>. The Reverse DNS
+checks (<code>REVERSE_DNS_ENABLED=true</code>, also off by default) query those resolvers for
+addresses no hosted reverse zone covers. Allow that in the egress policy before
+enabling either; leave both off on an air-gapped install.
+Nothing else in the app initiates outbound traffic without an operator action. See
+<a href="/docs/configuration/#zone-monitoring">Configuration → Zone monitoring</a>.</li>
+<li><strong>Run on Postgres for anything multi-instance.</strong> Boots are serialised by an
+advisory lock so rolling deploys are safe; SQLite is single-writer.</li>
+<li><strong>Gate traffic on <code>/readyz</code></strong>, not just <code>/healthz</code> - it returns 503 while the
+database is unreachable, so a rolling deploy won't route to a replica that
+can't serve. (It does not yet check migration state; migrations run in the
+entrypoint before the server listens, so a replica that answers at all has
+already applied them.)</li>
+<li><strong>Back up before upgrades</strong> and review the <a href="/docs/upgrading/">Upgrading guide</a>.</li>
+<li><strong>Watch the audit log.</strong> Every write is recorded with redacted before/after
+snapshots - it's your forensic trail.</li>
+</ul>
+<h2 id="verify-the-image-signature">Verify the image signature<a class="heading-anchor" href="#verify-the-image-signature" aria-label="Link to this section: Verify the image signature" data-search-ignore>#</a></h2>
+<p>Each published release is cosign-signed (keyless / Sigstore) by the release
+workflow. Verify before deploying:</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">cosign</span> verify ghcr.io/powerdns-authadmin/powerdns-authadmin:1.8.4 <span class="t-p">\</span>
+  <span class="t-k">--certificate-identity-regexp</span> <span class="t-s">&#39;^https://github.com/PowerDNS-AuthAdmin/&#39;</span> <span class="t-p">\</span>
+  <span class="t-k">--certificate-oidc-issuer</span> https://token.actions.githubusercontent.com</code></pre></div>
+<p>The GitHub release also carries an SPDX SBOM and a signed <code>checksums.txt</code>
+(<code>checksums.txt.sigstore.json</code>) for the attached artifacts.</p>
+<hr>
+<p><a href="/docs/">← Docs index</a></p>
+</div>
+<footer class="docs-footer" data-search-ignore>
+<div class="docs-feedback">
+<p class="docs-feedback-q"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg><span>Was this page helpful?</span></p>
+<div class="docs-feedback-links">
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20Hardening%20%26%20best%20practices&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Fhardening%2F%0ASource%3A%20docs%2F08-HARDENING.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Open an issue</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/08-HARDENING.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page on GitHub</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/docs/08-HARDENING.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>View source</a>
+</div>
+</div>
+<nav class="docs-pager" aria-label="Previous and next page" data-search-ignore><a class="docs-pager-card docs-pager-prev" href="/docs/provisioning/" rel="prev"><span class="docs-pager-dir"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7"/></svg>Previous</span><span class="docs-pager-title">First-boot provisioning</span><span class="docs-pager-section">Operations</span></a><a class="docs-pager-card docs-pager-next" href="/docs/upgrading/" rel="next"><span class="docs-pager-dir">Next<svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></span><span class="docs-pager-title">Upgrading</span><span class="docs-pager-section">Operations</span></a></nav>
+<p class="docs-synced"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><span>Synced from <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener">PowerDNS-AuthAdmin v1.12.1</a> (<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/commit/d0a3faf959c75072815301a236f2c993385d02a9" rel="noopener"><code>d0a3faf</code></a>), <code>docs/08-HARDENING.md</code>. Documentation © the PowerDNS-AuthAdmin contributors, <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT</a>.</span></p>
+</footer>
+</article>
+<aside class="docs-toc" aria-label="On this page" data-search-ignore>
+<p class="docs-toc-title">On this page</p>
+<nav aria-label="Table of contents"><ol><li><a href="#secrets" data-toc="secrets">Secrets</a></li><li><a href="#network-exposure" data-toc="network-exposure">Network exposure</a></li><li><a href="#authentication" data-toc="authentication">Authentication</a></li><li><a href="#least-privilege" data-toc="least-privilege">Least privilege</a></li><li><a href="#email" data-toc="email">Email</a></li><li><a href="#operations" data-toc="operations">Operations</a></li><li><a href="#verify-the-image-signature" data-toc="verify-the-image-signature">Verify the image signature</a></li></ol></nav>
+<div class="docs-toc-actions">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/08-HARDENING.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20Hardening%20%26%20best%20practices&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Fhardening%2F%0ASource%3A%20docs%2F08-HARDENING.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Report an issue</a>
+<a href="#main" data-docs-top><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>Back to top</a>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer" data-search-ignore>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+      <p>Modern, self-hosted DNS administration for PowerDNS Authoritative. Open source under the <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT licence</a>, built in the open by its community.</p>
+      <a class="release-chip" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v1.12.1<span class="muted">· 23 Oct 2026</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><h2>Product</h2><ul><li><a href="/features/">Features</a></li><li><a href="/powerdns-admin-alternative/">Compare</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/support/">Commercial support</a></li><li><a href="/search/">Search</a></li><li><a href="https://demo.powerdns-authadmin.org" rel="noopener">Live demo</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases" rel="noopener">Releases</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li></ul></div>
+      <div class="footer-col"><h2>Docs</h2><ul><li><a href="/docs/">Documentation</a></li><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/rbac/">RBAC</a></li><li><a href="/docs/oidc/">OIDC</a></li><li><a href="/docs/ldap/">LDAP</a></li><li><a href="/docs/saml/">SAML</a></li><li><a href="/docs/passkeys/">Passkeys</a></li><li><a href="/docs/mcp/">MCP</a></li></ul></div>
+      <div class="footer-col"><h2>Community</h2><ul><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener">GitHub</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/discussions" rel="noopener">Discussions</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues" rel="noopener">Issues</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy" rel="noopener">Security policy</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/website" rel="noopener">Website source</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-badges" role="group" aria-label="Project status"><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/ci.yml?query=branch%3Amain" rel="noopener"><img src="/badges/ci.svg" alt="CI" width="90" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/latest" rel="noopener"><img src="/badges/release.svg" alt="Release" width="102" height="20" loading="lazy" decoding="async"></a><a href="https://scorecard.dev/viewer/?uri=github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener"><img src="/badges/openssf-scorecard.svg" alt="OpenSSF Scorecard" width="136" height="20" loading="lazy" decoding="async"></a><a href="https://www.bestpractices.dev/projects/12974" rel="noopener"><img src="/badges/openssf-best-practices.svg" alt="OpenSSF Best Practices" width="184" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener"><img src="/badges/license.svg" alt="License: MIT" width="78" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr.svg" alt="Container: GHCR" width="191" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-version.svg" alt="GHCR version" width="101" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-pulls.svg" alt="GHCR pulls" width="111" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-size.svg" alt="GHCR image size" width="142" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/.nvmrc" rel="noopener"><img src="/badges/nodejs.svg" alt="Node.js 24" width="91" height="20" loading="lazy" decoding="async"></a><a href="https://nextjs.org" rel="noopener"><img src="/badges/nextjs.svg" alt="Next.js 16" width="89" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/tsconfig.json" rel="noopener"><img src="/badges/typescript.svg" alt="TypeScript strict" width="123" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-46.yml" rel="noopener"><img src="/badges/pdns-4-6.svg" alt="PowerDNS 4.6" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-47.yml" rel="noopener"><img src="/badges/pdns-4-7.svg" alt="PowerDNS 4.7" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-48.yml" rel="noopener"><img src="/badges/pdns-4-8.svg" alt="PowerDNS 4.8" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-49.yml" rel="noopener"><img src="/badges/pdns-4-9.svg" alt="PowerDNS 4.9" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-50.yml" rel="noopener"><img src="/badges/pdns-5-0.svg" alt="PowerDNS 5.0" width="155" height="20" loading="lazy" decoding="async"></a></span></div>
+  <div class="container footer-bottom">
+    <span>© 2026 PowerDNS-AuthAdmin contributors. MIT licensed.</span>
+    <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+  </div>
+</footer>
+
+</body>
+</html>

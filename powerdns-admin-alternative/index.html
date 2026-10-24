@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark" data-base="" data-search-index="/assets/search/index.e7ebd943fc.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+0OEGstklXt2mYXx9ele+KtHixPt1mbLLFe91lHkjfQ=' https://*.googletagmanager.com; style-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'self'; upgrade-insecure-requests">
+<title>PowerDNS-Admin alternative: how PowerDNS-AuthAdmin compares</title>
+<meta name="description" content="Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.">
+<link rel="canonical" href="https://powerdns-authadmin.org/powerdns-admin-alternative/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;})();</script>
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.22cd64dffc.css">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="PowerDNS-AuthAdmin">
+<meta name="apple-mobile-web-app-title" content="AuthAdmin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="/humans.txt">
+<link rel="search" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PowerDNS-AuthAdmin">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://powerdns-authadmin.org/powerdns-admin-alternative/">
+<meta property="og:title" content="PowerDNS-Admin alternative: how PowerDNS-AuthAdmin compares">
+<meta property="og:description" content="Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.">
+<meta property="og:image" content="https://powerdns-authadmin.org/assets/og/powerdns-admin-alternative.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PowerDNS-AuthAdmin: Modern, self-hosted DNS administration for PowerDNS Authoritative">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PowerDNS-Admin alternative: how PowerDNS-AuthAdmin compares">
+<meta name="twitter:description" content="Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.">
+<meta name="twitter:image" content="https://powerdns-authadmin.org/assets/og/powerdns-admin-alternative.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://powerdns-authadmin.org/#organization","name":"PowerDNS-AuthAdmin","url":"https://powerdns-authadmin.org/","logo":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/icons/icon-512.png","width":512,"height":512},"sameAs":["https://github.com/PowerDNS-AuthAdmin","https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin"]},{"@type":"WebSite","@id":"https://powerdns-authadmin.org/#website","url":"https://powerdns-authadmin.org/","name":"PowerDNS-AuthAdmin","description":"Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.","inLanguage":"en","publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://powerdns-authadmin.org/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"BreadcrumbList","@id":"https://powerdns-authadmin.org/powerdns-admin-alternative/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://powerdns-authadmin.org/"},{"@type":"ListItem","position":2,"name":"PowerDNS-Admin alternative","item":"https://powerdns-authadmin.org/powerdns-admin-alternative/"}]},{"@type":"WebPage","@id":"https://powerdns-authadmin.org/powerdns-admin-alternative/#webpage","url":"https://powerdns-authadmin.org/powerdns-admin-alternative/","name":"PowerDNS-Admin alternative: how PowerDNS-AuthAdmin compares","description":"Looking for a PowerDNS-Admin alternative? PowerDNS-AuthAdmin adds scoped RBAC, OIDC, SAML and LDAP, passkeys, clusters, an audit log and an MCP server. Free.","inLanguage":"en","isPartOf":{"@id":"https://powerdns-authadmin.org/#website"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/og/powerdns-admin-alternative.jpg","width":1200,"height":630},"dateModified":"2026-10-21","about":{"@id":"https://powerdns-authadmin.org/#software"},"breadcrumb":{"@id":"https://powerdns-authadmin.org/powerdns-admin-alternative/#breadcrumb"}}]}</script>
+<script src="/assets/js/main.279cf15a30.js" defer></script>
+<script src="/assets/js/search.3b4cc0b30a.js" defer></script>
+<script src="/assets/js/analytics.32eae1dcec.js" data-ga4="G-Y8C640LSFR" defer></script>
+</head>
+<body class="page-powerdns-admin-alternative layout-default">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-search-ignore>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+    <nav class="nav" aria-label="Primary"><a href="/features/">Features</a><a href="/docs/">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/" aria-current="page">Compare</a><a href="/faq/">FAQ</a></nav>
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-label="Search docs and site (Ctrl K)"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="search-trigger-label">Search docs…</span><kbd class="search-kbd" data-search-kbd>Ctrl K</kbd></button>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="i i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="i i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
+      <a class="icon-btn hide-md" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener" aria-label="PowerDNS-AuthAdmin on GitHub" title="PowerDNS-AuthAdmin on GitHub"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Live demo</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><svg class="i i-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <nav class="container" aria-label="Mobile">
+      <a href="/features/">Features<svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></a><a href="/docs/">Docs<svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></a><a href="/#mcp">Talk to your DNS<svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></a><a href="/powerdns-admin-alternative/" aria-current="page">Compare<svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></a><a href="/faq/">FAQ<svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></a>
+      <div class="mobile-cta" data-cta-location="nav">
+        <a class="btn btn-primary btn-lg" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Try the live demo</a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>View on GitHub</span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1" data-search-section="Site">
+<nav class="crumbs container" aria-label="Breadcrumb" data-search-ignore><ol><li><a href="/">Home</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><span aria-current="page">PowerDNS-Admin alternative</span></li></ol></nav>
+
+<section class="page-hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container narrow">
+    <p class="eyebrow">Compare</p>
+    <h1>A modern alternative to PowerDNS-Admin</h1>
+    <p class="page-lead">PowerDNS-Admin is the long-standing community web UI for PowerDNS. PowerDNS-AuthAdmin is a separate project, written from scratch in TypeScript, for teams that run several backends, sign in through an identity provider and need to show who changed what.</p>
+    <div class="hero-cta left">
+      <a class="btn btn-primary btn-lg" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5v-7Z"/></svg><span>Try the live demo</span></a>
+      <a class="btn btn-ghost btn-lg" href="/features/" data-cta="Features">See all features</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="what-title">
+  <div class="container narrow prose">
+    <h2 id="what-title">What PowerDNS-AuthAdmin is</h2>
+    <p>PowerDNS-AuthAdmin is a free, MIT-licensed web interface for <strong>PowerDNS Authoritative</strong>. It talks to PowerDNS through its built-in HTTP API, so your zones and records stay where they are. On top it adds what multi-person DNS operations need: scoped role-based access control, single sign-on, passkeys, a diff-before-apply editor, cluster and secondary awareness, automatic PTR maintenance, Zone Monitoring from the outside, an append-only audit log, and an MCP server so an AI assistant can make changes under the same rules.</p>
+    <p>It is not a fork. It is a clean-sheet build on Node.js 24, Next.js and TypeScript in strict mode, shipped as one container image (<code>ghcr.io/powerdns-authadmin/powerdns-authadmin</code>) and tested in CI against PowerDNS 4.6 to 5.1.</p>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="checklist-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Checklist</p>
+      <h2 id="checklist-title">What to look for in a PowerDNS web UI</h2>
+      <p>The questions teams ask when choosing an admin interface, and how PowerDNS-AuthAdmin answers each one.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col">Requirement</th><th scope="col">PowerDNS-AuthAdmin</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Access scoped to one zone</th><td>Assign any role globally, to a team, to a single zone or to a single server. SOA, apex NS and zone settings are separate permissions.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Your identity provider</th><td>OIDC (PKCE, RP-initiated logout), SAML 2.0 and LDAP / Active Directory, each with group → role mapping on every sign-in.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Phishing-resistant MFA</th><td>WebAuthn passkeys and hardware security keys, or TOTP. Roles can require MFA.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Safe edits</th><td>Per-type validation, a BIND-style diff before every write and optimistic concurrency per RRset.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>More than one backend</th><td>Standalone primaries, primary + secondaries and multi-primary clusters, with sync probes and health advisories.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Reverse DNS kept in step</th><td>Opt-in automatic PTR maintenance on save, in reverse zones on any backend, and a fleet-wide Reverse DNS report that rectifies missing, mismatched and orphaned PTRs after showing the diff.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Zones checked from outside</th><td>Opt-in Zone Monitoring of the delegation at the parent, every nameserver, open AXFR, the DNSSEC chain and what resolvers answer, with findings in the notification bell.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>A trail for auditors</th><td>Append-only log with redacted before / after snapshots, the PowerDNS request trail, CSV export and a fleet-wide Change log of what people changed.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>AI assistants</th><td>A built-in MCP server: Claude Code, Codex, Cursor or any MCP client manages records in natural language, limited to a token's scopes and written to the audit log.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Automation</th><td>A full admin API with scoped personal access tokens, Prometheus metrics and first-boot YAML provisioning.</td></tr>
+          <tr><th scope="row"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Operations</th><td>One Docker image on SQLite or Postgres, Postgres + Redis for HA, no telemetry and no CDN.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="switch-title">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="eyebrow">Switching</p>
+      <h2 id="switch-title">How to move to PowerDNS-AuthAdmin</h2>
+      <p>No zone migration is needed. The admin UI is a client of the PowerDNS API, so you can run it next to your current tool and switch when you're ready.</p>
+    </div>
+    <ol class="timeline">
+      <li><h3>Deploy alongside</h3><p>Start PowerDNS-AuthAdmin with Docker Compose next to what you run today. It only needs network access to the PowerDNS Authoritative HTTP API. <a href="/docs/installation/">Installation guide</a>.</p></li>
+      <li><h3>Register your backends</h3><p>Add each PowerDNS server with its API URL and key, or group them into clusters and primary + secondaries. Your existing zones appear straight away because they live in PowerDNS, not in the admin UI.</p></li>
+      <li><h3>Connect sign-in</h3><p>Point it at your OIDC, SAML or LDAP provider and map groups to roles, or create local accounts. <a href="/docs/rbac/">RBAC guide</a>.</p></li>
+      <li><h3>Recreate access rules</h3><p>Users, roles, teams and API tokens are not imported from other tools. Define them in the UI or in a <a href="/docs/provisioning/">provisioning.yaml</a> so the setup is reviewable and repeatable.</p></li>
+      <li><h3>Switch over</h3><p>Once your team works in PowerDNS-AuthAdmin, retire the old UI. Edits made by any other client show up live, so running both during the transition is fine.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="fit-title">
+  <div class="container narrow prose">
+    <h2 id="fit-title">Is it the right fit?</h2>
+    <p>If a single shared admin login on one PowerDNS server covers your needs and your current UI does the job, you may not need to change anything. PowerDNS-AuthAdmin earns its place when more people, more backends or more scrutiny come into play: delegating zones to customers or teams, enforcing SSO and MFA, operating clusters and secondaries, keeping reverse DNS tidy, catching broken delegations, or answering audit requests.</p>
+    <p>The quickest way to decide is to click around the <a href="https://demo.powerdns-authadmin.org" rel="noopener">live demo</a>, then read the <a href="/faq/">FAQ</a>.</p>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container cta-slim">
+    <h2>Up and running in minutes</h2>
+    <p>One image, one compose file, your existing PowerDNS.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-primary btn-lg" href="/#quickstart" data-cta="Quickstart"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg><span>Quickstart</span></a>
+      <a class="btn btn-ghost btn-lg" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer" data-search-ignore>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+      <p>Modern, self-hosted DNS administration for PowerDNS Authoritative. Open source under the <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT licence</a>, built in the open by its community.</p>
+      <a class="release-chip" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v1.12.1<span class="muted">· 23 Oct 2026</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><h2>Product</h2><ul><li><a href="/features/">Features</a></li><li><a href="/powerdns-admin-alternative/">Compare</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/support/">Commercial support</a></li><li><a href="/search/">Search</a></li><li><a href="https://demo.powerdns-authadmin.org" rel="noopener">Live demo</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases" rel="noopener">Releases</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li></ul></div>
+      <div class="footer-col"><h2>Docs</h2><ul><li><a href="/docs/">Documentation</a></li><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/rbac/">RBAC</a></li><li><a href="/docs/oidc/">OIDC</a></li><li><a href="/docs/ldap/">LDAP</a></li><li><a href="/docs/saml/">SAML</a></li><li><a href="/docs/passkeys/">Passkeys</a></li><li><a href="/docs/mcp/">MCP</a></li></ul></div>
+      <div class="footer-col"><h2>Community</h2><ul><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener">GitHub</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/discussions" rel="noopener">Discussions</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues" rel="noopener">Issues</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy" rel="noopener">Security policy</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/website" rel="noopener">Website source</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-badges" role="group" aria-label="Project status"><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/ci.yml?query=branch%3Amain" rel="noopener"><img src="/badges/ci.svg" alt="CI" width="90" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/latest" rel="noopener"><img src="/badges/release.svg" alt="Release" width="102" height="20" loading="lazy" decoding="async"></a><a href="https://scorecard.dev/viewer/?uri=github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener"><img src="/badges/openssf-scorecard.svg" alt="OpenSSF Scorecard" width="136" height="20" loading="lazy" decoding="async"></a><a href="https://www.bestpractices.dev/projects/12974" rel="noopener"><img src="/badges/openssf-best-practices.svg" alt="OpenSSF Best Practices" width="184" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener"><img src="/badges/license.svg" alt="License: MIT" width="78" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr.svg" alt="Container: GHCR" width="191" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-version.svg" alt="GHCR version" width="101" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-pulls.svg" alt="GHCR pulls" width="111" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-size.svg" alt="GHCR image size" width="142" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/.nvmrc" rel="noopener"><img src="/badges/nodejs.svg" alt="Node.js 24" width="91" height="20" loading="lazy" decoding="async"></a><a href="https://nextjs.org" rel="noopener"><img src="/badges/nextjs.svg" alt="Next.js 16" width="89" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/tsconfig.json" rel="noopener"><img src="/badges/typescript.svg" alt="TypeScript strict" width="123" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-46.yml" rel="noopener"><img src="/badges/pdns-4-6.svg" alt="PowerDNS 4.6" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-47.yml" rel="noopener"><img src="/badges/pdns-4-7.svg" alt="PowerDNS 4.7" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-48.yml" rel="noopener"><img src="/badges/pdns-4-8.svg" alt="PowerDNS 4.8" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-49.yml" rel="noopener"><img src="/badges/pdns-4-9.svg" alt="PowerDNS 4.9" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-50.yml" rel="noopener"><img src="/badges/pdns-5-0.svg" alt="PowerDNS 5.0" width="155" height="20" loading="lazy" decoding="async"></a></span></div>
+  <div class="container footer-bottom">
+    <span>© 2026 PowerDNS-AuthAdmin contributors. MIT licensed.</span>
+    <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+  </div>
+</footer>
+
+</body>
+</html>

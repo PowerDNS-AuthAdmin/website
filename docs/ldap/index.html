@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark" data-base="" data-search-index="/assets/search/index.e7ebd943fc.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+0OEGstklXt2mYXx9ele+KtHixPt1mbLLFe91lHkjfQ=' https://*.googletagmanager.com; style-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'self'; upgrade-insecure-requests">
+<title>LDAP authentication · AuthAdmin docs</title>
+<meta name="description" content="PowerDNS-AuthAdmin can authenticate users by direct bind against Active Directory or OpenLDAP.">
+<link rel="canonical" href="https://powerdns-authadmin.org/docs/ldap/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;})();</script>
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.22cd64dffc.css">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="PowerDNS-AuthAdmin">
+<meta name="apple-mobile-web-app-title" content="AuthAdmin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="/humans.txt">
+<link rel="search" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PowerDNS-AuthAdmin">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://powerdns-authadmin.org/docs/ldap/">
+<meta property="og:title" content="LDAP authentication · AuthAdmin docs">
+<meta property="og:description" content="PowerDNS-AuthAdmin can authenticate users by direct bind against Active Directory or OpenLDAP.">
+<meta property="og:image" content="https://powerdns-authadmin.org/assets/og/docs-ldap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LDAP authentication: PowerDNS-AuthAdmin documentation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LDAP authentication · AuthAdmin docs">
+<meta name="twitter:description" content="PowerDNS-AuthAdmin can authenticate users by direct bind against Active Directory or OpenLDAP.">
+<meta name="twitter:image" content="https://powerdns-authadmin.org/assets/og/docs-ldap.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://powerdns-authadmin.org/#organization","name":"PowerDNS-AuthAdmin","url":"https://powerdns-authadmin.org/","logo":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/icons/icon-512.png","width":512,"height":512},"sameAs":["https://github.com/PowerDNS-AuthAdmin","https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin"]},{"@type":"WebSite","@id":"https://powerdns-authadmin.org/#website","url":"https://powerdns-authadmin.org/","name":"PowerDNS-AuthAdmin","description":"Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.","inLanguage":"en","publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://powerdns-authadmin.org/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"BreadcrumbList","@id":"https://powerdns-authadmin.org/docs/ldap/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://powerdns-authadmin.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://powerdns-authadmin.org/docs/"},{"@type":"ListItem","position":3,"name":"LDAP authentication","item":"https://powerdns-authadmin.org/docs/ldap/"}]},{"@type":"TechArticle","@id":"https://powerdns-authadmin.org/docs/ldap/#webpage","url":"https://powerdns-authadmin.org/docs/ldap/","name":"LDAP authentication · AuthAdmin docs","description":"PowerDNS-AuthAdmin can authenticate users by direct bind against Active Directory or OpenLDAP.","inLanguage":"en","isPartOf":{"@id":"https://powerdns-authadmin.org/#website"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/og/docs-ldap.jpg","width":1200,"height":630},"dateModified":"2026-10-22T23:55:54+07:00","headline":"LDAP authentication","author":{"@id":"https://powerdns-authadmin.org/#organization"},"publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"image":"https://powerdns-authadmin.org/assets/og/docs-ldap.jpg","mainEntityOfPage":"https://powerdns-authadmin.org/docs/ldap/","about":{"@id":"https://powerdns-authadmin.org/#software"},"wordCount":1435,"breadcrumb":{"@id":"https://powerdns-authadmin.org/docs/ldap/#breadcrumb"}}]}</script>
+<script src="/assets/js/main.279cf15a30.js" defer></script>
+<script src="/assets/js/search.3b4cc0b30a.js" defer></script>
+<script src="/assets/js/docs.20196dd4af.js" defer></script>
+<script src="/assets/js/analytics.32eae1dcec.js" data-ga4="G-Y8C640LSFR" defer></script>
+</head>
+<body class="page-docs-ldap layout-docs">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-search-ignore>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+    <nav class="nav" aria-label="Primary"><a href="/features/">Features</a><a href="/docs/" aria-current="page">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-label="Search docs and site (Ctrl K)"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="search-trigger-label">Search docs…</span><kbd class="search-kbd" data-search-kbd>Ctrl K</kbd></button>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="i i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="i i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
+      <a class="icon-btn hide-md" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener" aria-label="PowerDNS-AuthAdmin on GitHub" title="PowerDNS-AuthAdmin on GitHub"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Live demo</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="docs-sidebar" data-docs-menu><svg class="i i-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  
+</header>
+<main id="main" tabindex="-1" data-search-section="Docs › Sign-in &amp; access">
+
+<div class="docs-shell" data-docs>
+<aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation" data-search-ignore>
+<div class="docs-sidebar-scroll">
+<nav class="docs-sitenav" aria-label="Site"><a href="/features/">Features</a><a href="/docs/" class="is-current">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+<a class="docs-nav-home" href="/docs/"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg><span>Docs home</span></a>
+<nav class="docs-nav" aria-label="Docs sections">
+<details class="docs-nav-group" data-group="getting-started" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.8-1.6l9.9-10.2a.5.5 0 0 1 .9.5L12 8.7a1 1 0 0 0 1 1.3h7a1 1 0 0 1 .8 1.6l-9.9 10.2a.5.5 0 0 1-.9-.5l1.9-6A1 1 0 0 0 11 14Z"/></svg></span><span class="docs-nav-label">Getting started</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/backends/">PowerDNS backends</a></li></ul>
+</details>
+<details class="docs-nav-group has-current" data-group="sign-in-access" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16.5 6.5l2.5 2.5M14 9l2 2"/></svg></span><span class="docs-nav-label">Sign-in &amp; access</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/oidc/">OIDC single sign-on</a></li><li><a href="/docs/saml/">SAML 2.0 single sign-on</a></li><li><a href="/docs/ldap/" aria-current="page">LDAP sign-in</a></li><li><a href="/docs/passkeys/">Passkeys &amp; security keys</a></li><li><a href="/docs/rbac/">Roles &amp; permissions</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="operations" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><span class="docs-nav-label">Operations</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/provisioning/">First-boot provisioning</a></li><li><a href="/docs/hardening/">Hardening</a></li><li><a href="/docs/upgrading/">Upgrading</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="integrations-reference" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span><span class="docs-nav-label">Integrations &amp; reference</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/mcp/">Natural-language DNS with MCP</a></li><li><a href="/docs/features/">Feature catalog</a></li><li><a href="/docs/dev-setup/">Dev setup</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="adr">
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="docs-nav-label">Architecture decisions</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li class="is-index"><a href="/docs/adr/">All decisions</a></li><li class="is-adr"><a href="/docs/adr/0001-framework-choice/"><span class="docs-nav-num">0001</span><span>Choose Next.js 15 + React Server Components as the framework</span></a></li><li class="is-adr"><a href="/docs/adr/0002-mit-license/"><span class="docs-nav-num">0002</span><span>License under MIT</span></a></li><li class="is-adr"><a href="/docs/adr/0004-three-layer-architecture/"><span class="docs-nav-num">0004</span><span>Three-layer architecture (auth → RBAC → business logic)</span></a></li><li class="is-adr"><a href="/docs/adr/0005-migrations-explicit/"><span class="docs-nav-num">0005</span><span>Migrations are never auto-applied on app boot</span></a></li><li class="is-adr"><a href="/docs/adr/0006-csp-nonce/"><span class="docs-nav-num">0006</span><span>Per-request CSP nonce</span></a></li><li class="is-adr"><a href="/docs/adr/0007-db-backed-sessions/"><span class="docs-nav-num">0007</span><span>DB-backed sessions over stateless JWTs</span></a></li><li class="is-adr"><a href="/docs/adr/0008-argon2id-passwords/"><span class="docs-nav-num">0008</span><span>Argon2id for password hashing</span></a></li><li class="is-adr"><a href="/docs/adr/0009-custom-auth-core/"><span class="docs-nav-num">0009</span><span>Roll our own auth core on openid-client + argon2, not Auth.js</span></a></li><li class="is-adr"><a href="/docs/adr/0010-per-rrset-optimistic-concurrency/"><span class="docs-nav-num">0010</span><span>Per-RRset optimistic concurrency for the editor</span></a></li><li class="is-adr"><a href="/docs/adr/0011-migrate-on-app-boot/"><span class="docs-nav-num">0011</span><span>Migrations run at app-container boot</span></a></li><li class="is-adr"><a href="/docs/adr/0012-first-boot-provisioning/"><span class="docs-nav-num">0012</span><span>First-boot provisioning + OIDC group → role materialisation</span></a></li><li class="is-adr"><a href="/docs/adr/0013-pdns-db-bridge/"><span class="docs-nav-num">0013</span><span>The PDNS client&#39;s sanctioned DB bridge (and fixing boundary enforcement)</span></a></li><li class="is-adr"><a href="/docs/adr/0014-backend-capability-model/"><span class="docs-nav-num">0014</span><span>Per-zone authority + observed daemon capabilities (retire per-server role)</span></a></li><li class="is-adr"><a href="/docs/adr/0015-backend-health-advisories/"><span class="docs-nav-num">0015</span><span>Backend health advisories (the notification bell)</span></a></li><li class="is-adr"><a href="/docs/adr/0016-redis-horizontal-scale/"><span class="docs-nav-num">0016</span><span>Optional Redis for horizontal scale (replicas &gt; 1)</span></a></li><li class="is-adr"><a href="/docs/adr/0017-migration-squash-1.1.0/"><span class="docs-nav-num">0017</span><span>Squash the 1.1.0 schema deltas into one migration per dialect</span></a></li><li class="is-adr"><a href="/docs/adr/0018-provider-abstraction/"><span class="docs-nav-num">0018</span><span>Multi-provider auth: keep OIDC where it is, layer SAML + LDAP as siblings</span></a></li><li class="is-adr"><a href="/docs/adr/0019-webauthn-passkeys/"><span class="docs-nav-num">0019</span><span>WebAuthn: both primary credential and second factor</span></a></li><li class="is-adr"><a href="/docs/adr/0020-ldap-architecture/"><span class="docs-nav-num">0020</span><span>LDAP authentication architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0021-saml-architecture/"><span class="docs-nav-num">0021</span><span>SAML 2.0 service-provider architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0022-zone-horizons/"><span class="docs-nav-num">0022</span><span>Zone horizons: app-side split-horizon classification</span></a></li><li class="is-adr"><a href="/docs/adr/0023-zone-authority-permissions/"><span class="docs-nav-num">0023</span><span>Zone authority is a separate permission from zone records</span></a></li><li class="is-adr"><a href="/docs/adr/0024-zone-scoped-roles-grant-zone-access/"><span class="docs-nav-num">0024</span><span>Zone-scoped roles grant zone access</span></a></li></ul>
+</details>
+</nav>
+<div class="docs-sidebar-foot">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" rel="noopener"><span class="pulse" aria-hidden="true"></span>PowerDNS-AuthAdmin v1.12.1</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Docs source</a>
+</div>
+</div>
+</aside>
+<article class="docs-article" aria-labelledby="doc-title">
+<nav class="docs-crumbs" aria-label="Breadcrumb" data-search-ignore><ol><li><a href="/docs/">Docs</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><a href="/docs/#sign-in-access">Sign-in &amp; access</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><span aria-current="page">LDAP authentication</span></li></ol></nav>
+<header class="docs-header">
+
+<h1 id="doc-title">LDAP authentication</h1>
+<p class="docs-lead">Authenticate directly against Active Directory or OpenLDAP.</p>
+<div class="docs-meta" data-search-ignore>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.8 9.8 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>Updated <time datetime="2026-10-22T23:55:54+07:00">22 Oct 2026</time></span>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg>6 min read</span>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/12-LDAP.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit on GitHub</a>
+</div>
+</header>
+<details class="docs-toc-mobile" data-search-ignore><summary><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></svg><span>On this page</span><svg class="i docs-toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><nav aria-label="On this page (compact)"><ol><li><a href="#how-sign-in-works" data-toc="how-sign-in-works">How sign-in works</a></li><li><a href="#configuration" data-toc="configuration">Configuration</a><ol><li><a href="#connection" data-toc="connection">Connection</a></li><li><a href="#bind" data-toc="bind">Bind</a></li><li><a href="#user-search" data-toc="user-search">User search</a></li><li><a href="#group-resolution" data-toc="group-resolution">Group resolution</a></li><li><a href="#claims" data-toc="claims">Claims</a></li><li><a href="#email-domain-allow-list-optional" data-toc="email-domain-allow-list-optional">Email-domain allow-list (optional)</a></li><li><a href="#group--role-mappings" data-toc="group--role-mappings">Group → role mappings</a></li></ol></li><li><a href="#worked-example---active-directory" data-toc="worked-example---active-directory">Worked example - Active Directory</a></li><li><a href="#worked-example---openldap-26" data-toc="worked-example---openldap-26">Worked example - OpenLDAP 2.6</a></li><li><a href="#provisioning-yaml" data-toc="provisioning-yaml">Provisioning (YAML)</a></li><li><a href="#setting-ldap-as-the-default-sign-in-method" data-toc="setting-ldap-as-the-default-sign-in-method">Setting LDAP as the default sign-in method</a></li><li><a href="#what-you-dont-get" data-toc="what-you-dont-get">What you don&#39;t get</a></li><li><a href="#troubleshooting" data-toc="troubleshooting">Troubleshooting</a></li></ol></nav></details>
+<div class="doc-content">
+<p>PowerDNS-AuthAdmin can authenticate users by direct bind against <strong>Active
+Directory</strong> or <strong>OpenLDAP</strong>. There's no federation broker in the path - the app
+binds with a service account, looks the user up, and re-binds as that user with
+the password they typed. Groups feed the same <code>applyGroupSync</code> machinery as the
+OIDC path, so the operator's mental model is consistent across both protocols.</p>
+<p>The design is locked in <a href="/docs/adr/0020-ldap-architecture/">ADR-0020</a>. This
+document is the operator guide.</p>
+<h2 id="how-sign-in-works">How sign-in works<a class="heading-anchor" href="#how-sign-in-works" aria-label="Link to this section: How sign-in works" data-search-ignore>#</a></h2>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code>1. Browser POSTs username + password to /api/auth/ldap/&lt;slug&gt;/login
+2. App opens an LDAP connection to `server_url`
+3. If start_tls=true on the provider row → upgrade with StartTLS (RFC 4511 §4.14)
+4. App binds as `bind_dn` / `bind_password`
+5. App searches `user_search_base` with `user_search_filter`
+       ({{username}} is replaced by the LDAP-escaped login - RFC 4515)
+6. App re-binds as the user&#39;s DN + their typed password
+7. App reads email + display name + group memberships
+       (group_attr first - typically `memberOf`; second search if empty
+        AND group_search_base + group_search_filter are configured)
+8. App provisions the local users row (if absent) and applies group → role
+   mappings via the shared applyGroupSync differ.</code></pre></div>
+<p>A failed step 6 (user-password bind) is &quot;invalid credentials&quot;; failure at any
+earlier step is &quot;transport&quot; or &quot;tls&quot; - the operator sees a different log line
+than the user.</p>
+<h2 id="configuration">Configuration<a class="heading-anchor" href="#configuration" aria-label="Link to this section: Configuration" data-search-ignore>#</a></h2>
+<p>Configure LDAP under <strong>Admin → Authentication</strong> (<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/screenshots/light/oidc-providers.png" rel="noopener">screenshot</a>).
+The form has these sections.</p>
+<h3 id="connection">Connection<a class="heading-anchor" href="#connection" aria-label="Link to this section: Connection" data-search-ignore>#</a></h3>
+<ul>
+<li><strong>Server URL</strong> - <code>ldaps://host:636</code> (preferred) or <code>ldap://host:389</code>.</li>
+<li><strong>StartTLS</strong> - when on, the app upgrades a plain <code>ldap://</code> connection after
+connecting. Has no effect on <code>ldaps://</code> URLs; the validator refuses the
+redundant pair.</li>
+</ul>
+<p>Strict TLS by default. Plain <code>ldap://</code> is <strong>refused</strong> unless either:</p>
+<ul>
+<li>the row sets <code>start_tls: true</code>, OR</li>
+<li>the env knob <code>LDAP_ALLOW_INSECURE_PORT_389=true</code> is set (env-level opt-in for
+a trusted LAN - see <code>.env.example</code>).</li>
+</ul>
+<p>Self-signed / mismatched certs are <strong>refused</strong> unless the loud opt-in
+<code>LDAP_TLS_INSECURE_SKIP_VERIFY=true</code> is set. Prefer pinning the internal CA on
+the provider row (PEM textarea) over disabling verification.</p>
+<h3 id="bind">Bind<a class="heading-anchor" href="#bind" aria-label="Link to this section: Bind" data-search-ignore>#</a></h3>
+<ul>
+<li><strong>Service-account DN</strong> - the DN the app binds with for the user lookup.
+Operators typically create a dedicated read-only account.</li>
+<li><strong>Bind password</strong> - encrypted at rest (AES-256-GCM envelope). Shown only at
+creation time; on the edit page it's a &quot;rotate&quot; field - leave blank to keep.</li>
+</ul>
+<h3 id="user-search">User search<a class="heading-anchor" href="#user-search" aria-label="Link to this section: User search" data-search-ignore>#</a></h3>
+<ul>
+<li><p><strong>User search base</strong> - DN under which user records live. The search is <code>sub</code>,
+so nested OUs are fine.</p></li>
+<li><p><strong>User search filter</strong> - the RFC 4515 filter applied at the search step. The
+literal string <code>{{username}}</code> is replaced with the LDAP-escaped form of what
+the user typed. Operators commonly need to match against several attributes:</p>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code># Active Directory - matches sAMAccountName, userPrincipalName, or mail:
+(|(sAMAccountName={{username}})(userPrincipalName={{username}})(mail={{username}}))
+
+# OpenLDAP - uid or mail:
+(|(uid={{username}})(mail={{username}}))</code></pre></div>
+<p>The validator requires <code>{{username}}</code> to be present and the parens to balance.</p></li>
+</ul>
+<h3 id="group-resolution">Group resolution<a class="heading-anchor" href="#group-resolution" aria-label="Link to this section: Group resolution" data-search-ignore>#</a></h3>
+<p>Two paths. The app reads <code>group_attr</code> from the user record <strong>first</strong> - the
+common case (AD's <code>memberOf</code> is fully resolved by the DC at query time). If the
+attribute is absent or empty AND the second search is configured, the app does
+a second search:</p>
+<ul>
+<li><strong>Group search base</strong> - DN under which group records live.</li>
+<li><strong>Group search filter</strong> - RFC 4515 filter with a <code>{{userDn}}</code> placeholder
+(replaced with the LDAP-escaped DN of the just-authenticated user).</li>
+</ul>
+<p>For AD, leave the second-search pair blank. For OpenLDAP without the <code>memberof</code>
+overlay, use something like:</p>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code>(&amp;(objectClass=groupOfNames)(member={{userDn}}))</code></pre></div>
+<h3 id="claims">Claims<a class="heading-anchor" href="#claims" aria-label="Link to this section: Claims" data-search-ignore>#</a></h3>
+<ul>
+<li><strong>Email attribute</strong> - defaults to <code>mail</code>. The app keys user accounts by the
+email returned here, so it must be a stable identifier for the directory.</li>
+<li><strong>Display name attribute</strong> - defaults to <code>displayName</code>.</li>
+</ul>
+<h3 id="email-domain-allow-list-optional">Email-domain allow-list (optional)<a class="heading-anchor" href="#email-domain-allow-list-optional" aria-label="Link to this section: Email-domain allow-list (optional)" data-search-ignore>#</a></h3>
+<p>When set, the app refuses to <strong>auto-provision</strong> a new local account for an
+email outside the list. Existing accounts keep signing in regardless. The
+field is per-provider and <strong>has no env-level default</strong> - leave it off for
+&quot;any directory user with a valid email gets an account.&quot;</p>
+<h3 id="group--role-mappings">Group → role mappings<a class="heading-anchor" href="#group--role-mappings" aria-label="Link to this section: Group → role mappings" data-search-ignore>#</a></h3>
+<p>Same shape as the OIDC mappings. Each row maps a group string to a role at a
+specified scope (global / team / zone / server). On every sign-in, matching
+roles are materialised; on the next sign-in, ones that no longer match are
+revoked. Admin-issued role assignments are never touched.</p>
+<p>A <code>zone:&lt;name&gt;</code> mapping grants the role's zone-bound permissions on that zone (on
+any backend) and nothing else; team/server targets are resolved by slug at each
+sign-in - see <a href="/docs/oidc/#group--role-mapping">OIDC → Group → role mapping</a>.</p>
+<p>Group strings are <strong>case-sensitive</strong>. For AD, use the <strong>full DN</strong> of the group
+(that's what <code>memberOf</code> returns). For OpenLDAP via the second search, the
+strings are the DNs returned from the group search - also DN-shaped.</p>
+<h2 id="worked-example---active-directory">Worked example - Active Directory<a class="heading-anchor" href="#worked-example---active-directory" aria-label="Link to this section: Worked example - Active Directory" data-search-ignore>#</a></h2>
+<p>Tested on Windows Server 2022 + the default <code>Domain Users</code> OU layout.</p>
+<ol>
+<li><p><strong>LDAPS or StartTLS.</strong> AD installs an &quot;Active Directory Certificate
+Services&quot; CA the first time you promote a domain controller. The DC's
+service cert is on port 636 (LDAPS) by default. Issue a cert from your
+internal CA (no public WebPKI involvement) and pin the CA's PEM on the
+provider row - that's the most operator-friendly path. <strong>Note:</strong> make
+sure <a href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/enable-ldap-signing-in-windows-server" rel="noopener">LDAP signing</a>
+(KB4520412) doesn't block unsigned connections from your subnet; LDAPS or
+StartTLS satisfies the channel-binding requirement.</p></li>
+<li><p><strong>Service account.</strong> Create a regular user (no admin rights), reset their
+password, and store it in the bind-password field. They need read-only
+access to your user OUs - no domain-admin equivalent.</p></li>
+<li><p><strong>Settings:</strong></p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">server_url</span><span class="t-p">:</span> ldaps<span class="t-p">:</span>//ad.corp.example.com<span class="t-p">:</span><span class="t-n">636</span>
+<span class="t-v">start_tls</span><span class="t-p">:</span> <span class="t-n">false</span>
+<span class="t-v">bind_dn</span><span class="t-p">:</span> CN=svc-authadmin<span class="t-p">,</span>OU=ServiceAccounts<span class="t-p">,</span>DC=corp<span class="t-p">,</span>DC=example<span class="t-p">,</span>DC=com
+<span class="t-v">user_search_base</span><span class="t-p">:</span> OU=Employees<span class="t-p">,</span>DC=corp<span class="t-p">,</span>DC=example<span class="t-p">,</span>DC=com
+<span class="t-v">user_search_filter</span><span class="t-p">:</span> <span class="t-s">&quot;(|(sAMAccountName={{username}})(userPrincipalName={{username}})(mail={{username}}))&quot;</span>
+<span class="t-v">group_attr</span><span class="t-p">:</span> memberOf
+<span class="t-v">claim_email</span><span class="t-p">:</span> mail
+<span class="t-v">claim_name</span><span class="t-p">:</span> displayName</code></pre></div></li>
+<li><p><strong>Mapping AD groups.</strong> Right-click the group in AD Users &amp; Computers →
+Properties → click <code>Object</code> tab → copy the full DN (it's not on the General
+tab, sadly). Paste that as the <code>group</code> value:</p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">group_mappings</span><span class="t-p">:</span>
+  <span class="t-v">- group</span><span class="t-p">:</span> CN=PDNS Admins<span class="t-p">,</span>OU=Groups<span class="t-p">,</span>DC=corp<span class="t-p">,</span>DC=example<span class="t-p">,</span>DC=com
+    <span class="t-v">role</span><span class="t-p">:</span> super-admin
+    <span class="t-v">scope</span><span class="t-p">:</span> global</code></pre></div></li>
+</ol>
+<h2 id="worked-example---openldap-26">Worked example - OpenLDAP 2.6<a class="heading-anchor" href="#worked-example---openldap-26" aria-label="Link to this section: Worked example - OpenLDAP 2.6" data-search-ignore>#</a></h2>
+<p>Tested on Debian 12's <code>slapd</code> package.</p>
+<ol>
+<li><p><strong>TLS.</strong> OpenLDAP 2.6 reads its TLS config from <code>cn=config</code> via the LDAP
+protocol itself. Set the cipher suite and pin a cert with <code>ldapmodify</code>:</p>
+<div class="code-block" data-lang="ldif"><div class="code-head"><span class="code-lang">ldif</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">dn</span><span class="t-p">:</span> cn=config
+<span class="t-v">changetype</span><span class="t-p">:</span> modify
+<span class="t-v">replace</span><span class="t-p">:</span> olcTLSCertificateFile
+<span class="t-v">olcTLSCertificateFile</span><span class="t-p">:</span> /etc/ldap/sasl2/openldap.crt
+-
+<span class="t-v">replace</span><span class="t-p">:</span> olcTLSCertificateKeyFile
+<span class="t-v">olcTLSCertificateKeyFile</span><span class="t-p">:</span> /etc/ldap/sasl2/openldap.key
+-
+<span class="t-v">replace</span><span class="t-p">:</span> olcTLSCipherSuite
+<span class="t-v">olcTLSCipherSuite</span><span class="t-p">:</span> HIGH<span class="t-p">:</span>!aNULL<span class="t-p">:</span>!eNULL<span class="t-p">:</span>!MD5<span class="t-p">:</span>!RC4<span class="t-p">:</span>!SRP<span class="t-p">:</span>!PSK<span class="t-p">:</span>!DSS</code></pre></div></li>
+<li><p><strong>memberof overlay (optional but recommended).</strong> With this overlay enabled,
+user records carry a resolved <code>memberOf</code> attribute and you don't need the
+second search:</p>
+<div class="code-block" data-lang="ldif"><div class="code-head"><span class="code-lang">ldif</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">dn</span><span class="t-p">:</span> cn=module,cn=config
+<span class="t-v">objectClass</span><span class="t-p">:</span> olcModuleList
+<span class="t-v">cn</span><span class="t-p">:</span> module
+<span class="t-v">olcModulePath</span><span class="t-p">:</span> /usr/lib/ldap
+<span class="t-v">olcModuleLoad</span><span class="t-p">:</span> memberof.la
+
+<span class="t-v">dn</span><span class="t-p">:</span> olcOverlay=memberof,olcDatabase={1}mdb,cn=config
+<span class="t-v">objectClass</span><span class="t-p">:</span> olcOverlayConfig
+<span class="t-v">objectClass</span><span class="t-p">:</span> olcMemberOf
+<span class="t-v">olcOverlay</span><span class="t-p">:</span> memberof
+<span class="t-v">olcMemberOfRefint</span><span class="t-p">:</span> TRUE</code></pre></div>
+<p>Without the overlay, leave <code>group_attr</code> at its default and configure the
+second search:</p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">group_search_base</span><span class="t-p">:</span> ou=Groups<span class="t-p">,</span>dc=example<span class="t-p">,</span>dc=com
+<span class="t-v">group_search_filter</span><span class="t-p">:</span> <span class="t-s">&quot;(&amp;(objectClass=groupOfNames)(member={{userDn}}))&quot;</span></code></pre></div></li>
+<li><p><strong>Settings (StartTLS variant):</strong></p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">server_url</span><span class="t-p">:</span> ldap<span class="t-p">:</span>//openldap.dev.example.com<span class="t-p">:</span><span class="t-n">389</span>
+<span class="t-v">start_tls</span><span class="t-p">:</span> <span class="t-n">true</span>
+<span class="t-v">bind_dn</span><span class="t-p">:</span> cn=svc-authadmin<span class="t-p">,</span>ou=ServiceAccounts<span class="t-p">,</span>dc=example<span class="t-p">,</span>dc=com
+<span class="t-v">user_search_base</span><span class="t-p">:</span> ou=Users<span class="t-p">,</span>dc=example<span class="t-p">,</span>dc=com
+<span class="t-v">user_search_filter</span><span class="t-p">:</span> <span class="t-s">&quot;(|(uid={{username}})(mail={{username}}))&quot;</span>
+<span class="t-v">claim_email</span><span class="t-p">:</span> mail
+<span class="t-v">claim_name</span><span class="t-p">:</span> cn</code></pre></div></li>
+</ol>
+<h2 id="provisioning-yaml">Provisioning (YAML)<a class="heading-anchor" href="#provisioning-yaml" aria-label="Link to this section: Provisioning (YAML)" data-search-ignore>#</a></h2>
+<p>The <code>ldap:</code> block under <code>provisioning.yaml</code> has the same shape as <code>oidc:</code> -
+slugs reserve in the cross-type <code>auth_provider_slugs</code> table, bind passwords are
+encrypted before write, group mappings are validated against your <code>roles</code> /
+<code>teams</code> / <code>pdns_servers</code> sections. See the worked AD + OpenLDAP examples in
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/provisioning.example.yaml" rel="noopener"><code>provisioning.example.yaml</code></a>.</p>
+<p>A bare-slug <code>auth_default_provider</code> resolves to LDAP transparently - the
+applier consults <code>auth_provider_slugs</code> and persists the canonical
+<code>ldap:&lt;slug&gt;</code> form.</p>
+<h2 id="setting-ldap-as-the-default-sign-in-method">Setting LDAP as the default sign-in method<a class="heading-anchor" href="#setting-ldap-as-the-default-sign-in-method" aria-label="Link to this section: Setting LDAP as the default sign-in method" data-search-ignore>#</a></h2>
+<p>On <strong>Admin → Authentication</strong>, the &quot;Default sign-in method&quot; dropdown lists
+every enabled provider. Pick an LDAP entry and <code>/login</code> will skip the OIDC
+buttons and local form on a fresh visit - it bounces through
+<code>/login?ldap=&lt;slug&gt;</code> so only the chosen provider's form is shown.</p>
+<p>Operators with a wedged IdP can always reach the full page with
+<code>/login?force-local=1</code>. The escape hatch isn't gated by RBAC; it's a literal
+URL switch any human can type into their address bar to recover from a
+misconfigured default.</p>
+<h2 id="what-you-dont-get">What you don't get<a class="heading-anchor" href="#what-you-dont-get" aria-label="Link to this section: What you don&#39;t get" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Password change against the directory.</strong> AuthAdmin never sends a
+modify-password request to LDAP; the directory remains the source of truth.</li>
+<li><strong>SASL / Kerberos binds.</strong> Simple binds only. Most operators using
+AuthAdmin from a non-Windows host won't have the Kerberos ticket
+machinery wired up anyway; if you need it, open an issue.</li>
+<li><strong>Group write-back.</strong> Group memberships are read-only - AuthAdmin doesn't
+write group changes back to the directory.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="heading-anchor" href="#troubleshooting" aria-label="Link to this section: Troubleshooting" data-search-ignore>#</a></h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Symptom</th><th>Likely cause</th></tr></thead>
+<tbody>
+<tr><td><code>ldap.service-bind.invalid-credentials</code> in the logs</td><td>The <strong>service-account</strong> password is wrong. The user sees a generic transport error.</td></tr>
+<tr><td><code>ldap.user-bind.failed</code> after the user search succeeds</td><td>The user's password is wrong. UX path; the audit log records <code>reason: invalid-credentials</code>.</td></tr>
+<tr><td><code>ldap.user-search.multiple-matches</code></td><td>The filter is too broad and matches more than one record. Tighten it (e.g. add <code>(objectClass=person)</code>).</td></tr>
+<tr><td><code>ldap.starttls.failed</code></td><td>The server doesn't speak StartTLS on the configured port. Use <code>ldaps://636</code> instead.</td></tr>
+<tr><td><code>ldap.claim.email-missing</code></td><td>The user record has no <code>mail</code> attribute (or whatever <code>claim_email</code> is set to). Pick a different attr.</td></tr>
+<tr><td>Sign-in works but no role assignments materialised</td><td>The <code>group_attr</code> is empty and the second search isn't configured - set <code>group_search_base/filter</code>.</td></tr>
+<tr><td>AD rejects every bind with <code>LDAP_UNWILLING_TO_PERFORM</code></td><td>LDAP signing / channel-binding is required (KB4520412). Switch to LDAPS.</td></tr>
+<tr><td><code>ldap.authenticate.insecure-transport</code> warning in logs</td><td>You're running plain <code>ldap://</code> without StartTLS. Either pin LDAPS or set <code>start_tls: true</code>.</td></tr>
+</tbody>
+</table></div>
+</div>
+<footer class="docs-footer" data-search-ignore>
+<div class="docs-feedback">
+<p class="docs-feedback-q"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg><span>Was this page helpful?</span></p>
+<div class="docs-feedback-links">
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20LDAP%20authentication&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Fldap%2F%0ASource%3A%20docs%2F12-LDAP.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Open an issue</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/12-LDAP.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page on GitHub</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/docs/12-LDAP.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>View source</a>
+</div>
+</div>
+<nav class="docs-pager" aria-label="Previous and next page" data-search-ignore><a class="docs-pager-card docs-pager-prev" href="/docs/saml/" rel="prev"><span class="docs-pager-dir"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7"/></svg>Previous</span><span class="docs-pager-title">SAML 2.0 single sign-on</span><span class="docs-pager-section">Sign-in &amp; access</span></a><a class="docs-pager-card docs-pager-next" href="/docs/passkeys/" rel="next"><span class="docs-pager-dir">Next<svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></span><span class="docs-pager-title">Passkeys &amp; security keys</span><span class="docs-pager-section">Sign-in &amp; access</span></a></nav>
+<p class="docs-synced"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><span>Synced from <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener">PowerDNS-AuthAdmin v1.12.1</a> (<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/commit/d0a3faf959c75072815301a236f2c993385d02a9" rel="noopener"><code>d0a3faf</code></a>), <code>docs/12-LDAP.md</code>. Documentation © the PowerDNS-AuthAdmin contributors, <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT</a>.</span></p>
+</footer>
+</article>
+<aside class="docs-toc" aria-label="On this page" data-search-ignore>
+<p class="docs-toc-title">On this page</p>
+<nav aria-label="Table of contents"><ol><li><a href="#how-sign-in-works" data-toc="how-sign-in-works">How sign-in works</a></li><li><a href="#configuration" data-toc="configuration">Configuration</a><ol><li><a href="#connection" data-toc="connection">Connection</a></li><li><a href="#bind" data-toc="bind">Bind</a></li><li><a href="#user-search" data-toc="user-search">User search</a></li><li><a href="#group-resolution" data-toc="group-resolution">Group resolution</a></li><li><a href="#claims" data-toc="claims">Claims</a></li><li><a href="#email-domain-allow-list-optional" data-toc="email-domain-allow-list-optional">Email-domain allow-list (optional)</a></li><li><a href="#group--role-mappings" data-toc="group--role-mappings">Group → role mappings</a></li></ol></li><li><a href="#worked-example---active-directory" data-toc="worked-example---active-directory">Worked example - Active Directory</a></li><li><a href="#worked-example---openldap-26" data-toc="worked-example---openldap-26">Worked example - OpenLDAP 2.6</a></li><li><a href="#provisioning-yaml" data-toc="provisioning-yaml">Provisioning (YAML)</a></li><li><a href="#setting-ldap-as-the-default-sign-in-method" data-toc="setting-ldap-as-the-default-sign-in-method">Setting LDAP as the default sign-in method</a></li><li><a href="#what-you-dont-get" data-toc="what-you-dont-get">What you don&#39;t get</a></li><li><a href="#troubleshooting" data-toc="troubleshooting">Troubleshooting</a></li></ol></nav>
+<div class="docs-toc-actions">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/12-LDAP.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20LDAP%20authentication&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Fldap%2F%0ASource%3A%20docs%2F12-LDAP.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Report an issue</a>
+<a href="#main" data-docs-top><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>Back to top</a>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer" data-search-ignore>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+      <p>Modern, self-hosted DNS administration for PowerDNS Authoritative. Open source under the <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT licence</a>, built in the open by its community.</p>
+      <a class="release-chip" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v1.12.1<span class="muted">· 23 Oct 2026</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><h2>Product</h2><ul><li><a href="/features/">Features</a></li><li><a href="/powerdns-admin-alternative/">Compare</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/support/">Commercial support</a></li><li><a href="/search/">Search</a></li><li><a href="https://demo.powerdns-authadmin.org" rel="noopener">Live demo</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases" rel="noopener">Releases</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li></ul></div>
+      <div class="footer-col"><h2>Docs</h2><ul><li><a href="/docs/">Documentation</a></li><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/rbac/">RBAC</a></li><li><a href="/docs/oidc/">OIDC</a></li><li><a href="/docs/ldap/">LDAP</a></li><li><a href="/docs/saml/">SAML</a></li><li><a href="/docs/passkeys/">Passkeys</a></li><li><a href="/docs/mcp/">MCP</a></li></ul></div>
+      <div class="footer-col"><h2>Community</h2><ul><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener">GitHub</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/discussions" rel="noopener">Discussions</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues" rel="noopener">Issues</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy" rel="noopener">Security policy</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/website" rel="noopener">Website source</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-badges" role="group" aria-label="Project status"><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/ci.yml?query=branch%3Amain" rel="noopener"><img src="/badges/ci.svg" alt="CI" width="90" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/latest" rel="noopener"><img src="/badges/release.svg" alt="Release" width="102" height="20" loading="lazy" decoding="async"></a><a href="https://scorecard.dev/viewer/?uri=github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener"><img src="/badges/openssf-scorecard.svg" alt="OpenSSF Scorecard" width="136" height="20" loading="lazy" decoding="async"></a><a href="https://www.bestpractices.dev/projects/12974" rel="noopener"><img src="/badges/openssf-best-practices.svg" alt="OpenSSF Best Practices" width="184" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener"><img src="/badges/license.svg" alt="License: MIT" width="78" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr.svg" alt="Container: GHCR" width="191" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-version.svg" alt="GHCR version" width="101" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-pulls.svg" alt="GHCR pulls" width="111" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-size.svg" alt="GHCR image size" width="142" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/.nvmrc" rel="noopener"><img src="/badges/nodejs.svg" alt="Node.js 24" width="91" height="20" loading="lazy" decoding="async"></a><a href="https://nextjs.org" rel="noopener"><img src="/badges/nextjs.svg" alt="Next.js 16" width="89" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/tsconfig.json" rel="noopener"><img src="/badges/typescript.svg" alt="TypeScript strict" width="123" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-46.yml" rel="noopener"><img src="/badges/pdns-4-6.svg" alt="PowerDNS 4.6" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-47.yml" rel="noopener"><img src="/badges/pdns-4-7.svg" alt="PowerDNS 4.7" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-48.yml" rel="noopener"><img src="/badges/pdns-4-8.svg" alt="PowerDNS 4.8" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-49.yml" rel="noopener"><img src="/badges/pdns-4-9.svg" alt="PowerDNS 4.9" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-50.yml" rel="noopener"><img src="/badges/pdns-5-0.svg" alt="PowerDNS 5.0" width="155" height="20" loading="lazy" decoding="async"></a></span></div>
+  <div class="container footer-bottom">
+    <span>© 2026 PowerDNS-AuthAdmin contributors. MIT licensed.</span>
+    <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+  </div>
+</footer>
+
+</body>
+</html>

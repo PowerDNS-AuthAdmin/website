@@ -1,0 +1,5 @@
+Contact: https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/advisories/new
+Expires: 2027-10-23T00:00:00Z
+Policy: https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy
+Preferred-Languages: en
+Canonical: https://powerdns-authadmin.org/.well-known/security.txt

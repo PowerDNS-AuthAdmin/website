@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark" data-base="" data-search-index="/assets/search/index.e7ebd943fc.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+0OEGstklXt2mYXx9ele+KtHixPt1mbLLFe91lHkjfQ=' https://*.googletagmanager.com; style-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'self'; upgrade-insecure-requests">
+<title>Installation · AuthAdmin docs</title>
+<meta name="description" content="Installation: Run it for real: Docker or from source, SQLite or Postgres, a reverse proxy, backups and health checks.">
+<link rel="canonical" href="https://powerdns-authadmin.org/docs/installation/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;})();</script>
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.22cd64dffc.css">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="PowerDNS-AuthAdmin">
+<meta name="apple-mobile-web-app-title" content="AuthAdmin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="/humans.txt">
+<link rel="search" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PowerDNS-AuthAdmin">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://powerdns-authadmin.org/docs/installation/">
+<meta property="og:title" content="Installation · AuthAdmin docs">
+<meta property="og:description" content="Installation: Run it for real: Docker or from source, SQLite or Postgres, a reverse proxy, backups and health checks.">
+<meta property="og:image" content="https://powerdns-authadmin.org/assets/og/docs-installation.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Installation: PowerDNS-AuthAdmin documentation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Installation · AuthAdmin docs">
+<meta name="twitter:description" content="Installation: Run it for real: Docker or from source, SQLite or Postgres, a reverse proxy, backups and health checks.">
+<meta name="twitter:image" content="https://powerdns-authadmin.org/assets/og/docs-installation.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://powerdns-authadmin.org/#organization","name":"PowerDNS-AuthAdmin","url":"https://powerdns-authadmin.org/","logo":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/icons/icon-512.png","width":512,"height":512},"sameAs":["https://github.com/PowerDNS-AuthAdmin","https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin"]},{"@type":"WebSite","@id":"https://powerdns-authadmin.org/#website","url":"https://powerdns-authadmin.org/","name":"PowerDNS-AuthAdmin","description":"Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.","inLanguage":"en","publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://powerdns-authadmin.org/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"BreadcrumbList","@id":"https://powerdns-authadmin.org/docs/installation/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://powerdns-authadmin.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://powerdns-authadmin.org/docs/"},{"@type":"ListItem","position":3,"name":"Installation","item":"https://powerdns-authadmin.org/docs/installation/"}]},{"@type":"TechArticle","@id":"https://powerdns-authadmin.org/docs/installation/#webpage","url":"https://powerdns-authadmin.org/docs/installation/","name":"Installation · AuthAdmin docs","description":"Installation: Run it for real: Docker or from source, SQLite or Postgres, a reverse proxy, backups and health checks.","inLanguage":"en","isPartOf":{"@id":"https://powerdns-authadmin.org/#website"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/og/docs-installation.jpg","width":1200,"height":630},"dateModified":"2026-10-09T19:45:04+07:00","headline":"Installation","author":{"@id":"https://powerdns-authadmin.org/#organization"},"publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"image":"https://powerdns-authadmin.org/assets/og/docs-installation.jpg","mainEntityOfPage":"https://powerdns-authadmin.org/docs/installation/","about":{"@id":"https://powerdns-authadmin.org/#software"},"wordCount":2120,"breadcrumb":{"@id":"https://powerdns-authadmin.org/docs/installation/#breadcrumb"}}]}</script>
+<script src="/assets/js/main.279cf15a30.js" defer></script>
+<script src="/assets/js/search.3b4cc0b30a.js" defer></script>
+<script src="/assets/js/docs.20196dd4af.js" defer></script>
+<script src="/assets/js/analytics.32eae1dcec.js" data-ga4="G-Y8C640LSFR" defer></script>
+</head>
+<body class="page-docs-installation layout-docs">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-search-ignore>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+    <nav class="nav" aria-label="Primary"><a href="/features/">Features</a><a href="/docs/" aria-current="page">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-label="Search docs and site (Ctrl K)"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="search-trigger-label">Search docs…</span><kbd class="search-kbd" data-search-kbd>Ctrl K</kbd></button>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="i i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="i i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
+      <a class="icon-btn hide-md" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener" aria-label="PowerDNS-AuthAdmin on GitHub" title="PowerDNS-AuthAdmin on GitHub"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Live demo</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="docs-sidebar" data-docs-menu><svg class="i i-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  
+</header>
+<main id="main" tabindex="-1" data-search-section="Docs › Getting started">
+
+<div class="docs-shell" data-docs>
+<aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation" data-search-ignore>
+<div class="docs-sidebar-scroll">
+<nav class="docs-sitenav" aria-label="Site"><a href="/features/">Features</a><a href="/docs/" class="is-current">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+<a class="docs-nav-home" href="/docs/"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg><span>Docs home</span></a>
+<nav class="docs-nav" aria-label="Docs sections">
+<details class="docs-nav-group has-current" data-group="getting-started" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.8-1.6l9.9-10.2a.5.5 0 0 1 .9.5L12 8.7a1 1 0 0 0 1 1.3h7a1 1 0 0 1 .8 1.6l-9.9 10.2a.5.5 0 0 1-.9-.5l1.9-6A1 1 0 0 0 11 14Z"/></svg></span><span class="docs-nav-label">Getting started</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/" aria-current="page">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/backends/">PowerDNS backends</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="sign-in-access" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16.5 6.5l2.5 2.5M14 9l2 2"/></svg></span><span class="docs-nav-label">Sign-in &amp; access</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/oidc/">OIDC single sign-on</a></li><li><a href="/docs/saml/">SAML 2.0 single sign-on</a></li><li><a href="/docs/ldap/">LDAP sign-in</a></li><li><a href="/docs/passkeys/">Passkeys &amp; security keys</a></li><li><a href="/docs/rbac/">Roles &amp; permissions</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="operations" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><span class="docs-nav-label">Operations</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/provisioning/">First-boot provisioning</a></li><li><a href="/docs/hardening/">Hardening</a></li><li><a href="/docs/upgrading/">Upgrading</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="integrations-reference" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span><span class="docs-nav-label">Integrations &amp; reference</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/mcp/">Natural-language DNS with MCP</a></li><li><a href="/docs/features/">Feature catalog</a></li><li><a href="/docs/dev-setup/">Dev setup</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="adr">
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="docs-nav-label">Architecture decisions</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li class="is-index"><a href="/docs/adr/">All decisions</a></li><li class="is-adr"><a href="/docs/adr/0001-framework-choice/"><span class="docs-nav-num">0001</span><span>Choose Next.js 15 + React Server Components as the framework</span></a></li><li class="is-adr"><a href="/docs/adr/0002-mit-license/"><span class="docs-nav-num">0002</span><span>License under MIT</span></a></li><li class="is-adr"><a href="/docs/adr/0004-three-layer-architecture/"><span class="docs-nav-num">0004</span><span>Three-layer architecture (auth → RBAC → business logic)</span></a></li><li class="is-adr"><a href="/docs/adr/0005-migrations-explicit/"><span class="docs-nav-num">0005</span><span>Migrations are never auto-applied on app boot</span></a></li><li class="is-adr"><a href="/docs/adr/0006-csp-nonce/"><span class="docs-nav-num">0006</span><span>Per-request CSP nonce</span></a></li><li class="is-adr"><a href="/docs/adr/0007-db-backed-sessions/"><span class="docs-nav-num">0007</span><span>DB-backed sessions over stateless JWTs</span></a></li><li class="is-adr"><a href="/docs/adr/0008-argon2id-passwords/"><span class="docs-nav-num">0008</span><span>Argon2id for password hashing</span></a></li><li class="is-adr"><a href="/docs/adr/0009-custom-auth-core/"><span class="docs-nav-num">0009</span><span>Roll our own auth core on openid-client + argon2, not Auth.js</span></a></li><li class="is-adr"><a href="/docs/adr/0010-per-rrset-optimistic-concurrency/"><span class="docs-nav-num">0010</span><span>Per-RRset optimistic concurrency for the editor</span></a></li><li class="is-adr"><a href="/docs/adr/0011-migrate-on-app-boot/"><span class="docs-nav-num">0011</span><span>Migrations run at app-container boot</span></a></li><li class="is-adr"><a href="/docs/adr/0012-first-boot-provisioning/"><span class="docs-nav-num">0012</span><span>First-boot provisioning + OIDC group → role materialisation</span></a></li><li class="is-adr"><a href="/docs/adr/0013-pdns-db-bridge/"><span class="docs-nav-num">0013</span><span>The PDNS client&#39;s sanctioned DB bridge (and fixing boundary enforcement)</span></a></li><li class="is-adr"><a href="/docs/adr/0014-backend-capability-model/"><span class="docs-nav-num">0014</span><span>Per-zone authority + observed daemon capabilities (retire per-server role)</span></a></li><li class="is-adr"><a href="/docs/adr/0015-backend-health-advisories/"><span class="docs-nav-num">0015</span><span>Backend health advisories (the notification bell)</span></a></li><li class="is-adr"><a href="/docs/adr/0016-redis-horizontal-scale/"><span class="docs-nav-num">0016</span><span>Optional Redis for horizontal scale (replicas &gt; 1)</span></a></li><li class="is-adr"><a href="/docs/adr/0017-migration-squash-1.1.0/"><span class="docs-nav-num">0017</span><span>Squash the 1.1.0 schema deltas into one migration per dialect</span></a></li><li class="is-adr"><a href="/docs/adr/0018-provider-abstraction/"><span class="docs-nav-num">0018</span><span>Multi-provider auth: keep OIDC where it is, layer SAML + LDAP as siblings</span></a></li><li class="is-adr"><a href="/docs/adr/0019-webauthn-passkeys/"><span class="docs-nav-num">0019</span><span>WebAuthn: both primary credential and second factor</span></a></li><li class="is-adr"><a href="/docs/adr/0020-ldap-architecture/"><span class="docs-nav-num">0020</span><span>LDAP authentication architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0021-saml-architecture/"><span class="docs-nav-num">0021</span><span>SAML 2.0 service-provider architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0022-zone-horizons/"><span class="docs-nav-num">0022</span><span>Zone horizons: app-side split-horizon classification</span></a></li><li class="is-adr"><a href="/docs/adr/0023-zone-authority-permissions/"><span class="docs-nav-num">0023</span><span>Zone authority is a separate permission from zone records</span></a></li><li class="is-adr"><a href="/docs/adr/0024-zone-scoped-roles-grant-zone-access/"><span class="docs-nav-num">0024</span><span>Zone-scoped roles grant zone access</span></a></li></ul>
+</details>
+</nav>
+<div class="docs-sidebar-foot">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" rel="noopener"><span class="pulse" aria-hidden="true"></span>PowerDNS-AuthAdmin v1.12.1</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Docs source</a>
+</div>
+</div>
+</aside>
+<article class="docs-article" aria-labelledby="doc-title">
+<nav class="docs-crumbs" aria-label="Breadcrumb" data-search-ignore><ol><li><a href="/docs/">Docs</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><a href="/docs/#getting-started">Getting started</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><span aria-current="page">Installation</span></li></ol></nav>
+<header class="docs-header">
+
+<h1 id="doc-title">Installation</h1>
+<p class="docs-lead">Run it for real: Docker or from source, SQLite or Postgres, a reverse proxy, backups and health checks.</p>
+<div class="docs-meta" data-search-ignore>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.8 9.8 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>Updated <time datetime="2026-10-09T19:45:04+07:00">9 Oct 2026</time></span>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg>9 min read</span>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/02-INSTALLATION.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit on GitHub</a>
+</div>
+</header>
+<details class="docs-toc-mobile" data-search-ignore><summary><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></svg><span>On this page</span><svg class="i docs-toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><nav aria-label="On this page (compact)"><ol><li><a href="#a---docker-install" data-toc="a---docker-install">A - Docker install</a><ol><li><a href="#before-you-start" data-toc="before-you-start">Before you start</a></li><li><a href="#1-create-env-secrets" data-toc="1-create-env-secrets">1. Create .env (secrets)</a></li><li><a href="#2-set-app_url" data-toc="2-set-app_url">2. Set APP_URL</a></li><li><a href="#3-write-docker-composeyml" data-toc="3-write-docker-composeyml">3. Write docker-compose.yml</a></li><li><a href="#4-start" data-toc="4-start">4. Start</a></li></ol></li><li><a href="#b---from-source-install" data-toc="b---from-source-install">B - From-source install</a><ol><li><a href="#prerequisites" data-toc="prerequisites">Prerequisites</a></li><li><a href="#1-clone-and-install" data-toc="1-clone-and-install">1. Clone and install</a></li><li><a href="#2-create-env" data-toc="2-create-env">2. Create .env</a></li><li><a href="#3-set-app_url" data-toc="3-set-app_url">3. Set APP_URL</a></li><li><a href="#4-build" data-toc="4-build">4. Build</a></li><li><a href="#5-migrate-seed-run" data-toc="5-migrate-seed-run">5. Migrate, seed, run</a></li></ol></li><li><a href="#first-login" data-toc="first-login">First login</a></li><li><a href="#reference" data-toc="reference">Reference</a><ol><li><a href="#behind-a-reverse-proxy" data-toc="behind-a-reverse-proxy">Behind a reverse proxy</a></li><li><a href="#secrets-from-files-docker--kubernetes-secrets" data-toc="secrets-from-files-docker--kubernetes-secrets">Secrets from files (Docker / Kubernetes secrets)</a></li><li><a href="#what-happens-on-boot" data-toc="what-happens-on-boot">What happens on boot</a></li><li><a href="#health-checks" data-toc="health-checks">Health checks</a></li><li><a href="#backups" data-toc="backups">Backups</a></li></ol></li><li><a href="#next-steps" data-toc="next-steps">Next steps</a></li></ol></nav></details>
+<div class="doc-content">
+<p>Two supported install paths:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Path</th><th>Use when</th><th>Skip to</th></tr></thead>
+<tbody>
+<tr><td><strong>A - Docker</strong> (recommended for prod)</td><td>You want a single image, scheduler-friendly health checks, auto-migrate on boot.</td><td><a href="#a---docker-install">§ Docker install</a></td></tr>
+<tr><td><strong>B - From source</strong> (build &amp; run natively)</td><td>You can't (or won't) run Docker, you're packaging for systemd/PM2, or doing first dive.</td><td><a href="#b---from-source-install">§ From-source install</a></td></tr>
+</tbody>
+</table></div>
+<p>Either path runs on <strong>SQLite</strong> (one file, single instance) or <strong>Postgres</strong>
+(any number of replicas + Redis). Database migrations + the first-run admin
+seed happen automatically - the install comes up ready to use.</p>
+<blockquote>
+<p>The two database backends do <strong>not</strong> share a migration history - switching
+later is a fresh install. Pick one now.</p>
+</blockquote>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th></th><th><strong>SQLite</strong></th><th><strong>Postgres</strong></th></tr></thead>
+<tbody>
+<tr><td>Use when</td><td>one instance - homelab, evaluation, small team</td><td>multiple instances, or you want a managed DB</td></tr>
+<tr><td>Storage</td><td>one file in a Docker volume / on the host</td><td>a <code>postgres</code> service (or your own DB)</td></tr>
+<tr><td>Replicas &gt; 1</td><td>❌</td><td>✅ (also set <code>REDIS_URL</code> - see <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/README.md#high-availability-replicas--1" rel="noopener">High availability</a>)</td></tr>
+</tbody>
+</table></div>
+<p>After install, both paths land at <a href="#first-login">§ First login</a> and
+<a href="#behind-a-reverse-proxy">§ Behind a reverse proxy</a>.</p>
+<hr>
+<h2 id="a---docker-install">A - Docker install<a class="heading-anchor" href="#a---docker-install" aria-label="Link to this section: A - Docker install" data-search-ignore>#</a></h2>
+<p>Production-recommended. The app is one image -
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><code>ghcr.io/powerdns-authadmin/powerdns-authadmin</code></a> -
+booted from a single <code>docker-compose.yml</code>. Five steps:
+<strong>create <code>.env</code> secrets → set <code>APP_URL</code> → write <code>docker-compose.yml</code> → start → first login.</strong></p>
+<h3 id="before-you-start">Before you start<a class="heading-anchor" href="#before-you-start" aria-label="Link to this section: Before you start" data-search-ignore>#</a></h3>
+<ul>
+<li><p><strong>Docker</strong> with the Compose plugin - <code>docker compose version</code> must be <strong>v2+</strong>.</p></li>
+<li><p>A directory to hold your two files (<code>.env</code> + <code>docker-compose.yml</code>). Everything
+below runs from inside it:</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">mkdir</span> powerdns-authadmin <span class="t-p">&amp;&amp;</span> <span class="t-x">cd</span> powerdns-authadmin</code></pre></div></li>
+</ul>
+<h3 id="1-create-env-secrets">1. Create <code>.env</code> (secrets)<a class="heading-anchor" href="#1-create-env-secrets" aria-label="Link to this section: 1. Create .env (secrets)" data-search-ignore>#</a></h3>
+<p>Two secrets are <strong>required</strong> and must be unique to your deployment. This command
+generates them, picks a bootstrap admin password, and writes <code>.env</code>. <strong>Run it
+once.</strong></p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-p">{</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;APP_SECRET_KEY=</span><span class="t-v">$(openssl rand -base64 32)</span><span class="t-s">&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;APP_ENCRYPTION_KEY=</span><span class="t-v">$(openssl rand -base64 32)</span><span class="t-s">&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;BOOTSTRAP_ADMIN_EMAIL=admin@example.com&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;BOOTSTRAP_ADMIN_PASSWORD=</span><span class="t-v">$(openssl rand -base64 18)</span><span class="t-s">&quot;</span>
+  <span class="t-c"># Postgres only - delete this line if you chose SQLite:</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;POSTGRES_PASSWORD=</span><span class="t-v">$(openssl rand -base64 18)</span><span class="t-s">&quot;</span>
+<span class="t-p">}</span> <span class="t-p">&gt;</span> .env
+<span class="t-x">chmod</span> <span class="t-n">600</span> .env</code></pre></div>
+<p>Edit <code>.env</code> and set <strong><code>BOOTSTRAP_ADMIN_EMAIL</code></strong> to your address. Note the
+generated <code>BOOTSTRAP_ADMIN_PASSWORD</code> - you'll use it for the first login (and
+change it immediately).</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Variable</th><th>Purpose</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td><code>APP_SECRET_KEY</code></td><td>Signs sessions, CSRF tokens, API-token HMACs</td><td>≥ 32 characters</td></tr>
+<tr><td><code>APP_ENCRYPTION_KEY</code></td><td>Encrypts stored PowerDNS API keys, OIDC secrets, MFA secrets</td><td>base64 decoding to ≥ 32 bytes</td></tr>
+<tr><td><code>BOOTSTRAP_ADMIN_EMAIL</code> / <code>_PASSWORD</code></td><td>The first admin account (set together)</td><td>password ≥ 12 chars</td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>Generate the two keys once and never change them.</strong> Rotating
+<code>APP_ENCRYPTION_KEY</code> makes every stored PowerDNS API key, OIDC secret, and MFA
+secret undecryptable; changing <code>APP_SECRET_KEY</code> logs everyone out. Back up
+<code>.env</code> - don't regenerate it. (The app refuses to start if either key is
+missing, too short, or a placeholder like <code>changeme</code>.)</p>
+</blockquote>
+<p>Compose loads <code>.env</code> automatically, so the same values are reused on every <code>up</code>,
+<code>down</code>, and restart - there are no shell <code>export</code>s to remember.</p>
+<hr>
+<h3 id="2-set-app_url">2. Set <code>APP_URL</code><a class="heading-anchor" href="#2-set-app_url" aria-label="Link to this section: 2. Set APP_URL" data-search-ignore>#</a></h3>
+<p><strong><code>APP_URL</code> must match the URL the browser uses to reach the app - exact scheme,
+host, and port.</strong> Append it to <code>.env</code>:</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">echo</span> <span class="t-s">&quot;APP_URL=https://dns.example.com&quot;</span> <span class="t-p">&gt;&gt;</span> .env   <span class="t-c"># ← your real public URL</span></code></pre></div>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>You access the app at…</th><th>Set <code>APP_URL</code> to</th></tr></thead>
+<tbody>
+<tr><td><code>https://dns.example.com</code></td><td><code>https://dns.example.com</code></td></tr>
+<tr><td><code>http://10.0.0.5:3000</code> (LAN, no TLS)</td><td><code>http://10.0.0.5:3000</code></td></tr>
+<tr><td><code>http://localhost:3000</code> (local docker)</td><td><code>http://localhost:3000</code></td></tr>
+</tbody>
+</table></div>
+<p>No trailing slash. If you sit behind a reverse proxy, this is the <strong>public</strong>
+URL, not the upstream <code>app:3000</code>.</p>
+<blockquote>
+<p>⚠️ <strong>Why this matters.</strong> The session and CSRF cookies are scoped to
+<code>APP_URL</code>'s host. If it doesn't match the URL in your browser's address bar,
+the browser <strong>silently rejects</strong> the cookie (DevTools shows
+<code>Cookie &quot;pda_csrf&quot; has been rejected for invalid domain</code>) and sign-in fails
+with no useful error. The same value also builds OIDC redirect URIs,
+password-reset email links, and the CSP origin allowlist - getting it wrong
+breaks all three.</p>
+<p>The login page detects a mismatch on render and shows an inline error, so you
+won't have to hunt the DevTools console.</p>
+</blockquote>
+<hr>
+<h3 id="3-write-docker-composeyml">3. Write <code>docker-compose.yml</code><a class="heading-anchor" href="#3-write-docker-composeyml" aria-label="Link to this section: 3. Write docker-compose.yml" data-search-ignore>#</a></h3>
+<p>Pick the block matching your database choice.</p>
+<h4 id="option-a---sqlite">Option A - SQLite<a class="heading-anchor" href="#option-a---sqlite" aria-label="Link to this section: Option A - SQLite" data-search-ignore>#</a></h4>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-c"># docker-compose.yml</span>
+<span class="t-v">services</span><span class="t-p">:</span>
+  <span class="t-v">app</span><span class="t-p">:</span>
+    <span class="t-v">image</span><span class="t-p">:</span> ghcr.io/powerdns-authadmin/powerdns-authadmin<span class="t-p">:</span>latest
+    <span class="t-v">restart</span><span class="t-p">:</span> unless-stopped
+    <span class="t-v">ports</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-s">&quot;3000:3000&quot;</span><span class="t-p">]</span>
+    <span class="t-v">environment</span><span class="t-p">:</span>
+      <span class="t-v">APP_URL</span><span class="t-p">:</span> $<span class="t-p">{</span>APP_URL<span class="t-p">}</span>
+      <span class="t-v">DATABASE_URL</span><span class="t-p">:</span> file<span class="t-p">:</span>/data/powerdns_authadmin.db
+      <span class="t-v">APP_SECRET_KEY</span><span class="t-p">:</span> $<span class="t-p">{</span>APP_SECRET_KEY<span class="t-p">}</span>
+      <span class="t-v">APP_ENCRYPTION_KEY</span><span class="t-p">:</span> $<span class="t-p">{</span>APP_ENCRYPTION_KEY<span class="t-p">}</span>
+      <span class="t-v">BOOTSTRAP_ADMIN_EMAIL</span><span class="t-p">:</span> $<span class="t-p">{</span>BOOTSTRAP_ADMIN_EMAIL<span class="t-p">}</span>
+      <span class="t-v">BOOTSTRAP_ADMIN_PASSWORD</span><span class="t-p">:</span> $<span class="t-p">{</span>BOOTSTRAP_ADMIN_PASSWORD<span class="t-p">}</span>
+    <span class="t-v">volumes</span><span class="t-p">:</span>
+      <span class="t-p">-</span> app-data<span class="t-p">:</span>/data
+<span class="t-v">volumes</span><span class="t-p">:</span>
+  <span class="t-v">app-data</span><span class="t-p">:</span></code></pre></div>
+<h4 id="option-b---postgres">Option B - Postgres<a class="heading-anchor" href="#option-b---postgres" aria-label="Link to this section: Option B - Postgres" data-search-ignore>#</a></h4>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-c"># docker-compose.yml</span>
+<span class="t-v">services</span><span class="t-p">:</span>
+  <span class="t-v">app</span><span class="t-p">:</span>
+    <span class="t-v">image</span><span class="t-p">:</span> ghcr.io/powerdns-authadmin/powerdns-authadmin<span class="t-p">:</span>latest
+    <span class="t-v">restart</span><span class="t-p">:</span> unless-stopped
+    <span class="t-v">ports</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-s">&quot;3000:3000&quot;</span><span class="t-p">]</span>
+    <span class="t-v">depends_on</span><span class="t-p">:</span>
+      <span class="t-v">postgres</span><span class="t-p">:</span> <span class="t-p">{</span> condition<span class="t-p">:</span> service_healthy <span class="t-p">}</span>
+    <span class="t-v">environment</span><span class="t-p">:</span>
+      <span class="t-v">APP_URL</span><span class="t-p">:</span> $<span class="t-p">{</span>APP_URL<span class="t-p">}</span>
+      <span class="t-v">DATABASE_URL</span><span class="t-p">:</span> postgres<span class="t-p">:</span>//pdns<span class="t-p">:</span>$<span class="t-p">{</span>POSTGRES_PASSWORD<span class="t-p">}</span>@postgres<span class="t-p">:</span><span class="t-n">5432</span>/powerdns_authadmin
+      <span class="t-v">APP_SECRET_KEY</span><span class="t-p">:</span> $<span class="t-p">{</span>APP_SECRET_KEY<span class="t-p">}</span>
+      <span class="t-v">APP_ENCRYPTION_KEY</span><span class="t-p">:</span> $<span class="t-p">{</span>APP_ENCRYPTION_KEY<span class="t-p">}</span>
+      <span class="t-v">BOOTSTRAP_ADMIN_EMAIL</span><span class="t-p">:</span> $<span class="t-p">{</span>BOOTSTRAP_ADMIN_EMAIL<span class="t-p">}</span>
+      <span class="t-v">BOOTSTRAP_ADMIN_PASSWORD</span><span class="t-p">:</span> $<span class="t-p">{</span>BOOTSTRAP_ADMIN_PASSWORD<span class="t-p">}</span>
+  <span class="t-v">postgres</span><span class="t-p">:</span>
+    <span class="t-v">image</span><span class="t-p">:</span> postgres<span class="t-p">:</span><span class="t-n">16</span>-alpine
+    <span class="t-v">restart</span><span class="t-p">:</span> unless-stopped
+    <span class="t-v">environment</span><span class="t-p">:</span>
+      <span class="t-v">POSTGRES_USER</span><span class="t-p">:</span> pdns
+      <span class="t-v">POSTGRES_PASSWORD</span><span class="t-p">:</span> $<span class="t-p">{</span>POSTGRES_PASSWORD<span class="t-p">}</span>
+      <span class="t-v">POSTGRES_DB</span><span class="t-p">:</span> powerdns_authadmin
+    <span class="t-v">volumes</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-s">&quot;pg-data:/var/lib/postgresql/data&quot;</span><span class="t-p">]</span>
+    <span class="t-v">healthcheck</span><span class="t-p">:</span>
+      <span class="t-v">test</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-s">&quot;CMD-SHELL&quot;</span><span class="t-p">,</span> <span class="t-s">&quot;pg_isready -U pdns -d powerdns_authadmin&quot;</span><span class="t-p">]</span>
+      <span class="t-v">interval</span><span class="t-p">:</span> 5s
+      <span class="t-v">timeout</span><span class="t-p">:</span> 5s
+      <span class="t-v">retries</span><span class="t-p">:</span> <span class="t-n">10</span>
+<span class="t-v">volumes</span><span class="t-p">:</span>
+  <span class="t-v">pg-data</span><span class="t-p">:</span></code></pre></div>
+<h4 id="image-tags">Image tags<a class="heading-anchor" href="#image-tags" aria-label="Link to this section: Image tags" data-search-ignore>#</a></h4>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Tag</th><th>Points to</th></tr></thead>
+<tbody>
+<tr><td><code>:latest</code></td><td>The most recent stable release. Updated only on <code>vX.Y.Z</code> tag pushes.</td></tr>
+<tr><td><code>:X.Y</code></td><td>The latest patch in a minor channel - e.g. <code>:1.8</code> follows <code>1.8.3</code> → <code>1.8.4</code>.</td></tr>
+<tr><td><code>:X.Y.Z</code></td><td>A single immutable release. Use this in production for deterministic deploys.</td></tr>
+<tr><td><code>:edge</code></td><td>The tip of <code>main</code>. Updates on every push; not for production.</td></tr>
+<tr><td><code>:sha-xxxxxxx</code></td><td>An exact commit, kept forever.</td></tr>
+</tbody>
+</table></div>
+<p>Pin a version in production:</p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">image</span><span class="t-p">:</span> ghcr.io/powerdns-authadmin/powerdns-authadmin<span class="t-p">:</span><span class="t-n">1.8</span></code></pre></div>
+<hr>
+<h3 id="4-start">4. Start<a class="heading-anchor" href="#4-start" aria-label="Link to this section: 4. Start" data-search-ignore>#</a></h3>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">docker</span> compose up <span class="t-k">-d</span>
+<span class="t-x">docker</span> compose logs <span class="t-k">-f</span> app   <span class="t-c"># watch migrations + seed run, then &quot;Ready&quot;</span></code></pre></div>
+<p>Later, <code>docker compose down</code> then <code>up -d</code> reuses the same <code>.env</code> and data.
+<code>docker compose down -v</code> <strong>deletes the data volume</strong> - only use it to start over.</p>
+<hr>
+<h2 id="b---from-source-install">B - From-source install<a class="heading-anchor" href="#b---from-source-install" aria-label="Link to this section: B - From-source install" data-search-ignore>#</a></h2>
+<p>Build the app from a checkout and run it under plain <code>node</code>. Same migrations,
+same seed - just no Docker. Suitable for a VM / bare-metal install behind a
+reverse proxy.</p>
+<h3 id="prerequisites">Prerequisites<a class="heading-anchor" href="#prerequisites" aria-label="Link to this section: Prerequisites" data-search-ignore>#</a></h3>
+<ul>
+<li><strong>Node.js 24 LTS</strong> - the <code>.nvmrc</code> pins the version; <code>nvm use</code> picks it up.</li>
+<li><strong>npm 10+</strong> (ships with Node 24).</li>
+<li><strong>Build toolchain</strong> for the native bindings (<code>better-sqlite3</code>, <code>@node-rs/argon2</code>):
+Debian/Ubuntu <code>apt-get install -y python3 build-essential</code>, macOS <code>xcode-select --install</code>,
+Alpine <code>apk add python3 make g++</code>.</li>
+<li><strong>Postgres 14+</strong> if you picked that backend. (Skip for SQLite.)</li>
+</ul>
+<h3 id="1-clone-and-install">1. Clone and install<a class="heading-anchor" href="#1-clone-and-install" aria-label="Link to this section: 1. Clone and install" data-search-ignore>#</a></h3>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">git</span> clone https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin.git
+<span class="t-x">cd</span> powerdns-authadmin
+
+<span class="t-x">nvm</span> use            <span class="t-c"># reads .nvmrc → Node 24</span>
+<span class="t-x">npm</span> ci             <span class="t-c"># exact-pin install (incl. dev deps needed for the build)</span></code></pre></div>
+<h3 id="2-create-env">2. Create <code>.env</code><a class="heading-anchor" href="#2-create-env" aria-label="Link to this section: 2. Create .env" data-search-ignore>#</a></h3>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-p">{</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;NODE_ENV=production&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;APP_SECRET_KEY=</span><span class="t-v">$(openssl rand -base64 32)</span><span class="t-s">&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;APP_ENCRYPTION_KEY=</span><span class="t-v">$(openssl rand -base64 32)</span><span class="t-s">&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;BOOTSTRAP_ADMIN_EMAIL=admin@example.com&quot;</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;BOOTSTRAP_ADMIN_PASSWORD=</span><span class="t-v">$(openssl rand -base64 18)</span><span class="t-s">&quot;</span>
+  <span class="t-c"># SQLite (single-file backend):</span>
+  <span class="t-x">echo</span> <span class="t-s">&quot;DATABASE_URL=file:./data/powerdns_authadmin.db&quot;</span>
+  <span class="t-c"># OR Postgres (replace with your real connection string):</span>
+  <span class="t-c"># echo &quot;DATABASE_URL=postgres://pdns:CHANGEME@127.0.0.1:5432/powerdns_authadmin&quot;</span>
+<span class="t-p">}</span> <span class="t-p">&gt;</span> .env
+<span class="t-x">chmod</span> <span class="t-n">600</span> .env
+<span class="t-x">mkdir</span> <span class="t-k">-p</span> data        <span class="t-c"># only for SQLite</span></code></pre></div>
+<p>The two secrets follow the same rules as the Docker path: generate once,
+never rotate, back up alongside the DB.</p>
+<h3 id="3-set-app_url">3. Set <code>APP_URL</code><a class="heading-anchor" href="#3-set-app_url" aria-label="Link to this section: 3. Set APP_URL" data-search-ignore>#</a></h3>
+<p>Same critical step as the Docker path - see <a href="#2-set-app_url">§ A.2 Set <code>APP_URL</code></a>
+for the full reasoning. Append the exact browser-visible URL:</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">echo</span> <span class="t-s">&quot;APP_URL=https://dns.example.com&quot;</span> <span class="t-p">&gt;&gt;</span> .env   <span class="t-c"># ← match your address bar exactly</span></code></pre></div>
+<p>If you're running behind nginx/HAProxy on the same host with TLS terminated by
+the proxy, set <code>APP_URL</code> to the public <code>https://</code> URL, not <code>http://localhost:3000</code>.</p>
+<h3 id="4-build">4. Build<a class="heading-anchor" href="#4-build" aria-label="Link to this section: 4. Build" data-search-ignore>#</a></h3>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-k">set</span> <span class="t-x">-a</span><span class="t-p">;</span> <span class="t-x">.</span> ./.env<span class="t-p">;</span> <span class="t-k">set</span> <span class="t-x">+a</span>       <span class="t-c"># export every var in .env into the shell</span>
+<span class="t-x">npm</span> run build                  <span class="t-c"># produces .next/standalone + .next/static</span></code></pre></div>
+<p><code>npm run build</code> runs <code>next build</code> against the schema-typed source tree. It's
+the same command Docker runs in the builder stage.</p>
+<h3 id="5-migrate-seed-run">5. Migrate, seed, run<a class="heading-anchor" href="#5-migrate-seed-run" aria-label="Link to this section: 5. Migrate, seed, run" data-search-ignore>#</a></h3>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-k">set</span> <span class="t-x">-a</span><span class="t-p">;</span> <span class="t-x">.</span> ./.env<span class="t-p">;</span> <span class="t-k">set</span> <span class="t-x">+a</span>
+<span class="t-x">npm</span> run db:migrate             <span class="t-c"># applies pending Drizzle migrations</span>
+<span class="t-x">npm</span> run db:seed                <span class="t-c"># upserts system roles + bootstrap admin</span>
+
+<span class="t-x">npm</span> run start                  <span class="t-c"># → http://localhost:3000</span></code></pre></div>
+<p><code>npm run start</code> runs <code>next start</code> against the <code>production</code> build. For an
+unattended install, drop it into systemd (sample unit below).</p>
+<h4 id="systemd-unit">systemd unit<a class="heading-anchor" href="#systemd-unit" aria-label="Link to this section: systemd unit" data-search-ignore>#</a></h4>
+<div class="code-block" data-lang="ini"><div class="code-head"><span class="code-lang">ini</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-c"># /etc/systemd/system/powerdns-authadmin.service</span>
+<span class="t-k">[Unit]</span>
+<span class="t-v">Description</span><span class="t-p">=</span>PowerDNS-AuthAdmin
+<span class="t-v">After</span><span class="t-p">=</span>network.target postgresql.service
+<span class="t-v">Wants</span><span class="t-p">=</span>postgresql.service
+
+<span class="t-k">[Service]</span>
+<span class="t-v">Type</span><span class="t-p">=</span>simple
+<span class="t-v">User</span><span class="t-p">=</span>pda
+<span class="t-v">WorkingDirectory</span><span class="t-p">=</span>/opt/powerdns-authadmin
+<span class="t-v">EnvironmentFile</span><span class="t-p">=</span>/opt/powerdns-authadmin/.env
+<span class="t-c"># Adjust if node/npm aren&#39;t at /usr/bin (e.g. nvm: /home/pda/.nvm/versions/node/v24.x/bin).</span>
+<span class="t-v">Environment</span><span class="t-p">=</span>PATH<span class="t-p">=</span>/usr/local/bin:/usr/bin:/bin
+<span class="t-c"># Migrations + seed are idempotent - running on every start is safe.</span>
+<span class="t-v">ExecStartPre</span><span class="t-p">=</span>/usr/bin/npm run db:migrate --silent
+<span class="t-v">ExecStartPre</span><span class="t-p">=</span>/usr/bin/npm run db:seed --silent
+<span class="t-v">ExecStart</span><span class="t-p">=</span>/usr/bin/npm run start --silent
+<span class="t-v">Restart</span><span class="t-p">=</span><span class="t-n">on</span>-failure
+<span class="t-v">RestartSec</span><span class="t-p">=</span>5s
+<span class="t-c"># Hardening (see man systemd.exec):</span>
+<span class="t-v">NoNewPrivileges</span><span class="t-p">=</span><span class="t-n">true</span>
+<span class="t-v">ProtectSystem</span><span class="t-p">=</span>strict
+<span class="t-v">ReadWritePaths</span><span class="t-p">=</span>/opt/powerdns-authadmin/data
+<span class="t-v">PrivateTmp</span><span class="t-p">=</span><span class="t-n">true</span>
+<span class="t-v">ProtectHome</span><span class="t-p">=</span><span class="t-n">true</span>
+
+<span class="t-k">[Install]</span>
+<span class="t-v">WantedBy</span><span class="t-p">=</span>multi-user.target</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">sudo</span> <span class="t-x">useradd</span> <span class="t-k">-r</span> <span class="t-k">-s</span> /usr/sbin/nologin pda
+<span class="t-x">sudo</span> <span class="t-x">chown</span> <span class="t-k">-R</span> pda:pda /opt/powerdns-authadmin
+<span class="t-x">sudo</span> <span class="t-x">systemctl</span> daemon-reload
+<span class="t-x">sudo</span> <span class="t-x">systemctl</span> enable <span class="t-k">--now</span> powerdns-authadmin
+<span class="t-x">sudo</span> <span class="t-x">journalctl</span> <span class="t-k">-fu</span> powerdns-authadmin    <span class="t-c"># tail logs</span></code></pre></div>
+<p>Upgrade later with <code>git pull &amp;&amp; npm ci &amp;&amp; npm run build &amp;&amp; systemctl restart powerdns-authadmin</code> - migrations run on the next start.</p>
+<hr>
+<h2 id="first-login">First login<a class="heading-anchor" href="#first-login" aria-label="Link to this section: First login" data-search-ignore>#</a></h2>
+<p>Open <code>APP_URL</code>, sign in as <code>BOOTSTRAP_ADMIN_EMAIL</code> with the bootstrap password,
+and set a new password when prompted (the bootstrap admin is flagged
+&quot;must change password&quot;). Then add your PowerDNS backend(s) under <strong>Admin →
+PowerDNS servers</strong> (<a href="/docs/backends/">Connecting backends</a>) - or define them in
+a <a href="/docs/provisioning/">provisioning file</a>.</p>
+<p>The bootstrap admin seeds only when <strong>both</strong> <code>BOOTSTRAP_ADMIN_EMAIL</code> and
+<code>BOOTSTRAP_ADMIN_PASSWORD</code> are set. It's idempotent - keyed on the email, it
+ensures that account exists and never clobbers an existing one.</p>
+<hr>
+<h2 id="reference">Reference<a class="heading-anchor" href="#reference" aria-label="Link to this section: Reference" data-search-ignore>#</a></h2>
+<h3 id="behind-a-reverse-proxy">Behind a reverse proxy<a class="heading-anchor" href="#behind-a-reverse-proxy" aria-label="Link to this section: Behind a reverse proxy" data-search-ignore>#</a></h3>
+<p>Terminate TLS at your proxy (nginx, HAProxy, Caddy, Traefik, a cloud LB) and
+forward to the app's port 3000. Three things must line up:</p>
+<ol>
+<li><strong><code>APP_URL</code> is the public, browser-visible URL</strong> - <code>https://dns.example.com</code>,
+not the upstream <code>http://app:3000</code>. It builds OIDC redirect URIs, email
+links, cookie scope, and the CSP origin. The login page shows an inline
+error if it doesn't match the address bar (see <a href="#2-set-app_url">§ A.2</a>).</li>
+<li><strong><code>X-Forwarded-Proto</code> and <code>X-Forwarded-Host</code></strong> so the app reconstructs the
+real public origin (and the APP_URL mismatch detector doesn't false-positive
+on the upstream hostname).</li>
+<li><strong><code>X-Forwarded-For</code> / <code>X-Real-IP</code> must be the real client IP</strong> - the proxy
+sets/overwrites them, never appends. The app trusts these for audit + rate
+limiting; there is no <code>TRUST_PROXY</code> toggle.</li>
+</ol>
+<h4 id="nginx">nginx<a class="heading-anchor" href="#nginx" aria-label="Link to this section: nginx" data-search-ignore>#</a></h4>
+<div class="code-block" data-lang="nginx"><div class="code-head"><span class="code-lang">nginx</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-c"># /etc/nginx/sites-available/powerdns-authadmin</span>
+<span class="t-k">upstream</span> pda_upstream <span class="t-p">{</span>
+    <span class="t-k">server</span> <span class="t-n">127.0.0.1</span>:<span class="t-n">3000</span><span class="t-p">;</span>
+    <span class="t-k">keepalive</span> <span class="t-n">32</span><span class="t-p">;</span>
+<span class="t-p">}</span>
+
+<span class="t-c"># HTTP → HTTPS redirect.</span>
+<span class="t-k">server</span> <span class="t-p">{</span>
+    <span class="t-k">listen</span> <span class="t-n">80</span><span class="t-p">;</span>
+    <span class="t-k">listen</span> [::]:<span class="t-n">80</span><span class="t-p">;</span>
+    <span class="t-k">server_name</span> dns.example.com<span class="t-p">;</span>
+    <span class="t-k">return</span> <span class="t-n">301</span> https://<span class="t-v">$host</span><span class="t-v">$request_uri</span><span class="t-p">;</span>
+<span class="t-p">}</span>
+
+<span class="t-k">server</span> <span class="t-p">{</span>
+    <span class="t-k">listen</span> <span class="t-n">443</span> ssl<span class="t-p">;</span>
+    <span class="t-k">listen</span> [::]:<span class="t-n">443</span> ssl<span class="t-p">;</span>
+    <span class="t-k">http2</span> on<span class="t-p">;</span>
+    <span class="t-k">server_name</span> dns.example.com<span class="t-p">;</span>
+
+    <span class="t-c"># TLS - Let&#39;s Encrypt via certbot, or your own cert chain.</span>
+    <span class="t-k">ssl_certificate</span>     /etc/letsencrypt/live/dns.example.com/fullchain.pem<span class="t-p">;</span>
+    <span class="t-k">ssl_certificate_key</span> /etc/letsencrypt/live/dns.example.com/privkey.pem<span class="t-p">;</span>
+    <span class="t-k">ssl_protocols</span>       TLSv1.2 TLSv1.3<span class="t-p">;</span>
+    <span class="t-k">ssl_ciphers</span>         HIGH:!aNULL:!MD5<span class="t-p">;</span>
+
+    <span class="t-c"># Modest upload cap - zone imports + uploaded brand logos.</span>
+    <span class="t-k">client_max_body_size</span> <span class="t-n">4m</span><span class="t-p">;</span>
+
+    <span class="t-k">location</span> / <span class="t-p">{</span>
+        <span class="t-k">proxy_pass</span> http://pda_upstream<span class="t-p">;</span>
+        <span class="t-k">proxy_http_version</span> <span class="t-n">1.1</span><span class="t-p">;</span>
+
+        <span class="t-c"># Public-URL reconstruction (see §3 above).</span>
+        <span class="t-k">proxy_set_header</span> Host                <span class="t-v">$host</span><span class="t-p">;</span>
+        <span class="t-k">proxy_set_header</span> X-Forwarded-Host    <span class="t-v">$host</span><span class="t-p">;</span>
+        <span class="t-k">proxy_set_header</span> X-Forwarded-Proto   <span class="t-v">$scheme</span><span class="t-p">;</span>
+
+        <span class="t-c"># Client IP for audit + rate limiting (§3 above).</span>
+        <span class="t-c"># nginx automatically overwrites X-Real-IP - that&#39;s the secure default;</span>
+        <span class="t-c"># don&#39;t `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;`</span>
+        <span class="t-c"># because $proxy_add_x_forwarded_for APPENDS to any client-sent value.</span>
+        <span class="t-k">proxy_set_header</span> X-Real-IP           <span class="t-v">$remote_addr</span><span class="t-p">;</span>
+        <span class="t-k">proxy_set_header</span> X-Forwarded-For     <span class="t-v">$remote_addr</span><span class="t-p">;</span>
+
+        <span class="t-c"># SSE health/realtime endpoints - disable buffering and long timeouts.</span>
+        <span class="t-k">proxy_buffering</span>    off<span class="t-p">;</span>
+        <span class="t-k">proxy_read_timeout</span> <span class="t-n">5m</span><span class="t-p">;</span>
+        <span class="t-k">proxy_send_timeout</span> <span class="t-n">5m</span><span class="t-p">;</span>
+
+        <span class="t-c"># WebSocket / HTTP upgrade headers (future-proofing; harmless today).</span>
+        <span class="t-k">proxy_set_header</span> Upgrade    <span class="t-v">$http_upgrade</span><span class="t-p">;</span>
+        <span class="t-k">proxy_set_header</span> Connection <span class="t-s">&quot;upgrade&quot;</span><span class="t-p">;</span>
+    <span class="t-p">}</span>
+<span class="t-p">}</span></code></pre></div>
+<p><code>sudo nginx -t &amp;&amp; sudo systemctl reload nginx</code> and you're live. With this in
+place, set <code>APP_URL=https://dns.example.com</code> (not <code>http://localhost:3000</code>).</p>
+<h4 id="haproxy">HAProxy<a class="heading-anchor" href="#haproxy" aria-label="Link to this section: HAProxy" data-search-ignore>#</a></h4>
+<div class="code-block" data-lang="haproxy"><div class="code-head"><span class="code-lang">haproxy</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-c"># /etc/haproxy/haproxy.cfg (excerpt - slot into your global/defaults)</span>
+<span class="t-k">frontend</span> pda_https
+    <span class="t-x">bind</span> <span class="t-n">*:443</span> ssl crt /etc/haproxy/certs/dns.example.com.pem alpn h2,http/1.1
+    <span class="t-x">bind</span> <span class="t-n">*:80</span>
+    <span class="t-x">http-request</span> redirect scheme https code <span class="t-n">301</span> <span class="t-k">unless</span> <span class="t-p">{</span> ssl_fc <span class="t-p">}</span>
+
+    <span class="t-c"># Set the headers the app uses to reconstruct the public origin.</span>
+    <span class="t-x">http-request</span> set-header X-Forwarded-Proto https <span class="t-k">if</span> <span class="t-p">{</span> ssl_fc <span class="t-p">}</span>
+    <span class="t-x">http-request</span> set-header X-Forwarded-Proto http  <span class="t-k">if</span> <span class="t-p">!</span><span class="t-p">{</span> ssl_fc <span class="t-p">}</span>
+    <span class="t-x">http-request</span> set-header X-Forwarded-Host  <span class="t-v">%[req.hdr(host)]</span>
+
+    <span class="t-c"># Overwrite client IP headers - never trust the caller&#39;s value.</span>
+    <span class="t-x">http-request</span> del-header  X-Forwarded-For
+    <span class="t-x">http-request</span> del-header  X-Real-IP
+    <span class="t-x">http-request</span> set-header  X-Forwarded-For <span class="t-v">%[src]</span>
+    <span class="t-x">http-request</span> set-header  X-Real-IP       <span class="t-v">%[src]</span>
+
+    <span class="t-x">default_backend</span> pda_app
+
+<span class="t-k">backend</span> pda_app
+    <span class="t-x">option</span> forwardfor      <span class="t-c"># disabled - we already set X-Forwarded-For above</span>
+    <span class="t-x">server</span> pda <span class="t-n">127.0.0.1:3000</span> check
+    <span class="t-x">timeout</span> server  <span class="t-n">5m</span>     <span class="t-c"># generous: SSE realtime streams stay open</span></code></pre></div>
+<p>HAProxy expects the cert as a combined PEM (<code>cat fullchain.pem privkey.pem &gt; /etc/haproxy/certs/dns.example.com.pem</code>). <code>haproxy -c -f /etc/haproxy/haproxy.cfg</code>
+checks the config; <code>systemctl reload haproxy</code> applies it.</p>
+<h4 id="caddy-minimal">Caddy (minimal)<a class="heading-anchor" href="#caddy-minimal" aria-label="Link to this section: Caddy (minimal)" data-search-ignore>#</a></h4>
+<div class="code-block" data-lang="caddyfile"><div class="code-head"><span class="code-lang">Caddyfile</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-k">dns.example.com</span> <span class="t-p">{</span>
+    <span class="t-x">reverse_proxy</span> <span class="t-n">127</span>.<span class="t-n">0</span>.<span class="t-n">0</span>.<span class="t-n">1</span>:<span class="t-n">3000</span> <span class="t-p">{</span>
+        <span class="t-x">header_up</span> X-Forwarded-Proto <span class="t-v">{scheme}</span>
+        <span class="t-x">header_up</span> X-Forwarded-Host  <span class="t-v">{host}</span>
+        <span class="t-c"># Caddy already sets X-Forwarded-For / X-Real-IP correctly.</span>
+    <span class="t-p">}</span>
+<span class="t-p">}</span></code></pre></div>
+<p>Caddy auto-provisions Let's Encrypt certs on first hit - no <code>ssl_certificate</code>
+plumbing needed.</p>
+<h3 id="secrets-from-files-docker--kubernetes-secrets">Secrets from files (Docker / Kubernetes secrets)<a class="heading-anchor" href="#secrets-from-files-docker--kubernetes-secrets" aria-label="Link to this section: Secrets from files (Docker / Kubernetes secrets)" data-search-ignore>#</a></h3>
+<p>Every variable also accepts a <code>_FILE</code> suffix pointing at a file whose contents
+are the value:</p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">environment</span><span class="t-p">:</span>
+  <span class="t-v">APP_SECRET_KEY_FILE</span><span class="t-p">:</span> /run/secrets/app_secret_key
+  <span class="t-v">APP_ENCRYPTION_KEY_FILE</span><span class="t-p">:</span> /run/secrets/app_encryption_key
+<span class="t-v">secrets</span><span class="t-p">:</span>
+  <span class="t-p">-</span> app_secret_key
+  <span class="t-p">-</span> app_encryption_key</code></pre></div>
+<p>If both <code>FOO</code> and <code>FOO_FILE</code> are set, the inline value wins and a warning is logged.</p>
+<h3 id="what-happens-on-boot">What happens on boot<a class="heading-anchor" href="#what-happens-on-boot" aria-label="Link to this section: What happens on boot" data-search-ignore>#</a></h3>
+<p>The entrypoint runs four stages; <strong>any failure aborts the boot</strong> (a broken
+migration or bad provisioning file gives a refused start, not a degraded run):</p>
+<ol>
+<li><strong>Migrate</strong> - apply pending schema changes. Opt out: <code>MIGRATE_ON_BOOT=false</code>.</li>
+<li><strong>Seed</strong> - create the five system roles and (if configured) the bootstrap admin. Opt out: <code>SEED_ON_BOOT=false</code>.</li>
+<li><strong>Provision</strong> - apply <code>PROVISIONING_FILE</code> once, if set. Opt out: <code>PROVISION_ON_BOOT=false</code>. See <a href="/docs/provisioning/">Provisioning</a>.</li>
+<li><strong>Start</strong> the server.</li>
+</ol>
+<p>To run migrations as a separate CI/CD step, set <code>MIGRATE_ON_BOOT=false</code> and run
+<code>npm run db:migrate</code> (with <code>DATABASE_URL</code> set) before starting the app.</p>
+<h3 id="health-checks">Health checks<a class="heading-anchor" href="#health-checks" aria-label="Link to this section: Health checks" data-search-ignore>#</a></h3>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Endpoint</th><th>Meaning</th><th>Use for</th></tr></thead>
+<tbody>
+<tr><td><code>GET /healthz</code></td><td>Process is alive</td><td>Liveness probe</td></tr>
+<tr><td><code>GET /readyz</code></td><td>200 when the database is reachable, 503 otherwise</td><td>Readiness probe / LB gating</td></tr>
+</tbody>
+</table></div>
+<p><code>/readyz</code> does not yet check migration state. It doesn't need to for rolling
+deploys: migrations run in the entrypoint before the server starts listening, so
+a replica that answers <code>/readyz</code> at all has already applied them.</p>
+<h3 id="backups">Backups<a class="heading-anchor" href="#backups" aria-label="Link to this section: Backups" data-search-ignore>#</a></h3>
+<ul>
+<li><p><strong>SQLite</strong> - back up the <code>app-data</code> volume (the DB is a single file at the
+<code>DATABASE_URL</code> path). Back up <code>APP_ENCRYPTION_KEY</code> alongside it, or the stored
+secrets are unreadable.</p></li>
+<li><p><strong>Postgres</strong> - <code>pg_dump</code> / <code>pg_restore</code> or volume snapshots:</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-x">docker</span> compose exec postgres pg_dump <span class="t-k">-U</span> pdns powerdns_authadmin <span class="t-p">&gt;</span> backup.sql</code></pre></div></li>
+</ul>
+<hr>
+<h2 id="next-steps">Next steps<a class="heading-anchor" href="#next-steps" aria-label="Link to this section: Next steps" data-search-ignore>#</a></h2>
+<ul>
+<li><a href="/docs/configuration/">Configuration</a> - every environment variable.</li>
+<li><a href="/docs/backends/">Connecting PowerDNS backends</a>.</li>
+<li><a href="/docs/hardening/">Hardening</a> and <a href="/docs/upgrading/">Upgrading</a>.</li>
+</ul>
+<hr>
+<p><a href="/docs/">← Docs index</a></p>
+</div>
+<footer class="docs-footer" data-search-ignore>
+<div class="docs-feedback">
+<p class="docs-feedback-q"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg><span>Was this page helpful?</span></p>
+<div class="docs-feedback-links">
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20Installation&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Finstallation%2F%0ASource%3A%20docs%2F02-INSTALLATION.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Open an issue</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/02-INSTALLATION.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page on GitHub</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/docs/02-INSTALLATION.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>View source</a>
+</div>
+</div>
+<nav class="docs-pager" aria-label="Previous and next page" data-search-ignore><a class="docs-pager-card docs-pager-prev" href="/docs/quickstart/" rel="prev"><span class="docs-pager-dir"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7"/></svg>Previous</span><span class="docs-pager-title">Quickstart</span><span class="docs-pager-section">Getting started</span></a><a class="docs-pager-card docs-pager-next" href="/docs/configuration/" rel="next"><span class="docs-pager-dir">Next<svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></span><span class="docs-pager-title">Configuration</span><span class="docs-pager-section">Getting started</span></a></nav>
+<p class="docs-synced"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><span>Synced from <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener">PowerDNS-AuthAdmin v1.12.1</a> (<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/commit/d0a3faf959c75072815301a236f2c993385d02a9" rel="noopener"><code>d0a3faf</code></a>), <code>docs/02-INSTALLATION.md</code>. Documentation © the PowerDNS-AuthAdmin contributors, <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT</a>.</span></p>
+</footer>
+</article>
+<aside class="docs-toc" aria-label="On this page" data-search-ignore>
+<p class="docs-toc-title">On this page</p>
+<nav aria-label="Table of contents"><ol><li><a href="#a---docker-install" data-toc="a---docker-install">A - Docker install</a><ol><li><a href="#before-you-start" data-toc="before-you-start">Before you start</a></li><li><a href="#1-create-env-secrets" data-toc="1-create-env-secrets">1. Create .env (secrets)</a></li><li><a href="#2-set-app_url" data-toc="2-set-app_url">2. Set APP_URL</a></li><li><a href="#3-write-docker-composeyml" data-toc="3-write-docker-composeyml">3. Write docker-compose.yml</a></li><li><a href="#4-start" data-toc="4-start">4. Start</a></li></ol></li><li><a href="#b---from-source-install" data-toc="b---from-source-install">B - From-source install</a><ol><li><a href="#prerequisites" data-toc="prerequisites">Prerequisites</a></li><li><a href="#1-clone-and-install" data-toc="1-clone-and-install">1. Clone and install</a></li><li><a href="#2-create-env" data-toc="2-create-env">2. Create .env</a></li><li><a href="#3-set-app_url" data-toc="3-set-app_url">3. Set APP_URL</a></li><li><a href="#4-build" data-toc="4-build">4. Build</a></li><li><a href="#5-migrate-seed-run" data-toc="5-migrate-seed-run">5. Migrate, seed, run</a></li></ol></li><li><a href="#first-login" data-toc="first-login">First login</a></li><li><a href="#reference" data-toc="reference">Reference</a><ol><li><a href="#behind-a-reverse-proxy" data-toc="behind-a-reverse-proxy">Behind a reverse proxy</a></li><li><a href="#secrets-from-files-docker--kubernetes-secrets" data-toc="secrets-from-files-docker--kubernetes-secrets">Secrets from files (Docker / Kubernetes secrets)</a></li><li><a href="#what-happens-on-boot" data-toc="what-happens-on-boot">What happens on boot</a></li><li><a href="#health-checks" data-toc="health-checks">Health checks</a></li><li><a href="#backups" data-toc="backups">Backups</a></li></ol></li><li><a href="#next-steps" data-toc="next-steps">Next steps</a></li></ol></nav>
+<div class="docs-toc-actions">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/02-INSTALLATION.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20Installation&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Finstallation%2F%0ASource%3A%20docs%2F02-INSTALLATION.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Report an issue</a>
+<a href="#main" data-docs-top><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>Back to top</a>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer" data-search-ignore>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+      <p>Modern, self-hosted DNS administration for PowerDNS Authoritative. Open source under the <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT licence</a>, built in the open by its community.</p>
+      <a class="release-chip" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v1.12.1<span class="muted">· 23 Oct 2026</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><h2>Product</h2><ul><li><a href="/features/">Features</a></li><li><a href="/powerdns-admin-alternative/">Compare</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/support/">Commercial support</a></li><li><a href="/search/">Search</a></li><li><a href="https://demo.powerdns-authadmin.org" rel="noopener">Live demo</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases" rel="noopener">Releases</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li></ul></div>
+      <div class="footer-col"><h2>Docs</h2><ul><li><a href="/docs/">Documentation</a></li><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/rbac/">RBAC</a></li><li><a href="/docs/oidc/">OIDC</a></li><li><a href="/docs/ldap/">LDAP</a></li><li><a href="/docs/saml/">SAML</a></li><li><a href="/docs/passkeys/">Passkeys</a></li><li><a href="/docs/mcp/">MCP</a></li></ul></div>
+      <div class="footer-col"><h2>Community</h2><ul><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener">GitHub</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/discussions" rel="noopener">Discussions</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues" rel="noopener">Issues</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy" rel="noopener">Security policy</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/website" rel="noopener">Website source</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-badges" role="group" aria-label="Project status"><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/ci.yml?query=branch%3Amain" rel="noopener"><img src="/badges/ci.svg" alt="CI" width="90" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/latest" rel="noopener"><img src="/badges/release.svg" alt="Release" width="102" height="20" loading="lazy" decoding="async"></a><a href="https://scorecard.dev/viewer/?uri=github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener"><img src="/badges/openssf-scorecard.svg" alt="OpenSSF Scorecard" width="136" height="20" loading="lazy" decoding="async"></a><a href="https://www.bestpractices.dev/projects/12974" rel="noopener"><img src="/badges/openssf-best-practices.svg" alt="OpenSSF Best Practices" width="184" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener"><img src="/badges/license.svg" alt="License: MIT" width="78" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr.svg" alt="Container: GHCR" width="191" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-version.svg" alt="GHCR version" width="101" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-pulls.svg" alt="GHCR pulls" width="111" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-size.svg" alt="GHCR image size" width="142" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/.nvmrc" rel="noopener"><img src="/badges/nodejs.svg" alt="Node.js 24" width="91" height="20" loading="lazy" decoding="async"></a><a href="https://nextjs.org" rel="noopener"><img src="/badges/nextjs.svg" alt="Next.js 16" width="89" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/tsconfig.json" rel="noopener"><img src="/badges/typescript.svg" alt="TypeScript strict" width="123" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-46.yml" rel="noopener"><img src="/badges/pdns-4-6.svg" alt="PowerDNS 4.6" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-47.yml" rel="noopener"><img src="/badges/pdns-4-7.svg" alt="PowerDNS 4.7" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-48.yml" rel="noopener"><img src="/badges/pdns-4-8.svg" alt="PowerDNS 4.8" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-49.yml" rel="noopener"><img src="/badges/pdns-4-9.svg" alt="PowerDNS 4.9" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-50.yml" rel="noopener"><img src="/badges/pdns-5-0.svg" alt="PowerDNS 5.0" width="155" height="20" loading="lazy" decoding="async"></a></span></div>
+  <div class="container footer-bottom">
+    <span>© 2026 PowerDNS-AuthAdmin contributors. MIT licensed.</span>
+    <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark" data-base="" data-search-index="/assets/search/index.e7ebd943fc.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+0OEGstklXt2mYXx9ele+KtHixPt1mbLLFe91lHkjfQ=' https://*.googletagmanager.com; style-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'self'; upgrade-insecure-requests">
+<title>OIDC single sign-on · AuthAdmin docs</title>
+<meta name="description" content="PowerDNS-AuthAdmin authenticates users against any standards-compliant OpenID Connect provider using Authorization Code flow with PKCE.">
+<link rel="canonical" href="https://powerdns-authadmin.org/docs/oidc/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;})();</script>
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.22cd64dffc.css">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="PowerDNS-AuthAdmin">
+<meta name="apple-mobile-web-app-title" content="AuthAdmin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="/humans.txt">
+<link rel="search" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PowerDNS-AuthAdmin">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://powerdns-authadmin.org/docs/oidc/">
+<meta property="og:title" content="OIDC single sign-on · AuthAdmin docs">
+<meta property="og:description" content="PowerDNS-AuthAdmin authenticates users against any standards-compliant OpenID Connect provider using Authorization Code flow with PKCE.">
+<meta property="og:image" content="https://powerdns-authadmin.org/assets/og/docs-oidc.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="OIDC single sign-on: PowerDNS-AuthAdmin documentation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OIDC single sign-on · AuthAdmin docs">
+<meta name="twitter:description" content="PowerDNS-AuthAdmin authenticates users against any standards-compliant OpenID Connect provider using Authorization Code flow with PKCE.">
+<meta name="twitter:image" content="https://powerdns-authadmin.org/assets/og/docs-oidc.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://powerdns-authadmin.org/#organization","name":"PowerDNS-AuthAdmin","url":"https://powerdns-authadmin.org/","logo":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/icons/icon-512.png","width":512,"height":512},"sameAs":["https://github.com/PowerDNS-AuthAdmin","https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin"]},{"@type":"WebSite","@id":"https://powerdns-authadmin.org/#website","url":"https://powerdns-authadmin.org/","name":"PowerDNS-AuthAdmin","description":"Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.","inLanguage":"en","publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://powerdns-authadmin.org/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"BreadcrumbList","@id":"https://powerdns-authadmin.org/docs/oidc/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://powerdns-authadmin.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://powerdns-authadmin.org/docs/"},{"@type":"ListItem","position":3,"name":"OIDC single sign-on","item":"https://powerdns-authadmin.org/docs/oidc/"}]},{"@type":"TechArticle","@id":"https://powerdns-authadmin.org/docs/oidc/#webpage","url":"https://powerdns-authadmin.org/docs/oidc/","name":"OIDC single sign-on · AuthAdmin docs","description":"PowerDNS-AuthAdmin authenticates users against any standards-compliant OpenID Connect provider using Authorization Code flow with PKCE.","inLanguage":"en","isPartOf":{"@id":"https://powerdns-authadmin.org/#website"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/og/docs-oidc.jpg","width":1200,"height":630},"dateModified":"2026-10-22T23:55:54+07:00","headline":"OIDC single sign-on","author":{"@id":"https://powerdns-authadmin.org/#organization"},"publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"image":"https://powerdns-authadmin.org/assets/og/docs-oidc.jpg","mainEntityOfPage":"https://powerdns-authadmin.org/docs/oidc/","about":{"@id":"https://powerdns-authadmin.org/#software"},"wordCount":1842,"breadcrumb":{"@id":"https://powerdns-authadmin.org/docs/oidc/#breadcrumb"}}]}</script>
+<script src="/assets/js/main.279cf15a30.js" defer></script>
+<script src="/assets/js/search.3b4cc0b30a.js" defer></script>
+<script src="/assets/js/docs.20196dd4af.js" defer></script>
+<script src="/assets/js/analytics.32eae1dcec.js" data-ga4="G-Y8C640LSFR" defer></script>
+</head>
+<body class="page-docs-oidc layout-docs">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-search-ignore>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+    <nav class="nav" aria-label="Primary"><a href="/features/">Features</a><a href="/docs/" aria-current="page">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-label="Search docs and site (Ctrl K)"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="search-trigger-label">Search docs…</span><kbd class="search-kbd" data-search-kbd>Ctrl K</kbd></button>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="i i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="i i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
+      <a class="icon-btn hide-md" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener" aria-label="PowerDNS-AuthAdmin on GitHub" title="PowerDNS-AuthAdmin on GitHub"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Live demo</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="docs-sidebar" data-docs-menu><svg class="i i-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  
+</header>
+<main id="main" tabindex="-1" data-search-section="Docs › Sign-in &amp; access">
+
+<div class="docs-shell" data-docs>
+<aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation" data-search-ignore>
+<div class="docs-sidebar-scroll">
+<nav class="docs-sitenav" aria-label="Site"><a href="/features/">Features</a><a href="/docs/" class="is-current">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+<a class="docs-nav-home" href="/docs/"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg><span>Docs home</span></a>
+<nav class="docs-nav" aria-label="Docs sections">
+<details class="docs-nav-group" data-group="getting-started" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.8-1.6l9.9-10.2a.5.5 0 0 1 .9.5L12 8.7a1 1 0 0 0 1 1.3h7a1 1 0 0 1 .8 1.6l-9.9 10.2a.5.5 0 0 1-.9-.5l1.9-6A1 1 0 0 0 11 14Z"/></svg></span><span class="docs-nav-label">Getting started</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/backends/">PowerDNS backends</a></li></ul>
+</details>
+<details class="docs-nav-group has-current" data-group="sign-in-access" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16.5 6.5l2.5 2.5M14 9l2 2"/></svg></span><span class="docs-nav-label">Sign-in &amp; access</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/oidc/" aria-current="page">OIDC single sign-on</a></li><li><a href="/docs/saml/">SAML 2.0 single sign-on</a></li><li><a href="/docs/ldap/">LDAP sign-in</a></li><li><a href="/docs/passkeys/">Passkeys &amp; security keys</a></li><li><a href="/docs/rbac/">Roles &amp; permissions</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="operations" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><span class="docs-nav-label">Operations</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/provisioning/">First-boot provisioning</a></li><li><a href="/docs/hardening/">Hardening</a></li><li><a href="/docs/upgrading/">Upgrading</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="integrations-reference" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span><span class="docs-nav-label">Integrations &amp; reference</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/mcp/">Natural-language DNS with MCP</a></li><li><a href="/docs/features/">Feature catalog</a></li><li><a href="/docs/dev-setup/">Dev setup</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="adr">
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="docs-nav-label">Architecture decisions</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li class="is-index"><a href="/docs/adr/">All decisions</a></li><li class="is-adr"><a href="/docs/adr/0001-framework-choice/"><span class="docs-nav-num">0001</span><span>Choose Next.js 15 + React Server Components as the framework</span></a></li><li class="is-adr"><a href="/docs/adr/0002-mit-license/"><span class="docs-nav-num">0002</span><span>License under MIT</span></a></li><li class="is-adr"><a href="/docs/adr/0004-three-layer-architecture/"><span class="docs-nav-num">0004</span><span>Three-layer architecture (auth → RBAC → business logic)</span></a></li><li class="is-adr"><a href="/docs/adr/0005-migrations-explicit/"><span class="docs-nav-num">0005</span><span>Migrations are never auto-applied on app boot</span></a></li><li class="is-adr"><a href="/docs/adr/0006-csp-nonce/"><span class="docs-nav-num">0006</span><span>Per-request CSP nonce</span></a></li><li class="is-adr"><a href="/docs/adr/0007-db-backed-sessions/"><span class="docs-nav-num">0007</span><span>DB-backed sessions over stateless JWTs</span></a></li><li class="is-adr"><a href="/docs/adr/0008-argon2id-passwords/"><span class="docs-nav-num">0008</span><span>Argon2id for password hashing</span></a></li><li class="is-adr"><a href="/docs/adr/0009-custom-auth-core/"><span class="docs-nav-num">0009</span><span>Roll our own auth core on openid-client + argon2, not Auth.js</span></a></li><li class="is-adr"><a href="/docs/adr/0010-per-rrset-optimistic-concurrency/"><span class="docs-nav-num">0010</span><span>Per-RRset optimistic concurrency for the editor</span></a></li><li class="is-adr"><a href="/docs/adr/0011-migrate-on-app-boot/"><span class="docs-nav-num">0011</span><span>Migrations run at app-container boot</span></a></li><li class="is-adr"><a href="/docs/adr/0012-first-boot-provisioning/"><span class="docs-nav-num">0012</span><span>First-boot provisioning + OIDC group → role materialisation</span></a></li><li class="is-adr"><a href="/docs/adr/0013-pdns-db-bridge/"><span class="docs-nav-num">0013</span><span>The PDNS client&#39;s sanctioned DB bridge (and fixing boundary enforcement)</span></a></li><li class="is-adr"><a href="/docs/adr/0014-backend-capability-model/"><span class="docs-nav-num">0014</span><span>Per-zone authority + observed daemon capabilities (retire per-server role)</span></a></li><li class="is-adr"><a href="/docs/adr/0015-backend-health-advisories/"><span class="docs-nav-num">0015</span><span>Backend health advisories (the notification bell)</span></a></li><li class="is-adr"><a href="/docs/adr/0016-redis-horizontal-scale/"><span class="docs-nav-num">0016</span><span>Optional Redis for horizontal scale (replicas &gt; 1)</span></a></li><li class="is-adr"><a href="/docs/adr/0017-migration-squash-1.1.0/"><span class="docs-nav-num">0017</span><span>Squash the 1.1.0 schema deltas into one migration per dialect</span></a></li><li class="is-adr"><a href="/docs/adr/0018-provider-abstraction/"><span class="docs-nav-num">0018</span><span>Multi-provider auth: keep OIDC where it is, layer SAML + LDAP as siblings</span></a></li><li class="is-adr"><a href="/docs/adr/0019-webauthn-passkeys/"><span class="docs-nav-num">0019</span><span>WebAuthn: both primary credential and second factor</span></a></li><li class="is-adr"><a href="/docs/adr/0020-ldap-architecture/"><span class="docs-nav-num">0020</span><span>LDAP authentication architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0021-saml-architecture/"><span class="docs-nav-num">0021</span><span>SAML 2.0 service-provider architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0022-zone-horizons/"><span class="docs-nav-num">0022</span><span>Zone horizons: app-side split-horizon classification</span></a></li><li class="is-adr"><a href="/docs/adr/0023-zone-authority-permissions/"><span class="docs-nav-num">0023</span><span>Zone authority is a separate permission from zone records</span></a></li><li class="is-adr"><a href="/docs/adr/0024-zone-scoped-roles-grant-zone-access/"><span class="docs-nav-num">0024</span><span>Zone-scoped roles grant zone access</span></a></li></ul>
+</details>
+</nav>
+<div class="docs-sidebar-foot">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" rel="noopener"><span class="pulse" aria-hidden="true"></span>PowerDNS-AuthAdmin v1.12.1</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Docs source</a>
+</div>
+</div>
+</aside>
+<article class="docs-article" aria-labelledby="doc-title">
+<nav class="docs-crumbs" aria-label="Breadcrumb" data-search-ignore><ol><li><a href="/docs/">Docs</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><a href="/docs/#sign-in-access">Sign-in &amp; access</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><span aria-current="page">OIDC single sign-on</span></li></ol></nav>
+<header class="docs-header">
+
+<h1 id="doc-title">OIDC single sign-on</h1>
+<p class="docs-lead">Set up SSO with any OpenID Connect provider and map IdP groups to roles.</p>
+<div class="docs-meta" data-search-ignore>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.8 9.8 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>Updated <time datetime="2026-10-22T23:55:54+07:00">22 Oct 2026</time></span>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg>8 min read</span>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/05-OIDC.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit on GitHub</a>
+</div>
+</header>
+<details class="docs-toc-mobile" data-search-ignore><summary><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></svg><span>On this page</span><svg class="i docs-toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><nav aria-label="On this page (compact)"><ol><li><a href="#the-three-ways-to-configure-oidc---and-how-they-relate" data-toc="the-three-ways-to-configure-oidc---and-how-they-relate">The three ways to configure OIDC - and how they relate</a><ol><li><a href="#which-should-i-use" data-toc="which-should-i-use">Which should I use?</a></li></ol></li><li><a href="#the-redirect-callback-url" data-toc="the-redirect-callback-url">The redirect (callback) URL</a></li><li><a href="#setup-walkthrough-db-provider---the-recommended-path" data-toc="setup-walkthrough-db-provider---the-recommended-path">Setup walkthrough (DB provider - the recommended path)</a></li><li><a href="#scopes-and-claims" data-toc="scopes-and-claims">Scopes and claims</a></li><li><a href="#group--role-mapping" data-toc="group--role-mapping">Group → role mapping</a></li><li><a href="#restricting-who-can-sign-in" data-toc="restricting-who-can-sign-in">Restricting who can sign in</a></li><li><a href="#convenience-options-db-providers" data-toc="convenience-options-db-providers">Convenience options (DB providers)</a></li><li><a href="#rp-initiated-logout" data-toc="rp-initiated-logout">RP-initiated logout</a><ol><li><a href="#when-the-idp-doesnt-advertise-end_session_endpoint" data-toc="when-the-idp-doesnt-advertise-end_session_endpoint">When the IdP doesn&#39;t advertise end_session_endpoint</a></li><li><a href="#enabling-end_session_endpoint-on-common-idps" data-toc="enabling-end_session_endpoint-on-common-idps">Enabling end_session_endpoint on common IdPs</a></li></ol></li><li><a href="#mfa-and-sso-users" data-toc="mfa-and-sso-users">MFA and SSO users</a></li><li><a href="#idp-specific-notes" data-toc="idp-specific-notes">IdP-specific notes</a></li><li><a href="#troubleshooting" data-toc="troubleshooting">Troubleshooting</a></li></ol></nav></details>
+<div class="doc-content">
+<p>PowerDNS-AuthAdmin authenticates users against any standards-compliant OpenID
+Connect provider using Authorization Code flow with PKCE. On top of plain
+sign-in it can <strong>map IdP groups to roles</strong> (with global / team / zone / server
+scope) and do <strong>RP-initiated logout</strong> so signing out ends the session at the IdP,
+not just locally.</p>
+<figure class="doc-shot"><img class="shot shot-dark" src="/assets/img/shots/dark/oidc-providers-960.webp" srcset="/assets/img/shots/dark/oidc-providers-1440.webp 1440w, /assets/img/shots/dark/oidc-providers-960.webp 960w, /assets/img/shots/dark/oidc-providers-720.webp 720w, /assets/img/shots/dark/oidc-providers-640.webp 640w" sizes="(min-width: 860px) 800px, 94vw" width="1440" height="900" alt="OIDC providers - DB + env, with discovery health badges" loading="lazy" decoding="async"><img class="shot shot-light" src="/assets/img/shots/light/oidc-providers-960.webp" srcset="/assets/img/shots/light/oidc-providers-1440.webp 1440w, /assets/img/shots/light/oidc-providers-960.webp 960w, /assets/img/shots/light/oidc-providers-720.webp 720w, /assets/img/shots/light/oidc-providers-640.webp 640w" sizes="(min-width: 860px) 800px, 94vw" width="1440" height="900" alt="OIDC providers - DB + env, with discovery health badges" loading="lazy" decoding="async"></figure>
+<h2 id="the-three-ways-to-configure-oidc---and-how-they-relate">The three ways to configure OIDC - and how they relate<a class="heading-anchor" href="#the-three-ways-to-configure-oidc---and-how-they-relate" aria-label="Link to this section: The three ways to configure OIDC - and how they relate" data-search-ignore>#</a></h2>
+<p>This is the part that trips people up, so read it once carefully. There are two
+<em>storage</em> mechanisms - a <strong>database table</strong> and the <strong>environment</strong> - and they
+<strong>coexist</strong>:</p>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code>   DB providers        ┌─────────────────────────────────────────────┐
+   (editable)          │  oidc_providers table - the full-featured    │
+                       │  path: many providers, group→role mapping,   │
+                       │  icons, per-provider options                 │
+   written by  ───────►│   • Admin UI:  /admin/authentication         │
+                       │   • Provisioning:  the `oidc:` YAML block     │
+                       └─────────────────────────────────────────────┘
+                              +   (both are shown together)
+   env provider        ┌─────────────────────────────────────────────┐
+   (read-only)         │  OIDC_* environment variables - ONE provider,│
+                       │  badged &quot;Configured by ENV&quot;, edited via env. │
+                       │  No group→role mapping, no icon.             │
+                       └─────────────────────────────────────────────┘</code></pre></div>
+<p><strong>How they coexist:</strong> the env-configured provider is <strong>always offered</strong> - on the
+login page <em>and</em> listed (read-only) in <strong>Admin → Authentication</strong> with a
+<strong>&quot;Configured by ENV&quot;</strong> badge. It is <strong>not</strong> a hidden fallback; it appears
+alongside any DB providers. The only interaction is <strong>slug collision</strong>: if a DB
+provider has the <strong>same slug</strong> as the env provider, the DB provider <strong>shadows</strong> it
+(taking precedence on the login page and in the dispatcher). Otherwise both show
+and both work.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th></th><th>Env (<code>OIDC_*</code>)</th><th>Provisioning (<code>oidc:</code> block)</th><th>Admin UI</th></tr></thead>
+<tbody>
+<tr><td><strong>Stored in</strong></td><td>environment</td><td><code>oidc_providers</code> table</td><td><code>oidc_providers</code> table</td></tr>
+<tr><td><strong>Number of providers</strong></td><td>exactly one</td><td>many</td><td>many</td></tr>
+<tr><td><strong>Shown on login page</strong></td><td>always (unless a DB provider shadows its slug)</td><td>when enabled</td><td>when enabled</td></tr>
+<tr><td><strong>Editable in the UI</strong></td><td>❌ read-only - badged &quot;Configured by ENV&quot;</td><td>✅</td><td>✅</td></tr>
+<tr><td><strong>Group → role mapping</strong></td><td>❌ no</td><td>✅ yes</td><td>✅ yes</td></tr>
+<tr><td><strong>Login-button icon</strong></td><td>❌ no</td><td>✅ yes</td><td>✅ yes</td></tr>
+<tr><td><strong>Per-provider email-domain / <code>requireEmailVerified</code></strong></td><td>❌ (env-level only)</td><td>✅ yes</td><td>✅ yes</td></tr>
+<tr><td><strong>Changed by</strong></td><td>editing env vars + restart</td><td>YAML on first boot</td><td>clicking in the UI</td></tr>
+</tbody>
+</table></div>
+<p>Provisioning and the Admin UI are the <strong>same mechanism</strong> - both create/edit rows
+in <code>oidc_providers</code>. Provisioning just populates them once on first boot; after
+that the UI is the source of truth. (Provisioning creates + updates by slug and
+never deletes.) The env provider is the separate, read-only one.</p>
+<h3 id="which-should-i-use">Which should I use?<a class="heading-anchor" href="#which-should-i-use" aria-label="Link to this section: Which should I use?" data-search-ignore>#</a></h3>
+<ul>
+<li><strong>Just kicking the tyres / one IdP, no group mapping?</strong> The env path needs no
+database writes - set <code>OIDC_ENABLED=true</code> + the five required keys. It shows up
+as a read-only <strong>&quot;Configured by ENV&quot;</strong> provider.</li>
+<li><strong>Real deployment, want group → role mapping or more than one IdP?</strong> Use DB
+providers - define them in <a href="/docs/provisioning/">provisioning</a> for reproducible
+installs, or add them in the <strong>Admin UI</strong> for click-ops.</li>
+<li><strong>Already on env OIDC and want group mapping or to edit it in the UI?</strong> Recreate
+it as a DB provider (UI or provisioning). Using the <strong>same slug</strong> shadows the env
+one and reuses the redirect URI you already registered; you can then drop the
+<code>OIDC_*</code> vars at your next restart.</li>
+</ul>
+<h2 id="the-redirect-callback-url">The redirect (callback) URL<a class="heading-anchor" href="#the-redirect-callback-url" aria-label="Link to this section: The redirect (callback) URL" data-search-ignore>#</a></h2>
+<p>Whatever path you choose, register this redirect URI with your IdP:</p>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code>&lt;APP_URL&gt;/api/auth/oidc/&lt;slug&gt;/callback</code></pre></div>
+<ul>
+<li><code>&lt;APP_URL&gt;</code> is your public URL (e.g. <code>https://dns.example.com</code>).</li>
+<li><code>&lt;slug&gt;</code> is the provider's slug - <code>OIDC_PROVIDER_ID</code> for the env provider, or
+the provider's <code>slug</code> for a DB provider.</li>
+</ul>
+<p>Example: <code>https://dns.example.com/api/auth/oidc/company-sso/callback</code>.</p>
+<p>The sign-in is initiated at <code>/api/auth/oidc/&lt;slug&gt;/initiate</code>; the login page links
+to it automatically.</p>
+<h2 id="setup-walkthrough-db-provider---the-recommended-path">Setup walkthrough (DB provider - the recommended path)<a class="heading-anchor" href="#setup-walkthrough-db-provider---the-recommended-path" aria-label="Link to this section: Setup walkthrough (DB provider - the recommended path)" data-search-ignore>#</a></h2>
+<ol>
+<li><strong>At the IdP</strong>, register a new OIDC/OAuth confidential client:
+<ul>
+<li>Redirect URI: <code>&lt;APP_URL&gt;/api/auth/oidc/&lt;slug&gt;/callback</code></li>
+<li>Grant type: Authorization Code (PKCE; the app sends <code>S256</code>)</li>
+<li>Scopes: <code>openid profile email</code> (add <code>groups</code> if you want group mapping)</li>
+<li>Note the <strong>issuer URL</strong>, <strong>client ID</strong>, and <strong>client secret</strong>.</li>
+</ul></li>
+<li><strong>In PowerDNS-AuthAdmin</strong>, go to <strong>Admin → Authentication → Add provider → OIDC</strong> and
+fill in slug, name, issuer, client ID/secret, scopes. (Or define the same
+thing in the <code>oidc:</code> provisioning block - see <a href="/docs/provisioning/">Provisioning</a>.)</li>
+<li><strong>Sign out and sign in</strong> with the new provider button. A brand-new email is
+auto-provisioned as a user with no roles until a group mapping or an admin
+grants one.</li>
+</ol>
+<h2 id="scopes-and-claims">Scopes and claims<a class="heading-anchor" href="#scopes-and-claims" aria-label="Link to this section: Scopes and claims" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Scopes</strong> default to <code>openid profile email</code>. To use group mapping, request the
+claim that carries groups - commonly <code>groups</code> (Keycloak/Authentik) or <code>roles</code>,
+and add the matching scope your IdP requires (often <code>groups</code>).</li>
+<li><strong>Claim mapping</strong> lets you point at non-standard claim keys: <code>claim_email</code>,
+<code>claim_name</code>, and <code>claim_groups</code> (default <code>groups</code>). Most IdPs need no changes.</li>
+<li><strong><code>requireEmailVerified</code></strong> (DB providers only, default <strong>on</strong>): the callback
+rejects a sign-in unless the IdP asserts <code>email_verified: true</code>. Relax it only
+for IdPs that never emit the claim (some SAML→OIDC bridges).</li>
+</ul>
+<h2 id="group--role-mapping">Group → role mapping<a class="heading-anchor" href="#group--role-mapping" aria-label="Link to this section: Group → role mapping" data-search-ignore>#</a></h2>
+<p>DB providers carry a list of group mappings. On <strong>every</strong> successful sign-in, the
+user's groups claim is matched against the rules; each match yields a role
+assignment tagged to this provider. The next sign-in <strong>revokes</strong> assignments the
+user no longer qualifies for - so group membership at the IdP stays the source of
+truth. Admin-issued assignments (not tagged to a provider) are never touched.</p>
+<p>Each mapping is <code>group → role @ scope</code>. Scope syntax:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Scope</th><th>Applies to</th></tr></thead>
+<tbody>
+<tr><td><code>global</code></td><td>everywhere</td></tr>
+<tr><td><code>team:&lt;slug&gt;</code></td><td>the named team (never its zones - see below)</td></tr>
+<tr><td><code>zone:&lt;zone-name&gt;</code></td><td>every zone with that name, on any backend (canonical FQDN, trailing dot - e.g. <code>corp.example.</code>)</td></tr>
+<tr><td><code>server:&lt;slug&gt;</code></td><td>the backend object (never its zones - see below)</td></tr>
+</tbody>
+</table></div>
+<p>A <strong>zone-scoped</strong> mapping gives the group's members the role's zone-bound
+permissions (<code>zone.*</code> except <code>zone.create</code>, <code>record.*</code>, <code>soa.*</code>, <code>dnssec.*</code>,
+<code>metadata.*</code>) on that zone: it appears in their Zones list and they can act on it
+as the role allows - and on no other zone. The role's non-zone permissions
+(<code>user.read</code>, <code>server.read</code>, <code>settings.read</code>, …) are ignored at zone scope. The
+zone name is matched on every backend, so a zone with the same name on two
+backends is covered on both. See
+<a href="/docs/rbac/#what-a-zone-scope-grants">Roles &amp; permissions → What a zone scope grants</a>.</p>
+<p>Team and server targets are stored by slug and resolved at each sign-in, so a
+mapping keeps working when the team or server is re-created under the same slug.
+A target that no longer exists grants nothing and is recorded in the audit log as
+<code>auth.group_sync.mapping_unresolved</code>. Team and server scopes never open zones
+(zones carry no team/server binding) - use a zone-scoped mapping, or a team zone
+grant, for zone access.</p>
+<p>Zone targets are stored canonically (lowercase, trailing dot). The provider's
+edit page warns when a zone target matches no zone on any backend - a typo there
+grants nothing. A mapping row with a group or target filled in but something
+else missing is refused on save rather than dropped.</p>
+<p>Example (provisioning YAML - the UI exposes the same fields):</p>
+<div class="code-block" data-lang="yaml"><div class="code-head"><span class="code-lang">yaml</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">group_mappings</span><span class="t-p">:</span>
+  <span class="t-v">- { group</span><span class="t-p">:</span> pdns-superadmins<span class="t-p">,</span> role<span class="t-p">:</span> super-admin<span class="t-p">,</span> scope<span class="t-p">:</span> global <span class="t-p">}</span>
+  <span class="t-v">- { group</span><span class="t-p">:</span> noc-zone-editors<span class="t-p">,</span> role<span class="t-p">:</span> zone-editor<span class="t-p">,</span> scope<span class="t-p">:</span> <span class="t-s">&quot;team:noc&quot;</span> <span class="t-p">}</span>
+  <span class="t-v">- { group</span><span class="t-p">:</span> corp-zone-readers<span class="t-p">,</span> role<span class="t-p">:</span> read-only<span class="t-p">,</span> scope<span class="t-p">:</span> <span class="t-s">&quot;zone:corp.example.&quot;</span> <span class="t-p">}</span>
+  <span class="t-v">- { group</span><span class="t-p">:</span> public-dns-only<span class="t-p">,</span> role<span class="t-p">:</span> zone-editor<span class="t-p">,</span> scope<span class="t-p">:</span> <span class="t-s">&quot;server:primary-public&quot;</span> <span class="t-p">}</span></code></pre></div>
+<p>Custom roles work here too - reference them by slug. Mappings whose role/team/
+server can't be resolved at sign-in are logged + audited
+(<code>auth.group_sync.mapping_unresolved</code>, with the provider slug in <code>after.provider</code>)
+and skipped; the rest of the sign-in proceeds. See
+<a href="/docs/rbac/">Roles &amp; permissions</a> for the role catalog.</p>
+<h2 id="restricting-who-can-sign-in">Restricting who can sign in<a class="heading-anchor" href="#restricting-who-can-sign-in" aria-label="Link to this section: Restricting who can sign in" data-search-ignore>#</a></h2>
+<ul>
+<li><strong><code>allowed_email_domains</code></strong> (DB provider) / <strong><code>OIDC_ALLOWED_EMAIL_DOMAINS</code></strong>
+(env): an allow-list applied to <strong>new</strong> users' email domains. A first-time
+sign-in for an email outside the list is rejected before any user row is
+created. Existing users keep signing in regardless. Empty/unset = no restriction.</li>
+<li>A user can still be <strong>disabled</strong> in the admin UI to block sign-in entirely,
+regardless of IdP state.</li>
+</ul>
+<h2 id="convenience-options-db-providers">Convenience options (DB providers)<a class="heading-anchor" href="#convenience-options-db-providers" aria-label="Link to this section: Convenience options (DB providers)" data-search-ignore>#</a></h2>
+<ul>
+<li><strong>Default sign-in method</strong> - pick which provider <code>/login</code> auto-redirects
+to from the dropdown at the top of <strong>Admin → Authentication</strong>. Replaces
+the retired per-provider <code>force_default</code> checkbox: there's now one global
+default across the whole app, including a &quot;Local Auth&quot; choice that just
+shows the form. Recovery escape hatch: <code>…/login?force-local=1</code> shows the
+local form regardless of the setting. Existing deployments are migrated
+automatically at upgrade time (the most recently created enabled
+<code>force_default=true</code> provider wins).</li>
+<li><strong><code>icon_url</code></strong> - an <code>https://</code> logo shown on the login button.</li>
+<li><strong><code>enabled: false</code></strong> - keep a provider configured but hidden from the login page.</li>
+</ul>
+<h2 id="rp-initiated-logout">RP-initiated logout<a class="heading-anchor" href="#rp-initiated-logout" aria-label="Link to this section: RP-initiated logout" data-search-ignore>#</a></h2>
+<p>When an OIDC user signs out, the app uses the IdP's <code>end_session_endpoint</code> with
+an <code>id_token_hint</code> so the session ends at the IdP too - not just locally. No
+configuration needed beyond a provider whose discovery doc advertises the
+endpoint.</p>
+<h3 id="when-the-idp-doesnt-advertise-end_session_endpoint">When the IdP doesn't advertise <code>end_session_endpoint</code><a class="heading-anchor" href="#when-the-idp-doesnt-advertise-end_session_endpoint" aria-label="Link to this section: When the IdP doesn&#39;t advertise end_session_endpoint" data-search-ignore>#</a></h3>
+<p>Without it, the logout route falls back to the local <code>/login?signed-out=1</code>
+redirect. On its own that's fine - but if the <strong>Default sign-in method</strong> is an
+IdP, the next <code>/login</code> render would normally auto-redirect to it. With the
+IdP's session cookie still valid, the user gets silently re-auth'd and never
+sees a logout confirmation.</p>
+<p>Two defences are in place:</p>
+<ol>
+<li><strong>A 60-second <code>pda_just_logged_out</code> cookie</strong> is set on every logout. The
+<code>/login</code> server component skips the default-provider auto-redirect while
+that cookie is present, so the operator always lands on the local form
+first.</li>
+<li><strong>The Authentication page shows a &quot;no end-session&quot; warning chip</strong> on any
+OIDC provider whose last discovery probe didn't return
+<code>end_session_endpoint</code>. Hit <strong>Test</strong> on a provider to refresh the probe.</li>
+</ol>
+<h3 id="enabling-end_session_endpoint-on-common-idps">Enabling <code>end_session_endpoint</code> on common IdPs<a class="heading-anchor" href="#enabling-end_session_endpoint-on-common-idps" aria-label="Link to this section: Enabling end_session_endpoint on common IdPs" data-search-ignore>#</a></h3>
+<ul>
+<li><strong>Keycloak (≥ 18)</strong> advertises it by default. If yours doesn't, enable
+<em>Front Channel Logout</em> or set a <em>Backchannel Logout URL</em> on the client.</li>
+<li><strong>Authentik</strong> advertises it on every OIDC provider. If missing, check
+that the application's &quot;Sign out&quot; flow is set (defaults to a system flow
+named <code>default-invalidation-flow</code>).</li>
+<li><strong>Microsoft Entra ID</strong> advertises a <code>end_session_endpoint</code> per tenant -
+the discovery doc includes it automatically.</li>
+<li><strong>Google Workspace</strong> does not surface <code>end_session_endpoint</code>. Local
+fallback is the only option there; the just-logged-out cookie covers the
+immediate case.</li>
+<li><strong>AD FS (Windows Server 2019/2022)</strong> exposes <code>passive_logout_endpoint</code> in
+its WS-Federation metadata but <code>end_session_endpoint</code> is only present
+when the OIDC endpoint is explicitly configured. Refer to the AD FS
+PowerShell <code>Set-AdfsRelyingPartyTrust ... -SignOutEndpoint</code>.</li>
+</ul>
+<h2 id="mfa-and-sso-users">MFA and SSO users<a class="heading-anchor" href="#mfa-and-sso-users" aria-label="Link to this section: MFA and SSO users" data-search-ignore>#</a></h2>
+<p>SSO-only users (no local password) can't enrol local TOTP - the IdP is their
+second-factor authority, so the in-app MFA toggle is greyed out for them. If you
+want MFA for SSO users, enforce it at the IdP. Local-password users can still
+enrol TOTP, and roles can be marked <strong>MFA-required</strong> (see <a href="/docs/rbac/">RBAC</a>).</p>
+<h2 id="idp-specific-notes">IdP-specific notes<a class="heading-anchor" href="#idp-specific-notes" aria-label="Link to this section: IdP-specific notes" data-search-ignore>#</a></h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>IdP</th><th>Issuer URL</th><th>Groups</th></tr></thead>
+<tbody>
+<tr><td><strong>Keycloak</strong></td><td><code>https://&lt;host&gt;/realms/&lt;realm&gt;</code></td><td>Add a <em>Group Membership</em> mapper named <code>groups</code>; request scope <code>groups</code>.</td></tr>
+<tr><td><strong>Authentik</strong></td><td><code>https://&lt;host&gt;/application/o/&lt;slug&gt;/</code></td><td>Add a <em>Groups</em> scope mapping; claim <code>groups</code>.</td></tr>
+<tr><td><strong>Google Workspace</strong></td><td><code>https://accounts.google.com</code></td><td>No groups claim - use it for sign-in; assign roles in-app or by domain.</td></tr>
+<tr><td><strong>Microsoft Entra ID</strong></td><td><code>https://login.microsoftonline.com/&lt;tenant&gt;/v2.0</code></td><td>Add a <em>groups</em> claim (emits group <strong>object IDs</strong> - map those IDs in <code>group_mappings</code>).</td></tr>
+<tr><td><strong>Okta</strong></td><td><code>https://&lt;org&gt;.okta.com</code></td><td>Add a <code>groups</code> claim to the ID token via a claim filter.</td></tr>
+</tbody>
+</table></div>
+<p>For all of them, the redirect URI to register is
+<code>&lt;APP_URL&gt;/api/auth/oidc/&lt;slug&gt;/callback</code>.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="heading-anchor" href="#troubleshooting" aria-label="Link to this section: Troubleshooting" data-search-ignore>#</a></h2>
+<ul>
+<li><strong><code>redirect_uri</code> mismatch</strong> - the URI at the IdP must match
+<code>&lt;APP_URL&gt;/api/auth/oidc/&lt;slug&gt;/callback</code> exactly, including scheme and host.
+A wrong <code>APP_URL</code> is the usual cause.</li>
+<li><strong>My env provider isn't showing</strong> - it only hides when a DB provider has the
+<strong>same slug</strong> (which shadows it); otherwise check <code>OIDC_ENABLED=true</code> and that
+all five required keys are set. It always appears read-only (&quot;Configured by
+ENV&quot;) when configured.</li>
+<li><strong>Groups aren't mapping to roles</strong> - env providers can't map groups (use a DB
+provider); confirm the IdP actually emits the groups claim and that <code>claim_groups</code>
+matches; check the audit log for <code>mapping_unresolved</code>.</li>
+</ul>
+<p>See <a href="/docs/troubleshooting/">Troubleshooting</a> for more.</p>
+<hr>
+<p><a href="/docs/">← Docs index</a></p>
+</div>
+<footer class="docs-footer" data-search-ignore>
+<div class="docs-feedback">
+<p class="docs-feedback-q"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg><span>Was this page helpful?</span></p>
+<div class="docs-feedback-links">
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20OIDC%20single%20sign-on&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Foidc%2F%0ASource%3A%20docs%2F05-OIDC.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Open an issue</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/05-OIDC.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page on GitHub</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/docs/05-OIDC.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>View source</a>
+</div>
+</div>
+<nav class="docs-pager" aria-label="Previous and next page" data-search-ignore><a class="docs-pager-card docs-pager-prev" href="/docs/backends/" rel="prev"><span class="docs-pager-dir"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7"/></svg>Previous</span><span class="docs-pager-title">PowerDNS backends</span><span class="docs-pager-section">Getting started</span></a><a class="docs-pager-card docs-pager-next" href="/docs/saml/" rel="next"><span class="docs-pager-dir">Next<svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></span><span class="docs-pager-title">SAML 2.0 single sign-on</span><span class="docs-pager-section">Sign-in &amp; access</span></a></nav>
+<p class="docs-synced"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><span>Synced from <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener">PowerDNS-AuthAdmin v1.12.1</a> (<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/commit/d0a3faf959c75072815301a236f2c993385d02a9" rel="noopener"><code>d0a3faf</code></a>), <code>docs/05-OIDC.md</code>. Documentation © the PowerDNS-AuthAdmin contributors, <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT</a>.</span></p>
+</footer>
+</article>
+<aside class="docs-toc" aria-label="On this page" data-search-ignore>
+<p class="docs-toc-title">On this page</p>
+<nav aria-label="Table of contents"><ol><li><a href="#the-three-ways-to-configure-oidc---and-how-they-relate" data-toc="the-three-ways-to-configure-oidc---and-how-they-relate">The three ways to configure OIDC - and how they relate</a><ol><li><a href="#which-should-i-use" data-toc="which-should-i-use">Which should I use?</a></li></ol></li><li><a href="#the-redirect-callback-url" data-toc="the-redirect-callback-url">The redirect (callback) URL</a></li><li><a href="#setup-walkthrough-db-provider---the-recommended-path" data-toc="setup-walkthrough-db-provider---the-recommended-path">Setup walkthrough (DB provider - the recommended path)</a></li><li><a href="#scopes-and-claims" data-toc="scopes-and-claims">Scopes and claims</a></li><li><a href="#group--role-mapping" data-toc="group--role-mapping">Group → role mapping</a></li><li><a href="#restricting-who-can-sign-in" data-toc="restricting-who-can-sign-in">Restricting who can sign in</a></li><li><a href="#convenience-options-db-providers" data-toc="convenience-options-db-providers">Convenience options (DB providers)</a></li><li><a href="#rp-initiated-logout" data-toc="rp-initiated-logout">RP-initiated logout</a><ol><li><a href="#when-the-idp-doesnt-advertise-end_session_endpoint" data-toc="when-the-idp-doesnt-advertise-end_session_endpoint">When the IdP doesn&#39;t advertise end_session_endpoint</a></li><li><a href="#enabling-end_session_endpoint-on-common-idps" data-toc="enabling-end_session_endpoint-on-common-idps">Enabling end_session_endpoint on common IdPs</a></li></ol></li><li><a href="#mfa-and-sso-users" data-toc="mfa-and-sso-users">MFA and SSO users</a></li><li><a href="#idp-specific-notes" data-toc="idp-specific-notes">IdP-specific notes</a></li><li><a href="#troubleshooting" data-toc="troubleshooting">Troubleshooting</a></li></ol></nav>
+<div class="docs-toc-actions">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/05-OIDC.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20OIDC%20single%20sign-on&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Foidc%2F%0ASource%3A%20docs%2F05-OIDC.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Report an issue</a>
+<a href="#main" data-docs-top><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>Back to top</a>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer" data-search-ignore>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+      <p>Modern, self-hosted DNS administration for PowerDNS Authoritative. Open source under the <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT licence</a>, built in the open by its community.</p>
+      <a class="release-chip" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v1.12.1<span class="muted">· 23 Oct 2026</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><h2>Product</h2><ul><li><a href="/features/">Features</a></li><li><a href="/powerdns-admin-alternative/">Compare</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/support/">Commercial support</a></li><li><a href="/search/">Search</a></li><li><a href="https://demo.powerdns-authadmin.org" rel="noopener">Live demo</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases" rel="noopener">Releases</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li></ul></div>
+      <div class="footer-col"><h2>Docs</h2><ul><li><a href="/docs/">Documentation</a></li><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/rbac/">RBAC</a></li><li><a href="/docs/oidc/">OIDC</a></li><li><a href="/docs/ldap/">LDAP</a></li><li><a href="/docs/saml/">SAML</a></li><li><a href="/docs/passkeys/">Passkeys</a></li><li><a href="/docs/mcp/">MCP</a></li></ul></div>
+      <div class="footer-col"><h2>Community</h2><ul><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener">GitHub</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/discussions" rel="noopener">Discussions</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues" rel="noopener">Issues</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy" rel="noopener">Security policy</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/website" rel="noopener">Website source</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-badges" role="group" aria-label="Project status"><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/ci.yml?query=branch%3Amain" rel="noopener"><img src="/badges/ci.svg" alt="CI" width="90" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/latest" rel="noopener"><img src="/badges/release.svg" alt="Release" width="102" height="20" loading="lazy" decoding="async"></a><a href="https://scorecard.dev/viewer/?uri=github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener"><img src="/badges/openssf-scorecard.svg" alt="OpenSSF Scorecard" width="136" height="20" loading="lazy" decoding="async"></a><a href="https://www.bestpractices.dev/projects/12974" rel="noopener"><img src="/badges/openssf-best-practices.svg" alt="OpenSSF Best Practices" width="184" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener"><img src="/badges/license.svg" alt="License: MIT" width="78" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr.svg" alt="Container: GHCR" width="191" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-version.svg" alt="GHCR version" width="101" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-pulls.svg" alt="GHCR pulls" width="111" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-size.svg" alt="GHCR image size" width="142" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/.nvmrc" rel="noopener"><img src="/badges/nodejs.svg" alt="Node.js 24" width="91" height="20" loading="lazy" decoding="async"></a><a href="https://nextjs.org" rel="noopener"><img src="/badges/nextjs.svg" alt="Next.js 16" width="89" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/tsconfig.json" rel="noopener"><img src="/badges/typescript.svg" alt="TypeScript strict" width="123" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-46.yml" rel="noopener"><img src="/badges/pdns-4-6.svg" alt="PowerDNS 4.6" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-47.yml" rel="noopener"><img src="/badges/pdns-4-7.svg" alt="PowerDNS 4.7" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-48.yml" rel="noopener"><img src="/badges/pdns-4-8.svg" alt="PowerDNS 4.8" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-49.yml" rel="noopener"><img src="/badges/pdns-4-9.svg" alt="PowerDNS 4.9" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-50.yml" rel="noopener"><img src="/badges/pdns-5-0.svg" alt="PowerDNS 5.0" width="155" height="20" loading="lazy" decoding="async"></a></span></div>
+  <div class="container footer-bottom">
+    <span>© 2026 PowerDNS-AuthAdmin contributors. MIT licensed.</span>
+    <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+  </div>
+</footer>
+
+</body>
+</html>

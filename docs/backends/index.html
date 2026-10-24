@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark" data-base="" data-search-index="/assets/search/index.e7ebd943fc.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+0OEGstklXt2mYXx9ele+KtHixPt1mbLLFe91lHkjfQ=' https://*.googletagmanager.com; style-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.au; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'self'; upgrade-insecure-requests">
+<title>Connecting PowerDNS backends · AuthAdmin docs</title>
+<meta name="description" content="PowerDNS-AuthAdmin talks to one or many PowerDNS Authoritative servers over their HTTP API.">
+<link rel="canonical" href="https://powerdns-authadmin.org/docs/backends/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>(function(){var d=document.documentElement,t;d.classList.replace("no-js","js");try{t=localStorage.getItem("pda-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;})();</script>
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.22cd64dffc.css">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="PowerDNS-AuthAdmin">
+<meta name="apple-mobile-web-app-title" content="AuthAdmin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="/humans.txt">
+<link rel="search" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PowerDNS-AuthAdmin">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://powerdns-authadmin.org/docs/backends/">
+<meta property="og:title" content="Connecting PowerDNS backends · AuthAdmin docs">
+<meta property="og:description" content="PowerDNS-AuthAdmin talks to one or many PowerDNS Authoritative servers over their HTTP API.">
+<meta property="og:image" content="https://powerdns-authadmin.org/assets/og/docs-backends.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Connecting PowerDNS backends: PowerDNS-AuthAdmin documentation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Connecting PowerDNS backends · AuthAdmin docs">
+<meta name="twitter:description" content="PowerDNS-AuthAdmin talks to one or many PowerDNS Authoritative servers over their HTTP API.">
+<meta name="twitter:image" content="https://powerdns-authadmin.org/assets/og/docs-backends.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://powerdns-authadmin.org/#organization","name":"PowerDNS-AuthAdmin","url":"https://powerdns-authadmin.org/","logo":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/icons/icon-512.png","width":512,"height":512},"sameAs":["https://github.com/PowerDNS-AuthAdmin","https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin"]},{"@type":"WebSite","@id":"https://powerdns-authadmin.org/#website","url":"https://powerdns-authadmin.org/","name":"PowerDNS-AuthAdmin","description":"Open-source, self-hosted web UI for PowerDNS Authoritative: RBAC, OIDC, SAML and LDAP sign-in, passkeys, diff-before-apply zone editing, automatic PTR maintenance, zone monitoring, DNSSEC, multi-backend clusters, an append-only audit log and a built-in MCP server so AI assistants can manage DNS in natural language.","inLanguage":"en","publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://powerdns-authadmin.org/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"BreadcrumbList","@id":"https://powerdns-authadmin.org/docs/backends/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://powerdns-authadmin.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://powerdns-authadmin.org/docs/"},{"@type":"ListItem","position":3,"name":"Connecting PowerDNS backends","item":"https://powerdns-authadmin.org/docs/backends/"}]},{"@type":"TechArticle","@id":"https://powerdns-authadmin.org/docs/backends/#webpage","url":"https://powerdns-authadmin.org/docs/backends/","name":"Connecting PowerDNS backends · AuthAdmin docs","description":"PowerDNS-AuthAdmin talks to one or many PowerDNS Authoritative servers over their HTTP API.","inLanguage":"en","isPartOf":{"@id":"https://powerdns-authadmin.org/#website"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://powerdns-authadmin.org/assets/og/docs-backends.jpg","width":1200,"height":630},"dateModified":"2026-10-22T13:11:34+07:00","headline":"Connecting PowerDNS backends","author":{"@id":"https://powerdns-authadmin.org/#organization"},"publisher":{"@id":"https://powerdns-authadmin.org/#organization"},"image":"https://powerdns-authadmin.org/assets/og/docs-backends.jpg","mainEntityOfPage":"https://powerdns-authadmin.org/docs/backends/","about":{"@id":"https://powerdns-authadmin.org/#software"},"wordCount":2592,"breadcrumb":{"@id":"https://powerdns-authadmin.org/docs/backends/#breadcrumb"}}]}</script>
+<script src="/assets/js/main.279cf15a30.js" defer></script>
+<script src="/assets/js/search.3b4cc0b30a.js" defer></script>
+<script src="/assets/js/docs.20196dd4af.js" defer></script>
+<script src="/assets/js/analytics.32eae1dcec.js" data-ga4="G-Y8C640LSFR" defer></script>
+</head>
+<body class="page-docs-backends layout-docs">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-search-ignore>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="190px" width="190" height="32" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+    <nav class="nav" aria-label="Primary"><a href="/features/">Features</a><a href="/docs/" aria-current="page">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+    <div class="header-actions">
+      <button type="button" class="search-trigger" data-search-open aria-label="Search docs and site (Ctrl K)"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="search-trigger-label">Search docs…</span><kbd class="search-kbd" data-search-kbd>Ctrl K</kbd></button>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="i i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="i i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
+      <a class="icon-btn hide-md" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" data-cta="GitHub" rel="noopener" aria-label="PowerDNS-AuthAdmin on GitHub" title="PowerDNS-AuthAdmin on GitHub"><svg class="i" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="btn btn-primary btn-sm hide-xs" href="https://demo.powerdns-authadmin.org" data-cta="Live demo" rel="noopener">Live demo</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="docs-sidebar" data-docs-menu><svg class="i i-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  
+</header>
+<main id="main" tabindex="-1" data-search-section="Docs › Getting started">
+
+<div class="docs-shell" data-docs>
+<aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation" data-search-ignore>
+<div class="docs-sidebar-scroll">
+<nav class="docs-sitenav" aria-label="Site"><a href="/features/">Features</a><a href="/docs/" class="is-current">Docs</a><a href="/#mcp">Talk to your DNS</a><a href="/powerdns-admin-alternative/">Compare</a><a href="/faq/">FAQ</a></nav>
+<a class="docs-nav-home" href="/docs/"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg><span>Docs home</span></a>
+<nav class="docs-nav" aria-label="Docs sections">
+<details class="docs-nav-group has-current" data-group="getting-started" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.8-1.6l9.9-10.2a.5.5 0 0 1 .9.5L12 8.7a1 1 0 0 0 1 1.3h7a1 1 0 0 1 .8 1.6l-9.9 10.2a.5.5 0 0 1-.9-.5l1.9-6A1 1 0 0 0 11 14Z"/></svg></span><span class="docs-nav-label">Getting started</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/backends/" aria-current="page">PowerDNS backends</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="sign-in-access" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16.5 6.5l2.5 2.5M14 9l2 2"/></svg></span><span class="docs-nav-label">Sign-in &amp; access</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/oidc/">OIDC single sign-on</a></li><li><a href="/docs/saml/">SAML 2.0 single sign-on</a></li><li><a href="/docs/ldap/">LDAP sign-in</a></li><li><a href="/docs/passkeys/">Passkeys &amp; security keys</a></li><li><a href="/docs/rbac/">Roles &amp; permissions</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="operations" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><span class="docs-nav-label">Operations</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/provisioning/">First-boot provisioning</a></li><li><a href="/docs/hardening/">Hardening</a></li><li><a href="/docs/upgrading/">Upgrading</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="integrations-reference" open>
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span><span class="docs-nav-label">Integrations &amp; reference</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/docs/mcp/">Natural-language DNS with MCP</a></li><li><a href="/docs/features/">Feature catalog</a></li><li><a href="/docs/dev-setup/">Dev setup</a></li></ul>
+</details>
+<details class="docs-nav-group" data-group="adr">
+<summary><span class="docs-nav-icon" aria-hidden="true"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="docs-nav-label">Architecture decisions</span><svg class="i docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li class="is-index"><a href="/docs/adr/">All decisions</a></li><li class="is-adr"><a href="/docs/adr/0001-framework-choice/"><span class="docs-nav-num">0001</span><span>Choose Next.js 15 + React Server Components as the framework</span></a></li><li class="is-adr"><a href="/docs/adr/0002-mit-license/"><span class="docs-nav-num">0002</span><span>License under MIT</span></a></li><li class="is-adr"><a href="/docs/adr/0004-three-layer-architecture/"><span class="docs-nav-num">0004</span><span>Three-layer architecture (auth → RBAC → business logic)</span></a></li><li class="is-adr"><a href="/docs/adr/0005-migrations-explicit/"><span class="docs-nav-num">0005</span><span>Migrations are never auto-applied on app boot</span></a></li><li class="is-adr"><a href="/docs/adr/0006-csp-nonce/"><span class="docs-nav-num">0006</span><span>Per-request CSP nonce</span></a></li><li class="is-adr"><a href="/docs/adr/0007-db-backed-sessions/"><span class="docs-nav-num">0007</span><span>DB-backed sessions over stateless JWTs</span></a></li><li class="is-adr"><a href="/docs/adr/0008-argon2id-passwords/"><span class="docs-nav-num">0008</span><span>Argon2id for password hashing</span></a></li><li class="is-adr"><a href="/docs/adr/0009-custom-auth-core/"><span class="docs-nav-num">0009</span><span>Roll our own auth core on openid-client + argon2, not Auth.js</span></a></li><li class="is-adr"><a href="/docs/adr/0010-per-rrset-optimistic-concurrency/"><span class="docs-nav-num">0010</span><span>Per-RRset optimistic concurrency for the editor</span></a></li><li class="is-adr"><a href="/docs/adr/0011-migrate-on-app-boot/"><span class="docs-nav-num">0011</span><span>Migrations run at app-container boot</span></a></li><li class="is-adr"><a href="/docs/adr/0012-first-boot-provisioning/"><span class="docs-nav-num">0012</span><span>First-boot provisioning + OIDC group → role materialisation</span></a></li><li class="is-adr"><a href="/docs/adr/0013-pdns-db-bridge/"><span class="docs-nav-num">0013</span><span>The PDNS client&#39;s sanctioned DB bridge (and fixing boundary enforcement)</span></a></li><li class="is-adr"><a href="/docs/adr/0014-backend-capability-model/"><span class="docs-nav-num">0014</span><span>Per-zone authority + observed daemon capabilities (retire per-server role)</span></a></li><li class="is-adr"><a href="/docs/adr/0015-backend-health-advisories/"><span class="docs-nav-num">0015</span><span>Backend health advisories (the notification bell)</span></a></li><li class="is-adr"><a href="/docs/adr/0016-redis-horizontal-scale/"><span class="docs-nav-num">0016</span><span>Optional Redis for horizontal scale (replicas &gt; 1)</span></a></li><li class="is-adr"><a href="/docs/adr/0017-migration-squash-1.1.0/"><span class="docs-nav-num">0017</span><span>Squash the 1.1.0 schema deltas into one migration per dialect</span></a></li><li class="is-adr"><a href="/docs/adr/0018-provider-abstraction/"><span class="docs-nav-num">0018</span><span>Multi-provider auth: keep OIDC where it is, layer SAML + LDAP as siblings</span></a></li><li class="is-adr"><a href="/docs/adr/0019-webauthn-passkeys/"><span class="docs-nav-num">0019</span><span>WebAuthn: both primary credential and second factor</span></a></li><li class="is-adr"><a href="/docs/adr/0020-ldap-architecture/"><span class="docs-nav-num">0020</span><span>LDAP authentication architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0021-saml-architecture/"><span class="docs-nav-num">0021</span><span>SAML 2.0 service-provider architecture</span></a></li><li class="is-adr"><a href="/docs/adr/0022-zone-horizons/"><span class="docs-nav-num">0022</span><span>Zone horizons: app-side split-horizon classification</span></a></li><li class="is-adr"><a href="/docs/adr/0023-zone-authority-permissions/"><span class="docs-nav-num">0023</span><span>Zone authority is a separate permission from zone records</span></a></li><li class="is-adr"><a href="/docs/adr/0024-zone-scoped-roles-grant-zone-access/"><span class="docs-nav-num">0024</span><span>Zone-scoped roles grant zone access</span></a></li></ul>
+</details>
+</nav>
+<div class="docs-sidebar-foot">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" rel="noopener"><span class="pulse" aria-hidden="true"></span>PowerDNS-AuthAdmin v1.12.1</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Docs source</a>
+</div>
+</div>
+</aside>
+<article class="docs-article" aria-labelledby="doc-title">
+<nav class="docs-crumbs" aria-label="Breadcrumb" data-search-ignore><ol><li><a href="/docs/">Docs</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><a href="/docs/#getting-started">Getting started</a><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></li><li><span aria-current="page">Connecting PowerDNS backends</span></li></ol></nav>
+<header class="docs-header">
+
+<h1 id="doc-title">Connecting PowerDNS backends</h1>
+<p class="docs-lead">Wire up standalone primaries, primary + secondaries groups and multi-primary clusters, plus DNSSEC and TSIG.</p>
+<div class="docs-meta" data-search-ignore>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.8 9.8 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>Updated <time datetime="2026-10-22T13:11:34+07:00">22 Oct 2026</time></span>
+<span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/></svg>11 min read</span>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/04-BACKENDS.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit on GitHub</a>
+</div>
+</header>
+<details class="docs-toc-mobile" data-search-ignore><summary><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></svg><span>On this page</span><svg class="i docs-toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><nav aria-label="On this page (compact)"><ol><li><a href="#1-enable-the-powerdns-http-api" data-toc="1-enable-the-powerdns-http-api">1. Enable the PowerDNS HTTP API</a></li><li><a href="#2-add-the-backend" data-toc="2-add-the-backend">2. Add the backend</a></li><li><a href="#the-ssrf-guard" data-toc="the-ssrf-guard">The SSRF guard</a></li><li><a href="#reachability-and-status" data-toc="reachability-and-status">Reachability and status</a></li><li><a href="#background-polling---opt-in-for-multi-peer-topologies" data-toc="background-polling---opt-in-for-multi-peer-topologies">Background polling - opt-in for multi-peer topologies</a></li><li><a href="#topologies" data-toc="topologies">Topologies</a><ol><li><a href="#standalone-primary" data-toc="standalone-primary">Standalone primary</a></li><li><a href="#primary--secondaries" data-toc="primary--secondaries">Primary + secondaries</a></li><li><a href="#multi-primary-cluster" data-toc="multi-primary-cluster">Multi-primary cluster</a></li><li><a href="#hidden-primary--read-only-public-nameservers-native-zones" data-toc="hidden-primary--read-only-public-nameservers-native-zones">Hidden primary + read-only public nameservers (native zones)</a></li></ol></li><li><a href="#dnssec-tsig-autoprimaries" data-toc="dnssec-tsig-autoprimaries">DNSSEC, TSIG, autoprimaries</a></li><li><a href="#dnssec" data-toc="dnssec">DNSSEC</a><ol><li><a href="#enabling" data-toc="enabling">Enabling</a></li><li><a href="#soa-edit-and-presigned-secondaries" data-toc="soa-edit-and-presigned-secondaries">SOA-EDIT and presigned secondaries</a></li><li><a href="#lua-and-alias-records" data-toc="lua-and-alias-records">LUA and ALIAS records</a></li><li><a href="#rolling-out-safely" data-toc="rolling-out-safely">Rolling out safely</a></li><li><a href="#api" data-toc="api">API</a></li></ol></li></ol></nav></details>
+<div class="doc-content">
+<p>PowerDNS-AuthAdmin talks to one or many PowerDNS Authoritative servers over their
+HTTP API. This guide covers enabling that API on PowerDNS, adding a backend, and
+the three supported topologies.</p>
+<figure class="doc-shot"><img class="shot shot-dark" src="/assets/img/shots/dark/powerdns-servers-960.webp" srcset="/assets/img/shots/dark/powerdns-servers-1440.webp 1440w, /assets/img/shots/dark/powerdns-servers-960.webp 960w, /assets/img/shots/dark/powerdns-servers-720.webp 720w, /assets/img/shots/dark/powerdns-servers-640.webp 640w" sizes="(min-width: 860px) 800px, 94vw" width="1440" height="900" alt="PowerDNS servers - standalone, primary+secondaries, and cluster side by side" loading="lazy" decoding="async"><img class="shot shot-light" src="/assets/img/shots/light/powerdns-servers-960.webp" srcset="/assets/img/shots/light/powerdns-servers-1440.webp 1440w, /assets/img/shots/light/powerdns-servers-960.webp 960w, /assets/img/shots/light/powerdns-servers-720.webp 720w, /assets/img/shots/light/powerdns-servers-640.webp 640w" sizes="(min-width: 860px) 800px, 94vw" width="1440" height="900" alt="PowerDNS servers - standalone, primary+secondaries, and cluster side by side" loading="lazy" decoding="async"></figure>
+<h2 id="1-enable-the-powerdns-http-api">1. Enable the PowerDNS HTTP API<a class="heading-anchor" href="#1-enable-the-powerdns-http-api" aria-label="Link to this section: 1. Enable the PowerDNS HTTP API" data-search-ignore>#</a></h2>
+<p>On each PowerDNS Authoritative server, the API and webserver must be on. In
+<code>pdns.conf</code>:</p>
+<div class="code-block" data-lang="ini"><div class="code-head"><span class="code-lang">ini</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-v">api</span><span class="t-p">=</span><span class="t-n">yes</span>
+<span class="t-v">api-key</span><span class="t-p">=</span>CHANGE_ME_to_a_long_random_key
+<span class="t-v">webserver</span><span class="t-p">=</span><span class="t-n">yes</span>
+<span class="t-v">webserver-address</span><span class="t-p">=</span><span class="t-n">0.0</span>.<span class="t-n">0.0</span>          # bind where AuthAdmin can reach it
+<span class="t-v">webserver-port</span><span class="t-p">=</span><span class="t-n">8081</span>
+<span class="t-v">webserver-allow-from</span><span class="t-p">=</span><span class="t-n">10.0</span>.<span class="t-n">0.0</span>/<span class="t-n">8</span>    # restrict to AuthAdmin&#39;s network/IP</code></pre></div>
+<p>The <strong>API root URL</strong> AuthAdmin needs is <code>http(s)://&lt;host&gt;:8081/api/v1</code>, and the
+<strong>API key</strong> is the <code>api-key</code> value above (sent as the <code>X-API-Key</code> header). Keep
+the webserver on a private network or behind your own TLS - the API key is a
+full-control credential.</p>
+<h2 id="2-add-the-backend">2. Add the backend<a class="heading-anchor" href="#2-add-the-backend" aria-label="Link to this section: 2. Add the backend" data-search-ignore>#</a></h2>
+<p>Two ways, both equivalent - they write the same <code>pdns_servers</code> row:</p>
+<ul>
+<li><strong>Admin UI</strong> → <strong>Admin → PowerDNS servers → Add server</strong>.</li>
+<li><strong>Provisioning</strong> → the <code>pdns_servers:</code> block (see <a href="/docs/provisioning/">Provisioning</a>).</li>
+</ul>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Field</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Name</strong> / <strong>slug</strong></td><td>Display name and URL-safe identifier.</td></tr>
+<tr><td><strong>Base URL</strong></td><td>The API root, ending in <code>/api/v1</code>. <code>https://</code> required in production unless <code>APP_PDNS_ALLOW_INSECURE_HTTP=true</code>.</td></tr>
+<tr><td><strong>Server ID</strong></td><td>The PDNS server-id path segment - almost always <code>localhost</code>.</td></tr>
+<tr><td><strong>API key</strong></td><td>The <code>X-API-Key</code>. Encrypted at rest with <code>APP_ENCRYPTION_KEY</code>; never sent back to the browser.</td></tr>
+<tr><td><strong>Cluster</strong></td><td>The group this backend belongs to - a multi-primary cluster, or a primary with its secondaries (<code>cluster_slug</code>).</td></tr>
+<tr><td><strong>Read-only</strong></td><td><strong>Never write to this backend</strong> (<code>write_mode: read_only</code>) - see <a href="#hidden-primary--read-only-public-nameservers-native-zones">hidden primary</a>.</td></tr>
+<tr><td><strong>Single nameserver</strong></td><td><strong>Don't warn about single-nameserver zones on this backend</strong> (<code>monitor_accept_single_ns</code>). Shown only for a backend outside any group. Zone monitoring then reports <code>nameserver.count</code> as accepted information instead of a warning in the bell.</td></tr>
+</tbody>
+</table></div>
+<p>There is no role field. Whether a backend is a primary or a secondary is
+<strong>observed</strong> from its <code>/config</code> (<code>primary</code>, <code>secondary</code>, <code>autosecondary</code> - see
+<a href="/docs/adr/0014-backend-capability-model/">ADR-0014</a>) and shown as capability
+badges; you only say which backends belong together.</p>
+<p>The API key is stored encrypted, redacted in logs, and never round-tripped to the
+client.</p>
+<h2 id="the-ssrf-guard">The SSRF guard<a class="heading-anchor" href="#the-ssrf-guard" aria-label="Link to this section: The SSRF guard" data-search-ignore>#</a></h2>
+<p>The app refuses backend URLs that could be used to reach internal services, and
+<strong>re-resolves the hostname before every request</strong> as a DNS-rebinding defense. The
+validated address is then <strong>pinned into the connection</strong> - the request reaches the
+exact IP the guard checked, so a hostile resolver can't hand a safe IP to the guard
+and a private one to the HTTP client between the two lookups.</p>
+<ul>
+<li><strong>Link-local addresses are always blocked</strong>, including the
+<code>169.254.169.254</code> cloud-metadata endpoint - no flag overrides this.</li>
+<li><code>APP_PDNS_ALLOW_PRIVATE_NETWORKS=true</code> permits loopback / RFC1918 / CGNAT / IPv6
+ULA destinations - needed for in-cluster or docker-compose PowerDNS.</li>
+<li><code>APP_PDNS_ALLOW_INSECURE_HTTP=true</code> permits <code>http://</code> base URLs.</li>
+</ul>
+<p>For an internal <code>http://pdns:8081/api/v1</code> backend you need <strong>both</strong> flags. Defaults
+are permissive in dev and strict in production - see <a href="/docs/configuration/">Configuration</a>.</p>
+<h2 id="reachability-and-status">Reachability and status<a class="heading-anchor" href="#reachability-and-status" aria-label="Link to this section: Reachability and status" data-search-ignore>#</a></h2>
+<p>With <code>PDNS_BACKGROUND_POLLING=true</code> (see below) a background poller refreshes
+zone state every ~30 s and daemon capabilities + statistics every ~60 s (plus a
+5-minute metric snapshot for the dashboard charts) against every active backend;
+otherwise <code>last_seen_at</code> only moves on page loads, <strong>Test</strong> and <strong>Refresh all</strong>.
+The <strong>Status</strong> column on the servers page
+shows <strong>Reachable · &lt;when&gt;</strong> based on the last <em>successful</em> contact
+(<code>last_seen_at</code>), so a healthy, actively-polled backend reads &quot;Reachable · just
+now&quot;. A backend with no successful contact ever shows &quot;Not yet reached&quot;; one not
+reached in over 24 h is flagged on the dashboard's &quot;PDNS backends needing
+attention&quot; widget.</p>
+<ul>
+<li><strong>Test</strong> (per row) does an immediate version probe and updates the status.</li>
+<li><strong>Refresh all</strong> re-probes every active backend's version at once.</li>
+</ul>
+<h2 id="background-polling---opt-in-for-multi-peer-topologies">Background polling - opt-in for multi-peer topologies<a class="heading-anchor" href="#background-polling---opt-in-for-multi-peer-topologies" aria-label="Link to this section: Background polling - opt-in for multi-peer topologies" data-search-ignore>#</a></h2>
+<p>AuthAdmin's replication-awareness layer (SYNCED/DESYNCED chip, per-zone
+Sync and Statistics tabs, servers-list Sync column, dashboard PDNS
+metrics, drift advisories) is powered by a background poller that ticks
+against every configured backend. Whether it runs at all is controlled by
+the <code>PDNS_BACKGROUND_POLLING</code> env var, <strong>which defaults to <code>false</code></strong> (see
+<a href="/docs/configuration/#pdns_background_polling">Configuration → <code>PDNS_BACKGROUND_POLLING</code></a>).</p>
+<p>The right value depends on the topology you're about to build:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>You're configuring …</th><th>Set <code>PDNS_BACKGROUND_POLLING</code> to</th></tr></thead>
+<tbody>
+<tr><td><strong>Standalone primary</strong> (one PDNS, single instance, no AXFR replication).</td><td><code>false</code> (default - leave it)</td></tr>
+<tr><td>Multiple <strong>independent standalones</strong> (no cross-server replication).</td><td><code>false</code></td></tr>
+<tr><td><strong>Primary + secondaries</strong> (one writable backend mirrored over AXFR).</td><td><code>true</code> <em>(strongly recommended)</em></td></tr>
+<tr><td><strong>Multi-primary cluster</strong> (≥2 writable peers sharing storage).</td><td><code>true</code> <em>(strongly recommended)</em></td></tr>
+</tbody>
+</table></div>
+<p>A polling-off install still works for every topology - the standalone /
+single-primary path is its sweet spot, but you can run a primary +
+secondaries on <code>false</code> if you prefer to keep AuthAdmin completely
+operator-driven. The trade-off is that AuthAdmin won't show you when a
+secondary has fallen behind on AXFR; you'd notice that through your own
+PowerDNS monitoring (e.g. <code>pdns_control list-zones</code> cross-checks) or via
+the <strong>Test</strong> button on <code>/admin/servers</code>.</p>
+<h2 id="topologies">Topologies<a class="heading-anchor" href="#topologies" aria-label="Link to this section: Topologies" data-search-ignore>#</a></h2>
+<h3 id="standalone-primary">Standalone primary<a class="heading-anchor" href="#standalone-primary" aria-label="Link to this section: Standalone primary" data-search-ignore>#</a></h3>
+<p>A single read/write backend. Add it with no cluster, and mark one backend
+<code>is_default</code> so requests without an explicit server target resolve to it.</p>
+<h3 id="primary--secondaries">Primary + secondaries<a class="heading-anchor" href="#primary--secondaries" aria-label="Link to this section: Primary + secondaries" data-search-ignore>#</a></h3>
+<p>A writable primary plus one or more read-only mirrors that receive zones via
+AXFR/IXFR after a NOTIFY. Add each backend, then put the primary and its
+secondaries in <strong>one group</strong> (the same <code>cluster_slug</code>) - which member is the
+primary is observed from the daemon (<code>primary=yes</code> vs <code>secondary=yes</code> in its
+<code>/config</code>), and the group renders as <strong>Primary + secondaries</strong>. AuthAdmin routes
+<strong>all writes to the primary</strong>; secondary sync state + stats are surfaced when
+<code>PDNS_BACKGROUND_POLLING=true</code> (see <a href="#background-polling---opt-in-for-multi-peer-topologies">above</a>).</p>
+<p>For secondaries to auto-bootstrap a zone via PowerDNS supermaster, each zone's NS
+set must include the receiving secondary's registered nameserver - see the
+<code>zone_templates</code> notes in <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/provisioning.example.yaml" rel="noopener"><code>provisioning.example.yaml</code></a>.
+The <strong>Sync</strong> column (visible when <code>PDNS_BACKGROUND_POLLING=true</code>) compares
+each secondary's serial against the primary's.</p>
+<h3 id="multi-primary-cluster">Multi-primary cluster<a class="heading-anchor" href="#multi-primary-cluster" aria-label="Link to this section: Multi-primary cluster" data-search-ignore>#</a></h3>
+<p><code>N</code> writable peers sharing a replicated store (Galera, Postgres logical
+replication, …). Define a <code>cluster</code>, then add each peer bound to that cluster
+(<code>cluster_slug</code>). The cluster appears as <strong>one logical backend</strong> in every picker; a
+<strong>peer-selection strategy</strong> routes each request to a peer:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Strategy</th><th>Behaviour</th></tr></thead>
+<tbody>
+<tr><td><code>round_robin</code></td><td>Spread requests across peers in order (default).</td></tr>
+<tr><td><code>random</code></td><td>Uniform random peer per request.</td></tr>
+<tr><td><code>lowest_latency</code></td><td>Peer with the lowest sampled p50 (falls back to round-robin until sampled).</td></tr>
+<tr><td><code>least_load</code></td><td>Peer with the fewest zones.</td></tr>
+</tbody>
+</table></div>
+<p>Both writable peers and read-only mirrors can be group members; what makes a
+group a <strong>multi-primary cluster</strong> is that every member reports itself writable.
+One writable member plus mirrors renders as <strong>Primary + secondaries</strong> instead.</p>
+<h3 id="hidden-primary--read-only-public-nameservers-native-zones">Hidden primary + read-only public nameservers (native zones)<a class="heading-anchor" href="#hidden-primary--read-only-public-nameservers-native-zones" aria-label="Link to this section: Hidden primary + read-only public nameservers (native zones)" data-search-ignore>#</a></h3>
+<p>A common shape that needs one extra step: all zones are <code>Native</code>, edits happen on
+a hidden primary, and the public nameservers receive them through <strong>database
+replication</strong> rather than AXFR. Those public nodes typically run against a
+read-only database user.</p>
+<p>PowerDNS reports such a daemon as <code>primary=no, secondary=no</code> - identical to a
+plain standalone primary - so AuthAdmin cannot tell it apart, and by default the
+peer-selection strategy will happily route a write to it, which then fails.</p>
+<p>Tick <strong>Never write to this backend (read-only)</strong> on each public node (or set
+<code>write_mode: read_only</code> in provisioning YAML). That backend is then:</p>
+<ul>
+<li>excluded from peer selection, so every write lands on the hidden primary;</li>
+<li>excluded from the create-zone and zones-list backend pickers;</li>
+<li>ineligible to be the default backend;</li>
+<li>still fully browsable, and still polled for sync state and stats.</li>
+</ul>
+<p>Group the hidden primary and its public nodes together so the group renders as
+<strong>Primary + secondaries</strong> rather than a multi-primary cluster.</p>
+<blockquote>
+<p>The <strong>default backend</strong> setting is unrelated: it only chooses which backend
+serves a request that doesn't name one. It has never constrained peer
+selection inside a group.</p>
+</blockquote>
+<h2 id="dnssec-tsig-autoprimaries">DNSSEC, TSIG, autoprimaries<a class="heading-anchor" href="#dnssec-tsig-autoprimaries" aria-label="Link to this section: DNSSEC, TSIG, autoprimaries" data-search-ignore>#</a></h2>
+<p>Once a backend is connected, manage these from the zone and admin UIs (gated by
+the matching permissions in <a href="/docs/rbac/">RBAC</a>):</p>
+<ul>
+<li><strong>DNSSEC</strong> - sign/unsign a zone, rectify, and manage its cryptokeys
+(see <a href="#dnssec">DNSSEC</a> below).</li>
+<li><strong>TSIG keys</strong> - <code>tsig.read</code> lists; <code>tsig.manage</code> creates/regenerates/reveals.</li>
+<li><strong>Autoprimaries</strong> - register autoprimary entries for supermaster bootstrap.</li>
+</ul>
+<h2 id="dnssec">DNSSEC<a class="heading-anchor" href="#dnssec" aria-label="Link to this section: DNSSEC" data-search-ignore>#</a></h2>
+<p>PowerDNS signs on the fly: the primary holds the keys and signs each answer as
+it goes out. Secondaries that receive the zone over AXFR get the signatures
+with it and store the zone as <strong>presigned</strong>. A PowerDNS secondary sets this
+itself on the first signed transfer. They serve those stored RRSIGs and hold no
+keys.</p>
+<p>Requirements: a DNSSEC-capable backend on every server (<code>gsqlite3-dnssec=yes</code>,
+<code>gmysql-dnssec=yes</code>, <code>gpgsql-dnssec=yes</code>, ...). The secondaries need it too,
+or they can't store a presigned zone.</p>
+<h3 id="enabling">Enabling<a class="heading-anchor" href="#enabling" aria-label="Link to this section: Enabling" data-search-ignore>#</a></h3>
+<p>Zone → <strong>DNSSEC</strong> tab → <strong>Enable DNSSEC</strong> (<code>dnssec.configure</code>), or
+<code>POST /api/admin/pdns/zones/{zone}/dnssec</code>. This sends one
+<code>PUT /zones/{zone}</code> with <code>dnssec: true</code> to PowerDNS, which in a single
+transaction:</p>
+<ol>
+<li>adds PowerDNS' default keys (<code>default-ksk-algorithm</code> /
+<code>default-zsk-algorithm</code>; on 4.9 that's one ECDSA P-256 CSK),</li>
+<li><strong>rectifies</strong> the zone (API-RECTIFY is switched on in the same request),</li>
+<li>switches to NSEC, or NSEC3 if you pass <code>nsec3param</code>,</li>
+<li>bumps the serial per SOA-EDIT-API.</li>
+</ol>
+<p>The same request also sets <strong>SOA-EDIT to <code>INCREMENT-WEEKS</code></strong> if the zone is
+transferred (Master/Primary kind, or mirrored by a managed backend) and has no
+SOA-EDIT yet. AuthAdmin then makes sure the served serial actually moved,
+bumping the SOA serial itself if PowerDNS didn't (no SOA-EDIT-API on the zone).
+Finally it NOTIFYs the secondaries so they transfer the signed zone right away.</p>
+<p>PowerDNS caches zone metadata, SOA-EDIT included, for
+<code>zone-metadata-cache-ttl</code> (60 s by default). A zone PUT doesn't clear that
+cache on 4.6-4.8, and AuthAdmin's cache flush only clears it on 4.9+. So right
+after SOA-EDIT changes, the primary can briefly keep serving and reporting
+the old serial, and the first NOTIFY carries that old serial. When SOA-EDIT
+changed, AuthAdmin therefore sends a second NOTIFY once the cache TTL has
+passed. The response reports this as <code>followUpNotifyInSeconds</code>. Until then,
+<code>servedSerial</code> may still equal <code>serial</code>.
+The call is idempotent. On an already-signed zone it applies the settings,
+rectifies, bumps and notifies, which also repairs a zone that was signed by
+adding keys one at a time.</p>
+<p><strong>Why rectify matters.</strong> Signed zones need each record's <code>ordername</code> and <code>auth</code>
+flag computed. That's what NSEC/NSEC3 denial of existence (NXDOMAIN, NODATA) is
+built from. PowerDNS fills them in on rectify. Rectify on an unsigned zone
+leaves <code>ordername</code> empty, so a zone that gets keys without a rectify serves
+broken denial proofs. <code>POST /zones/{zone}/cryptokeys</code> on PowerDNS does <strong>not</strong>
+rectify. AuthAdmin's cryptokey route now rectifies after adding a key, and
+<strong>Rectify zone</strong> / <code>PUT .../rectify</code> is there for zones edited outside the API.
+Rectify doesn't change the serial, so on a transferred zone AuthAdmin bumps
+the serial and NOTIFYs. Otherwise presigned secondaries would keep the old
+NSEC chain.</p>
+<h3 id="soa-edit-and-presigned-secondaries">SOA-EDIT and presigned secondaries<a class="heading-anchor" href="#soa-edit-and-presigned-secondaries" aria-label="Link to this section: SOA-EDIT and presigned secondaries" data-search-ignore>#</a></h3>
+<p>PowerDNS signatures are valid for about three weeks and are re-signed weekly.
+A presigned secondary only refreshes its copy when the served serial changes.
+On a zone that isn't edited, its signatures eventually expire, and validating
+resolvers then treat the zone as bogus on those secondaries. <code>SOA-EDIT</code> fixes
+this: with <code>INCREMENT-WEEKS</code> (or <code>INCEPTION-INCREMENT</code>) the primary serves a
+serial that changes every week, and the secondaries re-transfer fresh
+signatures. The DNSSEC tab warns when a transferred, signed zone has no
+SOA-EDIT.</p>
+<p>What this means for the sync indicators:</p>
+<ul>
+<li>PowerDNS reports <code>serial</code> (stored) and <code>edited_serial</code> (after SOA-EDIT, the
+value it serves). A secondary stores the served value, so AuthAdmin compares
+the mirror against the primary's <strong><code>edited_serial</code></strong>. The zone page shows
+both.</li>
+<li>The weekly SOA-EDIT change happens at the epoch-week boundary (Thursday
+00:00 UTC) and PowerDNS sends <strong>no NOTIFY</strong> for it. Secondaries pick it up at
+their next SOA refresh. For one SOA refresh interval after the boundary
+(3 h when the refresh isn't known), a mirror that is exactly that far behind
+shows as <strong>refresh due</strong> instead of desynced. It doesn't trip the header chip
+or the replication-drift advisory. A content change that hasn't reached a
+secondary within that window is also reported as refresh due until the
+window closes.</li>
+<li>The record diff on the zone's <strong>Sync</strong> tab compares the SOA without its
+serial. For a signed zone it leaves out RRSIG, DNSKEY, CDS, CDNSKEY and
+NSEC/NSEC3/NSEC3PARAM, which the secondary stores and the primary only
+generates. It shows a count of those instead.</li>
+<li>Don't remove or downgrade SOA-EDIT on a zone the secondaries already hold.
+The served serial would drop below theirs, they never transfer a lower
+serial, and they'd keep serving the old (signed) copy. The mirror then shows
+as <strong>ahead</strong>. Disabling DNSSEC leaves SOA-EDIT in place for this reason.</li>
+</ul>
+<h3 id="lua-and-alias-records">LUA and ALIAS records<a class="heading-anchor" href="#lua-and-alias-records" aria-label="Link to this section: LUA and ALIAS records" data-search-ignore>#</a></h3>
+<p>PowerDNS transfers LUA records unexpanded. A presigned secondary can't sign the
+answers it computes from them, so validating resolvers see those names as bogus
+on the secondaries. Keep LUA records out of signed zones served by presigned
+secondaries. ALIAS has the same problem. Set <code>outgoing-axfr-expand-alias=yes</code>
+on the primary so ALIASes are transferred expanded (and signed). Their
+addresses then only refresh on the next transfer. Enabling DNSSEC returns a
+warning when the zone holds either type.</p>
+<p>PowerDNS 5.1 makes LUA records immutable unless <code>enable-lua-record-updates=yes</code>.
+That covers AXFR/IXFR as well as the API, so a 5.1 secondary left at the
+default refuses to take LUA records from its primary. Set it on every 5.1
+daemon whose zones carry LUA records, the primary for edits through
+AuthAdmin and each secondary for transfers.</p>
+<h3 id="rolling-out-safely">Rolling out safely<a class="heading-anchor" href="#rolling-out-safely" aria-label="Link to this section: Rolling out safely" data-search-ignore>#</a></h3>
+<ol>
+<li><strong>Sign.</strong> Enable DNSSEC on the zone.</li>
+<li><strong>Verify on every nameserver</strong> before telling the parent anything. Check
+that <code>dig +dnssec SOA example.com @&lt;each NS&gt;</code> returns an RRSIG, that a
+nonexistent name returns NXDOMAIN with NSEC/NSEC3 records, and that the
+zone's Sync tab (or <code>GET .../dnssec</code> → <code>mirrors</code>) shows every secondary
+in sync. A validating check such as <code>delv @&lt;ns&gt; example.com SOA</code> with the
+DNSKEY as trust anchor, or an online DNSSEC analyzer against the unsigned
+delegation, catches anything left over.</li>
+<li><strong>Publish the DS</strong> at the registrar. Use the SHA-256 one (digest type 2)
+from the DNSSEC tab or <code>GET .../cryptokeys</code> → top-level <code>ds</code>, which leaves
+out SHA-1.</li>
+</ol>
+<p><strong>Rollback</strong> is the reverse: remove the DS at the registrar, wait at least the
+DS TTL at the parent (often 1-2 days), and only then disable DNSSEC. Unsigning
+while a DS is still published makes validating resolvers SERVFAIL the whole
+zone. The disable route therefore requires <code>confirm=&lt;zone&gt;</code>.</p>
+<h3 id="api">API<a class="heading-anchor" href="#api" aria-label="Link to this section: API" data-search-ignore>#</a></h3>
+<p>All four take <code>serverSlug</code>. Pass it whenever the install has no default
+backend. Bearer (PAT) requests don't need the CSRF header. Examples use
+<code>https://dns-admin.example.com</code>, a PAT in <code>$PAT</code>, and a backend with slug
+<code>primary-1</code>.</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="copy-btn" data-copy aria-label="Copy code to clipboard"><svg class="i i-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="i i-done" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="copy-label">Copy</span></button></div><pre tabindex="0"><code><span class="t-c"># Status: dnssec flag, SOA-EDIT, keys, DS to publish, per-mirror sync state</span>
+<span class="t-x">curl</span> <span class="t-k">-s</span> <span class="t-k">-H</span> <span class="t-s">&quot;Authorization: Bearer </span><span class="t-v">$PAT</span><span class="t-s">&quot;</span> <span class="t-p">\</span>
+  <span class="t-s">&quot;https://dns-admin.example.com/api/admin/pdns/zones/example.com./dnssec?serverSlug=primary-1&quot;</span>
+
+<span class="t-c"># Enable (all body fields optional; defaults shown in the comments)</span>
+<span class="t-x">curl</span> <span class="t-k">-s</span> <span class="t-k">-X</span> POST <span class="t-k">-H</span> <span class="t-s">&quot;Authorization: Bearer </span><span class="t-v">$PAT</span><span class="t-s">&quot;</span> <span class="t-k">-H</span> <span class="t-s">&#39;Content-Type: application/json&#39;</span> <span class="t-p">\</span>
+  <span class="t-k">-d</span> <span class="t-s">&#39;{&quot;serverSlug&quot;:&quot;primary-1&quot;}&#39;</span> <span class="t-p">\</span>
+  <span class="t-s">&quot;https://dns-admin.example.com/api/admin/pdns/zones/example.com./dnssec&quot;</span>
+<span class="t-c">#   &quot;soaEdit&quot;:     auto → &quot;INCREMENT-WEEKS&quot; for a transferred zone without one; &quot;&quot; leaves it unset</span>
+<span class="t-c">#   &quot;apiRectify&quot;:  true</span>
+<span class="t-c">#   &quot;nsec3param&quot;:  omitted → NSEC; e.g. &quot;1 0 0 -&quot; for NSEC3 (RFC 9276 parameters)</span>
+<span class="t-c">#   &quot;nsec3narrow&quot;: false</span>
+<span class="t-c">#   &quot;notify&quot;:      true</span>
+<span class="t-c"># → 201 (200 if it was already signed) with the status fields plus</span>
+<span class="t-c">#   alreadyEnabled, serialAdvance (&quot;pdns&quot; | &quot;patched&quot; | &quot;unchanged&quot;), notified, warnings[]</span>
+
+<span class="t-c"># Keys + DS (never returns private key material)</span>
+<span class="t-x">curl</span> <span class="t-k">-s</span> <span class="t-k">-H</span> <span class="t-s">&quot;Authorization: Bearer </span><span class="t-v">$PAT</span><span class="t-s">&quot;</span> <span class="t-p">\</span>
+  <span class="t-s">&quot;https://dns-admin.example.com/api/admin/pdns/zones/example.com./cryptokeys?serverSlug=primary-1&quot;</span>
+<span class="t-c"># → {&quot;zone&quot;:&quot;example.com.&quot;,&quot;dnssec&quot;:true,</span>
+<span class="t-c">#    &quot;cryptokeys&quot;:[{&quot;id&quot;:1,&quot;keytype&quot;:&quot;csk&quot;,&quot;active&quot;:true,&quot;published&quot;:true,&quot;flags&quot;:257,</span>
+<span class="t-c">#                   &quot;algorithm&quot;:&quot;ECDSAP256SHA256&quot;,&quot;bits&quot;:256,&quot;dnskey&quot;:&quot;257 3 13 ...&quot;,</span>
+<span class="t-c">#                   &quot;ds&quot;:[&quot;&lt;tag&gt; 13 1 &lt;sha1&gt;&quot;, &quot;&lt;tag&gt; 13 2 &lt;sha256&gt;&quot;, &quot;&lt;tag&gt; 13 4 &lt;sha384&gt;&quot;],</span>
+<span class="t-c">#                   &quot;cds&quot;:[...]}],</span>
+<span class="t-c">#    &quot;ds&quot;:[&quot;&lt;tag&gt; 13 2 &lt;sha256&gt;&quot;, &quot;&lt;tag&gt; 13 4 &lt;sha384&gt;&quot;]}</span>
+<span class="t-c"># Per-key ds[] is whatever PowerDNS returns, SHA-1 included. The top-level ds[]</span>
+<span class="t-c"># leaves out SHA-1 (type 1) and GOST (type 3): RFC 8624 rules SHA-1 out for DS,</span>
+<span class="t-c"># and registrars warn on it or refuse it. Pick digest type 2 explicitly.</span>
+
+<span class="t-c"># Rectify (bumpSerial defaults to true for a transferred zone)</span>
+<span class="t-x">curl</span> <span class="t-k">-s</span> <span class="t-k">-X</span> PUT <span class="t-k">-H</span> <span class="t-s">&quot;Authorization: Bearer </span><span class="t-v">$PAT</span><span class="t-s">&quot;</span> <span class="t-k">-H</span> <span class="t-s">&#39;Content-Type: application/json&#39;</span> <span class="t-p">\</span>
+  <span class="t-k">-d</span> <span class="t-s">&#39;{&quot;serverSlug&quot;:&quot;primary-1&quot;}&#39;</span> <span class="t-p">\</span>
+  <span class="t-s">&quot;https://dns-admin.example.com/api/admin/pdns/zones/example.com./rectify&quot;</span>
+
+<span class="t-c"># Disable - remove the DS at the registrar and wait out its TTL FIRST</span>
+<span class="t-x">curl</span> <span class="t-k">-s</span> <span class="t-k">-X</span> DELETE <span class="t-k">-H</span> <span class="t-s">&quot;Authorization: Bearer </span><span class="t-v">$PAT</span><span class="t-s">&quot;</span> <span class="t-p">\</span>
+  <span class="t-s">&quot;https://dns-admin.example.com/api/admin/pdns/zones/example.com./dnssec?serverSlug=primary-1&amp;confirm=example.com&quot;</span></code></pre></div>
+<p><code>GET</code> needs <code>dnssec.read</code>. Enable, disable and rectify need <code>dnssec.configure</code>
+(type-level, or a zone grant). Enable sets SOA-EDIT and API-RECTIFY as part of
+signing, so it doesn't need <code>zone.update</code>. All three writes are audited
+(<code>dnssec.enable</code>, <code>dnssec.disable</code>, <code>dnssec.rectify</code>), and mirror zones
+(Slave/Secondary/Consumer) are refused.</p>
+<hr>
+<p><a href="/docs/">← Docs index</a></p>
+</div>
+<footer class="docs-footer" data-search-ignore>
+<div class="docs-feedback">
+<p class="docs-feedback-q"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg><span>Was this page helpful?</span></p>
+<div class="docs-feedback-links">
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20Connecting%20PowerDNS%20backends&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Fbackends%2F%0ASource%3A%20docs%2F04-BACKENDS.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Open an issue</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/04-BACKENDS.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page on GitHub</a>
+<a class="btn btn-ghost btn-sm" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/v1.12.1/docs/04-BACKENDS.md" rel="noopener"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>View source</a>
+</div>
+</div>
+<nav class="docs-pager" aria-label="Previous and next page" data-search-ignore><a class="docs-pager-card docs-pager-prev" href="/docs/configuration/" rel="prev"><span class="docs-pager-dir"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7"/></svg>Previous</span><span class="docs-pager-title">Configuration</span><span class="docs-pager-section">Getting started</span></a><a class="docs-pager-card docs-pager-next" href="/docs/oidc/" rel="next"><span class="docs-pager-dir">Next<svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg></span><span class="docs-pager-title">OIDC single sign-on</span><span class="docs-pager-section">Sign-in &amp; access</span></a></nav>
+<p class="docs-synced"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><span>Synced from <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/tree/v1.12.1/docs" rel="noopener">PowerDNS-AuthAdmin v1.12.1</a> (<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/commit/d0a3faf959c75072815301a236f2c993385d02a9" rel="noopener"><code>d0a3faf</code></a>), <code>docs/04-BACKENDS.md</code>. Documentation © the PowerDNS-AuthAdmin contributors, <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT</a>.</span></p>
+</footer>
+</article>
+<aside class="docs-toc" aria-label="On this page" data-search-ignore>
+<p class="docs-toc-title">On this page</p>
+<nav aria-label="Table of contents"><ol><li><a href="#1-enable-the-powerdns-http-api" data-toc="1-enable-the-powerdns-http-api">1. Enable the PowerDNS HTTP API</a></li><li><a href="#2-add-the-backend" data-toc="2-add-the-backend">2. Add the backend</a></li><li><a href="#the-ssrf-guard" data-toc="the-ssrf-guard">The SSRF guard</a></li><li><a href="#reachability-and-status" data-toc="reachability-and-status">Reachability and status</a></li><li><a href="#background-polling---opt-in-for-multi-peer-topologies" data-toc="background-polling---opt-in-for-multi-peer-topologies">Background polling - opt-in for multi-peer topologies</a></li><li><a href="#topologies" data-toc="topologies">Topologies</a><ol><li><a href="#standalone-primary" data-toc="standalone-primary">Standalone primary</a></li><li><a href="#primary--secondaries" data-toc="primary--secondaries">Primary + secondaries</a></li><li><a href="#multi-primary-cluster" data-toc="multi-primary-cluster">Multi-primary cluster</a></li><li><a href="#hidden-primary--read-only-public-nameservers-native-zones" data-toc="hidden-primary--read-only-public-nameservers-native-zones">Hidden primary + read-only public nameservers (native zones)</a></li></ol></li><li><a href="#dnssec-tsig-autoprimaries" data-toc="dnssec-tsig-autoprimaries">DNSSEC, TSIG, autoprimaries</a></li><li><a href="#dnssec" data-toc="dnssec">DNSSEC</a><ol><li><a href="#enabling" data-toc="enabling">Enabling</a></li><li><a href="#soa-edit-and-presigned-secondaries" data-toc="soa-edit-and-presigned-secondaries">SOA-EDIT and presigned secondaries</a></li><li><a href="#lua-and-alias-records" data-toc="lua-and-alias-records">LUA and ALIAS records</a></li><li><a href="#rolling-out-safely" data-toc="rolling-out-safely">Rolling out safely</a></li><li><a href="#api" data-toc="api">API</a></li></ol></li></ol></nav>
+<div class="docs-toc-actions">
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/edit/main/docs/04-BACKENDS.md" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Edit this page</a>
+<a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues/new?title=Docs%3A%20Connecting%20PowerDNS%20backends&body=Page%3A%20https%3A%2F%2Fpowerdns-authadmin.org%2Fdocs%2Fbackends%2F%0ASource%3A%20docs%2F04-BACKENDS.md%20(v1.12.1)%0A%0AWhat%20was%20unclear%20or%20wrong%3F%0A" rel="noopener"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 19l3-2M20 19l-3-2M12 11v9"/></svg>Report an issue</a>
+<a href="#main" data-docs-top><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>Back to top</a>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer" data-search-ignore>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="PowerDNS-AuthAdmin home"><img class="logo logo-dark" src="/assets/img/brand/logo-dark-360.png" srcset="/assets/img/brand/logo-dark-240.webp 240w, /assets/img/brand/logo-dark-360.webp 360w, /assets/img/brand/logo-dark-480.webp 480w, /assets/img/brand/logo-dark-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"><img class="logo logo-light" src="/assets/img/brand/logo-light-360.png" srcset="/assets/img/brand/logo-light-240.webp 240w, /assets/img/brand/logo-light-360.webp 360w, /assets/img/brand/logo-light-480.webp 480w, /assets/img/brand/logo-light-720.webp 720w" sizes="178px" width="178" height="30" alt="PowerDNS-AuthAdmin" loading="lazy" decoding="async" fetchpriority="low"></a>
+      <p>Modern, self-hosted DNS administration for PowerDNS Authoritative. Open source under the <a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener">MIT licence</a>, built in the open by its community.</p>
+      <a class="release-chip" href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/tag/v1.12.1" data-cta="Latest release" rel="noopener"><span class="pulse" aria-hidden="true"></span>v1.12.1<span class="muted">· 23 Oct 2026</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><h2>Product</h2><ul><li><a href="/features/">Features</a></li><li><a href="/powerdns-admin-alternative/">Compare</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/support/">Commercial support</a></li><li><a href="/search/">Search</a></li><li><a href="https://demo.powerdns-authadmin.org" rel="noopener">Live demo</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases" rel="noopener">Releases</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li></ul></div>
+      <div class="footer-col"><h2>Docs</h2><ul><li><a href="/docs/">Documentation</a></li><li><a href="/docs/quickstart/">Quickstart</a></li><li><a href="/docs/installation/">Installation</a></li><li><a href="/docs/configuration/">Configuration</a></li><li><a href="/docs/rbac/">RBAC</a></li><li><a href="/docs/oidc/">OIDC</a></li><li><a href="/docs/ldap/">LDAP</a></li><li><a href="/docs/saml/">SAML</a></li><li><a href="/docs/passkeys/">Passkeys</a></li><li><a href="/docs/mcp/">MCP</a></li></ul></div>
+      <div class="footer-col"><h2>Community</h2><ul><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener">GitHub</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/discussions" rel="noopener">Discussions</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/issues" rel="noopener">Issues</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy" rel="noopener">Security policy</a></li><li><a href="https://github.com/PowerDNS-AuthAdmin/website" rel="noopener">Website source</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-badges" role="group" aria-label="Project status"><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/ci.yml?query=branch%3Amain" rel="noopener"><img src="/badges/ci.svg" alt="CI" width="90" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases/latest" rel="noopener"><img src="/badges/release.svg" alt="Release" width="102" height="20" loading="lazy" decoding="async"></a><a href="https://scorecard.dev/viewer/?uri=github.com/PowerDNS-AuthAdmin/powerdns-authadmin" rel="noopener"><img src="/badges/openssf-scorecard.svg" alt="OpenSSF Scorecard" width="136" height="20" loading="lazy" decoding="async"></a><a href="https://www.bestpractices.dev/projects/12974" rel="noopener"><img src="/badges/openssf-best-practices.svg" alt="OpenSSF Best Practices" width="184" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/LICENSE" rel="noopener"><img src="/badges/license.svg" alt="License: MIT" width="78" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr.svg" alt="Container: GHCR" width="191" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-version.svg" alt="GHCR version" width="101" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-pulls.svg" alt="GHCR pulls" width="111" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin" rel="noopener"><img src="/badges/ghcr-size.svg" alt="GHCR image size" width="142" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/.nvmrc" rel="noopener"><img src="/badges/nodejs.svg" alt="Node.js 24" width="91" height="20" loading="lazy" decoding="async"></a><a href="https://nextjs.org" rel="noopener"><img src="/badges/nextjs.svg" alt="Next.js 16" width="89" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/tsconfig.json" rel="noopener"><img src="/badges/typescript.svg" alt="TypeScript strict" width="123" height="20" loading="lazy" decoding="async"></a></span><span class="badge-group"><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-46.yml" rel="noopener"><img src="/badges/pdns-4-6.svg" alt="PowerDNS 4.6" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-47.yml" rel="noopener"><img src="/badges/pdns-4-7.svg" alt="PowerDNS 4.7" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-48.yml" rel="noopener"><img src="/badges/pdns-4-8.svg" alt="PowerDNS 4.8" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-49.yml" rel="noopener"><img src="/badges/pdns-4-9.svg" alt="PowerDNS 4.9" width="153" height="20" loading="lazy" decoding="async"></a><a href="https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/actions/workflows/pdns-compat-50.yml" rel="noopener"><img src="/badges/pdns-5-0.svg" alt="PowerDNS 5.0" width="155" height="20" loading="lazy" decoding="async"></a></span></div>
+  <div class="container footer-bottom">
+    <span>© 2026 PowerDNS-AuthAdmin contributors. MIT licensed.</span>
+    <span>Independent community project, not affiliated with or endorsed by PowerDNS or Open-Xchange. PowerDNS is a trademark of its respective owner.</span>
+    <span>This website uses Google Analytics to count visits (no ad cookies); <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt out</a>. The app itself has no telemetry.</span>
+    <span><a class="ngn-credit" rel="noopener" href="https://ngn.au/services/website-development/" aria-label="Website by NGN"><span>Website by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 569" width="45" height="16" fill="currentColor" aria-hidden="true" focusable="false"><g transform="translate(0.000000,568.329515) scale(0.100000,-0.100000)"><path d="M0 3700 l0 -1980 633 2 632 3 5 1433 c4 1259 7 1434 20 1442 24 15 2173 13 2188 -2 9 -9 12 -343 12 -1440 l0 -1428 23 -5 c12 -3 297 -4 632 -3 l610 3 0 1460 c0 1332 -1 1465 -17 1515 -9 30 -19 74 -23 97 -4 24 -11 45 -16 48 -4 3 -13 23 -19 45 -23 87 -143 264 -250 370 -73 73 -133 120 -259 202 -81 53 -257 138 -286 138 -9 0 -28 6 -43 14 -15 8 -61 19 -102 25 -41 7 -82 18 -90 26 -14 13 -256 15 -1833 15 l-1817 0 0 -1980z M5771 5660 c-13 -11 -33 -20 -45 -20 -11 0 -46 -13 -76 -28 -184 -94 -290 -222 -363 -442 -9 -26 -12 -403 -12 -1480 l0 -1445 29 -80 c16 -44 35 -87 41 -95 7 -8 16 -26 20 -39 11 -36 182 -204 235 -232 25 -13 70 -35 100 -49 l55 -25 1848 -5 c1628 -4 1849 -7 1857 -20 15 -23 13 -673 -2 -688 -9 -9 -368 -12 -1555 -12 -1319 0 -1544 -2 -1549 -14 -6 -15 3 -34 71 -141 24 -38 51 -83 60 -100 8 -16 35 -61 60 -100 24 -38 61 -99 82 -133 21 -35 46 -76 55 -90 10 -15 27 -43 38 -62 11 -19 31 -52 43 -72 12 -20 39 -65 60 -100 55 -92 60 -100 80 -130 9 -14 17 -33 17 -42 0 -23 2494 -25 2519 -2 9 8 54 20 101 26 46 6 89 14 94 18 6 3 37 13 70 23 340 97 641 334 797 627 17 32 34 64 39 72 18 32 60 129 60 140 0 7 6 24 14 38 22 41 54 153 66 226 6 36 15 78 21 92 26 69 30 404 27 2109 -3 1674 -4 1762 -21 1805 -10 25 -21 54 -24 65 -24 84 -158 251 -248 309 -55 36 -140 76 -161 76 -12 0 -33 9 -47 20 -39 31 -4418 31 -4456 0z m3687 -1062 c9 -9 12 -226 12 -915 0 -882 0 -903 -19 -913 -27 -14 -2875 -14 -2902 0 -19 10 -19 31 -19 913 0 689 3 906 12 915 17 17 2899 17 2916 0z M11240 3716 c0 -1080 3 -1971 6 -1980 6 -14 69 -16 619 -16 337 0 620 3 629 6 15 6 16 141 16 1433 0 1097 3 1430 12 1439 15 15 2164 17 2188 2 13 -8 16 -183 20 -1442 l5 -1433 633 -3 632 -2 0 1474 c0 1253 -2 1475 -14 1485 -8 7 -19 41 -25 77 -7 36 -19 82 -28 102 -28 65 -73 156 -91 183 -68 104 -119 166 -197 240 -54 51 -190 159 -200 159 -2 0 -24 14 -49 30 -24 17 -59 37 -78 45 -18 9 -40 20 -48 25 -52 32 -224 89 -303 100 -32 5 -67 16 -76 24 -16 14 -202 16 -1834 16 l-1817 0 0 -1964z"/></g></svg></a></span>
+  </div>
+</footer>
+
+</body>
+</html>

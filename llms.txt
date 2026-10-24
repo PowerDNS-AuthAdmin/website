@@ -1,0 +1,192 @@
+# PowerDNS-AuthAdmin
+
+> PowerDNS-AuthAdmin is a free, open-source (MIT), self-hosted web UI for PowerDNS Authoritative. It adds scoped role-based access control, OIDC / SAML 2.0 / LDAP single sign-on with group-to-role mapping, passkeys and TOTP MFA, a diff-before-apply record editor, automatic PTR maintenance with a fleet-wide Reverse DNS report, Zone Monitoring (delegation, nameservers, open AXFR and the DNSSEC chain checked from the outside), global search, DNSSEC / TSIG / autoprimary management, multi-backend support (standalone, primary + secondaries, multi-primary clusters), an append-only audit log and a built-in Model Context Protocol (MCP) server so Claude Code, Codex, Cursor and other AI assistants can manage zones and records in natural language. It ships as one Docker image (ghcr.io/powerdns-authadmin/powerdns-authadmin) on SQLite or PostgreSQL.
+
+- Latest version: 1.12.1 (released 2026-10-23)
+- PowerDNS Authoritative versions tested in CI: 4.6, 4.7, 4.8, 4.9, 5.0, 5.1
+- Catalog zones (RFC 9432, PowerDNS 4.7+) are listed apart as system zones, with guarded deletion and sync that only counts secondaries consuming the catalog
+- Runtime: Node.js 24, Next.js, TypeScript
+- MCP server at /api/mcp (Streamable HTTP, personal access token as Bearer): list_backends, list_zones, find_zones, get_zone, list_records, records_at, set_records, add_record, delete_records, create_zone, delete_zone, zone_sync_status, reverse_dns_report, reverse_dns_links, reverse_dns_rectify, zone_monitoring, zone_monitoring_refresh, search, list_notifications, dismiss_notifications
+- Opt-in features (off by default): REVERSE_DNS_ENABLED=true for the Reverse DNS report, ZONE_MONITOR_ENABLED=true for Zone Monitoring; automatic PTR maintenance on save via the auto_ptr setting
+- No telemetry, no CDN; works air-gapped (Zone Monitoring and external PTR lookups, both opt-in, are the only features that send DNS queries out)
+- Independent community project, not affiliated with PowerDNS or Open-Xchange
+
+## Site
+
+- [Home](https://powerdns-authadmin.org/): overview, Reverse DNS and Zone Monitoring, screenshots, the MCP server ("talk to your DNS") and the Docker Compose quickstart
+- [Features](https://powerdns-authadmin.org/features/): full feature catalog
+- [PowerDNS-Admin alternative](https://powerdns-authadmin.org/powerdns-admin-alternative/): how it compares and how to switch
+- [FAQ](https://powerdns-authadmin.org/faq/): installation, versions, SSO, RBAC, clusters, PTR sync, zone monitoring, search, MCP and AI assistants, API, security
+- [Commercial support](https://powerdns-authadmin.org/support/): 24 hour commercial support from Next Generation Networks (NGN, https://ngn.au/)
+- [Documentation](https://powerdns-authadmin.org/docs/): every guide, synced from the PowerDNS-AuthAdmin repository at v1.12.1
+- [Full documentation as one text file](https://powerdns-authadmin.org/llms-full.txt)
+
+## Project
+
+- [Source code](https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin)
+- [Releases](https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/releases) and [changelog](https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/blob/main/CHANGELOG.md)
+- [Container image](https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/pkgs/container/powerdns-authadmin)
+- [Live demo](https://demo.powerdns-authadmin.org)
+- [Security policy](https://github.com/PowerDNS-AuthAdmin/powerdns-authadmin/security/policy)
+
+## Documentation
+
+### Architecture decisions
+
+- [Architecture Decision Records](https://powerdns-authadmin.org/docs/adr/): The 23 Architecture Decision Records behind PowerDNS-AuthAdmin: framework, auth core, sessions, CSP, migrations, backends, SSO providers and zone permissions.
+- [ADR 0001: Choose Next.js 15 + React Server Components as the framework](https://powerdns-authadmin.org/docs/adr/0001-framework-choice/): PowerDNS-AuthAdmin is a server-rendered admin UI with a public REST API, OIDC/SAML/LDAP auth, and a strict separation between server-only secrets and…
+- [ADR 0002: License under MIT](https://powerdns-authadmin.org/docs/adr/0002-mit-license/): PowerDNS-AuthAdmin is intended for community self-hosters and multi-team org IT.
+- [ADR 0004: Three-layer architecture (auth → RBAC → business logic)](https://powerdns-authadmin.org/docs/adr/0004-three-layer-architecture/): Web apps that mix authentication, authorization, ORM access, upstream API calls, and template rendering inside the same modules accumulate a class of…
+- [ADR 0005: Migrations are never auto-applied on app boot](https://powerdns-authadmin.org/docs/adr/0005-migrations-explicit/): Some frameworks auto-run database migrations when the app starts. This is convenient in development and dangerous in production: a long migration can hold a…
+- [ADR 0006: Per-request CSP nonce](https://powerdns-authadmin.org/docs/adr/0006-csp-nonce/): Next.js streams inline <script> tags as part of its server-rendered HTML - these carry the hydration payload that React needs to take over the page.
+- [ADR 0007: DB-backed sessions over stateless JWTs](https://powerdns-authadmin.org/docs/adr/0007-db-backed-sessions/): Architecture decision record 0007, accepted, decided 2026-05-16.
+- [ADR 0008: Argon2id for password hashing](https://powerdns-authadmin.org/docs/adr/0008-argon2id-passwords/): bcrypt has been the safe default for password hashing for years and there are no known breaks of it, but the field has moved on.
+- [ADR 0009: Roll our own auth core on openid-client + argon2, not Auth.js](https://powerdns-authadmin.org/docs/adr/0009-custom-auth-core/): Architecture decision record 0009, accepted, decided 2026-05-16.
+- [ADR 0010: Per-RRset optimistic concurrency for the editor](https://powerdns-authadmin.org/docs/adr/0010-per-rrset-optimistic-concurrency/): The RRset editor at /zones/[zoneId] allows simultaneous edits from multiple operators across multiple browser tabs.
+- [ADR 0011: Migrations run at app-container boot](https://powerdns-authadmin.org/docs/adr/0011-migrate-on-app-boot/): ADR 0005 said the project would never auto-apply migrations at app boot - that migrations were an explicit operator action, and that a one-shot migrate…
+- [ADR 0012: First-boot provisioning + OIDC group → role materialisation](https://powerdns-authadmin.org/docs/adr/0012-first-boot-provisioning/): Architecture decision record 0012, accepted, decided 2026-05-18.
+- [ADR 0013: The PDNS client's sanctioned DB bridge (and fixing boundary enforcement)](https://powerdns-authadmin.org/docs/adr/0013-pdns-db-bridge/): ADR-0004 makes lib/pdns/ a pure protocol adapter: it speaks the PowerDNS HTTP API and nothing else.
+- [ADR 0014: Per-zone authority + observed daemon capabilities (retire per-server role)](https://powerdns-authadmin.org/docs/adr/0014-backend-capability-model/): We modeled each backend with a single role (primary | secondary) plus an optional primaryId pin linking a secondary to exactly one primary.
+- [ADR 0015: Backend health advisories (the notification bell)](https://powerdns-authadmin.org/docs/adr/0015-backend-health-advisories/): Operators need to know when a backend is broken or mis-serving without hunting through pages.
+- [ADR 0016: Optional Redis for horizontal scale (replicas > 1)](https://powerdns-authadmin.org/docs/adr/0016-redis-horizontal-scale/): Architecture decision record 0016, accepted, decided 2026-05-24.
+- [ADR 0017: Squash the 1.1.0 schema deltas into one migration per dialect](https://powerdns-authadmin.org/docs/adr/0017-migration-squash-1.1.0/): Between the 1.0.2 tag and the 1.1.0 release the schema churned while the backend capability model (ADR-0014) and health advisories (ADR-0015) landed.
+- [ADR 0018: Multi-provider auth: keep OIDC where it is, layer SAML + LDAP as siblings](https://powerdns-authadmin.org/docs/adr/0018-provider-abstraction/): Today the app supports local password (Argon2id) sign-in and OIDC (via openid-client v6).
+- [ADR 0019: WebAuthn: both primary credential and second factor](https://powerdns-authadmin.org/docs/adr/0019-webauthn-passkeys/): The app shipped with TOTP-only MFA. WebAuthn (users.webauthncredentials JSONB column with a schema that already matches @simplewebauthn/server's shape) was…
+- [ADR 0020: LDAP authentication architecture](https://powerdns-authadmin.org/docs/adr/0020-ldap-architecture/): A meaningful fraction of self-hosted DNS operators still run Active Directory or OpenLDAP as their authoritative identity store.
+- [ADR 0021: SAML 2.0 service-provider architecture](https://powerdns-authadmin.org/docs/adr/0021-saml-architecture/): OIDC covers most modern IdPs but operators with AD FS, legacy Shibboleth deployments, or enterprise-mandated SAML federations still need a second sign-in…
+- [ADR 0022: Zone horizons: app-side split-horizon classification](https://powerdns-authadmin.org/docs/adr/0022-zone-horizons/): Split-horizon DNS is ordinary practice: the same zone name answers one way to the internet and another way inside the network, usually served by two separate…
+- [ADR 0023: Zone authority is a separate permission from zone records](https://powerdns-authadmin.org/docs/adr/0023-zone-authority-permissions/): The permission vocabulary modelled a zone as two things: the zone object (zone.) and the records inside it (record.).
+- [ADR 0024: Zone-scoped roles grant zone access](https://powerdns-authadmin.org/docs/adr/0024-zone-scoped-roles-grant-zone-access/): A role assignment carries a scope - global, team:<id>, zone:<name> or server:<id> - and the documentation promised that "Zone Editor scoped to…
+
+### Getting started
+
+- [Quickstart](https://powerdns-authadmin.org/docs/quickstart/): Get a working PowerDNS-AuthAdmin - with a bundled PowerDNS Authoritative and 10 demo zones - running locally in a couple of minutes.
+- [Installation](https://powerdns-authadmin.org/docs/installation/): Run it for real: Docker or from source, SQLite or Postgres, a reverse proxy, backups and health checks.
+- [Configuration reference](https://powerdns-authadmin.org/docs/configuration/): Every setting is an environment variable, validated once at boot. If anything required is missing or malformed, the app refuses to start with a clear error…
+- [Connecting PowerDNS backends](https://powerdns-authadmin.org/docs/backends/): PowerDNS-AuthAdmin talks to one or many PowerDNS Authoritative servers over their HTTP API.
+
+### Sign-in & access
+
+- [OIDC single sign-on](https://powerdns-authadmin.org/docs/oidc/): PowerDNS-AuthAdmin authenticates users against any standards-compliant OpenID Connect provider using Authorization Code flow with PKCE.
+- [SAML 2.0 single sign-on](https://powerdns-authadmin.org/docs/saml/): PowerDNS-AuthAdmin can authenticate users against any SAML 2.0 identity provider - AD FS, Authentik SAML, Keycloak SAML, Okta SAML, Azure AD SAML…
+- [LDAP authentication](https://powerdns-authadmin.org/docs/ldap/): PowerDNS-AuthAdmin can authenticate users by direct bind against Active Directory or OpenLDAP.
+- [Passkeys & security keys (WebAuthn)](https://powerdns-authadmin.org/docs/passkeys/): Use WebAuthn as passwordless sign-in or as a second factor.
+- [Roles & permissions (RBAC)](https://powerdns-authadmin.org/docs/rbac/): Access is granted by assigning roles to users, optionally scoped to a team, zone, or server.
+
+### Operations
+
+- [First-boot provisioning](https://powerdns-authadmin.org/docs/provisioning/): Provisioning brings up a fully-configured install from a single YAML file - settings, custom roles, teams, zone templates, PowerDNS clusters and servers, OIDC…
+- [Hardening & best practices](https://powerdns-authadmin.org/docs/hardening/): A checklist for running PowerDNS-AuthAdmin safely in production. None of it is exotic - it's the handful of things worth getting right before you expose the…
+- [Upgrading](https://powerdns-authadmin.org/docs/upgrading/): PowerDNS-AuthAdmin ships as a single image and runs its own database migrations on boot, so upgrading is usually "pull a new tag and recreate the container."…
+- [Troubleshooting](https://powerdns-authadmin.org/docs/troubleshooting/): Common problems and where to look. Logs are structured (Pino) and secret-redacted
+
+### Integrations & reference
+
+- [Natural-language DNS with MCP](https://powerdns-authadmin.org/docs/mcp/): PowerDNS-AuthAdmin exposes a Model Context Protocol (MCP) server at /api/mcp.
+- [Features](https://powerdns-authadmin.org/docs/features/): A complete tour of what PowerDNS-AuthAdmin does, grouped by concern, with module pointers so you can jump straight into the code that owns each feature.
+- [Dev setup](https://powerdns-authadmin.org/docs/dev-setup/): The path from "fresh git clone" to "I broke a test, what now?" - every command is meant to be safe to copy-paste.
+
+## Highlights
+
+- PTR records that keep up: Saving or deleting an A/AAAA record can create, update or remove its PTR in a reverse zone on any backend, and a fleet-wide Reverse DNS report shows every address that is missing, mismatched or orphaned.
+- Zone Monitoring: Every hosted zone checked from the outside: delegation walked from the root servers, each nameserver, open AXFR, the DNSSEC chain and what resolvers answer. Findings feed the notification bell.
+- Talk to your DNS: A built-in MCP server lets Claude Code, Codex, Cursor or any MCP client manage zones and records, reverse DNS and monitoring from a prompt, under the same RBAC, validation and audit log as the UI.
+- Real RBAC: Five system roles plus your own custom roles across ~60 permissions, each assignment scoped to global, team, zone or server.
+- SSO your way: OIDC with PKCE, SAML 2.0 and LDAP / Active Directory, all with group → role mapping. Local accounts use Argon2id.
+- Passkeys & MFA: Passkeys and hardware security keys (WebAuthn) or TOTP. Any role can require MFA before it takes effect.
+- Diff before apply: Edit records inline, in the full editor or through the Add record wizard, drive it all from the keyboard, and review every change as a BIND-style diff before it is written.
+- Multi-backend, in sync: Standalone primaries, primary + secondaries and multi-primary clusters in one zone list, with NOTIFY-aware probes that compare every secondary's serial.
+- DNSSEC & TSIG: Enable, disable and rectify DNSSEC per zone, publish the right DS set, manage cryptokeys, TSIG keys and autoprimaries without pdnsutil.
+- Append-only audit: Every write, including what an AI assistant does, is recorded with redacted before / after snapshots and the PowerDNS HTTP trail, with a fleet-wide Change log and one per zone.
+- One image, zero clicks: A single Docker image on SQLite or Postgres. A provisioning.yaml brings up roles, teams, backends and SSO on first boot.
+- Search everything: Ctrl K / ⌘K fuzzy-matches zones, records and config across every backend, filtered by your own permissions. The request and audit logs have their own tabs.
+
+## FAQ
+
+### What is PowerDNS-AuthAdmin?
+
+PowerDNS-AuthAdmin is a free, open-source web interface for managing PowerDNS Authoritative servers. It adds role-based access control, single sign-on (OIDC, SAML and LDAP), passkeys and MFA, a diff-before-apply record editor, automatic PTR maintenance with a fleet-wide Reverse DNS report, Zone Monitoring of delegation, nameservers and DNSSEC from the outside, DNSSEC and TSIG management, multi-backend cluster support, an append-only audit log and a built-in MCP server for AI assistants on top of the PowerDNS HTTP API. It ships as one Docker image and is MIT licensed.
+
+### Is PowerDNS-AuthAdmin free?
+
+Yes. PowerDNS-AuthAdmin is free and open source under the MIT licence. You self-host it on your own infrastructure; there is no SaaS, no account to create and no telemetry.
+
+### Which PowerDNS versions does it support?
+
+PowerDNS-AuthAdmin is tested in CI against PowerDNS Authoritative 4.6 to 5.1 (4.6, 4.7, 4.8, 4.9, 5.0 and 5.1). It talks to PowerDNS through the Authoritative server's built-in HTTP API, so the API and an API key must be enabled. Catalog zones need PowerDNS 4.7 or later, and on 5.1 editing LUA records needs enable-lua-record-updates=yes.
+
+### Does it work with PowerDNS Recursor or dnsdist?
+
+No. PowerDNS-AuthAdmin manages PowerDNS Authoritative servers, the ones that host your zones. It does not configure PowerDNS Recursor or dnsdist.
+
+### How do I install PowerDNS-AuthAdmin?
+
+Run the Docker image ghcr.io/powerdns-authadmin/powerdns-authadmin with Docker Compose. Generate APP_SECRET_KEY and APP_ENCRYPTION_KEY once into a .env file, set APP_URL to the URL your browser uses, set the bootstrap admin account and start the stack. Migrations run automatically on boot. The installation guide covers production setups with TLS and backups.
+
+### Which database does it need?
+
+SQLite for a single instance (homelab, evaluation, small teams) or PostgreSQL for multiple instances. To run more than one replica you need PostgreSQL plus Redis, which coordinates rate limiting, one-time reveal tokens and live updates across replicas.
+
+### Which single sign-on providers are supported?
+
+Any OpenID Connect provider (with PKCE, group → role mapping and RP-initiated logout), any SAML 2.0 identity provider such as AD FS, Authentik, Keycloak, Okta, Microsoft Entra ID, PingFederate or Shibboleth, and LDAP against Active Directory or OpenLDAP. Local email and password accounts are also available.
+
+### Does it support passkeys and two-factor authentication?
+
+Yes. Users can enrol WebAuthn passkeys and hardware security keys such as YubiKey, either for passwordless sign-in or as a second factor, and TOTP authenticator apps. A role can be marked MFA-required so everyone holding it must enrol.
+
+### Can I give a customer or team access to only their own zones?
+
+Yes. Every role assignment has a scope: global, a team, a single zone or a single server. A user can hold a record-editing role on one zone and have no access anywhere else, assigned by an administrator or mapped from an identity provider group. The SOA, apex NS records and zone settings are separate permissions, so you can let someone manage records without letting them change the zone's authority.
+
+### Can it manage several PowerDNS servers or clusters?
+
+Yes. One install manages standalone primaries, primary + secondaries groups and multi-primary clusters that share a replicated database. Zones from all backends appear in one list, and sync probes show whether every secondary or cluster peer has the same serial and records.
+
+### Can PowerDNS-AuthAdmin keep PTR records in sync?
+
+Yes, since version 1.10.0. With automatic PTR maintenance on, saving or deleting an A or AAAA record also creates, updates or removes the matching PTR in a reverse zone hosted on any of your backends, including RFC 2317 classless zones, and the review dialog shows the reverse change before you save. Turn it on globally with the auto_ptr setting, per zone with X-AUTHADMIN-AUTO-PTR metadata, or for one save with the editor's checkbox; nothing is written otherwise. It never creates reverse zones and never replaces a PTR that points at another name without an explicit takeover. To reconcile what is already there, set REVERSE_DNS_ENABLED=true for the Reverse DNS report, which compares every A/AAAA record in the fleet with its PTR (OK, missing, mismatch, ambiguous, orphan, not hosted) and rectifies the rows you pick after showing the PTR diff. See the feature reference.
+
+### Does it monitor delegation, nameservers and DNSSEC?
+
+Yes, since version 1.10.0, when you set ZONE_MONITOR_ENABLED=true. Zone Monitoring checks every hosted zone from the outside on a schedule: the delegation at the parent, read by walking from the root servers rather than through a resolver, each nameserver's reachability, authority, serial and NS set, open AXFR, the DS at the parent against the zone's DNSKEYs, what public or internal resolvers answer, and the SOA timers, MNAME and RNAME. Findings have stable codes, a severity and what to do; errors and warnings appear in the notification bell, and an SOA MNAME finding has a Fix button that shows the change as a diff before saving. It is off by default because it sends DNS queries outside your network. See the feature reference and the configuration guide.
+
+### Can I search across every zone and record?
+
+Yes. Press Ctrl K (⌘K on a Mac), / or the Search button in the header to fuzzy-search zones, records (names and values) and configuration across every backend. The PowerDNS request log and the audit log are searched from their own tabs. Results are filtered by your own permissions and secrets are never indexed or returned. The same search is available as GET /api/search and the MCP search tool.
+
+### Is there an API for automation?
+
+Yes. Every admin screen has a matching /api/admin route. Scripts authenticate with personal access tokens (pda_pat_…) that carry their own permission scopes, sent as a Bearer token or X-API-Key header. The same tokens authenticate MCP clients on /api/mcp, and DNSSEC state (signing status, keys, the DS set, per-mirror sync) is readable over the API too.
+
+### Can I manage DNS with Claude Code or another AI assistant?
+
+Yes. Since version 1.9.0, PowerDNS-AuthAdmin includes a Model Context Protocol (MCP) server at /api/mcp. Connect Claude Code, Codex, Cursor, Windsurf or any MCP client over Streamable HTTP with a personal access token as the Bearer header, then ask in plain language: point www at an address, replace a zone's MX records, create a staging zone. The assistant gets tools for backends, zones and records, and since 1.10.0 for everything the new pages do: finding a zone, checking a name before adding it, waiting for a zone to sync, the Reverse DNS report and its rectify, Zone Monitoring, search and notifications. See the MCP guide for each client's configuration.
+
+### Is it safe to let an AI assistant change DNS records?
+
+The MCP server gives an assistant no power its token owner doesn't have. Every call runs as the owner of a personal access token, limited by the token's scopes and per-zone grants, and goes through the same validators, optimistic concurrency and audit log as the web UI. A read-only token presents a read-only server, destructive tools are annotated so clients can ask for confirmation, deleting a zone requires the assistant to repeat its name, and every change is logged under the owner's name with the client's user agent. Give a bot the minimum: a per-zone grant beats a global role.
+
+### Can I import existing zones?
+
+Zones already hosted in PowerDNS appear as soon as you register the backend, because PowerDNS-AuthAdmin reads them straight from the PowerDNS API. You can also import one or many zones from a BIND zone file, and export any selection of zones as a BIND-format bundle.
+
+### Does PowerDNS-AuthAdmin send telemetry or load anything from a CDN?
+
+No. It makes no phone-home calls and serves all of its assets itself, so it runs in air-gapped networks. The only features that send traffic outside your network on their own are Zone Monitoring (ZONE_MONITOR_ENABLED=true) and the Reverse DNS lookups for addresses you don't host (REVERSE_DNS_ENABLED=true). Both are off by default, and both send only DNS queries on port 53.
+
+### How is it different from PowerDNS-Admin?
+
+PowerDNS-AuthAdmin is a separate project written from scratch in TypeScript on Node.js. Its focus is teams running multiple backends: scoped RBAC, OIDC / SAML / LDAP with group mapping, passkeys, diff-before-apply editing, cluster and secondary sync probes, automatic PTR maintenance, Zone Monitoring, an append-only audit log and a built-in MCP server for AI assistants. See the comparison page for details.
+
+### Is there a live demo?
+
+Yes. demo.powerdns-authadmin.org is a real, seeded install you can click around in. The sign-in details are on its login page and in the project README.
+
+### Is commercial support available?
+
+Yes. PowerDNS-AuthAdmin is free and community supported: ask questions in GitHub Discussions and report bugs in Issues. Commercial support, 24 hours a day, is available from Next Generation Networks (NGN), the Sydney IT company that built this website; see commercial support for how to reach them.
+
+### How do I report a security issue?
+
+Please report vulnerabilities privately through GitHub's private vulnerability reporting, as described in the security policy. Do not open a public issue.
